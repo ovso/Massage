@@ -10,7 +10,14 @@ public interface MainPresenter {
 
   void onCreate(Bundle savedInstanceState);
 
+  boolean onNavigationItemSelected(int id);
+
+  void onBackPressed(boolean isDrawerOpen);
+
   interface View {
 
+    void closeDrawer();
+
+    void finish();
   }
 }
