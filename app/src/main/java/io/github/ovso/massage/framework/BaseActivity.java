@@ -3,7 +3,6 @@ package io.github.ovso.massage.framework;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +22,6 @@ public abstract class BaseActivity extends AppCompatActivity {
   private Unbinder unbinder;
   protected @BindView(R.id.toolbar) Toolbar toolbar;
   protected @BindView(R.id.drawer_layout) DrawerLayout drawer;
-  protected @BindView(R.id.nav_view) NavigationView navigationView;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     AndroidInjection.inject(this);
