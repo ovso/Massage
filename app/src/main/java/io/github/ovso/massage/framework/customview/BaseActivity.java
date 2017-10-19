@@ -1,4 +1,4 @@
-package io.github.ovso.massage.framework;
+package io.github.ovso.massage.framework.customview;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -14,11 +14,10 @@ import dagger.android.AndroidInjection;
 import io.github.ovso.massage.R;
 
 /**
- * Created by jaeho on 2017. 9. 25
+ * Created by jaeho on 2017. 10. 19
  */
 
 public abstract class BaseActivity extends AppCompatActivity {
-
   private Unbinder unbinder;
   protected @BindView(R.id.toolbar) Toolbar toolbar;
   protected @BindView(R.id.drawer_layout) DrawerLayout drawer;

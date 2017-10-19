@@ -1,4 +1,4 @@
-package io.github.ovso.massage.framework;
+package io.github.ovso.massage.framework.customview;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

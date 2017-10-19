@@ -1,7 +1,6 @@
 package io.github.ovso.massage.main;
 
 import android.os.Bundle;
-import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
 import javax.inject.Inject;
 
@@ -17,8 +16,10 @@ public class MainPresenterImpl implements MainPresenter {
     this.view = view;
   }
 
-  @DebugLog @Override public void onCreate(Bundle savedInstanceState) {
-
+  @Override public void onCreate(Bundle savedInstanceState) {
+    view.setListener();
+    view.setViewPager();
+    view.setTabLayout();
   }
 
   @Override public boolean onNavigationItemSelected(int id) {
@@ -44,6 +45,13 @@ public class MainPresenterImpl implements MainPresenter {
     } else {
       view.finish();
     }
+  }
+
+  @Override public void onTabSelected(int position) {
+
+  }
+
+  @Override public void onTabReselected(int position) {
 
   }
 }

@@ -8,4 +8,6 @@
   <item name="nav_manage" type="id"/>
   <item name="nav_share" type="id"/>
   <item name="nav_send" type="id"/>
+  <item name="viewpager" type="id"/>
+  <item name="tabs" type="id"/>
 </resources>

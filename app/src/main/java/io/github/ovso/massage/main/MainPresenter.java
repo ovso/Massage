@@ -14,10 +14,20 @@ public interface MainPresenter {
 
   void onBackPressed(boolean isDrawerOpen);
 
+  void onTabSelected(int position);
+
+  void onTabReselected(int position);
+
   interface View {
 
     void closeDrawer();
 
     void finish();
+
+    void setListener();
+
+    void setViewPager();
+
+    void setTabLayout();
   }
 }
