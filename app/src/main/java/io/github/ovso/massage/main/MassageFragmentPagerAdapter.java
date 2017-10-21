@@ -26,11 +26,6 @@ public class MassageFragmentPagerAdapter extends FragmentStatePagerAdapter
     items.add(MassageFragment.newInstance());
     items.add(MassageFragment.newInstance());
     items.add(MassageFragment.newInstance());
-    items.add(MassageFragment.newInstance());
-    items.add(MassageFragment.newInstance());
-    items.add(MassageFragment.newInstance());
-    items.add(MassageFragment.newInstance());
-    items.add(MassageFragment.newInstance());
   }
 
   @Override public void add(Fragment item) {

@@ -67,8 +67,13 @@ public class MainActivity extends BaseActivity
   @Override public void setTabLayout() {
     tabLayout.setupWithViewPager(viewPager);
     tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
-    tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+    tabLayout.setTabMode(TabLayout.GRAVITY_FILL);
     tabLayout.addOnTabSelectedListener(onTabSelectedListener);
+    tabLayout.getTabAt(0).setText("발");
+    tabLayout.getTabAt(1).setText("머리-목");
+    tabLayout.getTabAt(2).setText("등");
+    tabLayout.getTabAt(3).setText("다리");
+    tabLayout.getTabAt(4).setText("허벅지");
   }
 
   private TabLayout.OnTabSelectedListener onTabSelectedListener =
