@@ -10,7 +10,7 @@ public interface MainPresenter {
 
   void onCreate(Bundle savedInstanceState);
 
-  boolean onNavigationItemSelected(int id);
+  boolean onNaviItemSelected(int itemId);
 
   void onBackPressed(boolean isDrawerOpen);
 
@@ -29,5 +29,7 @@ public interface MainPresenter {
     void setViewPager();
 
     void setTabLayout();
+
+    void setRecyclerView();
   }
 }

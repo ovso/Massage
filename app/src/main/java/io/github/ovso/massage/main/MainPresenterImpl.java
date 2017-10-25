@@ -20,9 +20,10 @@ public class MainPresenterImpl implements MainPresenter {
     view.setListener();
     view.setViewPager();
     view.setTabLayout();
+    view.setRecyclerView();
   }
 
-  @Override public boolean onNavigationItemSelected(int id) {
+  @Override public boolean onNaviItemSelected(int id) {
     if (id == R.id.nav_camera) {
       // Handle the camera action
     } else if (id == R.id.nav_gallery) {

@@ -1,28 +1,31 @@
 package io.github.ovso.massage.main;
 
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.MenuItem;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import butterknife.BindView;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
+import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.framework.customview.BaseActivity;
+import io.github.ovso.massage.main.navigation.NaviAdapter;
+import io.github.ovso.massage.main.navigation.NaviMenuItem;
+import io.github.ovso.massage.main.navigation.OnNaviItemSelectedListener;
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity
-    implements NavigationView.OnNavigationItemSelectedListener, MainPresenter.View,
-    HasSupportFragmentInjector {
+    implements OnNaviItemSelectedListener, MainPresenter.View, HasSupportFragmentInjector {
 
-  @BindView(R.id.navigation_view) NavigationView navigationView;
   @BindView(R.id.viewpager) ViewPager viewPager;
   @BindView(R.id.tabs) TabLayout tabLayout;
+  @BindView(R.id.recyclerview) RecyclerView recyclerView;
   @Inject MainPresenter presenter;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +39,6 @@ public class MainActivity extends BaseActivity
             R.string.navigation_drawer_close);
     drawer.addDrawerListener(toggle);
     toggle.syncState();
-
-    navigationView.setNavigationItemSelectedListener(this);
   }
 
   @Override protected int getLayoutResID() {
@@ -46,12 +47,6 @@ public class MainActivity extends BaseActivity
 
   @Override public void onBackPressed() {
     presenter.onBackPressed(drawer.isDrawerOpen(GravityCompat.START));
-  }
-
-  @SuppressWarnings("StatementWithEmptyBody") @Override
-  public boolean onNavigationItemSelected(MenuItem item) {
-    drawer.closeDrawer(GravityCompat.START);
-    return presenter.onNavigationItemSelected(item.getItemId());
   }
 
   @Override public void closeDrawer() {
@@ -76,6 +71,14 @@ public class MainActivity extends BaseActivity
     tabLayout.getTabAt(4).setText("허벅지");
   }
 
+  @Inject NaviAdapter naviAdapter;
+
+  @Override public void setRecyclerView() {
+    LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+    recyclerView.setLayoutManager(layoutManager);
+    recyclerView.setAdapter(naviAdapter);
+  }
+
   private TabLayout.OnTabSelectedListener onTabSelectedListener =
       new TabLayout.OnTabSelectedListener() {
         @Override public void onTabSelected(TabLayout.Tab tab) {
@@ -94,5 +97,10 @@ public class MainActivity extends BaseActivity
 
   @Override public AndroidInjector<Fragment> supportFragmentInjector() {
     return fragmentDispatchingAndroidInjector;
+  }
+
+  @DebugLog @Override public void onNaviItemSelected(NaviMenuItem item) {
+    drawer.closeDrawer(GravityCompat.START);
+    presenter.onNaviItemSelected(item.getItemId());
   }
 }
