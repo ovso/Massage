@@ -10,4 +10,5 @@
   <item name="nav_send" type="id"/>
   <item name="viewpager" type="id"/>
   <item name="tabs" type="id"/>
+  <item name="recyclerview" type="id"/>
 </resources>
