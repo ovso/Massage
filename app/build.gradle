@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'hugo'
-//apply plugin: 'me.tatarka.retrolambda'
 
 android {
   compileSdkVersion 26
@@ -35,10 +34,10 @@ android {
     }
   }
 
-//  compileOptions {
-//    sourceCompatibility JavaVersion.VERSION_1_8
-//    targetCompatibility JavaVersion.VERSION_1_8
-//  }
+  compileOptions {
+    targetCompatibility JavaVersion.VERSION_1_10
+    sourceCompatibility JavaVersion.VERSION_1_10
+  }
 }
 
 dependencies {
