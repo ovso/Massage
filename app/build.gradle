@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'hugo'
-apply plugin: 'me.tatarka.retrolambda'
+//apply plugin: 'me.tatarka.retrolambda'
 
 android {
   compileSdkVersion 26
-  buildToolsVersion "26.0.1"
+  buildToolsVersion '26.0.2'
   defaultConfig {
     applicationId "io.github.ovso.massage"
     minSdkVersion 16
@@ -35,10 +35,10 @@ android {
     }
   }
 
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
-  }
+//  compileOptions {
+//    sourceCompatibility JavaVersion.VERSION_1_8
+//    targetCompatibility JavaVersion.VERSION_1_8
+//  }
 }
 
 dependencies {
@@ -64,4 +64,6 @@ dependencies {
   compile 'com.jakewharton.timber:timber:4.5.1'
 
   compile "org.projectlombok:lombok:1.16.18"
+  annotationProcessor "org.projectlombok:lombok:1.16.18"
+  provided 'javax.annotation:jsr250-api:1.0'
 }
