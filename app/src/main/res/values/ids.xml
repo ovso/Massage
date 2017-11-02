@@ -8,7 +8,9 @@
   <item name="nav_manage" type="id"/>
   <item name="nav_share" type="id"/>
   <item name="nav_send" type="id"/>
-  <item name="viewpager" type="id"/>
-  <item name="tabs" type="id"/>
-  <item name="recyclerview" type="id"/>
+  <item name="fragment_container" type="id"/>
+  <item name="bottom_navigation_view" type="id"/>
+  <item name="action_symptom" type="id"/>
+  <item name="action_point" type="id"/>
+  <item name="action_theme" type="id"/>
 </resources>

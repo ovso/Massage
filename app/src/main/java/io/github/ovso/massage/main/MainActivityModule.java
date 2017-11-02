@@ -3,8 +3,6 @@ package io.github.ovso.massage.main;
 import android.support.v4.app.FragmentManager;
 import dagger.Module;
 import dagger.Provides;
-import io.github.ovso.massage.main.navigation.NaviAdapter;
-import io.github.ovso.massage.main.navigation.OnNaviItemSelectedListener;
 import io.github.ovso.massage.massage.MassageFragmentComponent;
 
 /**
@@ -23,18 +21,5 @@ import io.github.ovso.massage.massage.MassageFragmentComponent;
 
   @Provides FragmentManager provideFragmentManager(MainActivity mainActivity) {
     return mainActivity.getSupportFragmentManager();
-  }
-
-  @Provides MassageFragmentPagerAdapter provideFragmentPagerAdapter(
-      FragmentManager fragmentManager) {
-    return new MassageFragmentPagerAdapter(fragmentManager);
-  }
-
-  @Provides OnNaviItemSelectedListener provideOnNaviItemSelectedListener(MainActivity activity) {
-    return activity;
-  }
-
-  @Provides NaviAdapter provideNaviAdapter(OnNaviItemSelectedListener listener) {
-    return NaviAdapter.getInstance(listener);
   }
 }

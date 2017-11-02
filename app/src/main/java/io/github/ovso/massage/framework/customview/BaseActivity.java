@@ -25,7 +25,7 @@ public abstract class BaseActivity extends AppCompatActivity {
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     AndroidInjection.inject(this);
     super.onCreate(savedInstanceState);
-    setContentView(getLayoutResID());
+    setContentView(getLayoutResId());
     unbinder = ButterKnife.bind(this);
     setSupportActionBar(toolbar);
     setNavigationBarColor();
@@ -42,5 +42,5 @@ public abstract class BaseActivity extends AppCompatActivity {
     unbinder.unbind();
   }
 
-  protected abstract int getLayoutResID();
+  protected abstract int getLayoutResId();
 }

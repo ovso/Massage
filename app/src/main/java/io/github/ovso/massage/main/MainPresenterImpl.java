@@ -1,7 +1,6 @@
 package io.github.ovso.massage.main;
 
 import android.os.Bundle;
-import io.github.ovso.massage.R;
 import javax.inject.Inject;
 
 /**
@@ -18,12 +17,9 @@ public class MainPresenterImpl implements MainPresenter {
 
   @Override public void onCreate(Bundle savedInstanceState) {
     view.setListener();
-    view.setViewPager();
-    view.setTabLayout();
-    view.setRecyclerView();
   }
 
-  @Override public boolean onNaviItemSelected(int id) {
+    /*
     if (id == R.id.nav_camera) {
       // Handle the camera action
     } else if (id == R.id.nav_gallery) {
@@ -37,22 +33,6 @@ public class MainPresenterImpl implements MainPresenter {
     } else if (id == R.id.nav_send) {
 
     }
-    return true;
-  }
+    */
 
-  @Override public void onBackPressed(boolean isDrawerOpen) {
-    if (isDrawerOpen) {
-      view.closeDrawer();
-    } else {
-      view.finish();
-    }
-  }
-
-  @Override public void onTabSelected(int position) {
-
-  }
-
-  @Override public void onTabReselected(int position) {
-
-  }
 }
