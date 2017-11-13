@@ -23,7 +23,7 @@ public abstract class BaseActivity extends AppCompatActivity {
   protected @BindView(R.id.drawer_layout) DrawerLayout drawer;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
-    AndroidInjection.inject(this);
+    if (isDagger()) AndroidInjection.inject(this);
     super.onCreate(savedInstanceState);
     setContentView(getLayoutResId());
     unbinder = ButterKnife.bind(this);
@@ -43,4 +43,6 @@ public abstract class BaseActivity extends AppCompatActivity {
   }
 
   protected abstract int getLayoutResId();
+
+  protected abstract boolean isDagger();
 }

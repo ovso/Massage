@@ -33,6 +33,10 @@ public class MainActivity extends BaseActivity
     return R.layout.activity_main;
   }
 
+  @Override protected boolean isDagger() {
+    return true;
+  }
+
   @Override public void onBackPressed() {
 
     if (drawer.isDrawerOpen(GravityCompat.START)) {

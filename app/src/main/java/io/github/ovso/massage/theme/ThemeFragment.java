@@ -1,7 +1,6 @@
-package io.github.ovso.massage.massage;
+package io.github.ovso.massage.theme;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.framework.customview.BaseFragment;
 
@@ -9,9 +8,9 @@ import io.github.ovso.massage.framework.customview.BaseFragment;
  * Created by jaeho on 2017. 10. 20
  */
 
-public class MassageFragment extends BaseFragment {
+public class ThemeFragment extends BaseFragment {
   @Override protected int getLayoutResID() {
-    return R.layout.fragment_massage;
+    return R.layout.fragment_theme;
   }
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
@@ -22,8 +21,8 @@ public class MassageFragment extends BaseFragment {
     return false;
   }
 
-  public static Fragment newInstance() {
-    MassageFragment f = new MassageFragment();
+  public static ThemeFragment newInstance() {
+    ThemeFragment f = new ThemeFragment();
     return f;
   }
 }
