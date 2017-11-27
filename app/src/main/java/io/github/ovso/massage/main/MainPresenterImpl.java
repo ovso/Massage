@@ -2,7 +2,6 @@ package io.github.ovso.massage.main;
 
 import android.os.Bundle;
 import android.support.annotation.IdRes;
-import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
 import javax.inject.Inject;
 
@@ -23,13 +22,13 @@ public class MainPresenterImpl implements MainPresenter {
     view.showSymptomFragment();
   }
 
-  @DebugLog @Override public boolean onNavItemSelected(int itemId) {
+  @Override public boolean onNavItemSelected(int itemId) {
 
     view.closeDrawer();
     return true;
   }
 
-  @DebugLog @Override public boolean onBottomNavItemSelected(@IdRes int itemId) {
+  @Override public boolean onBottomNavItemSelected(@IdRes int itemId) {
     switch (itemId) {
       case R.id.action_symptom:
         view.showSymptomFragment();
