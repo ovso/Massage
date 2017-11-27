@@ -10,20 +10,22 @@
     android:layout_marginLeft="7dp"
     android:layout_marginRight="7dp"
     android:layout_marginTop="2.5dp"
-    android:background="?android:attr/selectableItemBackground"
-    app:cardBackgroundColor="@color/colorLight"
-    app:cardCornerRadius="5dp"
+    app:cardBackgroundColor="@color/color_100"
+    app:cardCornerRadius="7dp"
     app:cardElevation="0dp"
     >
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:orientation="horizontal"
-      android:paddingRight="5dp"
-      android:paddingLeft="5dp"
+      android:background="?android:attr/selectableItemBackground"
+      android:foreground="?android:attr/selectableItemBackground"
       android:gravity="center_vertical"
+      android:orientation="horizontal"
+      android:paddingLeft="5dp"
+      android:paddingRight="5dp"
       >
     <TextView
+        android:id="@id/title_textview"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="5"
@@ -34,6 +36,7 @@
         tools:text="커다란 빨간문 우리 집에 와 어서와서 구경해 오늘은 할일이 많아"
         />
     <ImageView
+        android:id="@id/imageview"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:ellipsize="end"
@@ -41,12 +44,13 @@
         tools:src="@drawable/ic_ondemand_video"
         />
     <TextView
+        android:id="@id/views_textview"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:ellipsize="end"
         android:gravity="center"
         android:lines="1"
-        android:ellipsize="end"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         tools:text="33"
         />

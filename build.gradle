@@ -16,6 +16,7 @@ buildscript {
     google_services_version = '3.1.0'
     firebase_version = '11.6.0'
     rxfirebase_version = '11.6.0.1'
+    recyclerview_animators_version = '2.2.7'
   }
   repositories {
     jcenter()

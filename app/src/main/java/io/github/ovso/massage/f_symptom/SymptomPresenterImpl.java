@@ -5,12 +5,12 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.f_symptom.model.Symptom;
+import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 import java.util.ArrayList;
 import java.util.List;
-import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 11. 27
@@ -21,9 +21,12 @@ public class SymptomPresenterImpl implements SymptomPresenter {
   private SymptomPresenter.View view;
   private DatabaseReference databaseReference;
   private CompositeDisposable compositeDisposable = new CompositeDisposable();
+  private BaseAdapterDataModel<Symptom> adapterDataModel;
 
-  public SymptomPresenterImpl(SymptomPresenter.View view, DatabaseReference databaseReference) {
+  public SymptomPresenterImpl(SymptomPresenter.View view, BaseAdapterDataModel adapterDataModel,
+      DatabaseReference databaseReference) {
     this.view = view;
+    this.adapterDataModel = adapterDataModel;
     this.databaseReference = databaseReference;
   }
 
@@ -37,14 +40,10 @@ public class SymptomPresenterImpl implements SymptomPresenter {
           for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
             Symptom symptom = snapshot.getValue(Symptom.class);
             items.add(symptom);
-
           }
-
-          Timber.d("items = " + items);
-        }, throwable -> {
-          view.showMessage(R.string.error_server);
-          Timber.d("error = " + throwable.getMessage());
-        }));
+          adapterDataModel.addAll(items);
+          view.refresh();
+        }, throwable -> view.showMessage(R.string.error_server)));
   }
 
   @Override public void onDetach() {

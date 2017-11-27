@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="colorPrimary">#FFC107</color>
-  <color name="colorPrimaryDark">#FFAB00</color>
-  <color name="colorAccent">#FF6F00</color>
-  <color name="colorLight">#FFF8E1</color>
+  <color name="colorPrimary">#616161</color>
+  <color name="colorPrimaryDark">#424242</color>
+  <color name="colorAccent">#212121</color>
+  <color name="colorLight">#9E9E9E</color>
 
-  <color name="color_50">#FFF8E1</color>
-  <color name="color_100">#FFECB3</color>
-  <color name="color_200">#FFE082</color>
-  <color name="color_300">#FFD54F</color>
-  <color name="color_400">#FFCA28</color>
-  <color name="color_500">#FFC107</color>
-  <color name="color_600">#FFB300</color>
-  <color name="color_700">#FFA000</color>
-  <color name="color_800">#FF8F00</color>
-  <color name="color_900">#FF6F00</color>
-  <color name="color_A100">#FFE57F</color>
-  <color name="color_A200">#FFD740</color>
-  <color name="color_A400">#FFC400</color>
-  <color name="color_A700">#FFAB00</color>
+  <color name="color_50">#FAFAFA</color>
+  <color name="color_100">#F5F5F5</color>
+  <color name="color_200">#EEEEEE</color>
+  <color name="color_300">#E0E0E0</color>
+  <color name="color_400">#BDBDBD</color>
+  <color name="color_500">#9E9E9E</color>
+  <color name="color_600">#757575</color>
+  <color name="color_700">#616161</color>
+  <color name="color_800">#424242</color>
+  <color name="color_900">#212121</color>
 </resources>

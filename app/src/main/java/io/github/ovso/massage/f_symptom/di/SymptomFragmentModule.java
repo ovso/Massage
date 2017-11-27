@@ -7,6 +7,8 @@ import dagger.Provides;
 import io.github.ovso.massage.f_symptom.SymptomFragment;
 import io.github.ovso.massage.f_symptom.SymptomPresenter;
 import io.github.ovso.massage.f_symptom.SymptomPresenterImpl;
+import io.github.ovso.massage.f_symptom.adapter.SymptomAdapter;
+import io.github.ovso.massage.framework.adapter.BaseAdapterView;
 
 /**
  * Created by jaeho on 2017. 10. 20
@@ -16,10 +18,18 @@ import io.github.ovso.massage.f_symptom.SymptomPresenterImpl;
 
   @Provides SymptomPresenter provideSymptomPresenter(SymptomFragment fragment,
       DatabaseReference databaseReference) {
-    return new SymptomPresenterImpl(fragment, databaseReference);
+    return new SymptomPresenterImpl(fragment, fragment.getAdapter(), databaseReference);
   }
 
   @Provides DatabaseReference provideDbRef() {
     return FirebaseDatabase.getInstance().getReference().child("symptom");
+  }
+
+  @Provides SymptomAdapter provideSymptomAdapter(SymptomFragment fragment) {
+    return new SymptomAdapter().setOnRecyclerItemClickListener(fragment);
+  }
+
+  @Provides BaseAdapterView provideBaseAdapterView(SymptomFragment fragment) {
+    return fragment.getAdapter();
   }
 }

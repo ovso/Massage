@@ -72,6 +72,8 @@ dependencies {
   compile "org.projectlombok:lombok:$lombok_version"
   annotationProcessor "org.projectlombok:lombok:$lombok_version"
   provided "javax.annotation:jsr250-api:$jsr_version"
+
+  compile "jp.wasabeef:recyclerview-animators:$recyclerview_animators_version"
 }
 
 // ADD THIS AT THE BOTTOM

@@ -17,5 +17,7 @@ public interface SymptomPresenter {
     void setRecyclerView();
 
     void showMessage(@StringRes int resId);
+
+    void refresh();
   }
 }

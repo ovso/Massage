@@ -9,10 +9,11 @@ import lombok.ToString;
  * Created by jaeho on 2017. 11. 27
  */
 
-@ToString @Getter @IgnoreExtraProperties @EqualsAndHashCode(callSuper = false)
+@IgnoreExtraProperties @EqualsAndHashCode(callSuper = false) @Getter @ToString
 public class Symptom {
-  private String title;
+  public String title;
   private int type;     // video or webpage
   private String date;  // upload date
   private String url;   // youtube url or webpage url
+  private int views;
 }
