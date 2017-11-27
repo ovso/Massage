@@ -39,4 +39,13 @@ public class SymptomFragment extends BaseFragment implements SymptomPresenter.Vi
     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
   }
+
+  @Override public void showMessage(int resId) {
+
+  }
+
+  @Override public void onDetach() {
+    super.onDetach();
+    presenter.onDetach();
+  }
 }
