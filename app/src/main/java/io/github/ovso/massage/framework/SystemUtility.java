@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Build;
 import android.view.View;
 import android.view.Window;
@@ -33,13 +31,6 @@ public class SystemUtility {
     }
   }
 
-  public static boolean isOnline(Context context) {
-    ConnectivityManager connMgr =
-        (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-    NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-    return (networkInfo != null && networkInfo.isConnected());
-  }
-
   public static String getVersionName(Context context) {
     String versionName = "0.0.1";
     try {
@@ -52,7 +43,18 @@ public class SystemUtility {
     return versionName;
   }
 
+  /*
   public static int getBuildVersion() {
     return Build.VERSION.SDK_INT;
   }
+  */
+
+    /*
+  public static boolean isOnline(Context context) {
+    ConnectivityManager connMgr =
+        (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+    return (networkInfo != null && networkInfo.isConnected());
+  }
+  */
 }

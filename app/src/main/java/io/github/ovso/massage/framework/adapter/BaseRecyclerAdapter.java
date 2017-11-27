@@ -14,9 +14,6 @@ import butterknife.ButterKnife;
 public abstract class BaseRecyclerAdapter
     extends RecyclerView.Adapter<BaseRecyclerAdapter.BaseViewHolder> {
 
-  protected final static int ITEM_VIEW_TYPE_HEADER = 0;
-  protected static final int ITEM_VIEW_TYPE_DEFAULT = 1;
-
   @Override public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     View view =
         LayoutInflater.from(parent.getContext()).inflate(getLayoutRes(viewType), parent, false);
