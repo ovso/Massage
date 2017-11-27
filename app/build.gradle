@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'hugo'
 
 android {
-  compileSdkVersion 26
-  buildToolsVersion '26.0.2'
+  compileSdkVersion 27
+  buildToolsVersion '27.0.0'
   defaultConfig {
     applicationId "io.github.ovso.massage"
     minSdkVersion 16
-    targetSdkVersion 26
+    targetSdkVersion 27
     versionCode 1
     versionName "1.0"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -60,11 +60,9 @@ dependencies {
   compile "io.reactivex.rxjava2:rxjava:$rxjava_version"
   compile "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
 
-  compile "com.jakewharton.timber:timber:$timber_version"
+  implementation "com.jakewharton.timber:timber:$timber_version"
 
   compile "org.projectlombok:lombok:$lombok_version"
   annotationProcessor "org.projectlombok:lombok:$lombok_version"
   provided "javax.annotation:jsr250-api:$jsr_version"
-
-  compile "com.google.guava:guava:$guava_version"
 }

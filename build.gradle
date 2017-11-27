@@ -2,17 +2,16 @@
 
 buildscript {
   ext {
-    support_version = '26.1.0'
+    support_version = '27.0.1'
     constraint_version = '1.0.2'
     hugo_version = '1.2.1'
     butterknife_version = '8.8.1'
-    dagger_version = '2.12'
+    dagger_version = '2.13'
     rxjava_version = '2.1.4'
     rxandroid_version = '2.0.1'
-    timber_version = '4.5.1'
+    timber_version = '4.6.0'
     lombok_version = '1.16.18'
     jsr_version = '1.0'
-    guava_version = '23.3-android'
   }
   repositories {
     jcenter()
