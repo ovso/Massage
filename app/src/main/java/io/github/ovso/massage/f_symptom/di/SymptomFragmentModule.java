@@ -12,9 +12,6 @@ import io.github.ovso.massage.f_symptom.SymptomPresenterImpl;
 
 @Module public class SymptomFragmentModule {
 
-  @Provides SymptomPresenter.View provideSymptomView(SymptomFragment fragment) {
-    return fragment;
-  }
   @Provides SymptomPresenter provideSymptomPresenter(SymptomFragment fragment) {
     return new SymptomPresenterImpl(fragment);
   }

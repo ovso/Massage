@@ -7,20 +7,24 @@ buildscript {
     hugo_version = '1.2.1'
     butterknife_version = '8.8.1'
     dagger_version = '2.13'
-    rxjava_version = '2.1.4'
+    rxjava_version = '2.1.6'
     rxandroid_version = '2.0.1'
     timber_version = '4.6.0'
     lombok_version = '1.16.18'
     jsr_version = '1.0'
+    gradle_version = '3.0.1'
+    google_services_version = '3.1.0'
+    firebase_version = '11.6.0'
+    rxfirebase_version = '11.6.0.1'
   }
   repositories {
     jcenter()
     google()
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:3.0.1'
+    classpath "com.android.tools.build:gradle:$gradle_version"
     classpath "com.jakewharton.hugo:hugo-plugin:$hugo_version"
-    //classpath 'me.tatarka:gradle-retrolambda:3.7.0'
+    classpath "com.google.gms:google-services:$google_services_version"
     // NOTE: Do not place your application dependencies here; they belong
     // in the individual module build.gradle files
   }

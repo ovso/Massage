@@ -13,4 +13,5 @@
   <item name="action_symptom" type="id"/>
   <item name="action_acupoints" type="id"/>
   <item name="action_theme" type="id"/>
+  <item name="recyclerview" type="id"/>
 </resources>

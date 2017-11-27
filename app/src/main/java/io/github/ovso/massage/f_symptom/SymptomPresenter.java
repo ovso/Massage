@@ -10,5 +10,6 @@ public interface SymptomPresenter {
 
   interface View {
 
+    void setRecyclerView();
   }
 }

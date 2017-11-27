@@ -13,6 +13,6 @@ public class SymptomPresenterImpl implements SymptomPresenter {
   }
 
   @Override public void onActivityCreate() {
-
+    view.setRecyclerView();
   }
 }
