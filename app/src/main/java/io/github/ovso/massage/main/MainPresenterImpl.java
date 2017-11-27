@@ -1,7 +1,9 @@
 package io.github.ovso.massage.main;
 
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import hugo.weaving.DebugLog;
+import io.github.ovso.massage.R;
 import javax.inject.Inject;
 
 /**
@@ -18,6 +20,7 @@ public class MainPresenterImpl implements MainPresenter {
 
   @Override public void onCreate(Bundle savedInstanceState) {
     view.setListener();
+    view.showSymptomFragment();
   }
 
   @DebugLog @Override public boolean onNavItemSelected(int itemId) {
@@ -26,8 +29,18 @@ public class MainPresenterImpl implements MainPresenter {
     return true;
   }
 
-  @DebugLog @Override public boolean onBottomNavItemSelected(int itemId) {
-
+  @DebugLog @Override public boolean onBottomNavItemSelected(@IdRes int itemId) {
+    switch (itemId) {
+      case R.id.action_symptom:
+        view.showSymptomFragment();
+        break;
+      case R.id.action_theme:
+        view.showThemeFrgament();
+        break;
+      case R.id.action_acupoints:
+        view.showAcupoints();
+        break;
+    }
     return true;
   }
 
@@ -37,7 +50,6 @@ public class MainPresenterImpl implements MainPresenter {
     } else {
       view.finish();
     }
-
   }
 
     /*
@@ -55,5 +67,4 @@ public class MainPresenterImpl implements MainPresenter {
 
     }
     */
-
 }

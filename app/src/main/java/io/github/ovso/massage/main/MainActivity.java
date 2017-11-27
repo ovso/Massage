@@ -12,6 +12,9 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 import io.github.ovso.massage.R;
+import io.github.ovso.massage.f_acupoints.AcupointsFragment;
+import io.github.ovso.massage.f_symptom.SymptomFragment;
+import io.github.ovso.massage.f_theme.ThemeFragment;
 import io.github.ovso.massage.framework.customview.BaseActivity;
 import javax.inject.Inject;
 
@@ -35,12 +38,38 @@ public class MainActivity extends BaseActivity
     drawer.addDrawerListener(toggle);
     toggle.syncState();
 
-    navigationView.setNavigationItemSelectedListener(item -> presenter.onNavItemSelected(item.getItemId()));
-    bottomNavigationView.setOnNavigationItemSelectedListener(item -> presenter.onBottomNavItemSelected(item.getItemId()));
+    navigationView.setNavigationItemSelectedListener(
+        item -> presenter.onNavItemSelected(item.getItemId()));
+    bottomNavigationView.setOnNavigationItemSelectedListener(
+        item -> presenter.onBottomNavItemSelected(item.getItemId()));
   }
 
   @Override public void closeDrawer() {
     drawer.closeDrawer(GravityCompat.START);
+  }
+
+  @Override public void showSymptomFragment() {
+    getSupportFragmentManager().beginTransaction()
+        .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
+            R.animator.enter_animation, R.animator.exit_animation)
+        .replace(R.id.fragment_container, SymptomFragment.newInstance())
+        .commit();
+  }
+
+  @Override public void showThemeFrgament() {
+    getSupportFragmentManager().beginTransaction()
+        .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
+            R.animator.enter_animation, R.animator.exit_animation)
+        .replace(R.id.fragment_container, ThemeFragment.newInstance())
+        .commit();
+  }
+
+  @Override public void showAcupoints() {
+    getSupportFragmentManager().beginTransaction()
+        .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
+            R.animator.enter_animation, R.animator.exit_animation)
+        .replace(R.id.fragment_container, AcupointsFragment.newInstance())
+        .commit();
   }
 
   @Override protected int getLayoutResId() {

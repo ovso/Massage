@@ -17,5 +17,5 @@
       android:layout_height="match_parent"
       android:gravity="center"
       android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-      android:text="Fragment"/>
+      android:text="테마별"/>
 </LinearLayout>

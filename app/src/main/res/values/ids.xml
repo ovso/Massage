@@ -11,6 +11,6 @@
   <item name="fragment_container" type="id"/>
   <item name="bottom_navigation_view" type="id"/>
   <item name="action_symptom" type="id"/>
-  <item name="action_point" type="id"/>
+  <item name="action_acupoints" type="id"/>
   <item name="action_theme" type="id"/>
 </resources>

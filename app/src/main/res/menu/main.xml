@@ -9,7 +9,7 @@
       android:icon="@drawable/ic_theaters"
       android:title="@string/theme"/>
   <item
-      android:id="@id/action_point"
+      android:id="@id/action_acupoints"
       android:icon="@drawable/ic_fingerprint"
       android:title="@string/acupressure_point"/>
 </menu>
