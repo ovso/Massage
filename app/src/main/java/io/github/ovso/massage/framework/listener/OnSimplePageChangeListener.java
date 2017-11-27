@@ -1,4 +1,4 @@
-package io.github.ovso.massage.framework.interfaces;
+package io.github.ovso.massage.framework.listener;
 
 import android.support.v4.view.ViewPager;
 

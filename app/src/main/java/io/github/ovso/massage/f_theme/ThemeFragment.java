@@ -1,4 +1,4 @@
-package io.github.ovso.massage.acupoints;
+package io.github.ovso.massage.f_theme;
 
 import android.os.Bundle;
 import io.github.ovso.massage.R;
@@ -8,9 +8,9 @@ import io.github.ovso.massage.framework.customview.BaseFragment;
  * Created by jaeho on 2017. 10. 20
  */
 
-public class AcupointsFragment extends BaseFragment {
+public class ThemeFragment extends BaseFragment {
   @Override protected int getLayoutResID() {
-    return R.layout.fragment_acupoints;
+    return R.layout.fragment_theme;
   }
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
@@ -21,8 +21,8 @@ public class AcupointsFragment extends BaseFragment {
     return false;
   }
 
-  public static AcupointsFragment newInstance() {
-    AcupointsFragment f = new AcupointsFragment();
+  public static ThemeFragment newInstance() {
+    ThemeFragment f = new ThemeFragment();
     return f;
   }
 }

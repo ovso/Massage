@@ -1,4 +1,4 @@
-package io.github.ovso.massage.symptom;
+package io.github.ovso.massage.f_symptom;
 
 import android.os.Bundle;
 import io.github.ovso.massage.R;

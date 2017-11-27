@@ -1,6 +1,7 @@
 package io.github.ovso.massage.main;
 
 import android.os.Bundle;
+import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 
 /**
@@ -17,6 +18,26 @@ public class MainPresenterImpl implements MainPresenter {
 
   @Override public void onCreate(Bundle savedInstanceState) {
     view.setListener();
+  }
+
+  @DebugLog @Override public boolean onNavItemSelected(int itemId) {
+
+    view.closeDrawer();
+    return true;
+  }
+
+  @DebugLog @Override public boolean onBottomNavItemSelected(int itemId) {
+
+    return true;
+  }
+
+  @Override public void onBackPressed(boolean isDrawerOpen) {
+    if (isDrawerOpen) {
+      view.closeDrawer();
+    } else {
+      view.finish();
+    }
+
   }
 
     /*

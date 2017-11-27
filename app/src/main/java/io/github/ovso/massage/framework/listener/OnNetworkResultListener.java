@@ -1,4 +1,4 @@
-package io.github.ovso.massage.framework.interfaces;
+package io.github.ovso.massage.framework.listener;
 
 /**
  * Created by jaeho on 2017. 10. 18..
