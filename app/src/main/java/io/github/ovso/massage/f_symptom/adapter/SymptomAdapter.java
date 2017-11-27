@@ -37,6 +37,7 @@ public class SymptomAdapter extends BaseRecyclerAdapter
       SymptomViewHolder holder = (SymptomViewHolder) viewHolder;
       holder.titleTextview.setText(item.getTitle());
       int visible = View.GONE;
+
       switch (item.getType()) {
         case 0:
           visible = View.GONE;

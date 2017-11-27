@@ -2,7 +2,11 @@ package io.github.ovso.massage.f_symptom;
 
 import com.androidhuman.rxfirebase2.database.RxFirebaseDatabase;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
+import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.f_symptom.model.Symptom;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
@@ -48,5 +52,33 @@ public class SymptomPresenterImpl implements SymptomPresenter {
 
   @Override public void onDetach() {
     compositeDisposable.clear();
+  }
+
+  @Override public void onItemClick(Symptom item) {
+    //compositeDisposable.add(RxFirebaseDatabase.updateChildren(databaseReference,)
+    //DatabaseReference upvotesRef = ref.child("server/saving-data/fireblog/posts/-JRHTHaIs-jNPLXOQivY/upvotes");
+    DatabaseReference upvotesRef = databaseReference;
+    upvotesRef.runTransaction(new Transaction.Handler() {
+      @Override
+      @DebugLog public Transaction.Result doTransaction(MutableData mutableData) {
+        for (MutableData data : mutableData.getChildren()) {
+
+
+        }
+        Integer currentValue = mutableData.getValue(Integer.class);
+        if (currentValue == null) {
+          mutableData.setValue(1);
+        } else {
+          mutableData.setValue(currentValue + 1);
+        }
+
+        return Transaction.success(mutableData);
+      }
+
+      @Override
+      public void onComplete(DatabaseError databaseError, boolean committed, DataSnapshot dataSnapshot) {
+        System.out.println("Transaction completed");
+      }
+    });
   }
 }

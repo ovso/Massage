@@ -1,6 +1,7 @@
 package io.github.ovso.massage.f_symptom;
 
 import android.support.annotation.StringRes;
+import io.github.ovso.massage.f_symptom.model.Symptom;
 
 /**
  * Created by jaeho on 2017. 11. 27..
@@ -11,6 +12,8 @@ public interface SymptomPresenter {
   void onActivityCreate();
 
   void onDetach();
+
+  void onItemClick(Symptom item);
 
   interface View {
 

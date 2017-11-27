@@ -66,6 +66,6 @@ public class SymptomFragment extends BaseFragment
   }
 
   @DebugLog @Override public void onItemClick(Symptom item) {
-
+    presenter.onItemClick(item);
   }
 }
