@@ -18,6 +18,8 @@ import lombok.experimental.Accessors;
 
 public class SymptomAdapter extends BaseRecyclerAdapter
     implements SymptomAdapterView, BaseAdapterDataModel<Symptom> {
+  public final static int TYPE_SITE = 0;
+  public final static int TYPE_VIDEO = 1;
   private List<Symptom> items = new ArrayList<>();
   @Accessors(chain = true) @Setter private OnCustomRecyclerItemClickListener<Symptom>
       onRecyclerItemClickListener;
@@ -39,10 +41,10 @@ public class SymptomAdapter extends BaseRecyclerAdapter
       int iconImage = R.drawable.ic_ondemand_video;
 
       switch (item.getType()) {
-        case 0:
+        case TYPE_SITE:
           iconImage = R.drawable.ic_web;
           break;
-        case 1:
+        case TYPE_VIDEO:
           iconImage = R.drawable.ic_ondemand_video;
           break;
       }
@@ -56,6 +58,11 @@ public class SymptomAdapter extends BaseRecyclerAdapter
       holder.recImageView.setOnClickListener(view -> {
         if(!ObjectUtils.isEmpty(onRecyclerItemClickListener)) {
           onRecyclerItemClickListener.onRecommendClick(position, item);
+        }
+      });
+      holder.favImageView.setOnClickListener(view -> {
+        if(!ObjectUtils.isEmpty(onRecyclerItemClickListener)) {
+          onRecyclerItemClickListener.onFavoriteClick(position, item);
         }
       });
     }

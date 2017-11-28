@@ -4,7 +4,7 @@ import android.support.annotation.StringRes;
 import io.github.ovso.massage.f_symptom.model.Symptom;
 
 /**
- * Created by jaeho on 2017. 11. 27..
+ * Created by jaeho on 2017. 11. 27
  */
 
 public interface SymptomPresenter {
@@ -18,6 +18,8 @@ public interface SymptomPresenter {
   void onItemClick(int position, Symptom item);
 
   void onRecommendClick(int position, Symptom item);
+
+  void onFavoriteClick(int position, Symptom item);
 
   interface View {
 

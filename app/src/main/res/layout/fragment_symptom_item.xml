@@ -23,6 +23,14 @@
       android:orientation="horizontal"
       android:paddingLeft="5dp"
       >
+    <ImageView
+        android:id="@id/fav_imageview"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:scaleType="center"
+        android:src="@drawable/ic_favorite_border"
+        />
     <TextView
         android:id="@id/title_textview"
         android:layout_width="0dp"
@@ -40,10 +48,8 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:ellipsize="end"
         android:scaleType="center"
         android:src="@drawable/ic_ondemand_video"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         />
 
     <ImageView
@@ -51,17 +57,14 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:ellipsize="end"
         android:scaleType="center"
         android:src="@drawable/ic_thumb_up"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         />
     <TextView
         android:id="@id/rec_textview"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="0.6"
-        android:ellipsize="end"
         android:gravity="center_vertical|left"
         android:lines="1"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"

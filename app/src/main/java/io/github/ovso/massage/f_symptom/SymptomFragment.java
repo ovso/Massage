@@ -102,4 +102,8 @@ public class SymptomFragment extends BaseFragment
   @Override public void onRecommendClick(int position, Symptom item) {
     presenter.onRecommendClick(position, item);
   }
+
+  @Override public void onFavoriteClick(int position, Symptom item) {
+    presenter.onFavoriteClick(position, item);
+  }
 }

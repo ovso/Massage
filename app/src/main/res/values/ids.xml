@@ -21,4 +21,5 @@
   <item name="rec_imageview" type="id"/>
   <item name="root_view" type="id"/>
   <item name="webview" type="id"/>
+  <item name="fav_imageview" type="id"/>
 </resources>

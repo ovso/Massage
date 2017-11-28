@@ -5,6 +5,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
+import io.github.ovso.massage.f_symptom.adapter.SymptomAdapter;
 import io.github.ovso.massage.f_symptom.model.Symptom;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -21,8 +22,6 @@ import timber.log.Timber;
  */
 
 public class SymptomPresenterImpl implements SymptomPresenter {
-  private final static int TYPE_SITE = 0;
-  private final static int TYPE_VIDEO = 1;
   private SymptomPresenter.View view;
   private DatabaseReference databaseReference;
   private CompositeDisposable compositeDisposable = new CompositeDisposable();
@@ -56,23 +55,14 @@ public class SymptomPresenterImpl implements SymptomPresenter {
   }
 
   @Override public void onItemClick(Symptom item) {
-    Map<String, Object> map = new HashMap<>();
-    int rec = item.getRec() + 1;
-    map.put("0/rec", rec);
-    item.setRec(rec);
-    adapterDataModel.add(item);
-    view.refresh(0);
-
-    databaseReference.updateChildren(map, (databaseError, databaseReference) -> {
-    });
   }
 
   @DebugLog @Override public void onItemClick(int position, Symptom item) {
     switch (item.getType()) {
-      case TYPE_SITE:
+      case SymptomAdapter.TYPE_SITE:
         view.showWebViewDialog(item.getUrl());
         break;
-      case TYPE_VIDEO:
+      case SymptomAdapter.TYPE_VIDEO:
         view.showVideo(item.getUrl());
         break;
     }
@@ -91,5 +81,10 @@ public class SymptomPresenterImpl implements SymptomPresenter {
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(() -> Timber.d("successe"),
             throwable -> view.showMessage(R.string.error_server)));
+  }
+
+  @Override public void onFavoriteClick(int position, Symptom item) {
+    // remove animation
+    // refresh animation
   }
 }
