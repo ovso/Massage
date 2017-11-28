@@ -11,6 +11,7 @@
     tools:showIn="@layout/app_bar_main"
     android:orientation="vertical"
     >
+  <include layout="@layout/fragment_symptom_item_header"/>
   <android.support.v7.widget.RecyclerView
       android:id="@id/recyclerview"
       android:layout_width="match_parent"

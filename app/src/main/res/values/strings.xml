@@ -9,4 +9,7 @@
   <string name="theme">테마별</string>
   <string name="acupressure_point">혈자리</string>
   <string name="error_server">서버 문제가 발생했습니다. 잠시후 다시 시도해 주세요.</string>
+  <string name="title">제목</string>
+  <string name="content_type">보기\n형태</string>
+  <string name="rec_count">추천 수</string>
 </resources>
