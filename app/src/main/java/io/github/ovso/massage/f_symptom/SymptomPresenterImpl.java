@@ -2,9 +2,7 @@ package io.github.ovso.massage.f_symptom;
 
 import com.androidhuman.rxfirebase2.database.RxFirebaseDatabase;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.f_symptom.model.Symptom;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
@@ -55,15 +53,32 @@ public class SymptomPresenterImpl implements SymptomPresenter {
   }
 
   @Override public void onItemClick(Symptom item) {
-    //compositeDisposable.add(RxFirebaseDatabase.updateChildren(databaseReference,)
-    //DatabaseReference upvotesRef = ref.child("server/saving-data/fireblog/posts/-JRHTHaIs-jNPLXOQivY/upvotes");
     Map<String, Object> map = new HashMap<>();
-    map.put("0/views", 33);
-    databaseReference.updateChildren(map, new DatabaseReference.CompletionListener() {
-      @Override
-      @DebugLog public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+    int rec = item.getRec() + 1;
+    map.put("0/rec", rec);
+    item.setRec(rec);
+    adapterDataModel.add(item);
+    view.refresh(0);
 
-      }
+    databaseReference.updateChildren(map, (databaseError, databaseReference) -> {
     });
   }
 }
+
+    /*
+    compositeDisposable.add(RxFirebaseDatabase.updateChildren(databaseReference, map)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Action() {
+          @DebugLog @Override public void run() throws Exception {
+            compositeDisposable.add(RxFirebaseDatabase.data(databaseReference)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(dataSnapshot -> {
+
+                }, throwable -> view.showMessage(R.string.error_server)));
+          }
+        }, throwable -> {
+          view.showMessage(R.string.error_server);
+        }));
+    */

@@ -7,9 +7,9 @@ import butterknife.BindView;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.f_symptom.adapter.SymptomAdapter;
+import io.github.ovso.massage.f_symptom.adapter.SymptomAdapterView;
 import io.github.ovso.massage.f_symptom.model.Symptom;
 import io.github.ovso.massage.framework.Constants;
-import io.github.ovso.massage.framework.adapter.BaseAdapterView;
 import io.github.ovso.massage.framework.customview.BaseFragment;
 import io.github.ovso.massage.framework.listener.OnRecyclerItemClickListener;
 import javax.inject.Inject;
@@ -25,7 +25,7 @@ public class SymptomFragment extends BaseFragment
 
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
   @Inject @Getter SymptomAdapter adapter;
-  @Inject @Getter BaseAdapterView adapterView;
+  @Inject @Getter SymptomAdapterView adapterView;
   @Inject SymptomPresenter presenter;
 
   @Override protected int getLayoutResID() {
@@ -58,6 +58,10 @@ public class SymptomFragment extends BaseFragment
 
   @Override public void refresh() {
     adapterView.refresh();
+  }
+
+  @Override public void refresh(int position) {
+    adapterView.refresh(position);
   }
 
   @Override public void onDetach() {

@@ -22,5 +22,7 @@ public interface SymptomPresenter {
     void showMessage(@StringRes int resId);
 
     void refresh();
+
+    void refresh(int position);
   }
 }

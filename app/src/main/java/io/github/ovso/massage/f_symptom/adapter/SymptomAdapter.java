@@ -5,7 +5,6 @@ import io.github.ovso.massage.R;
 import io.github.ovso.massage.f_symptom.model.Symptom;
 import io.github.ovso.massage.framework.ObjectUtils;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
-import io.github.ovso.massage.framework.adapter.BaseAdapterView;
 import io.github.ovso.massage.framework.adapter.BaseRecyclerAdapter;
 import io.github.ovso.massage.framework.listener.OnRecyclerItemClickListener;
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ import lombok.experimental.Accessors;
  */
 
 public class SymptomAdapter extends BaseRecyclerAdapter
-    implements BaseAdapterView, BaseAdapterDataModel<Symptom> {
+    implements SymptomAdapterView, BaseAdapterDataModel<Symptom> {
   private List<Symptom> items = new ArrayList<>();
   @Accessors(chain = true) @Setter private OnRecyclerItemClickListener<Symptom>
       onRecyclerItemClickListener;
@@ -35,18 +34,19 @@ public class SymptomAdapter extends BaseRecyclerAdapter
     if (viewHolder instanceof SymptomViewHolder) {
       Symptom item = items.get(position);
       SymptomViewHolder holder = (SymptomViewHolder) viewHolder;
+      holder.setIsRecyclable(false);
       holder.titleTextview.setText(item.getTitle());
-      int visible = View.GONE;
+      int iconImage = R.drawable.ic_ondemand_video;
 
       switch (item.getType()) {
         case 0:
-          visible = View.GONE;
+          iconImage = R.drawable.ic_web;
           break;
         case 1:
-          visible = View.VISIBLE;
+          iconImage = R.drawable.ic_ondemand_video;
           break;
       }
-      holder.videoImageView.setVisibility(visible);
+      holder.videoImageView.setImageResource(iconImage);
       holder.recTextView.setText(String.valueOf(item.getRec()));
       holder.itemView.setOnClickListener(view -> {
         if (!ObjectUtils.isEmpty(onRecyclerItemClickListener)) {
@@ -64,8 +64,8 @@ public class SymptomAdapter extends BaseRecyclerAdapter
     notifyItemRangeChanged(0, getSize());
   }
 
-  @Override public void add(Symptom item) {
-
+  @Override public void add(Symptom changeItem) {
+    items.set(0, changeItem);
   }
 
   @Override public void addAll(List<Symptom> items) {
@@ -90,5 +90,9 @@ public class SymptomAdapter extends BaseRecyclerAdapter
 
   @Override public void clear() {
     items.clear();
+  }
+
+  @Override public void refresh(int position) {
+    notifyItemChanged(position);
   }
 }

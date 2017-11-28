@@ -3,6 +3,7 @@ package io.github.ovso.massage.f_symptom.model;
 import com.google.firebase.database.IgnoreExtraProperties;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -15,5 +16,13 @@ public class Symptom {
   private String url;   // youtube url or webpage url
   private int type;     // video or webpage
   private int date;     // content id
-  private int rec;      // ..
+  @Setter private int rec;      // ..
+
+  public boolean equals(Symptom o) {
+    if (o.getDate() == this.getDate()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

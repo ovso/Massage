@@ -8,7 +8,7 @@ import io.github.ovso.massage.f_symptom.SymptomFragment;
 import io.github.ovso.massage.f_symptom.SymptomPresenter;
 import io.github.ovso.massage.f_symptom.SymptomPresenterImpl;
 import io.github.ovso.massage.f_symptom.adapter.SymptomAdapter;
-import io.github.ovso.massage.framework.adapter.BaseAdapterView;
+import io.github.ovso.massage.f_symptom.adapter.SymptomAdapterView;
 
 /**
  * Created by jaeho on 2017. 10. 20
@@ -29,7 +29,7 @@ import io.github.ovso.massage.framework.adapter.BaseAdapterView;
     return new SymptomAdapter().setOnRecyclerItemClickListener(fragment);
   }
 
-  @Provides BaseAdapterView provideBaseAdapterView(SymptomFragment fragment) {
+  @Provides SymptomAdapterView provideBaseAdapterView(SymptomFragment fragment) {
     return fragment.getAdapter();
   }
 }
