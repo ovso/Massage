@@ -34,7 +34,7 @@ public class SymptomAdapter extends BaseRecyclerAdapter
     if (viewHolder instanceof SymptomViewHolder) {
       Symptom item = items.get(position);
       SymptomViewHolder holder = (SymptomViewHolder) viewHolder;
-      holder.setIsRecyclable(false);
+      //holder.setIsRecyclable(false);
       holder.titleTextview.setText(item.getTitle());
       int iconImage = R.drawable.ic_ondemand_video;
 
@@ -50,7 +50,7 @@ public class SymptomAdapter extends BaseRecyclerAdapter
       holder.recTextView.setText(String.valueOf(item.getRec()));
       holder.itemView.setOnClickListener(view -> {
         if (!ObjectUtils.isEmpty(onRecyclerItemClickListener)) {
-          onRecyclerItemClickListener.onItemClick(item);
+          onRecyclerItemClickListener.onItemClick(position, item);
         }
       });
     }

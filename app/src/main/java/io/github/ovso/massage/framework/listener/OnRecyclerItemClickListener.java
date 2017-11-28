@@ -6,4 +6,5 @@ package io.github.ovso.massage.framework.listener;
 
 public interface OnRecyclerItemClickListener<T> {
   void onItemClick(T item);
+  void onItemClick(int position, T item);
 }

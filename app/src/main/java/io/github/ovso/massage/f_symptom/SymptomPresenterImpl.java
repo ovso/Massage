@@ -63,6 +63,18 @@ public class SymptomPresenterImpl implements SymptomPresenter {
     databaseReference.updateChildren(map, (databaseError, databaseReference) -> {
     });
   }
+
+  @Override public void onItemClick(int position, Symptom item) {
+    Map<String, Object> map = new HashMap<>();
+    int rec = item.getRec() + 1;
+    map.put(position + "/rec", rec);
+    item.setRec(rec);
+    adapterDataModel.add(item);
+    view.refresh(position);
+
+    databaseReference.updateChildren(map, (databaseError, databaseReference) -> {
+    });
+  }
 }
 
     /*

@@ -72,4 +72,8 @@ public class SymptomFragment extends BaseFragment
   @DebugLog @Override public void onItemClick(Symptom item) {
     presenter.onItemClick(item);
   }
+
+  @DebugLog @Override public void onItemClick(int position, Symptom item) {
+    presenter.onItemClick(position, item);
+  }
 }
