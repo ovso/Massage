@@ -3,6 +3,7 @@ package io.github.ovso.massage.f_symptom;
 import com.androidhuman.rxfirebase2.database.RxFirebaseDatabase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
+import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.f_symptom.model.Symptom;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 11. 27
@@ -64,7 +66,11 @@ public class SymptomPresenterImpl implements SymptomPresenter {
     });
   }
 
-  @Override public void onItemClick(int position, Symptom item) {
+  @DebugLog @Override public void onItemClick(int position, Symptom item) {
+
+  }
+
+  @Override public void onRecommendClick(int position, Symptom item) {
     Map<String, Object> map = new HashMap<>();
     int rec = item.getRec() + 1;
     map.put(position + "/rec", rec);
@@ -72,25 +78,10 @@ public class SymptomPresenterImpl implements SymptomPresenter {
     adapterDataModel.add(item);
     view.refresh(position);
 
-    databaseReference.updateChildren(map, (databaseError, databaseReference) -> {
-    });
-  }
-}
-
-    /*
     compositeDisposable.add(RxFirebaseDatabase.updateChildren(databaseReference, map)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Action() {
-          @DebugLog @Override public void run() throws Exception {
-            compositeDisposable.add(RxFirebaseDatabase.data(databaseReference)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(dataSnapshot -> {
-
-                }, throwable -> view.showMessage(R.string.error_server)));
-          }
-        }, throwable -> {
-          view.showMessage(R.string.error_server);
-        }));
-    */
+        .subscribe(() -> Timber.d("successe"),
+            throwable -> view.showMessage(R.string.error_server)));
+  }
+}

@@ -6,7 +6,7 @@ import io.github.ovso.massage.f_symptom.model.Symptom;
 import io.github.ovso.massage.framework.ObjectUtils;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
 import io.github.ovso.massage.framework.adapter.BaseRecyclerAdapter;
-import io.github.ovso.massage.framework.listener.OnRecyclerItemClickListener;
+import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListener;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Setter;
@@ -19,7 +19,7 @@ import lombok.experimental.Accessors;
 public class SymptomAdapter extends BaseRecyclerAdapter
     implements SymptomAdapterView, BaseAdapterDataModel<Symptom> {
   private List<Symptom> items = new ArrayList<>();
-  @Accessors(chain = true) @Setter private OnRecyclerItemClickListener<Symptom>
+  @Accessors(chain = true) @Setter private OnCustomRecyclerItemClickListener<Symptom>
       onRecyclerItemClickListener;
 
   @Override protected BaseViewHolder createViewHolder(View view, int viewType) {
@@ -51,6 +51,11 @@ public class SymptomAdapter extends BaseRecyclerAdapter
       holder.itemView.setOnClickListener(view -> {
         if (!ObjectUtils.isEmpty(onRecyclerItemClickListener)) {
           onRecyclerItemClickListener.onItemClick(position, item);
+        }
+      });
+      holder.recImageView.setOnClickListener(view -> {
+        if(!ObjectUtils.isEmpty(onRecyclerItemClickListener)) {
+          onRecyclerItemClickListener.onRecommendClick(position, item);
         }
       });
     }

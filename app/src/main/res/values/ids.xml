@@ -19,4 +19,5 @@
   <item name="rec_textview" type="id"/>
   <item name="video_imageview" type="id"/>
   <item name="rec_imageview" type="id"/>
+  <item name="root_view" type="id"/>
 </resources>

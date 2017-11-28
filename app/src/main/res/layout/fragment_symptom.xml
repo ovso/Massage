@@ -5,16 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="io.github.ovso.massage.main.MainActivity"
     tools:showIn="@layout/app_bar_main"
     android:orientation="vertical"
+    android:id="@id/root_view"
     >
-  <include layout="@layout/fragment_symptom_item_header"/>
   <android.support.v7.widget.RecyclerView
       android:id="@id/recyclerview"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      />
+      tools:listitem = "@layout/fragment_symptom_item"/>
 </LinearLayout>

@@ -1,8 +1,10 @@
 package io.github.ovso.massage.f_symptom;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import butterknife.BindView;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
@@ -11,7 +13,7 @@ import io.github.ovso.massage.f_symptom.adapter.SymptomAdapterView;
 import io.github.ovso.massage.f_symptom.model.Symptom;
 import io.github.ovso.massage.framework.Constants;
 import io.github.ovso.massage.framework.customview.BaseFragment;
-import io.github.ovso.massage.framework.listener.OnRecyclerItemClickListener;
+import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListener;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import lombok.Getter;
@@ -21,9 +23,10 @@ import lombok.Getter;
  */
 
 public class SymptomFragment extends BaseFragment
-    implements SymptomPresenter.View, OnRecyclerItemClickListener<Symptom> {
+    implements SymptomPresenter.View, OnCustomRecyclerItemClickListener<Symptom> {
 
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
+  @BindView(R.id.root_view) View rootView;
   @Inject @Getter SymptomAdapter adapter;
   @Inject @Getter SymptomAdapterView adapterView;
   @Inject SymptomPresenter presenter;
@@ -53,7 +56,7 @@ public class SymptomFragment extends BaseFragment
   }
 
   @Override public void showMessage(int resId) {
-
+    Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
   }
 
   @Override public void refresh() {
@@ -75,5 +78,9 @@ public class SymptomFragment extends BaseFragment
 
   @DebugLog @Override public void onItemClick(int position, Symptom item) {
     presenter.onItemClick(position, item);
+  }
+
+  @Override public void onRecommendClick(int position, Symptom item) {
+    presenter.onRecommendClick(position, item);
   }
 }

@@ -17,6 +17,8 @@ public interface SymptomPresenter {
 
   void onItemClick(int position, Symptom item);
 
+  void onRecommendClick(int position, Symptom item);
+
   interface View {
 
     void setRecyclerView();

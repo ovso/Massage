@@ -15,6 +15,7 @@ public class SymptomViewHolder extends BaseRecyclerAdapter.BaseViewHolder {
 
   @BindView(R.id.title_textview) TextView titleTextview;
   @BindView(R.id.video_imageview) ImageView videoImageView;
+  @BindView(R.id.rec_imageview) ImageView recImageView;
   @BindView(R.id.rec_textview) TextView recTextView;
 
   public SymptomViewHolder(View itemView) {
