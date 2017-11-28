@@ -16,6 +16,7 @@
   <item name="recyclerview" type="id"/>
   <item name="cardview" type="id"/>
   <item name="title_textview" type="id"/>
-  <item name="imageview" type="id"/>
-  <item name="views_textview" type="id"/>
+  <item name="rec_textview" type="id"/>
+  <item name="video_imageview" type="id"/>
+  <item name="rec_imageview" type="id"/>
 </resources>

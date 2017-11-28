@@ -14,8 +14,8 @@ import io.github.ovso.massage.framework.adapter.BaseRecyclerAdapter;
 public class SymptomViewHolder extends BaseRecyclerAdapter.BaseViewHolder {
 
   @BindView(R.id.title_textview) TextView titleTextview;
-  @BindView(R.id.imageview) ImageView imageview;
-  @BindView(R.id.views_textview) TextView viewsTextview;
+  @BindView(R.id.video_imageview) ImageView videoImageView;
+  @BindView(R.id.rec_textview) TextView recTextView;
 
   public SymptomViewHolder(View itemView) {
     super(itemView);

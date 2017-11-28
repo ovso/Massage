@@ -7,8 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:layout_marginBottom="2.5dp"
-    android:layout_marginLeft="7dp"
-    android:layout_marginRight="7dp"
+    android:layout_marginLeft="2.5dp"
+    android:layout_marginRight="2.5dp"
     android:layout_marginTop="2.5dp"
     app:cardBackgroundColor="@color/color_300"
     app:cardCornerRadius="7dp"
@@ -22,30 +22,47 @@
       android:gravity="center_vertical"
       android:orientation="horizontal"
       android:paddingLeft="5dp"
-      android:paddingRight="5dp"
       >
-    <TextView
-        android:id="@id/title_textview"
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="5"
-        android:ellipsize="end"
-        android:gravity="left|center_vertical"
-        android:lines="1"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        tools:text="커다란 빨간문 우리 집에 와 어서와서 구경해 오늘은 할일이 많아"
-        />
+        android:orientation="horizontal"
+        >
+      <TextView
+          android:id="@id/title_textview"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:ellipsize="end"
+          android:gravity="left|center_vertical"
+          android:lines="1"
+          android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+          tools:text="싹트네 싹터요 내마음에 사랑이 싹트네 싹터요"
+          />
+      <ImageView
+          android:id="@id/video_imageview"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:ellipsize="end"
+          android:scaleType="center"
+          android:src="@drawable/ic_ondemand_video"
+          android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+          />
+
+    </LinearLayout>
     <ImageView
-        android:id="@id/imageview"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:id="@id/rec_imageview"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         android:ellipsize="end"
-        android:src="@drawable/ic_ondemand_video"
+        android:scaleType="center"
+        android:src="@drawable/ic_thumb_up"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        tools:src="@drawable/ic_ondemand_video"
         />
     <TextView
-        android:id="@id/views_textview"
+        android:id="@id/rec_textview"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

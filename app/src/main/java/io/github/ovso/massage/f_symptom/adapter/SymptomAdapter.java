@@ -46,8 +46,8 @@ public class SymptomAdapter extends BaseRecyclerAdapter
           visible = View.VISIBLE;
           break;
       }
-      holder.imageview.setVisibility(visible);
-      holder.viewsTextview.setText(String.valueOf(item.getViews()));
+      holder.videoImageView.setVisibility(visible);
+      holder.recTextView.setText(String.valueOf(item.getRec()));
       holder.itemView.setOnClickListener(view -> {
         if (!ObjectUtils.isEmpty(onRecyclerItemClickListener)) {
           onRecyclerItemClickListener.onItemClick(item);

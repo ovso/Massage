@@ -12,8 +12,8 @@ import lombok.ToString;
 @IgnoreExtraProperties @EqualsAndHashCode(callSuper = false) @Getter @ToString
 public class Symptom {
   public String title;
-  private int type;     // video or webpage
-  private String date;  // upload date
   private String url;   // youtube url or webpage url
-  private int views;
+  private int type;     // video or webpage
+  private int date;     // content id
+  private int rec;      // ..
 }
