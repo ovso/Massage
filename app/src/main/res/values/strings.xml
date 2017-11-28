@@ -12,4 +12,5 @@
   <string name="title">제목</string>
   <string name="content_type">보기\n형태</string>
   <string name="rec_count">추천 수</string>
+  <string name="empty"/>
 </resources>

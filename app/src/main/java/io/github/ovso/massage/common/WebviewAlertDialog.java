@@ -1,20 +1,31 @@
-package io.github.ovso.massage.framework.customview;
+package io.github.ovso.massage.common;
 
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import butterknife.BindView;
+import io.github.ovso.massage.R;
+import io.github.ovso.massage.framework.customview.BaseAlertDialogFragment;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
 /**
  * Created by jaeho on 2017. 11. 28
  */
 
 public class WebviewAlertDialog extends BaseAlertDialogFragment {
+  @BindView(R.id.webview) WebView webview;
+  @Accessors(chain = true) @Setter private String url;
+
   @Override protected boolean isNegativeButton() {
     return false;
   }
 
   @Override protected boolean isPositiveButton() {
-    return false;
+    return true;
   }
 
   @Override protected boolean isDagger() {
@@ -22,7 +33,11 @@ public class WebviewAlertDialog extends BaseAlertDialogFragment {
   }
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
-
+    //webview.getSettings().setJavaScriptEnabled(true);
+    webview.setWebChromeClient(new WebChromeClient());
+    webview.setWebViewClient(new WebViewClient());
+    webview.setOnTouchListener((view, motionEvent) -> true);
+    webview.loadUrl(url);
   }
 
   @Override protected boolean getAttatchRoot() {
@@ -30,7 +45,7 @@ public class WebviewAlertDialog extends BaseAlertDialogFragment {
   }
 
   @Override protected int getLayoutResId() {
-    return 0;
+    return R.layout.dialog_webview;
   }
 
   @Override protected ViewGroup getInflateRoot() {
@@ -42,11 +57,11 @@ public class WebviewAlertDialog extends BaseAlertDialogFragment {
   }
 
   @Override protected int getTitle() {
-    return 0;
+    return R.string.empty;
   }
 
   @Override protected View.OnClickListener onPositiveClickListener() {
-    return null;
+    return view -> dismiss();
   }
 
   @Override protected View.OnClickListener onNegativeClickListener() {

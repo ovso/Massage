@@ -13,15 +13,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import dagger.android.support.AndroidSupportInjection;
 import io.github.ovso.massage.R;
+import io.github.ovso.massage.framework.ObjectUtils;
 
 /**
  * Created by jaeho on 2017. 10. 24
  */
 
 public abstract class BaseAlertDialogFragment extends DialogFragment {
-
+  private Unbinder unbinder;
   @NonNull @Override public Dialog onCreateDialog(Bundle savedInstanceState) {
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setTitle(getTitle());
@@ -43,7 +45,7 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
   private View getContentView() {
     View view = LayoutInflater.from(getContext())
         .inflate(getLayoutResId(), getInflateRoot(), getAttatchRoot());
-    ButterKnife.bind(this, view);
+    unbinder = ButterKnife.bind(this, view);
     return view;
   }
 
@@ -90,4 +92,11 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
   protected abstract View.OnClickListener onPositiveClickListener();
 
   protected abstract View.OnClickListener onNegativeClickListener();
+
+  @Override public void onDetach() {
+    super.onDetach();
+    if(!ObjectUtils.isEmpty(unbinder)) {
+      unbinder.unbind();
+    }
+  }
 }

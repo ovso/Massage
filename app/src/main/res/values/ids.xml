@@ -20,4 +20,5 @@
   <item name="video_imageview" type="id"/>
   <item name="rec_imageview" type="id"/>
   <item name="root_view" type="id"/>
+  <item name="webview" type="id"/>
 </resources>

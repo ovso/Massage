@@ -10,6 +10,7 @@ import butterknife.BindView;
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
+import io.github.ovso.massage.common.WebviewAlertDialog;
 import io.github.ovso.massage.f_symptom.adapter.SymptomAdapter;
 import io.github.ovso.massage.f_symptom.adapter.SymptomAdapterView;
 import io.github.ovso.massage.f_symptom.model.Symptom;
@@ -81,7 +82,8 @@ public class SymptomFragment extends BaseFragment
   }
 
   @Override public void showWebViewDialog(String url) {
-
+    new WebviewAlertDialog().setUrl(url)
+        .show(getFragmentManager(), WebviewAlertDialog.class.getSimpleName());
   }
 
   @Override public void onDetach() {
