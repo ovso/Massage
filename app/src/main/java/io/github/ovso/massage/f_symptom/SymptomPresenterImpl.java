@@ -7,6 +7,7 @@ import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.f_symptom.adapter.SymptomAdapter;
 import io.github.ovso.massage.f_symptom.model.Symptom;
+import io.github.ovso.massage.framework.Constants;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import timber.log.Timber;
 
 /**
@@ -83,8 +85,26 @@ public class SymptomPresenterImpl implements SymptomPresenter {
             throwable -> view.showMessage(R.string.error_server)));
   }
 
-  @Override public void onFavoriteClick(int position, Symptom item) {
+  private ArrayList<Integer> ids = new ArrayList<>();
+
+  @DebugLog @Override public void onFavoriteClick(int position, Symptom item) {
     // remove animation
     // refresh animation
+    ids.add(item.getDate());
+    view.removeRefresh();
+    adapterDataModel.clear();
+    compositeDisposable.add(RxFirebaseDatabase.data(databaseReference)
+        .subscribeOn(Schedulers.io())
+        .delay(Constants.DELAY, TimeUnit.MILLISECONDS)
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(dataSnapshot -> {
+          List<Symptom> items = new ArrayList<>();
+          for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+            Symptom symptom = snapshot.getValue(Symptom.class);
+            items.add(symptom);
+          }
+          adapterDataModel.addAll(items);
+          view.refresh();
+        }, throwable -> view.showMessage(R.string.error_server)));
   }
 }

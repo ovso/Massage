@@ -53,6 +53,7 @@ public class SymptomFragment extends BaseFragment
 
   @Override public void setRecyclerView() {
     recyclerView.getItemAnimator().setChangeDuration(Constants.DURATION_RECYCLERVIEW_ANI);
+    recyclerView.getItemAnimator().setRemoveDuration(Constants.DURATION_RECYCLERVIEW_ANI);
     recyclerView.setItemAnimator(new SlideInDownAnimator());
     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     recyclerView.setAdapter(adapter);
@@ -84,6 +85,10 @@ public class SymptomFragment extends BaseFragment
   @Override public void showWebViewDialog(String url) {
     new WebviewAlertDialog().setUrl(url)
         .show(getFragmentManager(), WebviewAlertDialog.class.getSimpleName());
+  }
+
+  @Override public void removeRefresh() {
+    adapterView.removeRefresh();
   }
 
   @Override public void onDetach() {

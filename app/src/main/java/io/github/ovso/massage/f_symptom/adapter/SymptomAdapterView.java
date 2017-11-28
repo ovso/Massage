@@ -8,4 +8,5 @@ import io.github.ovso.massage.framework.adapter.BaseAdapterView;
 
 public interface SymptomAdapterView extends BaseAdapterView {
   void refresh(int position);
+  void removeRefresh();
 }

@@ -34,5 +34,7 @@ public interface SymptomPresenter {
     void showVideo(String videoId);
 
     void showWebViewDialog(String url);
+
+    void removeRefresh();
   }
 }

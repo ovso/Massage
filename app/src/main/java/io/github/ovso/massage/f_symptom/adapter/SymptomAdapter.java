@@ -107,4 +107,8 @@ public class SymptomAdapter extends BaseRecyclerAdapter
   @Override public void refresh(int position) {
     notifyItemChanged(position);
   }
+
+  @Override public void removeRefresh() {
+    notifyItemRangeRemoved(0, getSize());
+  }
 }
