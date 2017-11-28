@@ -1,11 +1,13 @@
 package io.github.ovso.massage.f_symptom;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import butterknife.BindView;
+import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.f_symptom.adapter.SymptomAdapter;
@@ -65,6 +67,21 @@ public class SymptomFragment extends BaseFragment
 
   @Override public void refresh(int position) {
     adapterView.refresh(position);
+  }
+
+  @Override public void showVideo(String videoId) {
+    int startTimeMillis = 0;
+    boolean autoPlay = true;
+    boolean lightboxMode = true;
+
+    Intent intent =
+        YouTubeStandalonePlayer.createVideoIntent(getActivity(), Constants.DEVELOPER_KEY, videoId,
+            startTimeMillis, autoPlay, lightboxMode);
+    startActivity(intent);
+  }
+
+  @Override public void showWebViewDialog(String url) {
+
   }
 
   @Override public void onDetach() {

@@ -28,5 +28,9 @@ public interface SymptomPresenter {
     void refresh();
 
     void refresh(int position);
+
+    void showVideo(String videoId);
+
+    void showWebViewDialog(String url);
   }
 }

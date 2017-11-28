@@ -21,7 +21,8 @@ import timber.log.Timber;
  */
 
 public class SymptomPresenterImpl implements SymptomPresenter {
-
+  private final static int TYPE_SITE = 0;
+  private final static int TYPE_VIDEO = 1;
   private SymptomPresenter.View view;
   private DatabaseReference databaseReference;
   private CompositeDisposable compositeDisposable = new CompositeDisposable();
@@ -67,7 +68,14 @@ public class SymptomPresenterImpl implements SymptomPresenter {
   }
 
   @DebugLog @Override public void onItemClick(int position, Symptom item) {
-
+    switch (item.getType()) {
+      case TYPE_SITE:
+        view.showWebViewDialog(item.getUrl());
+        break;
+      case TYPE_VIDEO:
+        view.showVideo(item.getUrl());
+        break;
+    }
   }
 
   @Override public void onRecommendClick(int position, Symptom item) {
