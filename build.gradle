@@ -1,7 +1,15 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
+//project.ext.compileSdkVersion = '27'
 buildscript {
   ext {
+    applicationId = 'io.github.ovso.massage'
+    compileSdkVersion = 27
+    buildToolsVersion = '27.0.0'
+    minSdkVersion = 16
+    targetSdkVersion = 27
+    versionCode = 1
+    versionName = '1.0'
+
     support_version = '27.0.1'
     constraint_version = '1.0.2'
     hugo_version = '1.2.1'
@@ -17,6 +25,7 @@ buildscript {
     firebase_version = '11.6.0'
     rxfirebase_version = '11.6.0.1'
     recyclerview_animators_version = '2.2.7'
+    realm_version = '4.2.0'
   }
   repositories {
     jcenter()
@@ -26,6 +35,7 @@ buildscript {
     classpath "com.android.tools.build:gradle:$gradle_version"
     classpath "com.jakewharton.hugo:hugo-plugin:$hugo_version"
     classpath "com.google.gms:google-services:$google_services_version"
+    classpath "io.realm:realm-gradle-plugin:$realm_version"
     // NOTE: Do not place your application dependencies here; they belong
     // in the individual module build.gradle files
   }
