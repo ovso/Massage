@@ -2,6 +2,7 @@ package io.github.ovso.massage.f_symptom;
 
 import android.support.annotation.StringRes;
 import io.github.ovso.massage.f_symptom.model.Symptom;
+import io.github.ovso.massage.framework.SelectableItem;
 
 /**
  * Created by jaeho on 2017. 11. 27
@@ -13,13 +14,13 @@ public interface SymptomPresenter {
 
   void onDetach();
 
-  void onItemClick(Symptom item);
+  void onItemClick(SelectableItem<Symptom> item);
 
-  void onItemClick(int position, Symptom item);
+  void onItemClick(int position, SelectableItem<Symptom> item);
 
-  void onRecommendClick(int position, Symptom item);
+  void onRecommendClick(int position, SelectableItem<Symptom> item);
 
-  void onFavoriteClick(int position, Symptom item);
+  void onFavoriteClick(int position, SelectableItem<Symptom> item);
 
   interface View {
 

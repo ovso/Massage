@@ -15,6 +15,7 @@ import io.github.ovso.massage.f_symptom.adapter.SymptomAdapter;
 import io.github.ovso.massage.f_symptom.adapter.SymptomAdapterView;
 import io.github.ovso.massage.f_symptom.model.Symptom;
 import io.github.ovso.massage.framework.Constants;
+import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.customview.BaseFragment;
 import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListener;
 import javax.inject.Inject;
@@ -26,7 +27,7 @@ import lombok.Getter;
  */
 
 public class SymptomFragment extends BaseFragment
-    implements SymptomPresenter.View, OnCustomRecyclerItemClickListener<Symptom> {
+    implements SymptomPresenter.View, OnCustomRecyclerItemClickListener<SelectableItem<Symptom>> {
 
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
   @BindView(R.id.root_view) View rootView;
@@ -96,19 +97,19 @@ public class SymptomFragment extends BaseFragment
     presenter.onDetach();
   }
 
-  @DebugLog @Override public void onItemClick(Symptom item) {
+  @DebugLog @Override public void onItemClick(SelectableItem<Symptom> item) {
     presenter.onItemClick(item);
   }
 
-  @DebugLog @Override public void onItemClick(int position, Symptom item) {
+  @DebugLog @Override public void onItemClick(int position, SelectableItem<Symptom> item) {
     presenter.onItemClick(position, item);
   }
 
-  @Override public void onRecommendClick(int position, Symptom item) {
+  @Override public void onRecommendClick(int position, SelectableItem<Symptom> item) {
     presenter.onRecommendClick(position, item);
   }
 
-  @Override public void onFavoriteClick(int position, Symptom item) {
+  @Override public void onFavoriteClick(int position, SelectableItem<Symptom> item) {
     presenter.onFavoriteClick(position, item);
   }
 }

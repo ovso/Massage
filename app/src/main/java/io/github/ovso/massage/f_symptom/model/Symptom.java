@@ -15,14 +15,6 @@ public class Symptom {
   public String title;
   private String url;   // youtube url or webpage url
   private int type;     // video or webpage
-  private int date;     // content id
+  private int id;     // content id
   @Setter private int rec;      // ..
-
-  public boolean equals(Symptom o) {
-    if (o.getDate() == this.getDate()) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 }
