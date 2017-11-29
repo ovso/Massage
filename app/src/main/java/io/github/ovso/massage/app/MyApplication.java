@@ -7,6 +7,8 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 import io.github.ovso.massage.BuildConfig;
 import io.github.ovso.massage.di.DaggerAppComponent;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import javax.inject.Inject;
 import timber.log.Timber;
 
@@ -22,6 +24,13 @@ public class MyApplication extends Application implements HasActivityInjector {
     super.onCreate();
     initDagger();
     initTimber();
+    initRealm();
+  }
+
+  private void initRealm() {
+    Realm.init(this);
+    RealmConfiguration config = new RealmConfiguration.Builder().name("massage.realm").build();
+    Realm.setDefaultConfiguration(config);
   }
 
   private void initTimber() {
