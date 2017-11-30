@@ -12,6 +12,7 @@ import io.github.ovso.massage.R;
 import io.github.ovso.massage.f_symptom.adapter.SymptomAdapter;
 import io.github.ovso.massage.f_symptom.model.Symptom;
 import io.github.ovso.massage.framework.Constants;
+import io.github.ovso.massage.framework.ObjectUtils;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -79,18 +80,21 @@ public class SymptomPresenterImpl implements SymptomPresenter {
   @Override public void onRecommendClick(int position, SelectableItem<Symptom> $item) {
 
     databaseReference.runTransaction(new Transaction.Handler() {
-      @DebugLog @Override public Transaction.Result doTransaction(MutableData mutableData) {
-
-        ArrayList<Object> o = (ArrayList<Object>) mutableData.getValue();
-        HashMap<String, Object> o2 = (HashMap<String, Object>) o.get($item.getItem().getId());
-        long l = (long) o2.get("rec");
-        l = l + 1;
-        o2.put("rec", l);
-        mutableData.setValue(o);
+      @Override public Transaction.Result doTransaction(MutableData mutableData) {
+        ArrayList<Object> objects = (ArrayList<Object>) mutableData.getValue();
+        if (!ObjectUtils.isEmpty(objects)) {
+          HashMap<String, Object> objectHashMap =
+              (HashMap<String, Object>) objects.get($item.getItem().getId());
+          long recommendCount = (long) objectHashMap.get("rec");
+          recommendCount = recommendCount + 1;
+          objectHashMap.put("rec", recommendCount);
+          mutableData.setValue(objects);
+          return Transaction.success(mutableData);
+        }
         return Transaction.success(mutableData);
       }
 
-      @DebugLog @Override
+      @Override
       public void onComplete(DatabaseError error, boolean committed, DataSnapshot dataSnapshot) {
         if (committed) {
           ArrayList<DataSnapshot> dataSnapshots = Lists.newArrayList(dataSnapshot.getChildren());
@@ -109,23 +113,6 @@ public class SymptomPresenterImpl implements SymptomPresenter {
         }
       }
     });
-
-    //view.showMessage("추천하셨습니다.");
-
-    /*
-    Map<String, Object> map = new HashMap<>();
-    int rec = item.getItem().getRec() + 1;
-    map.put(item.getItem().getId() + "/rec", rec);
-    item.getItem().setRec(rec);
-    adapterDataModel.add(item);
-    view.refresh(position);
-
-    compositeDisposable.add(RxFirebaseDatabase.updateChildren(databaseReference, map)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(() -> Timber.d("successe"),
-            throwable -> view.showMessage(R.string.error_server)));
-    */
   }
 
   private ArrayList<Integer> ids = new ArrayList<>();
