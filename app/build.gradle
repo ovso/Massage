@@ -75,6 +75,8 @@ dependencies {
   provided "javax.annotation:jsr250-api:$jsr_version"
 
   compile "jp.wasabeef:recyclerview-animators:$recyclerview_animators_version"
+
+  compile "com.google.guava:guava:$guava_version"
 }
 
 // ADD THIS AT THE BOTTOM

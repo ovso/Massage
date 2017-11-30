@@ -26,6 +26,7 @@ buildscript {
     rxfirebase_version = '11.6.0.1'
     recyclerview_animators_version = '2.2.7'
     realm_version = '4.2.0'
+    guava_version = '23.5-android'
   }
   repositories {
     jcenter()

@@ -1,8 +1,12 @@
 package io.github.ovso.massage.f_symptom;
 
 import com.androidhuman.rxfirebase2.database.RxFirebaseDatabase;
+import com.google.common.collect.Lists;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.f_symptom.adapter.SymptomAdapter;
@@ -17,7 +21,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import timber.log.Timber;
 
@@ -73,7 +76,43 @@ public class SymptomPresenterImpl implements SymptomPresenter {
     }
   }
 
-  @Override public void onRecommendClick(int position, SelectableItem<Symptom> item) {
+  @Override public void onRecommendClick(int position, SelectableItem<Symptom> $item) {
+
+    databaseReference.runTransaction(new Transaction.Handler() {
+      @DebugLog @Override public Transaction.Result doTransaction(MutableData mutableData) {
+
+        ArrayList<Object> o = (ArrayList<Object>) mutableData.getValue();
+        HashMap<String, Object> o2 = (HashMap<String, Object>) o.get($item.getItem().getId());
+        long l = (long) o2.get("rec");
+        l = l + 1;
+        o2.put("rec", l);
+        mutableData.setValue(o);
+        return Transaction.success(mutableData);
+      }
+
+      @DebugLog @Override
+      public void onComplete(DatabaseError error, boolean committed, DataSnapshot dataSnapshot) {
+        if (committed) {
+          ArrayList<DataSnapshot> dataSnapshots = Lists.newArrayList(dataSnapshot.getChildren());
+          int size = dataSnapshots.size();
+          for (int i = 0; i < size; i++) { // i : 서버 정렬
+            if (i == $item.getItem().getId()) {
+              Symptom symptom = dataSnapshots.get(i).getValue(Symptom.class);
+              $item.getItem().setRec(symptom.getRec());
+              view.refresh(position);
+              break;
+            }
+          }
+          view.showMessage(R.string.you_recommended_it);
+        } else {
+          view.showMessage(R.string.error_server);
+        }
+      }
+    });
+
+    //view.showMessage("추천하셨습니다.");
+
+    /*
     Map<String, Object> map = new HashMap<>();
     int rec = item.getItem().getRec() + 1;
     map.put(item.getItem().getId() + "/rec", rec);
@@ -86,6 +125,7 @@ public class SymptomPresenterImpl implements SymptomPresenter {
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(() -> Timber.d("successe"),
             throwable -> view.showMessage(R.string.error_server)));
+    */
   }
 
   private ArrayList<Integer> ids = new ArrayList<>();
@@ -115,7 +155,7 @@ public class SymptomPresenterImpl implements SymptomPresenter {
             Symptom symptom = snapshot.getValue(Symptom.class);
             selectableItems.add(new SelectableItem<Symptom>().setItem(symptom).setFavorite(false));
           }
-          
+
           for (int i = 0; i < selectableItems.size(); i++) {
             SelectableItem<Symptom> selectableItem = selectableItems.get(i);
             for (int i1 = 0; i1 < ids.size(); i1++) {

@@ -37,5 +37,7 @@ public interface SymptomPresenter {
     void showWebViewDialog(String url);
 
     void removeRefresh();
+
+    void showMessage(String msg);
   }
 }

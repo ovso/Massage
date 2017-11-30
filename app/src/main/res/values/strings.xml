@@ -13,4 +13,5 @@
   <string name="content_type">보기\n형태</string>
   <string name="rec_count">추천 수</string>
   <string name="empty"/>
+  <string name="you_recommended_it">추천하셨습니다. +1 </string>
 </resources>

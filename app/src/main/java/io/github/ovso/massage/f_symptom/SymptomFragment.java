@@ -60,8 +60,12 @@ public class SymptomFragment extends BaseFragment
     recyclerView.setAdapter(adapter);
   }
 
-  @Override public void showMessage(int resId) {
+  @DebugLog @Override public void showMessage(int resId) {
     Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
+  }
+
+  @Override public void showMessage(String msg) {
+    Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT).show();
   }
 
   @Override public void refresh() {
