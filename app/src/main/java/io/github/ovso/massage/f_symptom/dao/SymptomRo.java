@@ -8,6 +8,6 @@ import lombok.ToString;
  * Created by jaeho on 2017. 11. 30
  */
 
-@ToString @Data public class SymptomFav extends RealmObject {
+@ToString @Data public class SymptomRo extends RealmObject {
   private int id;
 }

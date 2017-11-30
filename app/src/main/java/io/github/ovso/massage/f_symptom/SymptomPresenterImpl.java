@@ -10,7 +10,7 @@ import com.google.firebase.database.Transaction;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.f_symptom.adapter.SymptomAdapter;
-import io.github.ovso.massage.f_symptom.dao.SymptomFav;
+import io.github.ovso.massage.f_symptom.dao.SymptomRo;
 import io.github.ovso.massage.f_symptom.model.Symptom;
 import io.github.ovso.massage.framework.Constants;
 import io.github.ovso.massage.framework.ObjectUtils;
@@ -53,11 +53,11 @@ public class SymptomPresenterImpl implements SymptomPresenter {
           List<SelectableItem<Symptom>> items = new ArrayList<>();
           for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
             Symptom symptom = snapshot.getValue(Symptom.class);
-            ArrayList<SymptomFav> symptomFavs = localDb.getAll();
+            ArrayList<SymptomRo> symptomRos = localDb.getAll();
             boolean isFavorite = false;
             for (int i = 0; i < localDb.getSize(); i++) {
-              SymptomFav symptomFav = symptomFavs.get(i);
-              if (symptom.getId() == symptomFav.getId()) {
+              SymptomRo symptomRo = symptomRos.get(i);
+              if (symptom.getId() == symptomRo.getId()) {
                 isFavorite = true;
                 break;
               }
@@ -127,7 +127,7 @@ public class SymptomPresenterImpl implements SymptomPresenter {
 
   @Override public void onFavoriteClick(int position, SelectableItem<Symptom> $item) {
     if ($item.isFavorite()) {
-      SymptomFav symptomFav = localDb.find("id", $item.getItem().getId());
+      SymptomRo symptomFav = localDb.find("id", $item.getItem().getId());
       if (!ObjectUtils.isEmpty(symptomFav)) {
         localDb.delete(symptomFav);
       }

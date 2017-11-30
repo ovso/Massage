@@ -1,7 +1,7 @@
 package io.github.ovso.massage.f_symptom;
 
 import io.github.ovso.massage.common.LocalDatabase;
-import io.github.ovso.massage.f_symptom.dao.SymptomFav;
+import io.github.ovso.massage.f_symptom.dao.SymptomRo;
 import io.github.ovso.massage.f_symptom.model.Symptom;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.realm.RealmResults;
@@ -13,7 +13,7 @@ import java.util.List;
  * Created by jaeho on 2017. 11. 30
  */
 
-public class SymptomLocalDb extends LocalDatabase<SymptomFav> {
+public class SymptomLocalDb extends LocalDatabase<SymptomRo> {
 
   public SymptomLocalDb() {
     super();
@@ -23,38 +23,38 @@ public class SymptomLocalDb extends LocalDatabase<SymptomFav> {
     super.close();
   }
 
-  @Override public ArrayList<SymptomFav> getAll() {
-    RealmResults<SymptomFav> realmResults = realm.where(SymptomFav.class).findAll();
-    ArrayList<SymptomFav> all = new ArrayList<>();
-    for (SymptomFav realmObject : realmResults) {
+  @Override public ArrayList<SymptomRo> getAll() {
+    RealmResults<SymptomRo> realmResults = realm.where(SymptomRo.class).findAll();
+    ArrayList<SymptomRo> all = new ArrayList<>();
+    for (SymptomRo realmObject : realmResults) {
       all.add(realmObject);
     }
     return all;
   }
 
   @Override public int getSize() {
-    return realm.where(SymptomFav.class).findAll().size();
+    return realm.where(SymptomRo.class).findAll().size();
   }
 
-  @Override public SymptomFav add(int id) {
+  @Override public SymptomRo add(int id) {
     beginTransaction();
-    SymptomFav o = realm.createObject(SymptomFav.class);
+    SymptomRo o = realm.createObject(SymptomRo.class);
     o.setId(id);
     commitTransaction();
     return o;
   }
 
-  @Override public void delete(SymptomFav o) {
+  @Override public void delete(SymptomRo o) {
     beginTransaction();
     o.deleteFromRealm();
     commitTransaction();
   }
 
-  @Override public SymptomFav find(String fieldName, int value) {
-    return realm.where(SymptomFav.class).equalTo("id", value).findFirst();
+  @Override public SymptomRo find(String fieldName, int value) {
+    return realm.where(SymptomRo.class).equalTo("id", value).findFirst();
   }
 
-  @Override public SymptomFav get(int index) {
+  @Override public SymptomRo get(int index) {
     return getAll().get(index);
   }
 
