@@ -130,12 +130,27 @@ public class SymptomPresenterImpl implements SymptomPresenter {
       SymptomRo symptomFav = localDb.find("id", $item.getItem().getId());
       if (!ObjectUtils.isEmpty(symptomFav)) {
         localDb.delete(symptomFav);
+        SelectableItem<Symptom> removeItem = adapterDataModel.remove(position);
+        view.refreshRemove(position);
+        removeItem.setFavorite(false);
+        adapterDataModel.add(removeItem);
+        view.refresh(position);
       }
     } else {
+      $item.setFavorite(true);
       localDb.add($item.getItem().getId());
+      adapterDataModel.remove(position);
+      view.refreshRemove(position);
+      adapterDataModel.add(0, $item);
+      view.refresh(0);
     }
 
     Timber.d("realm size = " + localDb.getSize());
+    //////////////////////////////////////////
+    if (true) {
+      return;
+    }
+
     view.removeRefresh();
     adapterDataModel.clear();
     compositeDisposable.add(RxFirebaseDatabase.data(databaseReference)

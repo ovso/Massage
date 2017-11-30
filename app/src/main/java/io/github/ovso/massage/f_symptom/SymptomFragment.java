@@ -68,6 +68,10 @@ public class SymptomFragment extends BaseFragment
     Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT).show();
   }
 
+  @Override public void refreshRemove(int position) {
+    adapterView.refreshRemove(position);
+  }
+
   @Override public void refresh() {
     adapterView.refresh();
   }

@@ -87,7 +87,7 @@ public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapte
   }
 
   @Override public void add(SelectableItem<Symptom> changeItem) {
-
+    selectableItems.add(changeItem);
   }
 
   @Override public void addAll(List<SelectableItem<Symptom>> items) {
@@ -95,7 +95,7 @@ public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapte
   }
 
   @Override public SelectableItem<Symptom> remove(int position) {
-    return null;
+    return this.selectableItems.remove(position);
   }
 
   @Override public SelectableItem<Symptom> getItem(int position) {
@@ -103,7 +103,7 @@ public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapte
   }
 
   @Override public void add(int index, SelectableItem<Symptom> item) {
-
+    this.selectableItems.add(index, item);
   }
 
   @Override public int getSize() {
@@ -120,5 +120,9 @@ public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapte
 
   @Override public void removeRefresh() {
     notifyItemRangeRemoved(0, getSize());
+  }
+
+  @Override public void refreshRemove(int position) {
+    notifyItemRemoved(position);
   }
 }

@@ -37,5 +37,7 @@ public interface SymptomPresenter {
     void removeRefresh();
 
     void showMessage(String msg);
+
+    void refreshRemove(int position);
   }
 }
