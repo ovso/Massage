@@ -131,27 +131,12 @@ public class SymptomPresenterImpl implements SymptomPresenter {
       SymptomRo symptomFav = localDb.find("id", $item.getItem().getId());
       if (!ObjectUtils.isEmpty(symptomFav)) {
         localDb.delete(symptomFav);
-        SelectableItem<Symptom> removeItem = adapterDataModel.remove(position);
-        view.refreshRemove(position);
-        removeItem.setFavorite(false);
-        adapterDataModel.add(removeItem);
-        view.refresh(position);
       }
     } else {
       localDb.add($item.getItem().getId());
-      SelectableItem<Symptom> removeItem = adapterDataModel.remove(position);
-      //view.refreshRemove(position);
-      removeItem.setFavorite(true);
-      adapterDataModel.add(0, $item);
-      //view.refresh(0);
-      view.refresh();
     }
 
     Timber.d("realm size = " + localDb.getSize());
-    //////////////////////////////////////////
-    if (true) {
-      return;
-    }
 
     view.removeRefresh();
     adapterDataModel.clear();
