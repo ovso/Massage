@@ -126,6 +126,7 @@ public class SymptomPresenterImpl implements SymptomPresenter {
   }
 
   @Override public void onFavoriteClick(int position, SelectableItem<Symptom> $item) {
+    Timber.d("position = " + position);
     if ($item.isFavorite()) {
       SymptomRo symptomFav = localDb.find("id", $item.getItem().getId());
       if (!ObjectUtils.isEmpty(symptomFav)) {
@@ -137,12 +138,13 @@ public class SymptomPresenterImpl implements SymptomPresenter {
         view.refresh(position);
       }
     } else {
-      $item.setFavorite(true);
       localDb.add($item.getItem().getId());
-      adapterDataModel.remove(position);
-      view.refreshRemove(position);
+      SelectableItem<Symptom> removeItem = adapterDataModel.remove(position);
+      //view.refreshRemove(position);
+      removeItem.setFavorite(true);
       adapterDataModel.add(0, $item);
-      view.refresh(0);
+      //view.refresh(0);
+      view.refresh();
     }
 
     Timber.d("realm size = " + localDb.getSize());
