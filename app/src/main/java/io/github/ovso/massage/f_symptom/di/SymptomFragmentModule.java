@@ -5,6 +5,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import dagger.Module;
 import dagger.Provides;
 import io.github.ovso.massage.f_symptom.SymptomFragment;
+import io.github.ovso.massage.f_symptom.SymptomLocalDb;
 import io.github.ovso.massage.f_symptom.SymptomPresenter;
 import io.github.ovso.massage.f_symptom.SymptomPresenterImpl;
 import io.github.ovso.massage.f_symptom.adapter.SymptomAdapter;
@@ -17,10 +18,12 @@ import io.github.ovso.massage.f_symptom.adapter.SymptomAdapterView;
 @Module public class SymptomFragmentModule {
 
   @Provides SymptomPresenter provideSymptomPresenter(SymptomFragment fragment,
-      DatabaseReference databaseReference) {
-    return new SymptomPresenterImpl(fragment, fragment.getAdapter(), databaseReference);
+      DatabaseReference databaseReference, SymptomLocalDb localDb) {
+    return new SymptomPresenterImpl(fragment, fragment.getAdapter(), databaseReference, localDb);
   }
-
+  @Provides SymptomLocalDb provideLocalDatabase() {
+    return new SymptomLocalDb();
+  }
   @Provides DatabaseReference provideDbRef() {
     return FirebaseDatabase.getInstance().getReference().child("symptom");
   }

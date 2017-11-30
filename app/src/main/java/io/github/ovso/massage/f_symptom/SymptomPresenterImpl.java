@@ -10,6 +10,7 @@ import com.google.firebase.database.Transaction;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.f_symptom.adapter.SymptomAdapter;
+import io.github.ovso.massage.f_symptom.dao.SymptomFav;
 import io.github.ovso.massage.f_symptom.model.Symptom;
 import io.github.ovso.massage.framework.Constants;
 import io.github.ovso.massage.framework.ObjectUtils;
@@ -19,7 +20,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -34,12 +34,14 @@ public class SymptomPresenterImpl implements SymptomPresenter {
   private DatabaseReference databaseReference;
   private CompositeDisposable compositeDisposable = new CompositeDisposable();
   private BaseAdapterDataModel<SelectableItem<Symptom>> adapterDataModel;
+  private SymptomLocalDb localDb;
 
   public SymptomPresenterImpl(SymptomPresenter.View view, BaseAdapterDataModel adapterDataModel,
-      DatabaseReference databaseReference) {
+      DatabaseReference databaseReference, SymptomLocalDb localDb) {
     this.view = view;
     this.adapterDataModel = adapterDataModel;
     this.databaseReference = databaseReference;
+    this.localDb = localDb;
   }
 
   @Override public void onActivityCreate() {
@@ -51,7 +53,19 @@ public class SymptomPresenterImpl implements SymptomPresenter {
           List<SelectableItem<Symptom>> items = new ArrayList<>();
           for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
             Symptom symptom = snapshot.getValue(Symptom.class);
-            items.add(new SelectableItem<Symptom>().setFavorite(false).setItem(symptom));
+            ArrayList<SymptomFav> symptomFavs = localDb.getAll();
+            boolean isFavorite = false;
+            for (int i = 0; i < localDb.getSize(); i++) {
+              SymptomFav symptomFav = symptomFavs.get(i);
+              if (symptom.getId() == symptomFav.getId()) {
+                isFavorite = true;
+                break;
+              }
+            }
+            items.add(new SelectableItem<Symptom>().setFavorite(isFavorite).setItem(symptom));
+          }
+          if (localDb.getSize() > 0) {
+            localDb.sort(items);
           }
           adapterDataModel.addAll(items);
           view.refresh();
@@ -62,11 +76,7 @@ public class SymptomPresenterImpl implements SymptomPresenter {
     compositeDisposable.clear();
   }
 
-  @Override public void onItemClick(SelectableItem<Symptom> item) {
-
-  }
-
-  @DebugLog @Override public void onItemClick(int position, SelectableItem<Symptom> item) {
+  @DebugLog @Override public void onItemClick(SelectableItem<Symptom> item) {
     switch (item.getItem().getType()) {
       case SymptomAdapter.TYPE_SITE:
         view.showWebViewDialog(item.getItem().getUrl());
@@ -77,7 +87,7 @@ public class SymptomPresenterImpl implements SymptomPresenter {
     }
   }
 
-  @Override public void onRecommendClick(int position, SelectableItem<Symptom> $item) {
+  @Override public void onRecommendClick(final int position, final SelectableItem<Symptom> $item) {
 
     databaseReference.runTransaction(new Transaction.Handler() {
       @Override public Transaction.Result doTransaction(MutableData mutableData) {
@@ -99,7 +109,7 @@ public class SymptomPresenterImpl implements SymptomPresenter {
         if (committed) {
           ArrayList<DataSnapshot> dataSnapshots = Lists.newArrayList(dataSnapshot.getChildren());
           int size = dataSnapshots.size();
-          for (int i = 0; i < size; i++) { // i : 서버 정렬
+          for (int i = 0; i < size; i++) {
             if (i == $item.getItem().getId()) {
               Symptom symptom = dataSnapshots.get(i).getValue(Symptom.class);
               $item.getItem().setRec(symptom.getRec());
@@ -115,25 +125,17 @@ public class SymptomPresenterImpl implements SymptomPresenter {
     });
   }
 
-  private ArrayList<Integer> ids = new ArrayList<>();
-
   @Override public void onFavoriteClick(int position, SelectableItem<Symptom> $item) {
-
     if ($item.isFavorite()) {
-      int idsIndex = ids.indexOf($item.getItem().getId());
-      if (idsIndex != -1) {
-        ids.remove(idsIndex);
+      SymptomFav symptomFav = localDb.find("id", $item.getItem().getId());
+      if (!ObjectUtils.isEmpty(symptomFav)) {
+        localDb.delete(symptomFav);
       }
     } else {
-      ids.add($item.getItem().getId());
+      localDb.add($item.getItem().getId());
     }
 
-    Timber.d("ids sie = " + ids.size() + ", ids = " + ids);
-    /*
-    Realm.getDefaultInstance().beginTransaction();
-    Realm.getDefaultInstance().commitTransaction();
-    */
-
+    Timber.d("realm size = " + localDb.getSize());
     view.removeRefresh();
     adapterDataModel.clear();
     compositeDisposable.add(RxFirebaseDatabase.data(databaseReference)
@@ -141,28 +143,25 @@ public class SymptomPresenterImpl implements SymptomPresenter {
         .delay(Constants.DELAY, TimeUnit.MILLISECONDS)
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(dataSnapshot -> {
-          List<SelectableItem<Symptom>> selectableItems = new ArrayList<>();
+          List<SelectableItem<Symptom>> items = new ArrayList<>();
           for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
             Symptom symptom = snapshot.getValue(Symptom.class);
-            selectableItems.add(new SelectableItem<Symptom>().setItem(symptom).setFavorite(false));
-          }
 
-          for (int i = 0; i < selectableItems.size(); i++) {
-            SelectableItem<Symptom> selectableItem = selectableItems.get(i);
-            for (int i1 = 0; i1 < ids.size(); i1++) {
-              int uniqueId = ids.get(i1);
-              if (selectableItem.getItem().getId() == uniqueId) {
-                selectableItem.setFavorite(true);
+            boolean isFavorite = false;
+
+            for (int i = 0; i < localDb.getSize(); i++) {
+              int uniqueId = localDb.get(i).getId();
+              if (symptom.getId() == uniqueId) {
+                isFavorite = true;
+                break;
               }
             }
+            items.add(new SelectableItem<Symptom>().setItem(symptom).setFavorite(isFavorite));
           }
-
-          Collections.sort(selectableItems, (o1, o2) -> {
-            int a1 = o1.isFavorite() ? 0 : 1;
-            int a2 = o2.isFavorite() ? 0 : 1;
-            return a1 - a2;
-          });
-          adapterDataModel.addAll(selectableItems);
+          if (localDb.getSize() > 0) {
+            localDb.sort(items);
+          }
+          adapterDataModel.addAll(items);
           view.refresh();
         }, throwable -> view.showMessage(R.string.error_server)));
   }

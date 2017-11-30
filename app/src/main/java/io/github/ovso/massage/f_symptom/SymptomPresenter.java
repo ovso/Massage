@@ -16,8 +16,6 @@ public interface SymptomPresenter {
 
   void onItemClick(SelectableItem<Symptom> item);
 
-  void onItemClick(int position, SelectableItem<Symptom> item);
-
   void onRecommendClick(int position, SelectableItem<Symptom> item);
 
   void onFavoriteClick(int position, SelectableItem<Symptom> item);

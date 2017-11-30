@@ -105,10 +105,6 @@ public class SymptomFragment extends BaseFragment
     presenter.onItemClick(item);
   }
 
-  @DebugLog @Override public void onItemClick(int position, SelectableItem<Symptom> item) {
-    presenter.onItemClick(position, item);
-  }
-
   @Override public void onRecommendClick(int position, SelectableItem<Symptom> item) {
     presenter.onRecommendClick(position, item);
   }

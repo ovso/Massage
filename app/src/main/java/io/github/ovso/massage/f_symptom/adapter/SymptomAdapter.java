@@ -62,7 +62,7 @@ public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapte
       }
       holder.itemView.setOnClickListener(view -> {
         if (!ObjectUtils.isEmpty(onRecyclerItemClickListener)) {
-          onRecyclerItemClickListener.onItemClick(position, selectableItem);
+          onRecyclerItemClickListener.onItemClick(selectableItem);
         }
       });
       holder.recImageView.setOnClickListener(view -> {
