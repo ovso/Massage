@@ -129,6 +129,10 @@ public class SymptomPresenterImpl implements SymptomPresenter {
     }
 
     Timber.d("ids sie = " + ids.size() + ", ids = " + ids);
+    /*
+    Realm.getDefaultInstance().beginTransaction();
+    Realm.getDefaultInstance().commitTransaction();
+    */
 
     view.removeRefresh();
     adapterDataModel.clear();
