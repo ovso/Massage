@@ -23,7 +23,6 @@ import io.reactivex.disposables.CompositeDisposable;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import lombok.Getter;
-import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 10. 20
@@ -78,14 +77,12 @@ public class SymptomFragment extends BaseFragment
   }
 
   @Override public void showLoading() {
-    Timber.d("progressBar = " + progressBar);
     if (progressBar != null) {
       progressBar.setVisibility(View.VISIBLE);
     }
   }
 
   @Override public void hideLoading() {
-    Timber.d("progressBar = " + progressBar);
     if (progressBar != null) {
       progressBar.setVisibility(View.GONE);
     }
