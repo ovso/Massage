@@ -126,18 +126,13 @@ public class SymptomPresenterImpl implements SymptomPresenter {
   }
 
   @Override public void onFavoriteClick(int position, SelectableItem<Symptom> $item) {
-    Timber.d("position = " + position);
     if ($item.isFavorite()) {
-      SymptomRo symptomFav = localDb.find("id", $item.getItem().getId());
-      if (!ObjectUtils.isEmpty(symptomFav)) {
-        localDb.delete(symptomFav);
-      }
+      localDb.delete($item.getItem().getId());
     } else {
       localDb.add($item.getItem().getId());
     }
-
+    Timber.d("position = " + position);
     Timber.d("realm size = " + localDb.getSize());
-
     view.removeRefresh();
     adapterDataModel.clear();
     compositeDisposable.add(RxFirebaseDatabase.data(databaseReference)

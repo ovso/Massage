@@ -15,8 +15,11 @@ buildscript {
     hugo_version = '1.2.1'
     butterknife_version = '8.8.1'
     dagger_version = '2.13'
+
     rxjava_version = '2.1.6'
     rxandroid_version = '2.0.1'
+    rxbinding2_version = '2.0.0'
+
     timber_version = '4.6.0'
     lombok_version = '1.16.18'
     jsr_version = '1.0'

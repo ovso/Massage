@@ -21,6 +21,7 @@ android {
       proguardFile 'proguard-tedpermission.pro'
       proguardFile 'proguard-firebase.pro'
       proguardFile 'proguard-butterknipe.pro'
+      proguardFile 'proguard-guava.pro'
     }
   }
 
@@ -77,6 +78,8 @@ dependencies {
   compile "jp.wasabeef:recyclerview-animators:$recyclerview_animators_version"
 
   compile "com.google.guava:guava:$guava_version"
+
+  compile "com.jakewharton.rxbinding2:rxbinding:$rxbinding2_version"
 }
 
 // ADD THIS AT THE BOTTOM

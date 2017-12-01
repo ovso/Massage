@@ -33,7 +33,7 @@ public abstract class LocalDatabase<T> {
 
   public abstract T add(int id);
 
-  public abstract void delete(T o);
+  public abstract void delete(int id);
 
   public abstract T find(String fieldName, int value);
 

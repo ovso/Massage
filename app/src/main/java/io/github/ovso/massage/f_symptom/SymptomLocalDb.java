@@ -44,9 +44,9 @@ public class SymptomLocalDb extends LocalDatabase<SymptomRo> {
     return o;
   }
 
-  @Override public void delete(SymptomRo o) {
+  @Override public void delete(int id) {
     beginTransaction();
-    o.deleteFromRealm();
+    realm.where(SymptomRo.class).equalTo("id", id).findFirst().deleteFromRealm();
     commitTransaction();
   }
 
