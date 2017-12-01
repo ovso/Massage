@@ -32,16 +32,18 @@ import timber.log.Timber;
 public class SymptomPresenterImpl implements SymptomPresenter {
   private SymptomPresenter.View view;
   private DatabaseReference databaseReference;
-  private CompositeDisposable compositeDisposable = new CompositeDisposable();
+  private CompositeDisposable compositeDisposable;
   private BaseAdapterDataModel<SelectableItem<Symptom>> adapterDataModel;
   private SymptomLocalDb localDb;
 
   public SymptomPresenterImpl(SymptomPresenter.View view, BaseAdapterDataModel adapterDataModel,
-      DatabaseReference databaseReference, SymptomLocalDb localDb) {
+      DatabaseReference databaseReference, SymptomLocalDb localDb,
+      CompositeDisposable compositeDisposable) {
     this.view = view;
     this.adapterDataModel = adapterDataModel;
     this.databaseReference = databaseReference;
     this.localDb = localDb;
+    this.compositeDisposable = compositeDisposable;
   }
 
   @Override public void onActivityCreate() {

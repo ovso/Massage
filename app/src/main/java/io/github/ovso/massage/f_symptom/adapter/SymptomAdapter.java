@@ -1,14 +1,17 @@
 package io.github.ovso.massage.f_symptom.adapter;
 
 import android.view.View;
+import com.jakewharton.rxbinding2.view.RxView;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.f_symptom.model.Symptom;
-import io.github.ovso.massage.framework.ObjectUtils;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.adapter.BaseRecyclerAdapter;
 import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListener;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -25,6 +28,8 @@ public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapte
 
   @Accessors(chain = true) @Setter
   private OnCustomRecyclerItemClickListener<SelectableItem<Symptom>> onRecyclerItemClickListener;
+
+  @Accessors(chain = true) private @Setter CompositeDisposable compositeDisposable;
 
   @Override protected BaseViewHolder createViewHolder(View view, int viewType) {
     return new SymptomViewHolder(view);
@@ -60,21 +65,19 @@ public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapte
       } else {
         holder.favImageView.setImageResource(R.drawable.ic_favorite_border);
       }
-      holder.itemView.setOnClickListener(view -> {
-        if (!ObjectUtils.isEmpty(onRecyclerItemClickListener)) {
-          onRecyclerItemClickListener.onItemClick(selectableItem);
-        }
-      });
-      holder.recImageView.setOnClickListener(view -> {
-        if (!ObjectUtils.isEmpty(onRecyclerItemClickListener)) {
-          onRecyclerItemClickListener.onRecommendClick(position, selectableItem);
-        }
-      });
-      holder.favImageView.setOnClickListener(view -> {
-        if (!ObjectUtils.isEmpty(onRecyclerItemClickListener)) {
-          onRecyclerItemClickListener.onFavoriteClick(position, selectableItem);
-        }
-      });
+
+      compositeDisposable.add(RxView.clicks(holder.itemView)
+          .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe(o -> onRecyclerItemClickListener.onItemClick(selectableItem)));
+      compositeDisposable.add(RxView.clicks(holder.recImageView)
+          .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe(o -> onRecyclerItemClickListener.onRecommendClick(position, selectableItem)));
+      compositeDisposable.add(RxView.clicks(holder.favImageView)
+          .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe(o -> onRecyclerItemClickListener.onFavoriteClick(position, selectableItem)));
     }
   }
 

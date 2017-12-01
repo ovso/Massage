@@ -18,6 +18,7 @@ import io.github.ovso.massage.framework.Constants;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.customview.BaseFragment;
 import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListener;
+import io.reactivex.disposables.CompositeDisposable;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import lombok.Getter;
@@ -31,6 +32,7 @@ public class SymptomFragment extends BaseFragment
 
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
   @BindView(R.id.root_view) View rootView;
+  @Inject @Getter CompositeDisposable compositeDisposable;
   @Inject @Getter SymptomAdapter adapter;
   @Inject @Getter SymptomAdapterView adapterView;
   @Inject SymptomPresenter presenter;
