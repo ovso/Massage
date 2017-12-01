@@ -1,7 +1,6 @@
-package io.github.ovso.massage.f_symptom;
+package io.github.ovso.massage.f_symptom.db;
 
 import io.github.ovso.massage.common.LocalDatabase;
-import io.github.ovso.massage.f_symptom.dao.SymptomRo;
 import io.github.ovso.massage.f_symptom.model.Symptom;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.realm.RealmResults;

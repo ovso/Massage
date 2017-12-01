@@ -1,7 +1,7 @@
 package io.github.ovso.massage.f_theme;
 
 import android.support.annotation.StringRes;
-import io.github.ovso.massage.f_symptom.model.Symptom;
+import io.github.ovso.massage.f_theme.model.Theme;
 import io.github.ovso.massage.framework.SelectableItem;
 
 /**
@@ -14,11 +14,11 @@ public interface ThemePresenter {
 
   void onDetach();
 
-  void onItemClick(SelectableItem<Symptom> item);
+  void onItemClick(SelectableItem<Theme> item);
 
-  void onRecommendClick(int position, SelectableItem<Symptom> item);
+  void onRecommendClick(int position, SelectableItem<Theme> item);
 
-  void onFavoriteClick(int position, SelectableItem<Symptom> item);
+  void onFavoriteClick(int position, SelectableItem<Theme> item);
 
   interface View {
 
@@ -39,5 +39,9 @@ public interface ThemePresenter {
     void showMessage(String msg);
 
     void refreshRemove(int position);
+
+    void showLoading();
+
+    void hideLoading();
   }
 }

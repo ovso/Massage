@@ -5,7 +5,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import dagger.Module;
 import dagger.Provides;
 import io.github.ovso.massage.f_symptom.SymptomFragment;
-import io.github.ovso.massage.f_symptom.SymptomLocalDb;
+import io.github.ovso.massage.f_symptom.db.SymptomLocalDb;
 import io.github.ovso.massage.f_symptom.SymptomPresenter;
 import io.github.ovso.massage.f_symptom.SymptomPresenterImpl;
 import io.github.ovso.massage.f_symptom.adapter.SymptomAdapter;

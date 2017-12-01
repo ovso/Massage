@@ -1,4 +1,4 @@
-package io.github.ovso.massage.f_symptom;
+package io.github.ovso.massage.f_theme;
 
 import com.androidhuman.rxfirebase2.database.RxFirebaseDatabase;
 import com.google.common.collect.Lists;
@@ -9,10 +9,10 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.f_symptom.adapter.SymptomAdapter;
-import io.github.ovso.massage.f_symptom.db.SymptomRo;
-import io.github.ovso.massage.f_symptom.db.SymptomLocalDb;
-import io.github.ovso.massage.f_symptom.model.Symptom;
+import io.github.ovso.massage.f_theme.adapter.ThemeAdapter;
+import io.github.ovso.massage.f_theme.db.ThemeLocalDb;
+import io.github.ovso.massage.f_theme.db.ThemeRo;
+import io.github.ovso.massage.f_theme.model.Theme;
 import io.github.ovso.massage.framework.Constants;
 import io.github.ovso.massage.framework.ObjectUtils;
 import io.github.ovso.massage.framework.SelectableItem;
@@ -30,15 +30,15 @@ import timber.log.Timber;
  * Created by jaeho on 2017. 11. 27
  */
 
-public class SymptomPresenterImpl implements SymptomPresenter {
-  private SymptomPresenter.View view;
+public class ThemePresenterImpl implements ThemePresenter {
+  private View view;
   private DatabaseReference databaseReference;
   private CompositeDisposable compositeDisposable;
-  private BaseAdapterDataModel<SelectableItem<Symptom>> adapterDataModel;
-  private SymptomLocalDb localDb;
+  private BaseAdapterDataModel<SelectableItem<Theme>> adapterDataModel;
+  private ThemeLocalDb localDb;
 
-  public SymptomPresenterImpl(SymptomPresenter.View view, BaseAdapterDataModel adapterDataModel,
-      DatabaseReference databaseReference, SymptomLocalDb localDb,
+  public ThemePresenterImpl(View view, BaseAdapterDataModel adapterDataModel,
+      DatabaseReference databaseReference, ThemeLocalDb localDb,
       CompositeDisposable compositeDisposable) {
     this.view = view;
     this.adapterDataModel = adapterDataModel;
@@ -54,19 +54,19 @@ public class SymptomPresenterImpl implements SymptomPresenter {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(dataSnapshot -> {
-          List<SelectableItem<Symptom>> items = new ArrayList<>();
+          List<SelectableItem<Theme>> items = new ArrayList<>();
           for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-            Symptom symptom = snapshot.getValue(Symptom.class);
-            ArrayList<SymptomRo> symptomRos = localDb.getAll();
+            Theme Theme = snapshot.getValue(Theme.class);
+            ArrayList<ThemeRo> ThemeRos = localDb.getAll();
             boolean isFavorite = false;
             for (int i = 0; i < localDb.getSize(); i++) {
-              SymptomRo symptomRo = symptomRos.get(i);
-              if (symptom.getId() == symptomRo.getId()) {
+              ThemeRo ThemeRo = ThemeRos.get(i);
+              if (Theme.getId() == ThemeRo.getId()) {
                 isFavorite = true;
                 break;
               }
             }
-            items.add(new SelectableItem<Symptom>().setFavorite(isFavorite).setItem(symptom));
+            items.add(new SelectableItem<Theme>().setFavorite(isFavorite).setItem(Theme));
           }
           if (localDb.getSize() > 0) {
             localDb.sort(items);
@@ -84,18 +84,18 @@ public class SymptomPresenterImpl implements SymptomPresenter {
     compositeDisposable.clear();
   }
 
-  @DebugLog @Override public void onItemClick(SelectableItem<Symptom> item) {
+  @DebugLog @Override public void onItemClick(SelectableItem<Theme> item) {
     switch (item.getItem().getType()) {
-      case SymptomAdapter.TYPE_SITE:
+      case ThemeAdapter.TYPE_SITE:
         view.showWebViewDialog(item.getItem().getUrl());
         break;
-      case SymptomAdapter.TYPE_VIDEO:
+      case ThemeAdapter.TYPE_VIDEO:
         view.showVideo(item.getItem().getUrl());
         break;
     }
   }
 
-  @Override public void onRecommendClick(final int position, final SelectableItem<Symptom> $item) {
+  @Override public void onRecommendClick(final int position, final SelectableItem<Theme> $item) {
     view.showLoading();
     databaseReference.runTransaction(new Transaction.Handler() {
       @Override public Transaction.Result doTransaction(MutableData mutableData) {
@@ -119,8 +119,8 @@ public class SymptomPresenterImpl implements SymptomPresenter {
           int size = dataSnapshots.size();
           for (int i = 0; i < size; i++) {
             if (i == $item.getItem().getId()) {
-              Symptom symptom = dataSnapshots.get(i).getValue(Symptom.class);
-              $item.getItem().setRec(symptom.getRec());
+              Theme Theme = dataSnapshots.get(i).getValue(Theme.class);
+              $item.getItem().setRec(Theme.getRec());
               view.refresh(position);
               break;
             }
@@ -135,7 +135,7 @@ public class SymptomPresenterImpl implements SymptomPresenter {
     });
   }
 
-  @Override public void onFavoriteClick(int position, SelectableItem<Symptom> $item) {
+  @Override public void onFavoriteClick(int position, SelectableItem<Theme> $item) {
     view.showLoading();
     if ($item.isFavorite()) {
       localDb.delete($item.getItem().getId());
@@ -151,20 +151,20 @@ public class SymptomPresenterImpl implements SymptomPresenter {
         .delay(Constants.DELAY, TimeUnit.MILLISECONDS)
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(dataSnapshot -> {
-          List<SelectableItem<Symptom>> items = new ArrayList<>();
+          List<SelectableItem<Theme>> items = new ArrayList<>();
           for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-            Symptom symptom = snapshot.getValue(Symptom.class);
+            Theme Theme = snapshot.getValue(Theme.class);
 
             boolean isFavorite = false;
 
             for (int i = 0; i < localDb.getSize(); i++) {
               int uniqueId = localDb.get(i).getId();
-              if (symptom.getId() == uniqueId) {
+              if (Theme.getId() == uniqueId) {
                 isFavorite = true;
                 break;
               }
             }
-            items.add(new SelectableItem<Symptom>().setItem(symptom).setFavorite(isFavorite));
+            items.add(new SelectableItem<Theme>().setItem(Theme).setFavorite(isFavorite));
           }
           if (localDb.getSize() > 0) {
             localDb.sort(items);
