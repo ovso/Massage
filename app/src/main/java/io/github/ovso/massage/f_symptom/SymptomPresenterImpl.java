@@ -48,6 +48,7 @@ public class SymptomPresenterImpl implements SymptomPresenter {
 
   @Override public void onActivityCreate() {
     view.setRecyclerView();
+    view.showLoading();
     compositeDisposable.add(RxFirebaseDatabase.data(databaseReference)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
@@ -71,7 +72,11 @@ public class SymptomPresenterImpl implements SymptomPresenter {
           }
           adapterDataModel.addAll(items);
           view.refresh();
-        }, throwable -> view.showMessage(R.string.error_server)));
+          view.hideLoading();
+        }, throwable -> {
+          view.showMessage(R.string.error_server);
+          view.hideLoading();
+        }));
   }
 
   @Override public void onDetach() {
@@ -90,7 +95,7 @@ public class SymptomPresenterImpl implements SymptomPresenter {
   }
 
   @Override public void onRecommendClick(final int position, final SelectableItem<Symptom> $item) {
-
+    view.showLoading();
     databaseReference.runTransaction(new Transaction.Handler() {
       @Override public Transaction.Result doTransaction(MutableData mutableData) {
         ArrayList<Object> objects = (ArrayList<Object>) mutableData.getValue();
@@ -123,11 +128,14 @@ public class SymptomPresenterImpl implements SymptomPresenter {
         } else {
           view.showMessage(R.string.error_server);
         }
+
+        view.hideLoading();
       }
     });
   }
 
   @Override public void onFavoriteClick(int position, SelectableItem<Symptom> $item) {
+    view.showLoading();
     if ($item.isFavorite()) {
       localDb.delete($item.getItem().getId());
     } else {
@@ -162,6 +170,10 @@ public class SymptomPresenterImpl implements SymptomPresenter {
           }
           adapterDataModel.addAll(items);
           view.refresh();
-        }, throwable -> view.showMessage(R.string.error_server)));
+          view.hideLoading();
+        }, throwable -> {
+          view.showMessage(R.string.error_server);
+          view.hideLoading();
+        }));
   }
 }

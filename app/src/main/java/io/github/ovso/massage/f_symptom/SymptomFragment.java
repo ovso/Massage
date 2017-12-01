@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ProgressBar;
 import butterknife.BindView;
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import hugo.weaving.DebugLog;
@@ -22,6 +23,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import lombok.Getter;
+import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 10. 20
@@ -32,6 +34,7 @@ public class SymptomFragment extends BaseFragment
 
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
   @BindView(R.id.root_view) View rootView;
+  @BindView(R.id.progressbar) ProgressBar progressBar;
   @Inject @Getter CompositeDisposable compositeDisposable;
   @Inject @Getter SymptomAdapter adapter;
   @Inject @Getter SymptomAdapterView adapterView;
@@ -74,6 +77,20 @@ public class SymptomFragment extends BaseFragment
     adapterView.refreshRemove(position);
   }
 
+  @Override public void showLoading() {
+    Timber.d("progressBar = " + progressBar);
+    if (progressBar != null) {
+      progressBar.setVisibility(View.VISIBLE);
+    }
+  }
+
+  @Override public void hideLoading() {
+    Timber.d("progressBar = " + progressBar);
+    if (progressBar != null) {
+      progressBar.setVisibility(View.GONE);
+    }
+  }
+
   @Override public void refresh() {
     adapterView.refresh();
   }
@@ -99,10 +116,10 @@ public class SymptomFragment extends BaseFragment
   }
 
   @Override public void removeRefresh() {
-    adapterView.removeRefresh();
+    adapterView.refreshRemove();
   }
 
-  @Override public void onDetach() {
+  @DebugLog @Override public void onDetach() {
     super.onDetach();
     presenter.onDetach();
   }

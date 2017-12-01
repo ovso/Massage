@@ -1,4 +1,4 @@
-package io.github.ovso.massage.f_symptom;
+package io.github.ovso.massage.f_theme;
 
 import android.support.annotation.StringRes;
 import io.github.ovso.massage.f_symptom.model.Symptom;
@@ -8,7 +8,7 @@ import io.github.ovso.massage.framework.SelectableItem;
  * Created by jaeho on 2017. 11. 27
  */
 
-public interface SymptomPresenter {
+public interface ThemePresenter {
 
   void onActivityCreate();
 
@@ -39,9 +39,5 @@ public interface SymptomPresenter {
     void showMessage(String msg);
 
     void refreshRemove(int position);
-
-    void showLoading();
-
-    void hideLoading();
   }
 }

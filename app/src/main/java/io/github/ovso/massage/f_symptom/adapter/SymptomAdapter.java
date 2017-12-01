@@ -85,10 +85,6 @@ public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapte
     return getSize();
   }
 
-  @Override public void refresh() {
-    notifyItemRangeChanged(0, getSize());
-  }
-
   @Override public void add(SelectableItem<Symptom> changeItem) {
     selectableItems.add(changeItem);
   }
@@ -117,11 +113,15 @@ public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapte
     selectableItems.clear();
   }
 
+  @Override public void refresh() {
+    notifyItemRangeChanged(0, getSize());
+  }
+
   @Override public void refresh(int position) {
     notifyItemChanged(position);
   }
 
-  @Override public void removeRefresh() {
+  @Override public void refreshRemove() {
     notifyItemRangeRemoved(0, getSize());
   }
 
