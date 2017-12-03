@@ -1,6 +1,7 @@
 package io.github.ovso.massage.f_theme.db;
 
-import io.github.ovso.massage.common.LocalDatabase;
+import android.content.Context;
+import io.github.ovso.massage.db.LocalDatabase;
 import io.github.ovso.massage.f_theme.model.Theme;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.realm.RealmResults;
@@ -14,8 +15,8 @@ import java.util.List;
 
 public class ThemeLocalDb extends LocalDatabase<ThemeRo> {
 
-  public ThemeLocalDb() {
-    super();
+  public ThemeLocalDb(Context context) {
+    super(context);
   }
 
   @Override public void close() {

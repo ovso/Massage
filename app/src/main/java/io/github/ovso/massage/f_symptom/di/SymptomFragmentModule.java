@@ -24,8 +24,8 @@ import io.reactivex.disposables.CompositeDisposable;
         fragment.getCompositeDisposable());
   }
 
-  @Provides SymptomLocalDb provideLocalDatabase() {
-    return new SymptomLocalDb();
+  @Provides SymptomLocalDb provideLocalDatabase(SymptomFragment fragment) {
+    return new SymptomLocalDb(fragment.getContext());
   }
 
   @Provides DatabaseReference provideDbRef() {

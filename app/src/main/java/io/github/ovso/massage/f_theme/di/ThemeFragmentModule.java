@@ -24,8 +24,8 @@ import io.reactivex.disposables.CompositeDisposable;
         fragment.getCompositeDisposable());
   }
 
-  @Provides ThemeLocalDb provideLocalDatabase() {
-    return new ThemeLocalDb();
+  @Provides ThemeLocalDb provideLocalDatabase(ThemeFragment fragment) {
+    return new ThemeLocalDb(fragment.getContext());
   }
 
   @Provides DatabaseReference provideDbRef() {
