@@ -2,12 +2,7 @@
 <resources>
   <item name="navigation_view" type="id"/>
   <item name="drawer_layout" type="id"/>
-  <item name="nav_camera" type="id"/>
-  <item name="nav_gallery" type="id"/>
-  <item name="nav_slideshow" type="id"/>
   <item name="nav_manage" type="id"/>
-  <item name="nav_share" type="id"/>
-  <item name="nav_send" type="id"/>
   <item name="fragment_container" type="id"/>
   <item name="bottom_navigation_view" type="id"/>
   <item name="action_symptom" type="id"/>
