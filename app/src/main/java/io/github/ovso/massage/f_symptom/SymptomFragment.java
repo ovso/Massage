@@ -1,5 +1,6 @@
 package io.github.ovso.massage.f_symptom;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -88,6 +89,12 @@ public class SymptomFragment extends BaseFragment
     }
   }
 
+  @Override public void showYoutubeUseWarningDialog() {
+    new AlertDialog.Builder(getActivity()).setMessage(R.string.youtube_use_warning)
+        .setPositiveButton(android.R.string.ok, null)
+        .show();
+  }
+
   @Override public void refresh() {
     adapterView.refresh();
   }
@@ -100,7 +107,6 @@ public class SymptomFragment extends BaseFragment
     int startTimeMillis = 0;
     boolean autoPlay = true;
     boolean lightboxMode = true;
-
     Intent intent =
         YouTubeStandalonePlayer.createVideoIntent(getActivity(), Constants.DEVELOPER_KEY, videoId,
             startTimeMillis, autoPlay, lightboxMode);

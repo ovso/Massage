@@ -43,5 +43,7 @@ public interface SymptomPresenter {
     void showLoading();
 
     void hideLoading();
+
+    void showYoutubeUseWarningDialog();
   }
 }

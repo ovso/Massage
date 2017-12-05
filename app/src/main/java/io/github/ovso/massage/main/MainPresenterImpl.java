@@ -19,7 +19,7 @@ import javax.inject.Inject;
  * Created by jaeho on 2017. 10. 16
  */
 
-public class MainPresenterImpl implements MainPresenter {
+public class MainPresenterImpl extends Exception implements MainPresenter {
 
   private MainPresenter.View view;
   private CompositeDisposable compositeDisposable;
@@ -44,7 +44,6 @@ public class MainPresenterImpl implements MainPresenter {
           .observeOn(AndroidSchedulers.mainThread())
           .subscribe(dataSnapshot -> {
             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-              //snapshot.getValue()
               NoticeItem item = snapshot.getValue(NoticeItem.class);
               Notice notice = new Notice(item.getName(), item.getUrl(), item.getCopyright(),
                   NoticeItem.getLicense(item.getLicense()));

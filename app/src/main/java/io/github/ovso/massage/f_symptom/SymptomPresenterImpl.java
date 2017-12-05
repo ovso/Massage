@@ -1,5 +1,6 @@
 package io.github.ovso.massage.f_symptom;
 
+import android.content.ActivityNotFoundException;
 import com.androidhuman.rxfirebase2.database.RxFirebaseDatabase;
 import com.google.common.collect.Lists;
 import com.google.firebase.database.DataSnapshot;
@@ -10,8 +11,8 @@ import com.google.firebase.database.Transaction;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.f_symptom.adapter.SymptomAdapter;
-import io.github.ovso.massage.f_symptom.db.SymptomRo;
 import io.github.ovso.massage.f_symptom.db.SymptomLocalDb;
+import io.github.ovso.massage.f_symptom.db.SymptomRo;
 import io.github.ovso.massage.f_symptom.model.Symptom;
 import io.github.ovso.massage.framework.Constants;
 import io.github.ovso.massage.framework.ObjectUtils;
@@ -30,7 +31,7 @@ import timber.log.Timber;
  * Created by jaeho on 2017. 11. 27
  */
 
-public class SymptomPresenterImpl implements SymptomPresenter {
+public class SymptomPresenterImpl extends Exception implements SymptomPresenter {
   private SymptomPresenter.View view;
   private DatabaseReference databaseReference;
   private CompositeDisposable compositeDisposable;
@@ -90,7 +91,12 @@ public class SymptomPresenterImpl implements SymptomPresenter {
         view.showWebViewDialog(item.getItem().getUrl());
         break;
       case SymptomAdapter.TYPE_VIDEO:
-        view.showVideo(item.getItem().getUrl());
+        try {
+          view.showVideo(item.getItem().getUrl());
+        } catch (ActivityNotFoundException e) {
+          e.printStackTrace();
+          view.showYoutubeUseWarningDialog();
+        }
         break;
     }
   }
