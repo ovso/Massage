@@ -1,5 +1,6 @@
 package io.github.ovso.massage.f_acupoints;
 
+import android.content.ActivityNotFoundException;
 import com.androidhuman.rxfirebase2.database.RxFirebaseDatabase;
 import com.google.common.collect.Lists;
 import com.google.firebase.database.DataSnapshot;
@@ -90,7 +91,13 @@ public class AcupointsPresenterImpl implements AcupointsPresenter {
         view.showWebViewDialog(item.getItem().getUrl());
         break;
       case AcupointsAdapter.TYPE_VIDEO:
-        view.showVideo(item.getItem().getUrl());
+        try {
+          view.showVideo(item.getItem().getUrl());
+        } catch (ActivityNotFoundException e) {
+          e.printStackTrace();
+          view.showYoutubeUseWarningDialog();
+        }
+
         break;
     }
   }

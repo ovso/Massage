@@ -1,5 +1,6 @@
 package io.github.ovso.massage.f_theme;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -54,6 +55,11 @@ public class ThemeFragment extends BaseFragment
   public static ThemeFragment newInstance() {
     ThemeFragment f = new ThemeFragment();
     return f;
+  }
+  @Override public void showYoutubeUseWarningDialog() {
+    new AlertDialog.Builder(getActivity()).setMessage(R.string.youtube_use_warning)
+        .setPositiveButton(android.R.string.ok, null)
+        .show();
   }
 
   @Override public void setRecyclerView() {

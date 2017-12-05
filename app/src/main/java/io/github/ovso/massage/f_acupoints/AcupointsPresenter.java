@@ -43,5 +43,7 @@ public interface AcupointsPresenter {
     void showLoading();
 
     void hideLoading();
+
+    void showYoutubeUseWarningDialog();
   }
 }

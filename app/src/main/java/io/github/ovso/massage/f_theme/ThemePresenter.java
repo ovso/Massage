@@ -43,5 +43,7 @@ public interface ThemePresenter {
     void showLoading();
 
     void hideLoading();
+
+    void showYoutubeUseWarningDialog();
   }
 }
