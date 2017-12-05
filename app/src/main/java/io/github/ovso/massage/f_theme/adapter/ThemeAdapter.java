@@ -4,6 +4,7 @@ import android.view.View;
 import com.jakewharton.rxbinding2.view.RxView;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.f_theme.model.Theme;
+import io.github.ovso.massage.framework.ConversionUtility;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
 import io.github.ovso.massage.framework.adapter.BaseRecyclerAdapter;
@@ -20,15 +21,15 @@ import lombok.experimental.Accessors;
  * Created by jaeho on 2017. 11. 27
  */
 
-public class ThemeAdapter extends BaseRecyclerAdapter implements ThemeAdapterView,
-    BaseAdapterDataModel<SelectableItem<Theme>> {
+public class ThemeAdapter extends BaseRecyclerAdapter
+    implements ThemeAdapterView, BaseAdapterDataModel<SelectableItem<Theme>> {
   public final static int TYPE_SITE = 0;
   public final static int TYPE_VIDEO = 1;
 
   private List<SelectableItem<Theme>> selectableItems = new ArrayList<>();
 
-  @Accessors(chain = true) @Setter
-  private OnCustomRecyclerItemClickListener<SelectableItem<Theme>> onRecyclerItemClickListener;
+  @Accessors(chain = true) @Setter private OnCustomRecyclerItemClickListener<SelectableItem<Theme>>
+      onRecyclerItemClickListener;
 
   @Accessors(chain = true) private @Setter CompositeDisposable compositeDisposable;
 
@@ -60,7 +61,7 @@ public class ThemeAdapter extends BaseRecyclerAdapter implements ThemeAdapterVie
           break;
       }
       holder.videoImageView.setImageResource(iconImage);
-      holder.recTextView.setText(String.valueOf(item.getRec()));
+      holder.recTextView.setText(ConversionUtility.convertUnit(item.getRec()));
       if (selectableItem.isFavorite()) {
         holder.favImageView.setImageResource(R.drawable.ic_favorite);
       } else {

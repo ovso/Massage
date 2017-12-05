@@ -4,6 +4,7 @@ import android.view.View;
 import com.jakewharton.rxbinding2.view.RxView;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.f_symptom.model.Symptom;
+import io.github.ovso.massage.framework.ConversionUtility;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.adapter.BaseRecyclerAdapter;
 import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListener;
@@ -59,7 +60,7 @@ public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapte
           break;
       }
       holder.videoImageView.setImageResource(iconImage);
-      holder.recTextView.setText(String.valueOf(item.getRec()));
+      holder.recTextView.setText(ConversionUtility.convertUnit(item.getRec()));
       if (selectableItem.isFavorite()) {
         holder.favImageView.setImageResource(R.drawable.ic_favorite);
       } else {
