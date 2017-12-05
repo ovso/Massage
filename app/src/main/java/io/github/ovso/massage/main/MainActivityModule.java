@@ -15,12 +15,8 @@ import io.github.ovso.massage.f_theme.di.ThemeFragmentComponent;
     SymptomFragmentComponent.class, ThemeFragmentComponent.class, AcupointsFragmentComponent.class
 }) public class MainActivityModule {
 
-  @Provides MainPresenter.View provideMainView(MainActivity mainActivity) {
-    return mainActivity;
-  }
-
-  @Provides MainPresenter provideMainPresenter(MainPresenter.View view) {
-    return new MainPresenterImpl(view);
+  @Provides MainPresenter provideMainPresenter(MainActivity activity) {
+    return new MainPresenterImpl(activity);
   }
 
   @Provides FragmentManager provideFragmentManager(MainActivity mainActivity) {

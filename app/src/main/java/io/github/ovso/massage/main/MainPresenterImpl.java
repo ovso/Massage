@@ -2,8 +2,17 @@ package io.github.ovso.massage.main;
 
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import com.androidhuman.rxfirebase2.database.RxFirebaseDatabase;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import de.psdev.licensesdialog.model.Notice;
+import de.psdev.licensesdialog.model.Notices;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.common.Constatns;
+import io.github.ovso.massage.main.model.NoticeItem;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 import javax.inject.Inject;
 
 /**
@@ -13,9 +22,13 @@ import javax.inject.Inject;
 public class MainPresenterImpl implements MainPresenter {
 
   private MainPresenter.View view;
+  private CompositeDisposable compositeDisposable;
+  private DatabaseReference databaseReference;
 
   @Inject MainPresenterImpl(MainPresenter.View view) {
     this.view = view;
+    this.compositeDisposable = new CompositeDisposable();
+    this.databaseReference = FirebaseDatabase.getInstance().getReference().child("licenses");
   }
 
   @Override public void onCreate(Bundle savedInstanceState) {
@@ -25,7 +38,22 @@ public class MainPresenterImpl implements MainPresenter {
 
   @Override public boolean onNavItemSelected(int itemId) {
     if (itemId == R.id.nav_opensource) {
-      view.showLicensesDialog(Constatns.getNotices());
+      final Notices notices = new Notices();
+      compositeDisposable.add(RxFirebaseDatabase.data(databaseReference)
+          .subscribeOn(Schedulers.io())
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe(dataSnapshot -> {
+            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+              //snapshot.getValue()
+              NoticeItem item = snapshot.getValue(NoticeItem.class);
+              Notice notice = new Notice(item.getName(), item.getUrl(), item.getCopyright(),
+                  NoticeItem.getLicense(item.getLicense()));
+              notices.addNotice(notice);
+            }
+            view.showLicensesDialog(notices);
+          }, throwable -> {
+
+          }));
     }
     view.closeDrawer();
     return true;
@@ -53,20 +81,4 @@ public class MainPresenterImpl implements MainPresenter {
       view.finish();
     }
   }
-
-    /*
-    if (id == R.id.nav_camera) {
-      // Handle the camera action
-    } else if (id == R.id.nav_gallery) {
-
-    } else if (id == R.id.nav_slideshow) {
-
-    } else if (id == R.id.nav_manage) {
-
-    } else if (id == R.id.nav_share) {
-
-    } else if (id == R.id.nav_send) {
-
-    }
-    */
 }

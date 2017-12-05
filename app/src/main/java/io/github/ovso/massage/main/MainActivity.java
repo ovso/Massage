@@ -6,7 +6,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.SwitchCompat;
 import android.widget.FrameLayout;
 import butterknife.BindView;
 import dagger.android.AndroidInjector;
@@ -20,7 +19,6 @@ import io.github.ovso.massage.f_symptom.SymptomFragment;
 import io.github.ovso.massage.f_theme.ThemeFragment;
 import io.github.ovso.massage.framework.customview.BaseActivity;
 import javax.inject.Inject;
-import timber.log.Timber;
 
 public class MainActivity extends BaseActivity
     implements MainPresenter.View, HasSupportFragmentInjector {
@@ -46,14 +44,6 @@ public class MainActivity extends BaseActivity
         item -> presenter.onNavItemSelected(item.getItemId()));
     bottomNavigationView.setOnNavigationItemSelectedListener(
         item -> presenter.onBottomNavItemSelected(item.getItemId()));
-
-    SwitchCompat notiSwitchCompat =
-        (SwitchCompat) navigationView.getMenu().getItem(1).getActionView();
-    Timber.d("notiSwitchCompat = " + notiSwitchCompat);
-    //notiSwitchCompat.setOnCheckedChangeListener((compoundButton, isChecked) -> {
-    //  Timber.d("isChecked = " + isChecked);
-    //});
-
   }
 
   @Override public void closeDrawer() {
@@ -85,10 +75,7 @@ public class MainActivity extends BaseActivity
   }
 
   @Override public void showLicensesDialog(Notices notices) {
-    new LicensesDialog.Builder(this).setNotices(notices)
-        .setIncludeOwnLicense(true)
-        .build()
-        .show();
+    new LicensesDialog.Builder(this).setNotices(notices).setIncludeOwnLicense(true).build().show();
   }
 
   @Override protected int getLayoutResId() {
