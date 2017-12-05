@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-  <group android:checkableBehavior="single">
+  <group android:checkableBehavior="none">
     <item
-        android:id="@id/nav_manage"
-        android:icon="@android:drawable/ic_menu_manage"
-        android:title="Tools"/>
+        android:id="@id/nav_notifications"
+        android:icon="@drawable/ic_notifications"
+        android:title="Notifications Sounds"
+        app:actionLayout="@layout/menu_switch"
+        app:showAsAction="always"/>
+    <item
+        android:id="@id/nav_opensource"
+        android:icon="@drawable/ic_lightbulb_outline"
+        android:title="@string/opensource_license"/>
   </group>
 
 </menu>

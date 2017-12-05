@@ -2,7 +2,7 @@
 <resources>
   <item name="navigation_view" type="id"/>
   <item name="drawer_layout" type="id"/>
-  <item name="nav_manage" type="id"/>
+  <item name="nav_opensource" type="id"/>
   <item name="fragment_container" type="id"/>
   <item name="bottom_navigation_view" type="id"/>
   <item name="action_symptom" type="id"/>
@@ -18,4 +18,5 @@
   <item name="webview" type="id"/>
   <item name="fav_imageview" type="id"/>
   <item name="progressbar" type="id"/>
+  <item name="nav_notifications" type="id"/>
 </resources>
