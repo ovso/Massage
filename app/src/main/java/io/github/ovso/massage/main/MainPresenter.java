@@ -2,6 +2,7 @@ package io.github.ovso.massage.main;
 
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import de.psdev.licensesdialog.model.Notices;
 
 /**
  * Created by jaeho on 2017. 10. 16
@@ -30,5 +31,7 @@ public interface MainPresenter {
     void showThemeFrgament();
 
     void showAcupoints();
+
+    void showLicensesDialog(Notices notices);
   }
 }

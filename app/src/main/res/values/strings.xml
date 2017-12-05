@@ -14,6 +14,6 @@
   <string name="rec_count">추천 수</string>
   <string name="empty"/>
   <string name="you_recommended_it">추천하셨습니다. +1 </string>
-  <string name="opensource_license">Opensource license</string>
-  <string name="notifications">Notifications</string>
+  <string name="opensource_license">오픈소스 라이선스</string>
+  <string name="notifications">알림</string>
 </resources>

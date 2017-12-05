@@ -3,6 +3,7 @@ package io.github.ovso.massage.main;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import io.github.ovso.massage.R;
+import io.github.ovso.massage.common.Constatns;
 import javax.inject.Inject;
 
 /**
@@ -23,7 +24,9 @@ public class MainPresenterImpl implements MainPresenter {
   }
 
   @Override public boolean onNavItemSelected(int itemId) {
-
+    if (itemId == R.id.nav_opensource) {
+      view.showLicensesDialog(Constatns.getNotices());
+    }
     view.closeDrawer();
     return true;
   }
