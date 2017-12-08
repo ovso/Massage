@@ -2,7 +2,23 @@ apply plugin: 'com.android.application'
 apply plugin: 'hugo'
 apply plugin: 'realm-android'
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+// Initialize a new Properties() object called keystoreProperties.
+def keystoreProperties = new Properties()
+// Load your keystore.properties file into the keystoreProperties object.
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
+
+  signingConfigs {
+    release {
+      keyAlias keystoreProperties['keyAlias']
+      keyPassword keystoreProperties['keyPassword']
+      storeFile file(keystoreProperties['storeFile'])
+      storePassword keystoreProperties['storePassword']
+    }
+  }
+
   compileSdkVersion rootProject.compileSdkVersion
   buildToolsVersion rootProject.buildToolsVersion
   defaultConfig {
@@ -13,9 +29,24 @@ android {
     versionName rootProject.versionName
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
   }
+
   buildTypes {
     release {
-      minifyEnabled false
+      signingConfig signingConfigs.release
+      minifyEnabled true
+      shrinkResources true
+      useProguard true
+      proguardFile getDefaultProguardFile('proguard-android.txt')
+      proguardFile 'proguard-rules.pro'
+      proguardFile 'proguard-tedpermission.pro'
+      proguardFile 'proguard-firebase.pro'
+      proguardFile 'proguard-butterknipe.pro'
+      proguardFile 'proguard-guava.pro'
+    }
+    debug {
+      minifyEnabled true
+      shrinkResources true
+      useProguard true
       proguardFile getDefaultProguardFile('proguard-android.txt')
       proguardFile 'proguard-rules.pro'
       proguardFile 'proguard-tedpermission.pro'
@@ -40,6 +71,7 @@ android {
     targetCompatibility JavaVersion.VERSION_1_8
     sourceCompatibility JavaVersion.VERSION_1_8
   }
+
 }
 
 dependencies {
