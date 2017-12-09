@@ -1,7 +1,7 @@
--injars path/to/myapplication.jar
--injars lib/guava-r07.jar
--libraryjars lib/jsr305.jar
--outjars myapplication-dist.jar
+#-injars path/to/myapplication.jar
+#-injars lib/guava-r07.jar
+#-libraryjars lib/jsr305.jar
+#-outjars myapplication-dist.jar
 
 -dontoptimize
 -dontobfuscate
@@ -11,3 +11,7 @@
 -keepclasseswithmembers public class * {
     public static void main(java.lang.String[]);
 }
+
+-dontwarn afu.org.checkerframework.**
+-dontwarn org.checkerframework.**
+-dontwarn com.google.common.util.concurrent.**
