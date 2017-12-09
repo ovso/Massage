@@ -2,13 +2,12 @@
 //project.ext.compileSdkVersion = '27'
 buildscript {
   ext {
-    applicationId = 'io.github.ovso.massage'
-    compileSdkVersion = 27
-    buildToolsVersion = '27.0.0'
-    minSdkVersion = 16
-    targetSdkVersion = 27
-    versionCode = 1
-    versionName = '1.0'
+    compile_sdk_version = 27
+    build_tools_version = '27.0.0'
+    application_id = 'io.github.ovso.massage'
+    min_sdk_version = 16
+    target_sdk_version = 27
+    version_code = 1
 
     support_version = '27.0.2'
     constraint_version = '1.0.2'

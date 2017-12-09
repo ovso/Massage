@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import butterknife.BindView;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
@@ -18,6 +19,7 @@ import io.github.ovso.massage.R;
 import io.github.ovso.massage.f_acupoints.AcupointsFragment;
 import io.github.ovso.massage.f_symptom.SymptomFragment;
 import io.github.ovso.massage.f_theme.ThemeFragment;
+import io.github.ovso.massage.framework.SystemUtility;
 import io.github.ovso.massage.framework.customview.BaseActivity;
 import io.github.ovso.massage.framework.customview.BottomNavigationViewBehavior;
 import javax.inject.Inject;
@@ -50,6 +52,8 @@ public class MainActivity extends BaseActivity
         (CoordinatorLayout.LayoutParams) bottomNavigationView.getLayoutParams();
     layoutParams.setBehavior(new BottomNavigationViewBehavior());
 
+    TextView versionTextView = navigationView.getHeaderView(0).findViewById(R.id.version_textview);
+    versionTextView.setText(SystemUtility.getVersionName(getApplicationContext()));
   }
 
   @Override public void closeDrawer() {

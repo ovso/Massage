@@ -20,4 +20,5 @@
   <item name="progressbar" type="id"/>
   <item name="nav_notifications" type="id"/>
   <item name="textview" type="id"/>
+  <item name="version_textview" type="id"/>
 </resources>

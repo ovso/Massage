@@ -18,15 +18,33 @@ android {
       storePassword keystoreProperties['storePassword']
     }
   }
-
-  compileSdkVersion rootProject.compileSdkVersion
-  buildToolsVersion rootProject.buildToolsVersion
+  compileSdkVersion rootProject.compile_sdk_version
+  buildToolsVersion rootProject.build_tools_version
   defaultConfig {
-    applicationId rootProject.applicationId
-    minSdkVersion rootProject.minSdkVersion
-    targetSdkVersion rootProject.targetSdkVersion
-    versionCode rootProject.versionCode
-    versionName rootProject.versionName
+    applicationId rootProject.application_id
+    minSdkVersion rootProject.min_sdk_version
+    targetSdkVersion rootProject.target_sdk_version
+    versionCode rootProject.version_code
+
+    int versionMajor = 0
+    int versionMinor = 0
+    int versionCodeNumber = rootProject.version_code
+
+    if (1000 > versionCodeNumber && versionCodeNumber > 99) {
+      versionMajor = versionCodeNumber / 100
+      versionMinor = (versionCodeNumber % 100) / 10
+      versionCodeNumber = (versionCodeNumber % 100) % 10
+    } else if (100 > versionCode && versionCodeNumber > 9) {
+      versionMajor = 0
+      versionMinor = versionCodeNumber / 10
+      versionCodeNumber = versionCodeNumber % 10
+    } else if (versionCodeNumber < 10) {
+      versionMajor = 0
+      versionMinor = 0
+      versionCodeNumber = versionCodeNumber / 1
+    }
+
+    versionName "${versionMajor}.${versionMinor}.${versionCodeNumber}"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
   }
 
@@ -44,9 +62,9 @@ android {
       proguardFile 'proguard-guava.pro'
     }
     debug {
-      minifyEnabled true
-      shrinkResources true
-      useProguard true
+      minifyEnabled false
+      shrinkResources false
+      useProguard false
       proguardFile getDefaultProguardFile('proguard-android.txt')
       proguardFile 'proguard-rules.pro'
       proguardFile 'proguard-tedpermission.pro'
@@ -57,7 +75,7 @@ android {
   }
 
   configurations.all {
-    resolutionStrategy.force 'com.google.code.findbugs:jsr305:3.0.2'
+    resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
   }
 
   repositories {
@@ -71,7 +89,6 @@ android {
     targetCompatibility JavaVersion.VERSION_1_8
     sourceCompatibility JavaVersion.VERSION_1_8
   }
-
 }
 
 dependencies {
