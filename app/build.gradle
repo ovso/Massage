@@ -28,23 +28,23 @@ android {
 
     int versionMajor = 0
     int versionMinor = 0
-    int versionCodeNumber = rootProject.version_code
+    int versionPatch = rootProject.version_code
 
-    if (1000 > versionCodeNumber && versionCodeNumber > 99) {
-      versionMajor = versionCodeNumber / 100
-      versionMinor = (versionCodeNumber % 100) / 10
-      versionCodeNumber = (versionCodeNumber % 100) % 10
-    } else if (100 > versionCode && versionCodeNumber > 9) {
+    if (1000 > versionPatch && versionPatch > 99) {
+      versionMajor = versionPatch / 100
+      versionMinor = (versionPatch % 100) / 10
+      versionPatch = (versionPatch % 100) % 10
+    } else if (100 > versionCode && versionPatch > 9) {
       versionMajor = 0
-      versionMinor = versionCodeNumber / 10
-      versionCodeNumber = versionCodeNumber % 10
-    } else if (versionCodeNumber < 10) {
+      versionMinor = versionPatch / 10
+      versionPatch = versionPatch % 10
+    } else if (versionPatch < 10) {
       versionMajor = 0
       versionMinor = 0
-      versionCodeNumber = versionCodeNumber / 1
+      versionPatch = versionPatch / 1
     }
 
-    versionName "${versionMajor}.${versionMinor}.${versionCodeNumber}"
+    versionName "${versionMajor}.${versionMinor}.${versionPatch}"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
   }
 
