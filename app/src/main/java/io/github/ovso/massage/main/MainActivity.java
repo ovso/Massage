@@ -2,6 +2,7 @@ package io.github.ovso.massage.main;
 
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -18,6 +19,7 @@ import io.github.ovso.massage.f_acupoints.AcupointsFragment;
 import io.github.ovso.massage.f_symptom.SymptomFragment;
 import io.github.ovso.massage.f_theme.ThemeFragment;
 import io.github.ovso.massage.framework.customview.BaseActivity;
+import io.github.ovso.massage.framework.customview.BottomNavigationViewBehavior;
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity
@@ -44,6 +46,10 @@ public class MainActivity extends BaseActivity
         item -> presenter.onNavItemSelected(item.getItemId()));
     bottomNavigationView.setOnNavigationItemSelectedListener(
         item -> presenter.onBottomNavItemSelected(item.getItemId()));
+    CoordinatorLayout.LayoutParams layoutParams =
+        (CoordinatorLayout.LayoutParams) bottomNavigationView.getLayoutParams();
+    layoutParams.setBehavior(new BottomNavigationViewBehavior());
+
   }
 
   @Override public void closeDrawer() {

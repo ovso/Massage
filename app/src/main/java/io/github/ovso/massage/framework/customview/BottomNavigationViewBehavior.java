@@ -1,5 +1,6 @@
 package io.github.ovso.massage.framework.customview;
 
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewCompat;
@@ -19,14 +20,16 @@ public class BottomNavigationViewBehavior extends CoordinatorLayout.Behavior<Bot
     return super.onLayoutChild(parent, child, layoutDirection);
   }
 
-  @Override public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout,
-      BottomNavigationView child, View directTargetChild, View target, int nestedScrollAxes) {
-    return nestedScrollAxes == ViewCompat.SCROLL_AXIS_VERTICAL;
+  @Override public boolean onStartNestedScroll(@NonNull CoordinatorLayout coordinatorLayout,
+      @NonNull BottomNavigationView child, @NonNull View directTargetChild, @NonNull View target,
+      int axes, int type) {
+    return axes == ViewCompat.SCROLL_AXIS_VERTICAL;
   }
 
-  @Override
-  public void onNestedScroll(CoordinatorLayout coordinatorLayout, BottomNavigationView child,
-      View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
+  @Override public void onNestedScroll(@NonNull CoordinatorLayout coordinatorLayout,
+      @NonNull BottomNavigationView child, @NonNull View target, int dxConsumed, int dyConsumed,
+      int dxUnconsumed, int dyUnconsumed, int type) {
+
     if (dyConsumed > 0) {
       slideDown(child);
     } else if (dyConsumed < 0) {
