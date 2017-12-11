@@ -17,4 +17,5 @@ public class Acupoints {
   private int type;     // video or webpage
   private int id;     // content id
   @Setter private int rec;      // ..
+  @Setter private boolean flag; // webview javascriptenable flag
 }

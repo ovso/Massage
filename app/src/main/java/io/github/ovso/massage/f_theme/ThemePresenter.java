@@ -32,7 +32,7 @@ public interface ThemePresenter {
 
     void showVideo(String videoId);
 
-    void showWebViewDialog(String url);
+    void showWebViewDialog(Theme item);
 
     void removeRefresh();
 

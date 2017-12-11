@@ -88,7 +88,7 @@ public class AcupointsPresenterImpl implements AcupointsPresenter {
   @DebugLog @Override public void onItemClick(SelectableItem<Acupoints> item) {
     switch (item.getItem().getType()) {
       case AcupointsAdapter.TYPE_SITE:
-        view.showWebViewDialog(item.getItem().getUrl());
+        view.showWebViewDialog(item.getItem());
         break;
       case AcupointsAdapter.TYPE_VIDEO:
         try {

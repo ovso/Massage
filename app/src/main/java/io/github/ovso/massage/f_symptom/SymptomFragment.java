@@ -113,8 +113,9 @@ public class SymptomFragment extends BaseFragment
     startActivity(intent);
   }
 
-  @Override public void showWebViewDialog(String url) {
-    new WebviewAlertDialog().setUrl(url)
+  @Override public void showWebViewDialog(Symptom item) {
+    new WebviewAlertDialog().setUrl(item.getUrl())
+        .setFlag(item.isFlag())
         .show(getFragmentManager(), WebviewAlertDialog.class.getSimpleName());
   }
 

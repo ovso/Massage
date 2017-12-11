@@ -88,7 +88,7 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
   @DebugLog @Override public void onItemClick(SelectableItem<Symptom> item) {
     switch (item.getItem().getType()) {
       case SymptomAdapter.TYPE_SITE:
-        view.showWebViewDialog(item.getItem().getUrl());
+        view.showWebViewDialog(item.getItem());
         break;
       case SymptomAdapter.TYPE_VIDEO:
         try {

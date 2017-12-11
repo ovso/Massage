@@ -88,7 +88,7 @@ public class ThemePresenterImpl implements ThemePresenter {
   @DebugLog @Override public void onItemClick(SelectableItem<Theme> item) {
     switch (item.getItem().getType()) {
       case ThemeAdapter.TYPE_SITE:
-        view.showWebViewDialog(item.getItem().getUrl());
+        view.showWebViewDialog(item.getItem());
         break;
       case ThemeAdapter.TYPE_VIDEO:
         try {

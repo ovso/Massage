@@ -56,6 +56,7 @@ public class ThemeFragment extends BaseFragment
     ThemeFragment f = new ThemeFragment();
     return f;
   }
+
   @Override public void showYoutubeUseWarningDialog() {
     new AlertDialog.Builder(getActivity()).setMessage(R.string.youtube_use_warning)
         .setPositiveButton(android.R.string.ok, null)
@@ -113,8 +114,9 @@ public class ThemeFragment extends BaseFragment
     startActivity(intent);
   }
 
-  @Override public void showWebViewDialog(String url) {
-    new WebviewAlertDialog().setUrl(url)
+  @Override public void showWebViewDialog(Theme item) {
+    new WebviewAlertDialog().setUrl(item.getUrl())
+        .setFlag(item.isFlag())
         .show(getFragmentManager(), WebviewAlertDialog.class.getSimpleName());
   }
 

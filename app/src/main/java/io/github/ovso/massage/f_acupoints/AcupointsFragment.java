@@ -72,6 +72,7 @@ public class AcupointsFragment extends BaseFragment implements AcupointsPresente
   @Override public void showMessage(String msg) {
     Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT).show();
   }
+
   @Override public void showYoutubeUseWarningDialog() {
     new AlertDialog.Builder(getActivity()).setMessage(R.string.youtube_use_warning)
         .setPositiveButton(android.R.string.ok, null)
@@ -113,8 +114,9 @@ public class AcupointsFragment extends BaseFragment implements AcupointsPresente
     startActivity(intent);
   }
 
-  @Override public void showWebViewDialog(String url) {
-    new WebviewAlertDialog().setUrl(url)
+  @Override public void showWebViewDialog(Acupoints item) {
+    new WebviewAlertDialog().setUrl(item.getUrl())
+        .setFlag(item.isFlag())
         .show(getFragmentManager(), WebviewAlertDialog.class.getSimpleName());
   }
 
@@ -138,5 +140,4 @@ public class AcupointsFragment extends BaseFragment implements AcupointsPresente
   @Override public void onFavoriteClick(int position, SelectableItem<Acupoints> item) {
     presenter.onFavoriteClick(position, item);
   }
-
 }

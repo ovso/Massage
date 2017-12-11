@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import butterknife.BindView;
@@ -19,6 +20,7 @@ import lombok.experimental.Accessors;
 public class WebviewAlertDialog extends BaseAlertDialogFragment {
   @BindView(R.id.webview) WebView webview;
   @Accessors(chain = true) @Setter private String url;
+  @Accessors(chain = true) @Setter private boolean flag;
 
   @Override protected boolean isNegativeButton() {
     return false;
@@ -33,15 +35,21 @@ public class WebviewAlertDialog extends BaseAlertDialogFragment {
   }
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
-    //WebSettings webSettings = webview.getSettings();
+    WebSettings webSettings = webview.getSettings();
+    webSettings.setJavaScriptEnabled(flag);
     //webSettings.setPluginState(WebSettings.PluginState.ON);
     //webSettings.setUseWideViewPort(true);
     //webSettings.setLoadWithOverviewMode(true);
-    //webSettings.setJavaScriptEnabled(true);
+    webview.setVerticalScrollBarEnabled(true);
+    webview.setScrollbarFadingEnabled(true);
     webview.setWebChromeClient(new WebChromeClient());
     webview.setWebViewClient(new WebViewClient());
     webview.setOnTouchListener((view, motionEvent) -> true);
     webview.loadUrl(url);
+  }
+
+  private class MyWebChromeClient extends WebChromeClient {
+
   }
 
   @Override protected boolean getAttatchRoot() {

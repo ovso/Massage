@@ -32,7 +32,7 @@ public interface AcupointsPresenter {
 
     void showVideo(String videoId);
 
-    void showWebViewDialog(String url);
+    void showWebViewDialog(Acupoints item);
 
     void removeRefresh();
 
