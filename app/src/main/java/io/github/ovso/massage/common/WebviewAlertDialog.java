@@ -33,7 +33,11 @@ public class WebviewAlertDialog extends BaseAlertDialogFragment {
   }
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
-    //webview.getSettings().setJavaScriptEnabled(true);
+    //WebSettings webSettings = webview.getSettings();
+    //webSettings.setPluginState(WebSettings.PluginState.ON);
+    //webSettings.setUseWideViewPort(true);
+    //webSettings.setLoadWithOverviewMode(true);
+    //webSettings.setJavaScriptEnabled(true);
     webview.setWebChromeClient(new WebChromeClient());
     webview.setWebViewClient(new WebViewClient());
     webview.setOnTouchListener((view, motionEvent) -> true);
