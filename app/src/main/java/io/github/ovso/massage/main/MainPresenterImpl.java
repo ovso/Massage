@@ -80,6 +80,7 @@ public class MainPresenterImpl extends Exception implements MainPresenter, OnMes
     if (isDrawerOpen) {
       view.closeDrawer();
     } else {
+      compositeDisposable.clear();
       view.finish();
     }
   }
