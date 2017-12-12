@@ -1,6 +1,7 @@
 package io.github.ovso.massage.f_symptom;
 
 import android.content.ActivityNotFoundException;
+import android.text.TextUtils;
 import com.androidhuman.rxfirebase2.database.RxFirebaseDatabase;
 import com.google.common.collect.Lists;
 import com.google.firebase.database.DataSnapshot;
@@ -10,7 +11,6 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.f_symptom.adapter.SymptomAdapter;
 import io.github.ovso.massage.f_symptom.db.SymptomLocalDb;
 import io.github.ovso.massage.f_symptom.db.SymptomRo;
 import io.github.ovso.massage.f_symptom.model.Symptom;
@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 11. 27
@@ -86,22 +85,23 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
   }
 
   @DebugLog @Override public void onItemClick(SelectableItem<Symptom> item) {
-    switch (item.getItem().getType()) {
-      case SymptomAdapter.TYPE_SITE:
-        view.showWebViewDialog(item.getItem());
-        break;
-      case SymptomAdapter.TYPE_VIDEO:
-        try {
-          view.showVideo(item.getItem().getUrl());
-        } catch (ActivityNotFoundException e) {
-          e.printStackTrace();
-          view.showYoutubeUseWarningDialog();
-        }
-        break;
+    view.showWebViewDialog(item.getItem());
+  }
+
+  @Override public void onVideoClick(int position, SelectableItem<Symptom> item) {
+    String video_id = item.getItem().getVideo_id();
+    if (!TextUtils.isEmpty(video_id)) {
+      try {
+        view.showVideo(video_id);
+      } catch (ActivityNotFoundException e) {
+        e.printStackTrace();
+        view.showYoutubeUseWarningDialog();
+      }
     }
   }
 
-  @Override public void onRecommendClick(final int position, final SelectableItem<Symptom> selectableItem) {
+  @Override
+  public void onRecommendClick(final int position, final SelectableItem<Symptom> selectableItem) {
     view.showLoading();
     databaseReference.runTransaction(new Transaction.Handler() {
       @Override public Transaction.Result doTransaction(MutableData mutableData) {

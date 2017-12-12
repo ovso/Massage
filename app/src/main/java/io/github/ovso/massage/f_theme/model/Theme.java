@@ -11,10 +11,10 @@ import lombok.ToString;
 
 @IgnoreExtraProperties @EqualsAndHashCode(callSuper = false) @Getter @ToString
 public class Theme {
-  public String title;
-  private String url;   // youtube url or webpage url
-  private int type;     // video or webpage
-  private int id;     // content id
-  private int rec;      // ..
-  private boolean flag; // webview javascriptenable flag
+  private int id;           // item id
+  public String title;      // title
+  private String url;       // youtube url or webpage url
+  private boolean flag;     // webview javascriptenable flag
+  private String video_id;  // youtube id
+  private int rec;       // recommended count
 }

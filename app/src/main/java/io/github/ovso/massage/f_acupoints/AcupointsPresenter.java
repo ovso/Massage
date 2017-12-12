@@ -20,6 +20,8 @@ public interface AcupointsPresenter {
 
   void onFavoriteClick(int position, SelectableItem<Acupoints> item);
 
+  void onVideoClick(int position, SelectableItem<Acupoints> item);
+
   interface View {
 
     void setRecyclerView();

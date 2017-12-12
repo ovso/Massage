@@ -155,4 +155,8 @@ public class ThemeFragment extends BaseFragment
   @Override public void onFavoriteClick(int position, SelectableItem<Theme> item) {
     presenter.onFavoriteClick(position, item);
   }
+
+  @Override public void onVideoClick(int position, SelectableItem<Theme> item) {
+    presenter.onVideoClick(position, item);
+  }
 }

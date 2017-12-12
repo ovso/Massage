@@ -1,5 +1,6 @@
 package io.github.ovso.massage.f_theme.adapter;
 
+import android.text.TextUtils;
 import android.view.View;
 import com.jakewharton.rxbinding2.view.RxView;
 import io.github.ovso.massage.R;
@@ -50,15 +51,11 @@ public class ThemeAdapter extends BaseRecyclerAdapter
       //holder.setIsRecyclable(false);
 
       holder.titleTextview.setText(item.getTitle());
-      int iconImage = R.drawable.ic_ondemand_video;
-
-      switch (item.getType()) {
-        case TYPE_SITE:
-          iconImage = R.drawable.ic_web;
-          break;
-        case TYPE_VIDEO:
-          iconImage = R.drawable.ic_ondemand_video;
-          break;
+      int iconImage;
+      if (!TextUtils.isEmpty(item.getVideo_id())) {
+        iconImage = R.drawable.ic_ondemand_video_on;
+      } else {
+        iconImage = R.drawable.ic_ondemand_video;
       }
       holder.videoImageView.setImageResource(iconImage);
       holder.recTextView.setText(ConversionUtility.convertUnit(item.getRec()));
@@ -80,6 +77,10 @@ public class ThemeAdapter extends BaseRecyclerAdapter
           .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
           .observeOn(AndroidSchedulers.mainThread())
           .subscribe(o -> onRecyclerItemClickListener.onFavoriteClick(position, selectableItem)));
+      compositeDisposable.add(RxView.clicks(holder.videoImageView)
+          .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe(o -> onRecyclerItemClickListener.onVideoClick(position, selectableItem)));
     }
   }
 

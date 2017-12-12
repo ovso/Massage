@@ -144,7 +144,7 @@ public class AcupointsFragment extends BaseFragment implements AcupointsPresente
     presenter.onDetach();
   }
 
-  @DebugLog @Override public void onItemClick(SelectableItem<Acupoints> item) {
+  @Override public void onItemClick(SelectableItem<Acupoints> item) {
     presenter.onItemClick(item);
   }
 
@@ -154,5 +154,9 @@ public class AcupointsFragment extends BaseFragment implements AcupointsPresente
 
   @Override public void onFavoriteClick(int position, SelectableItem<Acupoints> item) {
     presenter.onFavoriteClick(position, item);
+  }
+
+  @Override public void onVideoClick(int position, SelectableItem<Acupoints> item) {
+    presenter.onVideoClick(position, item);
   }
 }

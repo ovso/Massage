@@ -1,6 +1,7 @@
 package io.github.ovso.massage.f_acupoints;
 
 import android.content.ActivityNotFoundException;
+import android.text.TextUtils;
 import com.androidhuman.rxfirebase2.database.RxFirebaseDatabase;
 import com.google.common.collect.Lists;
 import com.google.firebase.database.DataSnapshot;
@@ -8,9 +9,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
-import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.f_acupoints.adapter.AcupointsAdapter;
 import io.github.ovso.massage.f_acupoints.db.AcupointsLocalDb;
 import io.github.ovso.massage.f_acupoints.db.AcupointsRo;
 import io.github.ovso.massage.f_acupoints.model.Acupoints;
@@ -25,7 +24,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 11. 27
@@ -85,20 +83,19 @@ public class AcupointsPresenterImpl implements AcupointsPresenter {
     compositeDisposable.clear();
   }
 
-  @DebugLog @Override public void onItemClick(SelectableItem<Acupoints> item) {
-    switch (item.getItem().getType()) {
-      case AcupointsAdapter.TYPE_SITE:
-        view.showWebViewDialog(item.getItem());
-        break;
-      case AcupointsAdapter.TYPE_VIDEO:
-        try {
-          view.showVideo(item.getItem().getUrl());
-        } catch (ActivityNotFoundException e) {
-          e.printStackTrace();
-          view.showYoutubeUseWarningDialog();
-        }
+  @Override public void onItemClick(SelectableItem<Acupoints> item) {
+    view.showWebViewDialog(item.getItem());
+  }
 
-        break;
+  @Override public void onVideoClick(int position, SelectableItem<Acupoints> item) {
+    String video_id = item.getItem().getVideo_id();
+    if (!TextUtils.isEmpty(video_id)) {
+      try {
+        view.showVideo(video_id);
+      } catch (ActivityNotFoundException e) {
+        e.printStackTrace();
+        view.showYoutubeUseWarningDialog();
+      }
     }
   }
 

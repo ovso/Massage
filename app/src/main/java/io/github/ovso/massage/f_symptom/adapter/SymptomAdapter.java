@@ -1,5 +1,6 @@
 package io.github.ovso.massage.f_symptom.adapter;
 
+import android.text.TextUtils;
 import android.view.View;
 import com.jakewharton.rxbinding2.view.RxView;
 import io.github.ovso.massage.R;
@@ -22,8 +23,6 @@ import lombok.experimental.Accessors;
 
 public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapterView,
     io.github.ovso.massage.framework.adapter.BaseAdapterDataModel<SelectableItem<Symptom>> {
-  public final static int TYPE_SITE = 0;
-  public final static int TYPE_VIDEO = 1;
 
   private List<SelectableItem<Symptom>> selectableItems = new ArrayList<>();
 
@@ -49,15 +48,11 @@ public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapte
       //holder.setIsRecyclable(false);
 
       holder.titleTextview.setText(item.getTitle());
-      int iconImage = R.drawable.ic_ondemand_video;
-
-      switch (item.getType()) {
-        case TYPE_SITE:
-          iconImage = R.drawable.ic_web;
-          break;
-        case TYPE_VIDEO:
-          iconImage = R.drawable.ic_ondemand_video;
-          break;
+      int iconImage;
+      if (!TextUtils.isEmpty(item.getVideo_id())) {
+        iconImage = R.drawable.ic_ondemand_video_on;
+      } else {
+        iconImage = R.drawable.ic_ondemand_video;
       }
       holder.videoImageView.setImageResource(iconImage);
       holder.recTextView.setText(ConversionUtility.convertUnit(item.getRec()));
@@ -66,7 +61,6 @@ public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapte
       } else {
         holder.favImageView.setImageResource(R.drawable.ic_favorite_border);
       }
-
       compositeDisposable.add(RxView.clicks(holder.itemView)
           .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
           .observeOn(AndroidSchedulers.mainThread())
@@ -79,6 +73,10 @@ public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapte
           .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
           .observeOn(AndroidSchedulers.mainThread())
           .subscribe(o -> onRecyclerItemClickListener.onFavoriteClick(position, selectableItem)));
+      compositeDisposable.add(RxView.clicks(holder.videoImageView)
+          .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe(o -> onRecyclerItemClickListener.onVideoClick(position, selectableItem)));
     }
   }
 

@@ -20,6 +20,8 @@ public interface ThemePresenter {
 
   void onFavoriteClick(int position, SelectableItem<Theme> item);
 
+  void onVideoClick(int position, SelectableItem<Theme> item);
+
   interface View {
 
     void setRecyclerView();

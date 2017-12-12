@@ -1,6 +1,7 @@
 package io.github.ovso.massage.f_theme;
 
 import android.content.ActivityNotFoundException;
+import android.text.TextUtils;
 import com.androidhuman.rxfirebase2.database.RxFirebaseDatabase;
 import com.google.common.collect.Lists;
 import com.google.firebase.database.DataSnapshot;
@@ -10,7 +11,6 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.f_theme.adapter.ThemeAdapter;
 import io.github.ovso.massage.f_theme.db.ThemeLocalDb;
 import io.github.ovso.massage.f_theme.db.ThemeRo;
 import io.github.ovso.massage.f_theme.model.Theme;
@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 11. 27
@@ -86,19 +85,18 @@ public class ThemePresenterImpl implements ThemePresenter {
   }
 
   @DebugLog @Override public void onItemClick(SelectableItem<Theme> item) {
-    switch (item.getItem().getType()) {
-      case ThemeAdapter.TYPE_SITE:
-        view.showWebViewDialog(item.getItem());
-        break;
-      case ThemeAdapter.TYPE_VIDEO:
-        try {
-          view.showVideo(item.getItem().getUrl());
-        } catch (ActivityNotFoundException e) {
-          e.printStackTrace();
-          view.showYoutubeUseWarningDialog();
-        }
+    view.showWebViewDialog(item.getItem());
+  }
 
-        break;
+  @Override public void onVideoClick(int position, SelectableItem<Theme> item) {
+    String video_id = item.getItem().getVideo_id();
+    if (!TextUtils.isEmpty(video_id)) {
+      try {
+        view.showVideo(video_id);
+      } catch (ActivityNotFoundException e) {
+        e.printStackTrace();
+        view.showYoutubeUseWarningDialog();
+      }
     }
   }
 

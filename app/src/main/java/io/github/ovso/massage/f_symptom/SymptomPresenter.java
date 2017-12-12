@@ -20,6 +20,8 @@ public interface SymptomPresenter {
 
   void onFavoriteClick(int position, SelectableItem<Symptom> item);
 
+  void onVideoClick(int position, SelectableItem<Symptom> item);
+
   interface View {
 
     void setRecyclerView();
