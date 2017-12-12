@@ -101,14 +101,14 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
     }
   }
 
-  @Override public void onRecommendClick(final int position, final SelectableItem<Symptom> $item) {
+  @Override public void onRecommendClick(final int position, final SelectableItem<Symptom> selectableItem) {
     view.showLoading();
     databaseReference.runTransaction(new Transaction.Handler() {
       @Override public Transaction.Result doTransaction(MutableData mutableData) {
         ArrayList<Object> objects = (ArrayList<Object>) mutableData.getValue();
         if (!ObjectUtils.isEmpty(objects)) {
           HashMap<String, Object> objectHashMap =
-              (HashMap<String, Object>) objects.get($item.getItem().getId());
+              (HashMap<String, Object>) objects.get(selectableItem.getItem().getId());
           long recommendCount = (long) objectHashMap.get("rec");
           recommendCount = recommendCount + 1;
           objectHashMap.put("rec", recommendCount);
@@ -124,9 +124,9 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
           ArrayList<DataSnapshot> dataSnapshots = Lists.newArrayList(dataSnapshot.getChildren());
           int size = dataSnapshots.size();
           for (int i = 0; i < size; i++) {
-            if (i == $item.getItem().getId()) {
+            if (i == selectableItem.getItem().getId()) {
               Symptom symptom = dataSnapshots.get(i).getValue(Symptom.class);
-              $item.getItem().setRec(symptom.getRec());
+              selectableItem.setItem(symptom);
               view.refresh(position);
               break;
             }

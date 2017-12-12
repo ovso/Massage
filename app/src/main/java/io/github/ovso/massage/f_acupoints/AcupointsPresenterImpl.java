@@ -102,14 +102,15 @@ public class AcupointsPresenterImpl implements AcupointsPresenter {
     }
   }
 
-  @Override public void onRecommendClick(final int position, final SelectableItem<Acupoints> $item) {
+  @Override
+  public void onRecommendClick(final int position, final SelectableItem<Acupoints> selectableItem) {
     view.showLoading();
     databaseReference.runTransaction(new Transaction.Handler() {
       @Override public Transaction.Result doTransaction(MutableData mutableData) {
         ArrayList<Object> objects = (ArrayList<Object>) mutableData.getValue();
         if (!ObjectUtils.isEmpty(objects)) {
           HashMap<String, Object> objectHashMap =
-              (HashMap<String, Object>) objects.get($item.getItem().getId());
+              (HashMap<String, Object>) objects.get(selectableItem.getItem().getId());
           long recommendCount = (long) objectHashMap.get("rec");
           recommendCount = recommendCount + 1;
           objectHashMap.put("rec", recommendCount);
@@ -125,9 +126,9 @@ public class AcupointsPresenterImpl implements AcupointsPresenter {
           ArrayList<DataSnapshot> dataSnapshots = Lists.newArrayList(dataSnapshot.getChildren());
           int size = dataSnapshots.size();
           for (int i = 0; i < size; i++) {
-            if (i == $item.getItem().getId()) {
-              Acupoints Acupoints = dataSnapshots.get(i).getValue(Acupoints.class);
-              $item.getItem().setRec(Acupoints.getRec());
+            if (i == selectableItem.getItem().getId()) {
+              Acupoints acupoints = dataSnapshots.get(i).getValue(Acupoints.class);
+              selectableItem.setItem(acupoints);
               view.refresh(position);
               break;
             }

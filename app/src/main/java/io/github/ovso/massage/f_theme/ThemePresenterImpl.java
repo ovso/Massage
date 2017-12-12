@@ -93,7 +93,7 @@ public class ThemePresenterImpl implements ThemePresenter {
       case ThemeAdapter.TYPE_VIDEO:
         try {
           view.showVideo(item.getItem().getUrl());
-        }catch (ActivityNotFoundException e) {
+        } catch (ActivityNotFoundException e) {
           e.printStackTrace();
           view.showYoutubeUseWarningDialog();
         }
@@ -102,14 +102,15 @@ public class ThemePresenterImpl implements ThemePresenter {
     }
   }
 
-  @Override public void onRecommendClick(final int position, final SelectableItem<Theme> $item) {
+  @Override
+  public void onRecommendClick(final int position, final SelectableItem<Theme> selectableItem) {
     view.showLoading();
     databaseReference.runTransaction(new Transaction.Handler() {
       @Override public Transaction.Result doTransaction(MutableData mutableData) {
         ArrayList<Object> objects = (ArrayList<Object>) mutableData.getValue();
         if (!ObjectUtils.isEmpty(objects)) {
           HashMap<String, Object> objectHashMap =
-              (HashMap<String, Object>) objects.get($item.getItem().getId());
+              (HashMap<String, Object>) objects.get(selectableItem.getItem().getId());
           long recommendCount = (long) objectHashMap.get("rec");
           recommendCount = recommendCount + 1;
           objectHashMap.put("rec", recommendCount);
@@ -125,9 +126,9 @@ public class ThemePresenterImpl implements ThemePresenter {
           ArrayList<DataSnapshot> dataSnapshots = Lists.newArrayList(dataSnapshot.getChildren());
           int size = dataSnapshots.size();
           for (int i = 0; i < size; i++) {
-            if (i == $item.getItem().getId()) {
-              Theme Theme = dataSnapshots.get(i).getValue(Theme.class);
-              $item.getItem().setRec(Theme.getRec());
+            if (i == selectableItem.getItem().getId()) {
+              Theme theme = dataSnapshots.get(i).getValue(Theme.class);
+              selectableItem.setItem(theme);
               view.refresh(position);
               break;
             }

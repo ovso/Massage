@@ -3,7 +3,6 @@ package io.github.ovso.massage.f_acupoints.model;
 import com.google.firebase.database.IgnoreExtraProperties;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -16,6 +15,6 @@ public class Acupoints {
   private String url;   // youtube url or webpage url
   private int type;     // video or webpage
   private int id;     // content id
-  @Setter private int rec;      // ..
-  @Setter private boolean flag; // webview javascriptenable flag
+  private int rec;      // ..
+  private boolean flag; // webview javascriptenable flag
 }
