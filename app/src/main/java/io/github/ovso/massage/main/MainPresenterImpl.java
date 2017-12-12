@@ -9,7 +9,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import de.psdev.licensesdialog.model.Notice;
 import de.psdev.licensesdialog.model.Notices;
-import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.framework.listener.OnMessageListener;
 import io.github.ovso.massage.main.model.NoticeItem;
@@ -22,7 +21,7 @@ import javax.inject.Inject;
  * Created by jaeho on 2017. 10. 16
  */
 
-public class MainPresenterImpl extends Exception implements MainPresenter, OnMessageListener {
+public class MainPresenterImpl extends Exception implements MainPresenter {
 
   private MainPresenter.View view;
   private CompositeDisposable compositeDisposable;
@@ -36,7 +35,7 @@ public class MainPresenterImpl extends Exception implements MainPresenter, OnMes
 
   @Override public void onCreate(Bundle savedInstanceState) {
     view.setListener();
-    view.showSymptomFragment(this);
+    view.showSymptomFragment(onMessageListener);
   }
 
   @Override public boolean onNavItemSelected(int itemId) {
@@ -64,13 +63,13 @@ public class MainPresenterImpl extends Exception implements MainPresenter, OnMes
   @Override public boolean onBottomNavItemSelected(@IdRes int itemId) {
     switch (itemId) {
       case R.id.action_symptom:
-        view.showSymptomFragment(this);
+        view.showSymptomFragment(onMessageListener);
         break;
       case R.id.action_theme:
-        view.showThemeFrgament(this);
+        view.showThemeFrgament(onMessageListener);
         break;
       case R.id.action_acupoints:
-        view.showAcupoints(this);
+        view.showAcupoints(onMessageListener);
         break;
     }
     return true;
@@ -85,11 +84,13 @@ public class MainPresenterImpl extends Exception implements MainPresenter, OnMes
     }
   }
 
-  @DebugLog @Override public void onMessage(int resId) {
-    view.showMessage(resId);
-  }
+  private OnMessageListener onMessageListener = new OnMessageListener() {
+    @Override public void onMessage(int resId) {
+      view.showMessage(resId);
+    }
 
-  @DebugLog @Override public void onMessage(@NonNull String msg) {
-    view.showMessage(msg);
-  }
+    @Override public void onMessage(@NonNull String msg) {
+      view.showMessage(msg);
+    }
+  };
 }
