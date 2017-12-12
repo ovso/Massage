@@ -150,8 +150,6 @@ public class AcupointsPresenterImpl implements AcupointsPresenter {
     } else {
       localDb.add($item.getItem().getId());
     }
-    Timber.d("position = " + position);
-    Timber.d("realm size = " + localDb.getSize());
     view.removeRefresh();
     adapterDataModel.clear();
     compositeDisposable.add(RxFirebaseDatabase.data(databaseReference)
