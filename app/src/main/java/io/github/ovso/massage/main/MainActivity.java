@@ -118,10 +118,14 @@ public class MainActivity extends BaseActivity
   }
 
   @Override public void showMessage(int resId) {
-    Snackbar.make(drawer, resId, Snackbar.LENGTH_SHORT).show();
+    if (drawer != null) {
+      Snackbar.make(drawer, resId, Snackbar.LENGTH_SHORT).show();
+    }
   }
 
   @Override public void showMessage(@NonNull String msg) {
-    Snackbar.make(drawer, msg, Snackbar.LENGTH_SHORT).show();
+    if (drawer != null) {
+      Snackbar.make(drawer, msg, Snackbar.LENGTH_SHORT).show();
+    }
   }
 }
