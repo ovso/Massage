@@ -3,7 +3,6 @@ package io.github.ovso.massage.f_theme;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -17,10 +16,13 @@ import io.github.ovso.massage.f_theme.adapter.ThemeAdapter;
 import io.github.ovso.massage.f_theme.adapter.ThemeAdapterView;
 import io.github.ovso.massage.f_theme.model.Theme;
 import io.github.ovso.massage.framework.Constants;
+import io.github.ovso.massage.framework.ObjectUtils;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.customview.BaseFragment;
 import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListener;
+import io.github.ovso.massage.framework.listener.OnMessageListener;
 import io.reactivex.disposables.CompositeDisposable;
+import java.io.Serializable;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import lombok.Getter;
@@ -52,8 +54,9 @@ public class ThemeFragment extends BaseFragment
     return true;
   }
 
-  public static ThemeFragment newInstance() {
+  public static ThemeFragment newInstance(Bundle args) {
     ThemeFragment f = new ThemeFragment();
+    f.setArguments(args);
     return f;
   }
 
@@ -72,11 +75,23 @@ public class ThemeFragment extends BaseFragment
   }
 
   @DebugLog @Override public void showMessage(int resId) {
-    Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
+    if (!ObjectUtils.isEmpty(getArguments())) {
+      Serializable s = getArguments().getSerializable("message");
+      if (!ObjectUtils.isEmpty(s)) {
+        OnMessageListener listener = (OnMessageListener) s;
+        listener.onMessage(resId);
+      }
+    }
   }
 
   @Override public void showMessage(String msg) {
-    Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT).show();
+    if (!ObjectUtils.isEmpty(getArguments())) {
+      Serializable s = getArguments().getSerializable("message");
+      if (!ObjectUtils.isEmpty(s)) {
+        OnMessageListener listener = (OnMessageListener) s;
+        listener.onMessage(msg);
+      }
+    }
   }
 
   @Override public void refreshRemove(int position) {

@@ -2,13 +2,16 @@ package io.github.ovso.massage.main;
 
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
 import com.androidhuman.rxfirebase2.database.RxFirebaseDatabase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import de.psdev.licensesdialog.model.Notice;
 import de.psdev.licensesdialog.model.Notices;
+import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
+import io.github.ovso.massage.framework.listener.OnMessageListener;
 import io.github.ovso.massage.main.model.NoticeItem;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -19,7 +22,7 @@ import javax.inject.Inject;
  * Created by jaeho on 2017. 10. 16
  */
 
-public class MainPresenterImpl extends Exception implements MainPresenter {
+public class MainPresenterImpl extends Exception implements MainPresenter, OnMessageListener {
 
   private MainPresenter.View view;
   private CompositeDisposable compositeDisposable;
@@ -33,7 +36,7 @@ public class MainPresenterImpl extends Exception implements MainPresenter {
 
   @Override public void onCreate(Bundle savedInstanceState) {
     view.setListener();
-    view.showSymptomFragment();
+    view.showSymptomFragment(this);
   }
 
   @Override public boolean onNavItemSelected(int itemId) {
@@ -61,13 +64,13 @@ public class MainPresenterImpl extends Exception implements MainPresenter {
   @Override public boolean onBottomNavItemSelected(@IdRes int itemId) {
     switch (itemId) {
       case R.id.action_symptom:
-        view.showSymptomFragment();
+        view.showSymptomFragment(this);
         break;
       case R.id.action_theme:
-        view.showThemeFrgament();
+        view.showThemeFrgament(this);
         break;
       case R.id.action_acupoints:
-        view.showAcupoints();
+        view.showAcupoints(this);
         break;
     }
     return true;
@@ -79,5 +82,13 @@ public class MainPresenterImpl extends Exception implements MainPresenter {
     } else {
       view.finish();
     }
+  }
+
+  @DebugLog @Override public void onMessage(int resId) {
+    view.showMessage(resId);
+  }
+
+  @DebugLog @Override public void onMessage(@NonNull String msg) {
+    view.showMessage(msg);
   }
 }

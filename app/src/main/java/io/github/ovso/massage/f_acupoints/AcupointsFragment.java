@@ -3,7 +3,6 @@ package io.github.ovso.massage.f_acupoints;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -17,10 +16,13 @@ import io.github.ovso.massage.f_acupoints.adapter.AcupointsAdapter;
 import io.github.ovso.massage.f_acupoints.adapter.AcupointsAdapterView;
 import io.github.ovso.massage.f_acupoints.model.Acupoints;
 import io.github.ovso.massage.framework.Constants;
+import io.github.ovso.massage.framework.ObjectUtils;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.customview.BaseFragment;
 import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListener;
+import io.github.ovso.massage.framework.listener.OnMessageListener;
 import io.reactivex.disposables.CompositeDisposable;
+import java.io.Serializable;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import lombok.Getter;
@@ -52,8 +54,9 @@ public class AcupointsFragment extends BaseFragment implements AcupointsPresente
     return true;
   }
 
-  public static AcupointsFragment newInstance() {
+  public static AcupointsFragment newInstance(Bundle args) {
     AcupointsFragment f = new AcupointsFragment();
+    f.setArguments(args);
     return f;
   }
 
@@ -65,12 +68,24 @@ public class AcupointsFragment extends BaseFragment implements AcupointsPresente
     recyclerView.setAdapter(adapter);
   }
 
-  @DebugLog @Override public void showMessage(int resId) {
-    Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
+  @Override public void showMessage(int resId) {
+    if (!ObjectUtils.isEmpty(getArguments())) {
+      Serializable s = getArguments().getSerializable("message");
+      if (!ObjectUtils.isEmpty(s)) {
+        OnMessageListener listener = (OnMessageListener) s;
+        listener.onMessage(resId);
+      }
+    }
   }
 
   @Override public void showMessage(String msg) {
-    Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT).show();
+    if (!ObjectUtils.isEmpty(getArguments())) {
+      Serializable s = getArguments().getSerializable("message");
+      if (!ObjectUtils.isEmpty(s)) {
+        OnMessageListener listener = (OnMessageListener) s;
+        listener.onMessage(msg);
+      }
+    }
   }
 
   @Override public void showYoutubeUseWarningDialog() {
