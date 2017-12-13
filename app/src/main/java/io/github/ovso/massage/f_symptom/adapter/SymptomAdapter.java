@@ -1,5 +1,8 @@
 package io.github.ovso.massage.f_symptom.adapter;
 
+import android.content.Context;
+import android.graphics.Typeface;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
 import com.jakewharton.rxbinding2.view.RxView;
@@ -48,6 +51,13 @@ public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapte
       //holder.setIsRecyclable(false);
 
       holder.titleTextview.setText(item.getTitle());
+      Context context = holder.itemView.getContext();
+      if (TextUtils.isEmpty(item.getUrl())) {
+        holder.titleTextview.setTextColor(ContextCompat.getColor(context, R.color.color_500));
+        holder.titleTextview.setTypeface(Typeface.DEFAULT);
+      } else {
+        holder.titleTextview.setTextColor(ContextCompat.getColor(context, android.R.color.black));
+      }
       int iconImage;
       if (!TextUtils.isEmpty(item.getVideo_id())) {
         iconImage = R.drawable.ic_ondemand_video_on;

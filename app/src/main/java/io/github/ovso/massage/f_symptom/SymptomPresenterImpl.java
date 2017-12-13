@@ -84,8 +84,10 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
     compositeDisposable.clear();
   }
 
-  @DebugLog @Override public void onItemClick(SelectableItem<Symptom> item) {
-    view.showWebViewDialog(item.getItem());
+  @DebugLog @Override public void onItemClick(SelectableItem<Symptom> selectableItem) {
+    if (!TextUtils.isEmpty(selectableItem.getItem().getUrl())) {
+      view.showWebViewDialog(selectableItem.getItem());
+    }
   }
 
   @Override public void onVideoClick(int position, SelectableItem<Symptom> item) {

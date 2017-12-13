@@ -83,8 +83,11 @@ public class AcupointsPresenterImpl implements AcupointsPresenter {
     compositeDisposable.clear();
   }
 
-  @Override public void onItemClick(SelectableItem<Acupoints> item) {
-    view.showWebViewDialog(item.getItem());
+  @Override public void onItemClick(SelectableItem<Acupoints> selectableItem) {
+    if (!TextUtils.isEmpty(selectableItem.getItem().getUrl())) {
+      view.showWebViewDialog(selectableItem.getItem());
+    }
+
   }
 
   @Override public void onVideoClick(int position, SelectableItem<Acupoints> item) {

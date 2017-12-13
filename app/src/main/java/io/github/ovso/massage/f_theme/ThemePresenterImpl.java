@@ -84,8 +84,10 @@ public class ThemePresenterImpl implements ThemePresenter {
     compositeDisposable.clear();
   }
 
-  @DebugLog @Override public void onItemClick(SelectableItem<Theme> item) {
-    view.showWebViewDialog(item.getItem());
+  @DebugLog @Override public void onItemClick(SelectableItem<Theme> selectableItem) {
+    if (!TextUtils.isEmpty(selectableItem.getItem().getUrl())) {
+      view.showWebViewDialog(selectableItem.getItem());
+    }
   }
 
   @Override public void onVideoClick(int position, SelectableItem<Theme> item) {
