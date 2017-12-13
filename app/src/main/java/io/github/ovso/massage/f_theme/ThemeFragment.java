@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 import butterknife.BindView;
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import hugo.weaving.DebugLog;
@@ -16,13 +17,10 @@ import io.github.ovso.massage.f_theme.adapter.ThemeAdapter;
 import io.github.ovso.massage.f_theme.adapter.ThemeAdapterView;
 import io.github.ovso.massage.f_theme.model.Theme;
 import io.github.ovso.massage.framework.Constants;
-import io.github.ovso.massage.framework.ObjectUtils;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.customview.BaseFragment;
 import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListener;
-import io.github.ovso.massage.framework.listener.OnMessageListener;
 import io.reactivex.disposables.CompositeDisposable;
-import java.io.Serializable;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import lombok.Getter;
@@ -54,9 +52,8 @@ public class ThemeFragment extends BaseFragment
     return true;
   }
 
-  public static ThemeFragment newInstance(Bundle args) {
+  public static ThemeFragment newInstance() {
     ThemeFragment f = new ThemeFragment();
-    f.setArguments(args);
     return f;
   }
 
@@ -74,24 +71,12 @@ public class ThemeFragment extends BaseFragment
     recyclerView.setAdapter(adapter);
   }
 
-  @DebugLog @Override public void showMessage(int resId) {
-    if (!ObjectUtils.isEmpty(getArguments())) {
-      Serializable s = getArguments().getSerializable("message");
-      if (!ObjectUtils.isEmpty(s)) {
-        OnMessageListener listener = (OnMessageListener) s;
-        listener.onMessage(resId);
-      }
-    }
+  @Override public void showMessage(int resId) {
+    Toast.makeText(getContext(), resId, Toast.LENGTH_SHORT).show();
   }
 
   @Override public void showMessage(String msg) {
-    if (!ObjectUtils.isEmpty(getArguments())) {
-      Serializable s = getArguments().getSerializable("message");
-      if (!ObjectUtils.isEmpty(s)) {
-        OnMessageListener listener = (OnMessageListener) s;
-        listener.onMessage(msg);
-      }
-    }
+    Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
   }
 
   @Override public void refreshRemove(int position) {

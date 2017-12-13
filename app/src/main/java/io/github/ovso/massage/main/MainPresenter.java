@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
 import de.psdev.licensesdialog.model.Notices;
-import io.github.ovso.massage.framework.listener.OnMessageListener;
 
 /**
  * Created by jaeho on 2017. 10. 16
@@ -28,11 +27,11 @@ public interface MainPresenter {
 
     void finish();
 
-    void showSymptomFragment(OnMessageListener listener);
+    void showSymptomFragment();
 
-    void showThemeFrgament(OnMessageListener listener);
+    void showThemeFrgament();
 
-    void showAcupoints(OnMessageListener listener);
+    void showAcupoints();
 
     void showLicensesDialog(Notices notices);
 

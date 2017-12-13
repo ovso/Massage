@@ -2,7 +2,6 @@ package io.github.ovso.massage.main;
 
 import android.os.Bundle;
 import android.support.annotation.IdRes;
-import android.support.annotation.NonNull;
 import com.androidhuman.rxfirebase2.database.RxFirebaseDatabase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
@@ -10,7 +9,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import de.psdev.licensesdialog.model.Notice;
 import de.psdev.licensesdialog.model.Notices;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.framework.listener.OnMessageListener;
 import io.github.ovso.massage.main.model.NoticeItem;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -35,7 +33,7 @@ public class MainPresenterImpl extends Exception implements MainPresenter {
 
   @Override public void onCreate(Bundle savedInstanceState) {
     view.setListener();
-    view.showSymptomFragment(onMessageListener);
+    view.showSymptomFragment();
   }
 
   @Override public boolean onNavItemSelected(int itemId) {
@@ -63,13 +61,13 @@ public class MainPresenterImpl extends Exception implements MainPresenter {
   @Override public boolean onBottomNavItemSelected(@IdRes int itemId) {
     switch (itemId) {
       case R.id.action_symptom:
-        view.showSymptomFragment(onMessageListener);
+        view.showSymptomFragment();
         break;
       case R.id.action_theme:
-        view.showThemeFrgament(onMessageListener);
+        view.showThemeFrgament();
         break;
       case R.id.action_acupoints:
-        view.showAcupoints(onMessageListener);
+        view.showAcupoints();
         break;
     }
     return true;
@@ -84,13 +82,4 @@ public class MainPresenterImpl extends Exception implements MainPresenter {
     }
   }
 
-  private OnMessageListener onMessageListener = new OnMessageListener() {
-    @Override public void onMessage(int resId) {
-      view.showMessage(resId);
-    }
-
-    @Override public void onMessage(@NonNull String msg) {
-      view.showMessage(msg);
-    }
-  };
 }

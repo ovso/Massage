@@ -24,7 +24,6 @@ import io.github.ovso.massage.f_theme.ThemeFragment;
 import io.github.ovso.massage.framework.SystemUtility;
 import io.github.ovso.massage.framework.customview.BaseActivity;
 import io.github.ovso.massage.framework.customview.BottomNavigationViewBehavior;
-import io.github.ovso.massage.framework.listener.OnMessageListener;
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity
@@ -62,36 +61,27 @@ public class MainActivity extends BaseActivity
     drawer.closeDrawer(GravityCompat.START);
   }
 
-  @Override public void showSymptomFragment(OnMessageListener listener) {
-    Bundle bundle = new Bundle();
-    bundle.putSerializable("message", listener);
-
+  @Override public void showSymptomFragment() {
     getSupportFragmentManager().beginTransaction()
         .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
             R.animator.enter_animation, R.animator.exit_animation)
-        .replace(R.id.fragment_container, SymptomFragment.newInstance(bundle))
+        .replace(R.id.fragment_container, SymptomFragment.newInstance())
         .commit();
   }
 
-  @Override public void showThemeFrgament(OnMessageListener listener) {
-    Bundle bundle = new Bundle();
-    bundle.putSerializable("message", listener);
-
+  @Override public void showThemeFrgament() {
     getSupportFragmentManager().beginTransaction()
         .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
             R.animator.enter_animation, R.animator.exit_animation)
-        .replace(R.id.fragment_container, ThemeFragment.newInstance(bundle))
+        .replace(R.id.fragment_container, ThemeFragment.newInstance())
         .commit();
   }
 
-  @Override public void showAcupoints(OnMessageListener listener) {
-    Bundle bundle = new Bundle();
-    bundle.putSerializable("message", listener);
-
+  @Override public void showAcupoints() {
     getSupportFragmentManager().beginTransaction()
         .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
             R.animator.enter_animation, R.animator.exit_animation)
-        .replace(R.id.fragment_container, AcupointsFragment.newInstance(bundle))
+        .replace(R.id.fragment_container, AcupointsFragment.newInstance())
         .commit();
   }
 
