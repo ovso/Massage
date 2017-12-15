@@ -102,6 +102,18 @@ public class AcupointsPresenterImpl implements AcupointsPresenter {
     }
   }
 
+  @Override public void onVideoLongClick(SelectableItem<Acupoints> item) {
+    String video_id = item.getItem().getVideo_id();
+    if (!TextUtils.isEmpty(video_id)) {
+      try {
+        view.showLandscapeVideo(video_id);
+      } catch (ActivityNotFoundException e) {
+        e.printStackTrace();
+        view.showYoutubeUseWarningDialog();
+      }
+    }
+  }
+
   @Override
   public void onRecommendClick(final int position, final SelectableItem<Acupoints> selectableItem) {
     view.showLoading();

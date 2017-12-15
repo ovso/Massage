@@ -22,6 +22,8 @@ public interface AcupointsPresenter {
 
   void onVideoClick(int position, SelectableItem<Acupoints> item);
 
+  void onVideoLongClick(SelectableItem<Acupoints> item);
+
   interface View {
 
     void setRecyclerView();
@@ -47,5 +49,7 @@ public interface AcupointsPresenter {
     void hideLoading();
 
     void showYoutubeUseWarningDialog();
+
+    void showLandscapeVideo(String videoId);
   }
 }

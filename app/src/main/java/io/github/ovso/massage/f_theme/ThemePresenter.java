@@ -22,6 +22,8 @@ public interface ThemePresenter {
 
   void onVideoClick(int position, SelectableItem<Theme> item);
 
+  void onVideoLongClick(SelectableItem<Theme> item);
+
   interface View {
 
     void setRecyclerView();
@@ -47,5 +49,7 @@ public interface ThemePresenter {
     void hideLoading();
 
     void showYoutubeUseWarningDialog();
+
+    void showLandscapeVideo(String videoId);
   }
 }

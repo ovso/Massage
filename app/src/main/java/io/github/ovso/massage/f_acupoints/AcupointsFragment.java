@@ -20,6 +20,7 @@ import io.github.ovso.massage.framework.Constants;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.customview.BaseFragment;
 import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListener;
+import io.github.ovso.massage.youtube.FullscreenVideoActivity;
 import io.reactivex.disposables.CompositeDisposable;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
@@ -77,6 +78,12 @@ public class AcupointsFragment extends BaseFragment implements AcupointsPresente
     new AlertDialog.Builder(getActivity()).setMessage(R.string.youtube_use_warning)
         .setPositiveButton(android.R.string.ok, null)
         .show();
+  }
+
+  @Override public void showLandscapeVideo(String videoId) {
+    Intent intent = new Intent(getContext(), FullscreenVideoActivity.class);
+    intent.putExtra("video_id", videoId);
+    startActivity(intent);
   }
 
   @Override public void refreshRemove(int position) {
@@ -146,6 +153,6 @@ public class AcupointsFragment extends BaseFragment implements AcupointsPresente
   }
 
   @Override public void onItemLongClick(SelectableItem<Acupoints> item) {
-
+    presenter.onVideoLongClick(item);
   }
 }
