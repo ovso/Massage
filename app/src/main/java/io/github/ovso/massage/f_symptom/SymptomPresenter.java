@@ -22,6 +22,8 @@ public interface SymptomPresenter {
 
   void onVideoClick(int position, SelectableItem<Symptom> item);
 
+  void onVideoLongClick(SelectableItem<Symptom> item);
+
   interface View {
 
     void setRecyclerView();
@@ -47,5 +49,7 @@ public interface SymptomPresenter {
     void hideLoading();
 
     void showYoutubeUseWarningDialog();
+
+    void showLandscapeVideo(String videoId);
   }
 }

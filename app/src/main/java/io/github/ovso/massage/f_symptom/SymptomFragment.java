@@ -113,6 +113,10 @@ public class SymptomFragment extends BaseFragment
     startActivity(intent);
   }
 
+  @DebugLog @Override public void showLandscapeVideo(String videoId) {
+
+  }
+
   @Override public void showWebViewDialog(Symptom item) {
     new WebviewAlertDialog().setUrl(item.getUrl())
         .setFlag(item.isFlag())
@@ -142,5 +146,9 @@ public class SymptomFragment extends BaseFragment
 
   @Override public void onVideoClick(int position, SelectableItem<Symptom> item) {
     presenter.onVideoClick(position, item);
+  }
+
+  @Override public void onItemLongClick(SelectableItem<Symptom> item) {
+    presenter.onVideoLongClick(item);
   }
 }

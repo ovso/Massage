@@ -144,4 +144,8 @@ public class ThemeFragment extends BaseFragment
   @Override public void onVideoClick(int position, SelectableItem<Theme> item) {
     presenter.onVideoClick(position, item);
   }
+
+  @Override public void onItemLongClick(SelectableItem<Theme> item) {
+
+  }
 }

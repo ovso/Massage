@@ -144,4 +144,8 @@ public class AcupointsFragment extends BaseFragment implements AcupointsPresente
   @Override public void onVideoClick(int position, SelectableItem<Acupoints> item) {
     presenter.onVideoClick(position, item);
   }
+
+  @Override public void onItemLongClick(SelectableItem<Acupoints> item) {
+
+  }
 }
