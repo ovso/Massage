@@ -20,6 +20,7 @@ import io.github.ovso.massage.framework.Constants;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.customview.BaseFragment;
 import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListener;
+import io.github.ovso.massage.youtube.FullscreenVideoActivity;
 import io.reactivex.disposables.CompositeDisposable;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
@@ -113,8 +114,10 @@ public class SymptomFragment extends BaseFragment
     startActivity(intent);
   }
 
-  @DebugLog @Override public void showLandscapeVideo(String videoId) {
-
+  @Override public void showLandscapeVideo(String videoId) {
+    Intent intent = new Intent(getContext(), FullscreenVideoActivity.class);
+    intent.putExtra("video_id", videoId);
+    startActivity(intent);
   }
 
   @Override public void showWebViewDialog(Symptom item) {
