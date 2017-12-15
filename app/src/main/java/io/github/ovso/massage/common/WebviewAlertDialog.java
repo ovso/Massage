@@ -37,20 +37,12 @@ public class WebviewAlertDialog extends BaseAlertDialogFragment {
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
     WebSettings webSettings = webview.getSettings();
     webSettings.setJavaScriptEnabled(flag);
-    //webSettings.setPluginState(WebSettings.PluginState.ON);
-    //webSettings.setUseWideViewPort(true);
-    //webSettings.setLoadWithOverviewMode(true);
-    webview.setVerticalScrollBarEnabled(true);
-    webview.setScrollbarFadingEnabled(true);
     webview.setWebChromeClient(new WebChromeClient());
     webview.setWebViewClient(new WebViewClient());
     webview.setOnTouchListener((view, motionEvent) -> true);
     webview.loadUrl(url);
   }
 
-  private class MyWebChromeClient extends WebChromeClient {
-
-  }
 
   @Override protected boolean getAttatchRoot() {
     return false;
