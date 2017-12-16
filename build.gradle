@@ -32,6 +32,7 @@ buildscript {
     guava_version = '23.5-android'
     licensesdialog_version = '1.8.3'
     glide_version = '4.0.0'
+    photoview_version = '2.0.0'
   }
   repositories {
     jcenter()

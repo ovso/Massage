@@ -122,7 +122,7 @@ dependencies {
   compile "com.google.code.findbugs:jsr305:$jsr305_version"
   implementation "com.github.bumptech.glide:glide:$glide_version"
   annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
-  compile 'com.github.chrisbanes:PhotoView:2.0.0'
+  compile "com.github.chrisbanes:PhotoView:$photoview_version"
 }
 
 // ADD THIS AT THE BOTTOM
