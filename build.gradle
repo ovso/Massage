@@ -22,6 +22,7 @@ buildscript {
     timber_version = '4.6.0'
     lombok_version = '1.16.18'
     jsr250_version = '1.0'
+    jsr305_version = '3.0.2'
     gradle_version = '3.1.0'
     google_services_version = '3.1.0'
     firebase_version = '11.6.0'
@@ -30,6 +31,7 @@ buildscript {
     realm_version = '4.2.0'
     guava_version = '23.5-android'
     licensesdialog_version = '1.8.3'
+    glide_version = '4.0.0'
   }
   repositories {
     jcenter()
@@ -49,6 +51,7 @@ allprojects {
   repositories {
     jcenter()
     google()
+    maven { url "https://jitpack.io" }
   }
 }
 

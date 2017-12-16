@@ -60,6 +60,7 @@ android {
       proguardFile 'proguard-firebase.pro'
       proguardFile 'proguard-butterknipe.pro'
       proguardFile 'proguard-guava.pro'
+      proguardFile 'proguard-glide.pro'
     }
     debug {
       minifyEnabled false
@@ -71,6 +72,7 @@ android {
       proguardFile 'proguard-firebase.pro'
       proguardFile 'proguard-butterknipe.pro'
       proguardFile 'proguard-guava.pro'
+      proguardFile 'proguard-glide.pro'
     }
   }
 
@@ -117,8 +119,10 @@ dependencies {
   provided "javax.annotation:jsr250-api:$jsr250_version"
   compile "jp.wasabeef:recyclerview-animators:$recyclerview_animators_version"
   compile "de.psdev.licensesdialog:licensesdialog:$licensesdialog_version"
-  compile "com.google.code.findbugs:jsr305:3.0.2"
-
+  compile "com.google.code.findbugs:jsr305:$jsr305_version"
+  implementation "com.github.bumptech.glide:glide:$glide_version"
+  annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+  compile 'com.github.chrisbanes:PhotoView:2.0.0'
 }
 
 // ADD THIS AT THE BOTTOM

@@ -12,7 +12,7 @@ import butterknife.BindView;
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.common.WebviewAlertDialog;
+import io.github.ovso.massage.common.ImageViewAlertDialog;
 import io.github.ovso.massage.f_acupoints.adapter.AcupointsAdapter;
 import io.github.ovso.massage.f_acupoints.adapter.AcupointsAdapterView;
 import io.github.ovso.massage.f_acupoints.model.Acupoints;
@@ -122,9 +122,8 @@ public class AcupointsFragment extends BaseFragment implements AcupointsPresente
   }
 
   @Override public void showWebViewDialog(Acupoints item) {
-    new WebviewAlertDialog().setUrl(item.getUrl())
-        .setFlag(item.isFlag())
-        .show(getFragmentManager(), WebviewAlertDialog.class.getSimpleName());
+    new ImageViewAlertDialog().setImageUrl(item.getUrl())
+        .show(getFragmentManager(), ImageViewAlertDialog.class.getSimpleName());
   }
 
   @Override public void removeRefresh() {

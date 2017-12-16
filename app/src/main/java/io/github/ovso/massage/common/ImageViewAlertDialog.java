@@ -3,12 +3,11 @@ package io.github.ovso.massage.common;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import butterknife.BindView;
+import com.bumptech.glide.request.target.Target;
 import io.github.ovso.massage.R;
+import io.github.ovso.massage.di.GlideApp;
 import io.github.ovso.massage.framework.customview.BaseAlertDialogFragment;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -17,10 +16,9 @@ import lombok.experimental.Accessors;
  * Created by jaeho on 2017. 11. 28
  */
 
-public class WebviewAlertDialog extends BaseAlertDialogFragment {
-  @BindView(R.id.webview) WebView webview;
-  @Accessors(chain = true) @Setter private String url;
-  @Accessors(chain = true) @Setter private boolean flag;
+public class ImageViewAlertDialog extends BaseAlertDialogFragment {
+  @BindView(R.id.imageview) ImageView imageView;
+  @Accessors(chain = true) @Setter private String imageUrl;
 
   @Override protected boolean isNegativeButton() {
     return false;
@@ -35,12 +33,7 @@ public class WebviewAlertDialog extends BaseAlertDialogFragment {
   }
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
-    WebSettings settings = webview.getSettings();
-    settings.setJavaScriptEnabled(flag);// Javascript 사용하기
-    webview.setWebChromeClient(new WebChromeClient());
-    webview.setWebViewClient(new WebViewClient());
-    webview.setOnTouchListener((view, motionEvent) -> true);
-    webview.loadUrl(url);
+    GlideApp.with(this).load(imageUrl).override(Target.SIZE_ORIGINAL).into(imageView);
   }
 
   @Override protected boolean getAttatchRoot() {
@@ -48,7 +41,7 @@ public class WebviewAlertDialog extends BaseAlertDialogFragment {
   }
 
   @Override protected int getLayoutResId() {
-    return R.layout.dialog_webview;
+    return R.layout.dialog_imageview;
   }
 
   @Override protected ViewGroup getInflateRoot() {

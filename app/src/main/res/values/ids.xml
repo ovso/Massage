@@ -22,4 +22,5 @@
   <item name="textview" type="id"/>
   <item name="version_textview" type="id"/>
   <item name="youtube_fragment" type="id"/>
+  <item name="imageview" type="id"/>
 </resources>
