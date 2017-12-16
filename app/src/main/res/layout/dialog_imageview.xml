@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     >
   <com.github.chrisbanes.photoview.PhotoView
       android:id="@id/imageview"
       android:layout_width="match_parent"
       android:layout_height="@dimen/dp_500"
-      android:layout_gravity="center"
       />
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      >
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_pan_tool"
+        />
+    <TextView
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="손으로 확대 할 수 있어요."
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        />
+  </LinearLayout>
 
-</FrameLayout>
+
+</LinearLayout>
