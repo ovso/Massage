@@ -34,6 +34,7 @@ public class MainPresenterImpl extends Exception implements MainPresenter {
   @Override public void onCreate(Bundle savedInstanceState) {
     view.setListener();
     view.showSymptomFragment();
+    view.showAd();
   }
 
   @Override public boolean onNavItemSelected(int itemId) {

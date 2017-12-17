@@ -22,6 +22,12 @@
         app:layout_scrollFlags="scroll|enterAlways|snap"
         app:popupTheme="@style/AppTheme.PopupOverlay"
         />
+    <FrameLayout
+        android:id="@id/ad_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_300"
+        />
   </android.support.design.widget.AppBarLayout>
 
   <FrameLayout
