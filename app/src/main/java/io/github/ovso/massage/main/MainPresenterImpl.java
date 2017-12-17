@@ -9,6 +9,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import de.psdev.licensesdialog.model.Notice;
 import de.psdev.licensesdialog.model.Notices;
 import io.github.ovso.massage.R;
+import io.github.ovso.massage.main.model.Help;
 import io.github.ovso.massage.main.model.NoticeItem;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -55,7 +56,20 @@ public class MainPresenterImpl extends Exception implements MainPresenter {
 
           }));
     } else if (itemId == R.id.nav_help) {
-      view.showMessageAlert(R.string.help_long_click_video);
+      compositeDisposable.add(
+          RxFirebaseDatabase.data(FirebaseDatabase.getInstance().getReference().child("help"))
+              .subscribeOn(Schedulers.io())
+              .observeOn(AndroidSchedulers.mainThread())
+              .subscribe(dataSnapshot -> {
+                String msg = "";
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                  Help help = snapshot.getValue(Help.class);
+                  msg += help.getMsg() + "\n\n";
+                }
+                view.showHelpAlert(msg);
+              }, throwable -> {
+                view.showHelpAlert(R.string.help_long_click_video);
+              }));
     }
     view.closeDrawer();
     return true;

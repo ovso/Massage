@@ -128,8 +128,14 @@ public class MainActivity extends BaseActivity
     }
   }
 
-  @Override public void showMessageAlert(int resId) {
+  @Override public void showHelpAlert(int resId) {
     new AlertDialog.Builder(this).setMessage(resId)
+        .setPositiveButton(android.R.string.ok, null)
+        .show();
+  }
+
+  @Override public void showHelpAlert(String msg) {
+    new AlertDialog.Builder(this).setMessage(msg)
         .setPositiveButton(android.R.string.ok, null)
         .show();
   }

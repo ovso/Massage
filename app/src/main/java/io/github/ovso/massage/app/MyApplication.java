@@ -21,9 +21,11 @@ import timber.log.Timber;
 public class MyApplication extends Application implements HasActivityInjector {
 
   @Inject DispatchingAndroidInjector<Activity> activityDispatchingAndroidInjector;
+  @Getter private static Application instance = null;
 
   @Override public void onCreate() {
     super.onCreate();
+    instance = this;
     initDagger();
     initTimber();
     initRealm();
