@@ -38,5 +38,7 @@ public interface MainPresenter {
     void showMessage(@StringRes int resId);
 
     void showMessage(String msg);
+
+    void showMessageAlert(@StringRes int resId);
   }
 }

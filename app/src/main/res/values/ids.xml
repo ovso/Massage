@@ -23,4 +23,5 @@
   <item name="version_textview" type="id"/>
   <item name="youtube_fragment" type="id"/>
   <item name="imageview" type="id"/>
+  <item name="nav_help" type="id"/>
 </resources>

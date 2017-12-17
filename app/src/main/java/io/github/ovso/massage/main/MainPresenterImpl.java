@@ -53,6 +53,8 @@ public class MainPresenterImpl extends Exception implements MainPresenter {
           }, throwable -> {
 
           }));
+    } else if (itemId == R.id.nav_help) {
+      view.showMessageAlert(R.string.help_long_click_video);
     }
     view.closeDrawer();
     return true;
@@ -81,5 +83,4 @@ public class MainPresenterImpl extends Exception implements MainPresenter {
       view.finish();
     }
   }
-
 }

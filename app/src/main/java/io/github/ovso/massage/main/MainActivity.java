@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import butterknife.BindView;
@@ -117,5 +118,11 @@ public class MainActivity extends BaseActivity
     if (drawer != null) {
       Snackbar.make(drawer, msg, Snackbar.LENGTH_SHORT).show();
     }
+  }
+
+  @Override public void showMessageAlert(int resId) {
+    new AlertDialog.Builder(this).setMessage(resId)
+        .setPositiveButton(android.R.string.ok, null)
+        .show();
   }
 }

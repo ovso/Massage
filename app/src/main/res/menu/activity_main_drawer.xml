@@ -6,6 +6,10 @@
         android:id="@id/nav_opensource"
         android:icon="@drawable/ic_lightbulb_outline"
         android:title="@string/opensource_license"/>
+    <item
+        android:id="@id/nav_help"
+        android:icon="@drawable/ic_help_outline"
+        android:title="@string/help"/>
   </group>
 
 </menu>
