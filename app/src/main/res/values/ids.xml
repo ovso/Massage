@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <item name="navigation_view" type="id"/>
+  <item name="drawer_layout" type="id"/>
+  <item name="nav_opensource" type="id"/>
+  <item name="fragment_container" type="id"/>
+  <item name="bottom_navigation_view" type="id"/>
+  <item name="action_symptom" type="id"/>
+  <item name="action_acupoints" type="id"/>
+  <item name="action_theme" type="id"/>
+  <item name="recyclerview" type="id"/>
+  <item name="cardview" type="id"/>
+  <item name="title_textview" type="id"/>
+  <item name="rec_textview" type="id"/>
+  <item name="video_imageview" type="id"/>
+  <item name="rec_imageview" type="id"/>
+  <item name="root_view" type="id"/>
+  <item name="webview" type="id"/>
+  <item name="fav_imageview" type="id"/>
+  <item name="progressbar" type="id"/>
+  <item name="nav_notifications" type="id"/>
+  <item name="textview" type="id"/>
+  <item name="version_textview" type="id"/>
+  <item name="youtube_fragment" type="id"/>
+  <item name="imageview" type="id"/>
+  <item name="nav_help" type="id"/>
+  <item name="ad_container" type="id"/>
+</resources>

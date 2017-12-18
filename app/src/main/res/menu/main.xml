@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
   <item
-      android:id="@+id/action_settings"
-      android:orderInCategory="100"
-      android:title="@string/action_settings"
-      app:showAsAction="never"/>
+      android:id="@id/action_symptom"
+      android:icon="@drawable/ic_seat_flat"
+      android:title="@string/symptom"/>
+  <item
+      android:id="@id/action_theme"
+      android:icon="@drawable/ic_theaters"
+      android:title="@string/theme"/>
+  <item
+      android:id="@id/action_acupoints"
+      android:icon="@drawable/ic_fingerprint"
+      android:title="@string/acupressure_point"/>
 </menu>

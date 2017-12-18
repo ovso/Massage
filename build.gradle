@@ -1,12 +1,48 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
+//project.ext.compileSdkVersion = '27'
 buildscript {
+  ext {
+    compile_sdk_version = 27
+    build_tools_version = '27.0.0'
+    application_id = 'io.github.ovso.massage'
+    min_sdk_version = 16
+    target_sdk_version = 27
+    version_code = 1
+
+    support_version = '27.0.2'
+    constraint_version = '1.0.2'
+    hugo_version = '1.2.1'
+    butterknife_version = '8.8.1'
+    dagger_version = '2.13'
+
+    rxjava_version = '2.1.6'
+    rxandroid_version = '2.0.1'
+    rxbinding2_version = '2.0.0'
+
+    timber_version = '4.6.0'
+    lombok_version = '1.16.18'
+    jsr250_version = '1.0'
+    jsr305_version = '3.0.2'
+    gradle_version = '3.1.0'
+    google_services_version = '3.1.0'
+    firebase_version = '11.6.0'
+    rxfirebase_version = '11.6.0.1'
+    recyclerview_animators_version = '2.2.7'
+    realm_version = '4.2.0'
+    guava_version = '23.5-android'
+    licensesdialog_version = '1.8.3'
+    glide_version = '4.0.0'
+    photoview_version = '2.0.0'
+  }
   repositories {
     jcenter()
+    google()
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:2.3.3'
-
+    classpath 'com.android.tools.build:gradle:3.0.1'
+    classpath "com.jakewharton.hugo:hugo-plugin:$hugo_version"
+    classpath "com.google.gms:google-services:$google_services_version"
+    classpath "io.realm:realm-gradle-plugin:$realm_version"
     // NOTE: Do not place your application dependencies here; they belong
     // in the individual module build.gradle files
   }
@@ -15,6 +51,8 @@ buildscript {
 allprojects {
   repositories {
     jcenter()
+    google()
+    maven { url "https://jitpack.io" }
   }
 }
 
