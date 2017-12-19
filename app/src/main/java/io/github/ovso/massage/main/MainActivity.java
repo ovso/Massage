@@ -56,8 +56,10 @@ public class MainActivity extends BaseActivity
     toggle.syncState();
     navigationView.setNavigationItemSelectedListener(
         item -> presenter.onNavItemSelected(item.getItemId()));
-    bottomNavigationView.setOnNavigationItemSelectedListener(
-        item -> presenter.onBottomNavItemSelected(item.getItemId()));
+    bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+      boolean isChecked = bottomNavigationView.getMenu().findItem(item.getItemId()).isChecked();
+      return presenter.onBottomNavItemSelected(item.getItemId(), isChecked);
+    });
     CoordinatorLayout.LayoutParams layoutParams =
         (CoordinatorLayout.LayoutParams) bottomNavigationView.getLayoutParams();
     layoutParams.setBehavior(new BottomNavigationViewBehavior());
@@ -74,7 +76,8 @@ public class MainActivity extends BaseActivity
     getSupportFragmentManager().beginTransaction()
         .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
             R.animator.enter_animation, R.animator.exit_animation)
-        .replace(R.id.fragment_container, SymptomFragment.newInstance())
+        .replace(R.id.fragment_container, SymptomFragment.newInstance(),
+            SymptomFragment.class.getSimpleName())
         .commit();
   }
 
