@@ -91,15 +91,11 @@ public class ThemeFragment extends BaseFragment
   }
 
   @Override public void showLoading() {
-    if (progressBar != null) {
-      progressBar.setVisibility(View.VISIBLE);
-    }
+    progressBar.setVisibility(View.VISIBLE);
   }
 
   @Override public void hideLoading() {
-    if (progressBar != null) {
-      progressBar.setVisibility(View.GONE);
-    }
+    progressBar.setVisibility(View.GONE);
   }
 
   @Override public void refresh() {
