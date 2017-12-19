@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 import butterknife.BindView;
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
@@ -35,7 +34,6 @@ public class ThemeFragment extends BaseFragment
 
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
   @BindView(R.id.root_view) View rootView;
-  @BindView(R.id.progressbar) ProgressBar progressBar;
   @Inject @Getter CompositeDisposable compositeDisposable;
   @Inject @Getter ThemeAdapter adapter;
   @Inject @Getter ThemeAdapterView adapterView;
@@ -91,11 +89,9 @@ public class ThemeFragment extends BaseFragment
   }
 
   @Override public void showLoading() {
-    progressBar.setVisibility(View.VISIBLE);
   }
 
   @Override public void hideLoading() {
-    progressBar.setVisibility(View.GONE);
   }
 
   @Override public void refresh() {
