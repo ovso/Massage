@@ -81,6 +81,10 @@ public class AcupointsAdapter extends BaseRecyclerAdapter implements AcupointsAd
           .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
           .observeOn(AndroidSchedulers.mainThread())
           .subscribe(o -> onRecyclerItemClickListener.onRecommendClick(position, selectableItem)));
+      compositeDisposable.add(RxView.clicks(holder.recTextView)
+          .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe(o -> onRecyclerItemClickListener.onRecommendClick(position, selectableItem)));
       compositeDisposable.add(RxView.clicks(holder.favImageView)
           .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
           .observeOn(AndroidSchedulers.mainThread())
