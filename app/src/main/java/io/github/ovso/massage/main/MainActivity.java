@@ -66,6 +66,8 @@ public class MainActivity extends BaseActivity
 
     TextView versionTextView = navigationView.getHeaderView(0).findViewById(R.id.version_textview);
     versionTextView.setText(SystemUtility.getVersionName(getApplicationContext()));
+
+    bottomNavigationView.getMenu().removeItem(R.id.action_acupoints);
   }
 
   @Override public void closeDrawer() {
