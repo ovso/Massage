@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+  <WebView
+      android:id="@id/webview"
+      android:scrollbars="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      >
+  </WebView>
+  <ImageView
+      android:id="@id/zoom_out_imageview"
+      android:layout_width="?actionBarSize"
+      android:layout_height="?actionBarSize"
+      android:layout_gravity="left|center_vertical"
+      android:src="@drawable/ic_zoom_out"
+      />
+  <ImageView
+      android:id="@id/zoom_in_imageview"
+      android:layout_width="?actionBarSize"
+      android:layout_height="?actionBarSize"
+      android:layout_gravity="right|center_vertical"
+      android:src="@drawable/ic_zoom_in"
+      />
+</FrameLayout>

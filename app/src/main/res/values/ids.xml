@@ -25,4 +25,7 @@
   <item name="imageview" type="id"/>
   <item name="nav_help" type="id"/>
   <item name="ad_container" type="id"/>
+  <item name="zoom_out_imageview" type="id"/>
+  <item name="zoom_in_imageview" type="id"/>
+  <item name="scrollview" type="id"/>
 </resources>

@@ -33,13 +33,20 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
     if (isNegativeButton()) {
       builder.setNegativeButton(android.R.string.cancel, null);
     }
+    if (isNeutralButton()) {
+      builder.setNeutralButton(R.string.go_back, null);
+    }
     builder.setView(getContentView());
     builder.create();
     return builder.create();
   }
 
-  protected abstract boolean isNegativeButton();
 
+  protected boolean isNeutralButton() {
+    return false;
+  }
+
+  protected abstract boolean isNegativeButton();
   protected abstract boolean isPositiveButton();
 
   private View getContentView() {
@@ -72,6 +79,8 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
           .setOnClickListener(onPositiveClickListener());
       alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE)
           .setOnClickListener(onNegativeClickListener());
+      alertDialog.getButton(DialogInterface.BUTTON_NEUTRAL)
+          .setOnClickListener(onNeutralClickListener());
     }
   }
 
@@ -79,19 +88,31 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
 
   protected abstract void onActivityCreate(Bundle savedInstanceState);
 
-  protected abstract boolean getAttatchRoot();
+  protected boolean getAttatchRoot() {
+    return false;
+  }
 
   protected abstract @LayoutRes int getLayoutResId();
 
-  protected abstract ViewGroup getInflateRoot();
+  protected ViewGroup getInflateRoot() {
+    return null;
+  }
 
-  protected abstract boolean isDialogCancelable();
+  protected boolean isDialogCancelable() {
+    return true;
+  }
 
-  protected abstract @StringRes int getTitle();
+  protected @StringRes int getTitle() {
+    return R.string.empty;
+  }
 
   protected abstract View.OnClickListener onPositiveClickListener();
 
   protected abstract View.OnClickListener onNegativeClickListener();
+
+  protected View.OnClickListener onNeutralClickListener() {
+    return null;
+  }
 
   @Override public void onDetach() {
     super.onDetach();

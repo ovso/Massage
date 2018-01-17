@@ -14,4 +14,5 @@
   <string name="no_videos_found">영상을 찾을 수 없습니다.</string>
   <string name="help">도움말</string>
   <string name="help_long_click_video">동영상을 전체화면으로 보시려면, 동영상 버튼을 길게 눌러주세요.\n\n앱에 문제가 있거나 정보에 문제가 생겼다면 리뷰 남기시거나 메일로 연락 주시길 부탁드려요.</string>
+  <string name="go_back">뒤로가기</string>
 </resources>
