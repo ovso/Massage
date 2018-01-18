@@ -1,12 +1,13 @@
 package io.github.ovso.massage.common;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebChromeClient;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import butterknife.BindView;
 import butterknife.OnClick;
 import hugo.weaving.DebugLog;
@@ -21,6 +22,7 @@ import lombok.experimental.Accessors;
 
 public class AcuWebviewAlertDialog extends BaseAlertDialogFragment {
   @BindView(R.id.webview) WebView webview;
+  @BindView(R.id.progressbar) ProgressBar progressBar;
   @Accessors(chain = true) @Setter private String url;
   @Accessors(chain = true) @Setter private boolean flag;
 
@@ -43,6 +45,12 @@ public class AcuWebviewAlertDialog extends BaseAlertDialogFragment {
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
     WebSettings settings = webview.getSettings();
     settings.setJavaScriptEnabled(flag);// Javascript 사용하기
+    webview.setWebChromeClient(new WebChromeClient());
+    webview.setWebViewClient(new WebViewClientImpl());
+    webview.loadUrl(url);
+    progressBar.setVisibility(View.GONE);
+  }
+/*
     settings.setSupportZoom(true);
     settings.setUseWideViewPort(false);
     settings.setDisplayZoomControls(true);
@@ -50,19 +58,22 @@ public class AcuWebviewAlertDialog extends BaseAlertDialogFragment {
     settings.setBuiltInZoomControls(false);
     settings.setLoadsImagesAutomatically(true);
     settings.setSupportZoom(true);
-    webview.setWebChromeClient(new WebChromeClient());
-    webview.setWebViewClient(new WebViewClientImpl());
-    //webview.setOnTouchListener((view, motionEvent) -> true);
-    webview.loadUrl(url);
-  }
 
+ */
   private class WebViewClientImpl extends WebViewClient {
-    @DebugLog @Override public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-      return super.shouldOverrideUrlLoading(view, request);
+    @Override public void onPageStarted(WebView view, String url, Bitmap favicon) {
+      super.onPageStarted(view, url, favicon);
+      progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override public void onPageFinished(WebView view, String url) {
+      super.onPageFinished(view, url);
+      progressBar.setVisibility(View.GONE);
     }
   }
 
-  @DebugLog @OnClick({ R.id.zoom_in_imageview, R.id.zoom_out_imageview }) void onZoomInOutClick(View view) {
+  @DebugLog @OnClick({ R.id.zoom_in_imageview, R.id.zoom_out_imageview }) void onZoomInOutClick(
+      View view) {
     int id = view.getId();
     switch (id) {
       case R.id.zoom_in_imageview:
