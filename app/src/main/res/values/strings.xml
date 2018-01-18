@@ -15,4 +15,5 @@
   <string name="help">도움말</string>
   <string name="help_long_click_video">동영상을 전체화면으로 보시려면, 동영상 버튼을 길게 눌러주세요.\n\n앱에 문제가 있거나 정보에 문제가 생겼다면 리뷰 남기시거나 메일로 연락 주시길 부탁드려요.</string>
   <string name="go_back">뒤로가기</string>
+  <string name="help_webview_image">이미지를 확대 하시려면,   1. 이미지 클릭 2. 이미지 우측 하단 확대 아이콘 클릭하여 이미지 화면 접속 3.+, - 버튼 누르기  하시면 됩니다.</string>
 </resources>

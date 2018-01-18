@@ -72,7 +72,7 @@ public class AcuWebviewAlertDialog extends BaseAlertDialogFragment {
     }
   }
 
-  @DebugLog @OnClick({ R.id.zoom_in_imageview, R.id.zoom_out_imageview }) void onZoomInOutClick(
+  @OnClick({ R.id.zoom_in_imageview, R.id.zoom_out_imageview }) void onZoomInOutClick(
       View view) {
     int id = view.getId();
     switch (id) {
@@ -84,7 +84,9 @@ public class AcuWebviewAlertDialog extends BaseAlertDialogFragment {
         break;
     }
   }
+  @DebugLog @OnClick(R.id.help_button) void onHelpClick() {
 
+  }
   @Override protected int getLayoutResId() {
     return R.layout.dialog_acu_webview;
   }
@@ -104,4 +106,5 @@ public class AcuWebviewAlertDialog extends BaseAlertDialogFragment {
       }
     };
   }
+
 }

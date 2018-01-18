@@ -28,4 +28,5 @@
   <item name="zoom_out_imageview" type="id"/>
   <item name="zoom_in_imageview" type="id"/>
   <item name="scrollview" type="id"/>
+  <item name="help_button" type="id"/>
 </resources>
