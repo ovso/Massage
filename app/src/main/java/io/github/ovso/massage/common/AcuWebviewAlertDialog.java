@@ -1,7 +1,9 @@
 package io.github.ovso.massage.common;
 
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -9,8 +11,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import butterknife.BindView;
-import butterknife.OnClick;
-import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.framework.customview.BaseAlertDialogFragment;
 import lombok.Setter;
@@ -21,13 +21,14 @@ import lombok.experimental.Accessors;
  */
 
 public class AcuWebviewAlertDialog extends BaseAlertDialogFragment {
+
   @BindView(R.id.webview) WebView webview;
   @BindView(R.id.progressbar) ProgressBar progressBar;
   @Accessors(chain = true) @Setter private String url;
   @Accessors(chain = true) @Setter private boolean flag;
 
   @Override protected boolean isNegativeButton() {
-    return false;
+    return true;
   }
 
   @Override protected boolean isPositiveButton() {
@@ -44,22 +45,15 @@ public class AcuWebviewAlertDialog extends BaseAlertDialogFragment {
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
     WebSettings settings = webview.getSettings();
-    settings.setJavaScriptEnabled(flag);// Javascript 사용하기
+    settings.setJavaScriptEnabled(flag);
+    settings.setBuiltInZoomControls(true);
+
     webview.setWebChromeClient(new WebChromeClient());
     webview.setWebViewClient(new WebViewClientImpl());
     webview.loadUrl(url);
     progressBar.setVisibility(View.GONE);
   }
-/*
-    settings.setSupportZoom(true);
-    settings.setUseWideViewPort(false);
-    settings.setDisplayZoomControls(true);
-    settings.setJavaScriptCanOpenWindowsAutomatically(true);
-    settings.setBuiltInZoomControls(false);
-    settings.setLoadsImagesAutomatically(true);
-    settings.setSupportZoom(true);
 
- */
   private class WebViewClientImpl extends WebViewClient {
     @Override public void onPageStarted(WebView view, String url, Bitmap favicon) {
       super.onPageStarted(view, url, favicon);
@@ -72,21 +66,6 @@ public class AcuWebviewAlertDialog extends BaseAlertDialogFragment {
     }
   }
 
-  @OnClick({ R.id.zoom_in_imageview, R.id.zoom_out_imageview }) void onZoomInOutClick(
-      View view) {
-    int id = view.getId();
-    switch (id) {
-      case R.id.zoom_in_imageview:
-        webview.zoomIn();
-        break;
-      case R.id.zoom_out_imageview:
-        webview.zoomOut();
-        break;
-    }
-  }
-  @DebugLog @OnClick(R.id.help_button) void onHelpClick() {
-
-  }
   @Override protected int getLayoutResId() {
     return R.layout.dialog_acu_webview;
   }
@@ -96,7 +75,10 @@ public class AcuWebviewAlertDialog extends BaseAlertDialogFragment {
   }
 
   @Override protected View.OnClickListener onNegativeClickListener() {
-    return null;
+    return view -> new AlertDialog.Builder(getContext()).setTitle(R.string.how_to_zoom_img)
+        .setMessage(R.string.help_webview_image)
+        .setPositiveButton(android.R.string.ok, null)
+        .show();
   }
 
   @Override protected View.OnClickListener onNeutralClickListener() {
@@ -107,4 +89,9 @@ public class AcuWebviewAlertDialog extends BaseAlertDialogFragment {
     };
   }
 
+  @Override public void onStart() {
+    super.onStart();
+    alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setText(R.string.how_to_zoom_img);
+    alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setText(R.string.close);
+  }
 }

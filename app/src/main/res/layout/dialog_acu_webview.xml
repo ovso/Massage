@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
@@ -13,53 +12,10 @@
       android:scrollbars="vertical"
       >
   </WebView>
-  <ImageView
-      android:id="@id/zoom_out_imageview"
-      android:layout_width="?actionBarSize"
-      android:layout_height="?actionBarSize"
-      android:layout_gravity="left|bottom"
-      android:src="@drawable/ic_zoom_out"
-      />
-  <ImageView
-      android:id="@id/zoom_in_imageview"
-      android:layout_width="?actionBarSize"
-      android:layout_height="?actionBarSize"
-      android:layout_gravity="right|bottom"
-      android:src="@drawable/ic_zoom_in"
-
-      />
   <ProgressBar
       android:id="@id/progressbar"
       android:layout_width="@dimen/dp_34"
       android:layout_height="@dimen/dp_34"
       android:layout_gravity="center"
       />
-  <!--
-    <ProgressBar
-        android:id="@id/progressbar"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_8"
-        android:layout_gravity="top"
-        android:background="@android:color/transparent"
-        android:progress="20"
-        android:progressDrawable="@drawable/webview_progress"
-        />
-   -->
-  <Button
-      android:id="@id/help_button"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="bottom|center_horizontal"
-      />
-<!--
-  <TextView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_gravity="bottom"
-      android:textColor="@color/colorAccent"
-      tools:text="이미지를 확대 하시려면, \n\n1. 이미지 클릭\n2. 이미지 우측 하단 확대 아이콘 클릭하여 이미지 화면 접속\n3.+, - 버튼 누르기\n\n하시면 됩니다."
-      android:text="@string/help_webview_image"
-      />
--->
 </FrameLayout>
