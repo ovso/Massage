@@ -40,6 +40,7 @@ public class WebviewAlertDialog extends BaseAlertDialogFragment {
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
     WebSettings settings = webview.getSettings();
     settings.setJavaScriptEnabled(flag);// Javascript 사용하기
+    settings.setBuiltInZoomControls(true);
     webview.setWebChromeClient(new WebChromeClient());
     webview.setWebViewClient(new WebViewClient(){
       @Override public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -52,7 +53,7 @@ public class WebviewAlertDialog extends BaseAlertDialogFragment {
         progressBar.setVisibility(View.GONE);
       }
     });
-    webview.setOnTouchListener((view, motionEvent) -> true);
+    //webview.setOnTouchListener((view, motionEvent) -> true);
     webview.loadUrl(url);
     progressBar.setVisibility(View.GONE);
   }
