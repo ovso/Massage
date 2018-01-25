@@ -11,6 +11,7 @@ import timber.log.Timber;
  */
 
 public class ImagesActivity extends BaseActivity {
+
   @Override protected int getLayoutResId() {
     return R.layout.activity_images;
   }
@@ -23,6 +24,8 @@ public class ImagesActivity extends BaseActivity {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     if (getIntent().hasExtra("items")) {
       Timber.d("Items");
+
+
     }
   }
 
