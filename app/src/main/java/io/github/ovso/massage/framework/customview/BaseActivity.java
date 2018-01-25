@@ -29,6 +29,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     unbinder = ButterKnife.bind(this);
     setSupportActionBar(toolbar);
     setNavigationBarColor();
+    onCreated(savedInstanceState);
   }
 
   private void setNavigationBarColor() {
@@ -45,4 +46,8 @@ public abstract class BaseActivity extends AppCompatActivity {
   protected abstract int getLayoutResId();
 
   protected abstract boolean isDagger();
+
+  protected void onCreated(Bundle savedInstanceState) {
+
+  }
 }

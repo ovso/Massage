@@ -45,7 +45,7 @@ public class AcuWebviewAlertDialog extends BaseAlertDialogFragment {
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
     WebSettings settings = webview.getSettings();
-    settings.setJavaScriptEnabled(flag);
+    settings.setJavaScriptEnabled(true);
     settings.setBuiltInZoomControls(true);
 
     webview.setWebChromeClient(new WebChromeClient());
@@ -57,12 +57,16 @@ public class AcuWebviewAlertDialog extends BaseAlertDialogFragment {
   private class WebViewClientImpl extends WebViewClient {
     @Override public void onPageStarted(WebView view, String url, Bitmap favicon) {
       super.onPageStarted(view, url, favicon);
-      progressBar.setVisibility(View.VISIBLE);
+      if (progressBar != null) {
+        progressBar.setVisibility(View.VISIBLE);
+      }
     }
 
     @Override public void onPageFinished(WebView view, String url) {
       super.onPageFinished(view, url);
-      progressBar.setVisibility(View.GONE);
+      if (progressBar != null) {
+        progressBar.setVisibility(View.GONE);
+      }
     }
   }
 

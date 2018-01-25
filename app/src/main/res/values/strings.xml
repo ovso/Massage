@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name">마사지(지압)앱</string>
+  <string name="app_name">지압(마사지) 앱</string>
   <string name="navigation_drawer_open">Open navigation drawer</string>
   <string name="navigation_drawer_close">Close navigation drawer</string>
   <string name="symptom">증상별</string>
@@ -15,7 +15,8 @@
   <string name="help">도움말</string>
   <string name="help_long_click_video">동영상을 전체화면으로 보시려면, 동영상 버튼을 길게 눌러주세요.\n\n앱에 문제가 있거나 정보에 문제가 생겼다면 리뷰 남기시거나 메일로 연락 주시길 부탁드려요.</string>
   <string name="go_back">뒤로가기</string>
-  <string name="help_webview_image">1. 이미지 클릭\n2. 이미지 우측 하단의 (작은)확대 아이콘 클릭\n3. 이미지 화면 접속 후\n4. 이미지를 손가락으로 키우거나 줄이기</string>
-  <string name="how_to_zoom_img">이미지 확대 방법</string>
+  <string name="help_webview_image">1. 손으로 화면을 확대할 수 있어요\n2. 이미지는 클릭한 후 확대할 수 있어요\n
+  \n* 둘 다 안되면, 페이지 자체에서 막아 놓았기 때문에 어쩔 수..;;</string>
+  <string name="how_to_zoom_img">손으로 확대할 수 있어요</string>
   <string name="close">닫기</string>
 </resources>

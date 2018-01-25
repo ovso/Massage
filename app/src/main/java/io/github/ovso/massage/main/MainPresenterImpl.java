@@ -26,7 +26,7 @@ public class MainPresenterImpl extends Exception implements MainPresenter {
   private CompositeDisposable compositeDisposable;
   private DatabaseReference databaseReference;
 
-  @Inject MainPresenterImpl(MainPresenter.View view) {
+  @Inject public MainPresenterImpl(MainPresenter.View view) {
     this.view = view;
     this.compositeDisposable = new CompositeDisposable();
     this.databaseReference = FirebaseDatabase.getInstance().getReference().child("licenses");
