@@ -4,7 +4,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import butterknife.BindView;
@@ -20,7 +19,6 @@ import io.github.ovso.massage.R;
 public abstract class BaseActivity extends AppCompatActivity {
   private Unbinder unbinder;
   protected @BindView(R.id.toolbar) Toolbar toolbar;
-  protected @BindView(R.id.drawer_layout) DrawerLayout drawer;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     if (isDagger()) AndroidInjection.inject(this);

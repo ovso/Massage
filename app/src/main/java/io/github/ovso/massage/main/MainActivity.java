@@ -8,6 +8,7 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ public class MainActivity extends BaseActivity
     implements MainPresenter.View, HasSupportFragmentInjector {
 
   @Inject MainPresenter presenter;
+  @BindView(R.id.drawer_layout) DrawerLayout drawer;
   @BindView(R.id.fragment_container) FrameLayout fragmentContainer;
   @BindView(R.id.bottom_navigation_view) BottomNavigationView bottomNavigationView;
   @BindView(R.id.navigation_view) NavigationView navigationView;

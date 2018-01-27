@@ -19,4 +19,12 @@
   \n* 둘 다 안되면, 페이지 자체에서 막아 놓았기 때문에 어쩔 수..;;</string>
   <string name="how_to_zoom_img">손으로 확대할 수 있어요</string>
   <string name="close">닫기</string>
+  <string name="shr_product_category">Best Gifts for Teen Girls</string>
+  <string name="shr_product_description">
+        Choose fun, exciting, and unique gifts every girl will love.
+    </string>
+  <string name="shr_category_clothing">Clothing</string>
+  <string name="shr_category_home">Home</string>
+  <string name="shr_category_popsicles">Popsicles</string>
+
 </resources>
