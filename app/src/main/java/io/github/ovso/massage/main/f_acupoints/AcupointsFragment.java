@@ -1,6 +1,7 @@
 package io.github.ovso.massage.main.f_acupoints;
 
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -13,8 +14,8 @@ import io.github.ovso.massage.common.ImageViewAlertDialog;
 import io.github.ovso.massage.framework.Constants;
 import io.github.ovso.massage.framework.adapter.BaseAdapterView;
 import io.github.ovso.massage.framework.customview.BaseFragment;
-import io.github.ovso.massage.framework.listener.OnRecyclerItemClickListener;
 import io.github.ovso.massage.main.f_acupoints.adapter.ImagesAdapter;
+import io.github.ovso.massage.main.f_acupoints.adapter.OnAcuRecyclerItemClickListener;
 import io.github.ovso.massage.main.f_acupoints.model.Documents;
 import io.reactivex.disposables.CompositeDisposable;
 import javax.inject.Inject;
@@ -26,7 +27,7 @@ import lombok.Getter;
  */
 
 public class AcupointsFragment extends BaseFragment
-    implements AcupointsPresenter.View, OnRecyclerItemClickListener<Documents> {
+    implements AcupointsPresenter.View, OnAcuRecyclerItemClickListener<Documents> {
 
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
   @BindView(R.id.progressbar) ProgressBar progressBar;
@@ -90,8 +91,19 @@ public class AcupointsFragment extends BaseFragment
     presenter.onItemClick(item);
   }
 
+  @Override public void onDocUrlItemClick(Documents item) {
+    presenter.onDocUrlItemClick(item);
+  }
+
   @Override public void showImageViewDialog(String image_url) {
     new ImageViewAlertDialog().setImageUrl(image_url)
         .show(getFragmentManager(), ImageViewAlertDialog.class.getSimpleName());
+  }
+
+  @Override public void showWebViewDialog(String doc_url) {
+    new AlertDialog.Builder(getContext()).setTitle(R.string.origin)
+        .setMessage(doc_url)
+        .setPositiveButton(android.R.string.ok, null)
+        .show();
   }
 }

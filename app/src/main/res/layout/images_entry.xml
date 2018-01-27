@@ -28,7 +28,7 @@
       android:orientation="vertical"
       android:padding="8dp">
     <TextView
-        android:id="@+id/price"
+        android:id="@id/title_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
@@ -47,6 +47,14 @@
         android:layout_height="48dp"
         android:layout_gravity="end"
         android:minWidth="48dp"
-        app:srcCompat="@drawable/ic_favorite_border_vd_theme_24"/>
+        app:srcCompat="@drawable/ic_favorite_border_vd_theme_24"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@id/doc_url_textview"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"
+        android:layout_gravity="end"
+        android:textColor="#0a3142"/>
+
   </LinearLayout>
 </android.support.v7.widget.CardView>

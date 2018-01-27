@@ -29,5 +29,6 @@
   <string name="acupoints">혈자리</string>
   <string name="acupoints_head">머리 혈자리</string>
   <string name="acupoints_whole_body">전신 혈자리</string>
+  <string name="origin">출처</string>
 
 </resources>

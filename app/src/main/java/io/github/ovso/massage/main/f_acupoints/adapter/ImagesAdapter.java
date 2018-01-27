@@ -9,7 +9,6 @@ import io.github.ovso.massage.di.GlideApp;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
 import io.github.ovso.massage.framework.adapter.BaseAdapterView;
 import io.github.ovso.massage.framework.adapter.BaseRecyclerAdapter;
-import io.github.ovso.massage.framework.listener.OnRecyclerItemClickListener;
 import io.github.ovso.massage.main.f_acupoints.model.Documents;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -29,7 +28,7 @@ public class ImagesAdapter extends BaseRecyclerAdapter
   private List<Documents> items = new ArrayList<>();
 
   @Accessors(chain = true) @Setter private CompositeDisposable compositeDisposable;
-  @Accessors(chain = true) @Setter private OnRecyclerItemClickListener<Documents>
+  @Accessors(chain = true) @Setter private OnAcuRecyclerItemClickListener<Documents>
       onRecyclerItemClickListener;
 
   @Override protected BaseViewHolder createViewHolder(View view, int viewType) {
@@ -51,11 +50,22 @@ public class ImagesAdapter extends BaseRecyclerAdapter
           .load(documents.getImage_url())
           .override(Target.SIZE_ORIGINAL)
           .into(holder.imageview);
-      holder.price.setText(documents.getDisplay_sitename());
+      holder.titleTextview.setText(documents.getDisplay_sitename());
+      holder.docUrlTextview.setText(documents.getDoc_url());
+      compositeDisposable.add(RxView.clicks(holder.docUrlTextview)
+          .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe(o -> onRecyclerItemClickListener.onDocUrlItemClick(documents)));
       compositeDisposable.add(RxView.clicks(holder.itemView)
           .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
           .observeOn(AndroidSchedulers.mainThread())
           .subscribe(o -> onRecyclerItemClickListener.onItemClick(documents)));
+      /*
+      compositeDisposable.add(RxView.clicks(holder.docUrlTextview)
+          .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe(o -> onRecyclerItemClickListener.onOriginItemClick(documents)));
+      */
     }
   }
 

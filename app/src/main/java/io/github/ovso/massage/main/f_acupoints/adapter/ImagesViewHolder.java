@@ -15,7 +15,8 @@ import io.github.ovso.massage.framework.adapter.BaseRecyclerAdapter;
 
 public class ImagesViewHolder extends BaseRecyclerAdapter.BaseViewHolder {
 
-  @BindView(R.id.price) TextView price;
+  @BindView(R.id.title_textview) TextView titleTextview;
+  @BindView(R.id.doc_url_textview) TextView docUrlTextview;
   @BindView(R.id.imageview) ImageView imageview;
   @BindView(R.id.favorite_button) ImageButton favoriteButton;
   @BindView(R.id.product_entry) CardView productEntry;

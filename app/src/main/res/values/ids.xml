@@ -30,4 +30,5 @@
   <item name="scrollview" type="id"/>
   <item name="help_button" type="id"/>
   <item name="favorite_button" type="id"/>
+  <item name="doc_url_textview" type="id"/>
 </resources>

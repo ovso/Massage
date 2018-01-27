@@ -16,6 +16,8 @@ public interface AcupointsPresenter {
 
   void onItemClick(Documents item);
 
+  void onDocUrlItemClick(Documents item);
+
   interface View {
 
     void setRecyclerView();
@@ -31,5 +33,7 @@ public interface AcupointsPresenter {
     void hideLoading();
 
     void showImageViewDialog(String image_url);
+
+    void showWebViewDialog(String doc_url);
   }
 }

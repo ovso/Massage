@@ -61,4 +61,9 @@ public class AcupointsPresenterImpl implements AcupointsPresenter {
   @Override public void onItemClick(Documents item) {
     view.showImageViewDialog(item.getImage_url());
   }
+
+  @Override public void onDocUrlItemClick(Documents item) {
+    view.showWebViewDialog(item.getDoc_url());
+  }
+
 }
