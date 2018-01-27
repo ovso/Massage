@@ -56,6 +56,7 @@
         android:layout_gravity="end"
         android:maxLines="1"
         android:ellipsize="end"
+        android:gravity="center"
         android:textColor="#0a3142"/>
 
   </LinearLayout>

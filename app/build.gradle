@@ -62,6 +62,7 @@ android {
       proguardFile 'proguard-guava.pro'
       proguardFile 'proguard-glide.pro'
       proguardFile 'proguard-cauly.pro'
+      proguardFile 'proguard-retrofit.pro'
     }
     debug {
       minifyEnabled false
