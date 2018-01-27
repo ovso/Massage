@@ -27,11 +27,6 @@
         android:screenOrientation="sensorLandscape"
         android:theme="@android:style/Theme.Black.NoTitleBar">
     </activity>
-    <activity
-        android:name=".main.f_acupoints.a_images.ImagesActivity"
-        android:screenOrientation="portrait"
-        android:theme="@style/AppTheme.NoActionBar">
-    </activity>
 
   </application>
 

@@ -1,29 +1,21 @@
 package io.github.ovso.massage.main.f_acupoints;
 
-import android.app.AlertDialog;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import butterknife.BindView;
-import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.common.Security;
 import io.github.ovso.massage.framework.Constants;
-import io.github.ovso.massage.framework.SelectableItem;
+import io.github.ovso.massage.framework.adapter.BaseAdapterView;
 import io.github.ovso.massage.framework.customview.BaseFragment;
-import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListener;
-import io.github.ovso.massage.main.f_acupoints.a_images.ImagesActivity;
-import io.github.ovso.massage.main.f_acupoints.adapter.AcupointsAdapter;
-import io.github.ovso.massage.main.f_acupoints.adapter.AcupointsAdapterView;
-import io.github.ovso.massage.main.f_acupoints.model.Acupoints;
+import io.github.ovso.massage.framework.listener.OnRecyclerItemClickListener;
+import io.github.ovso.massage.main.f_acupoints.adapter.ImagesAdapter;
 import io.github.ovso.massage.main.f_acupoints.model.Documents;
-import io.github.ovso.massage.youtube.FullscreenVideoActivity;
 import io.reactivex.disposables.CompositeDisposable;
-import java.util.ArrayList;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import lombok.Getter;
@@ -32,14 +24,15 @@ import lombok.Getter;
  * Created by jaeho on 2017. 10. 20
  */
 
-public class AcupointsFragment extends BaseFragment implements AcupointsPresenter.View,
-    OnCustomRecyclerItemClickListener<SelectableItem<Acupoints>> {
+public class AcupointsFragment extends BaseFragment
+    implements AcupointsPresenter.View, OnRecyclerItemClickListener<Documents> {
 
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
-  @BindView(R.id.root_view) View rootView;
+  @BindView(R.id.progressbar) ProgressBar progressBar;
   @Inject @Getter CompositeDisposable compositeDisposable;
-  @Inject @Getter AcupointsAdapter adapter;
-  @Inject @Getter AcupointsAdapterView adapterView;
+  @Inject @Getter ImagesAdapter adapter;
+  @Inject BaseAdapterView adapterView;
+
   @Inject AcupointsPresenter presenter;
 
   @Override protected int getLayoutResID() {
@@ -47,7 +40,7 @@ public class AcupointsFragment extends BaseFragment implements AcupointsPresente
   }
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
-    presenter.onActivityCreate();
+    presenter.onActivityCreate(getResources());
   }
 
   @Override protected boolean isDagger() {
@@ -60,10 +53,10 @@ public class AcupointsFragment extends BaseFragment implements AcupointsPresente
   }
 
   @Override public void setRecyclerView() {
+    recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
     recyclerView.getItemAnimator().setChangeDuration(Constants.DURATION_RECYCLERVIEW_ANI);
     recyclerView.getItemAnimator().setRemoveDuration(Constants.DURATION_RECYCLERVIEW_ANI);
     recyclerView.setItemAnimator(new SlideInDownAnimator());
-    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     recyclerView.setAdapter(adapter);
   }
 
@@ -75,70 +68,16 @@ public class AcupointsFragment extends BaseFragment implements AcupointsPresente
     Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
   }
 
-  @Override public void showYoutubeUseWarningDialog() {
-    new AlertDialog.Builder(getActivity()).setMessage(R.string.youtube_use_warning)
-        .setPositiveButton(android.R.string.ok, null)
-        .show();
-  }
-
-  @Override public void showLandscapeVideo(String videoId) {
-    Intent intent = new Intent(getContext(), FullscreenVideoActivity.class);
-    intent.putExtra("video_id", videoId);
-    startActivity(intent);
-  }
-
-  @Override public void navigateToImages(ArrayList<Documents> items) {
-    Intent intent = new Intent(getContext(), ImagesActivity.class);
-    intent.putExtra("items", items);
-    startActivity(intent);
-  }
-
-  @Override public void refreshRemove(int position) {
-    adapterView.refreshRemove(position);
-  }
-
   @Override public void showLoading() {
+    progressBar.setVisibility(View.VISIBLE);
   }
 
   @Override public void hideLoading() {
+    progressBar.setVisibility(View.GONE);
   }
 
   @Override public void refresh() {
     adapterView.refresh();
-  }
-
-  @Override public void refresh(int position) {
-    adapterView.refresh(position);
-  }
-
-  @Override public void showVideo(String videoId) {
-    int startTimeMillis = 0;
-    boolean autoPlay = true;
-    boolean lightboxMode = true;
-
-    Intent intent = YouTubeStandalonePlayer.createVideoIntent(getActivity(),
-        Security.YOUTUBE_DEVELOPER_KEY.getValue(), videoId, startTimeMillis, autoPlay,
-        lightboxMode);
-    startActivity(intent);
-  }
-
-  @DebugLog @Override public void showWebViewDialog(Acupoints item) {
-    /*
-    new AcuWebviewAlertDialog().setUrl(item.getUrl())
-        .setFlag(item.isFlag())
-        .show(getFragmentManager(), WebviewAlertDialog.class.getSimpleName());
-    */
-        /*
-    new ImageViewAlertDialog().setImageUrl(item.getUrl())
-        .show(getFragmentManager(), ImageViewAlertDialog.class.getSimpleName());
-    */
-    Intent intent = new Intent(getContext(), ImagesActivity.class);
-    intent.putExtra("title", item.getTitle());
-    startActivity(intent);
-  }
-
-  @Override public void removeRefresh() {
-    adapterView.refreshRemove();
   }
 
   @DebugLog @Override public void onDetach() {
@@ -146,23 +85,9 @@ public class AcupointsFragment extends BaseFragment implements AcupointsPresente
     presenter.onDetach();
   }
 
-  @Override public void onItemClick(SelectableItem<Acupoints> item) {
+  @DebugLog @Override public void onItemClick(Documents item) {
+    //presenter.onItemClick(item);
     presenter.onItemClick(item);
   }
 
-  @Override public void onRecommendClick(int position, SelectableItem<Acupoints> item) {
-    presenter.onRecommendClick(position, item);
-  }
-
-  @Override public void onFavoriteClick(int position, SelectableItem<Acupoints> item) {
-    presenter.onFavoriteClick(position, item);
-  }
-
-  @Override public void onVideoClick(int position, SelectableItem<Acupoints> item) {
-    presenter.onVideoClick(position, item);
-  }
-
-  @Override public void onItemLongClick(SelectableItem<Acupoints> item) {
-    presenter.onVideoLongClick(item);
-  }
 }

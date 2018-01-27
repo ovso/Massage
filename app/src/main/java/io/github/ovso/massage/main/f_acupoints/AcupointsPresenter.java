@@ -1,10 +1,8 @@
 package io.github.ovso.massage.main.f_acupoints;
 
+import android.content.res.Resources;
 import android.support.annotation.StringRes;
-import io.github.ovso.massage.framework.SelectableItem;
-import io.github.ovso.massage.main.f_acupoints.model.Acupoints;
 import io.github.ovso.massage.main.f_acupoints.model.Documents;
-import java.util.ArrayList;
 
 /**
  * Created by jaeho on 2017. 11. 27
@@ -12,19 +10,11 @@ import java.util.ArrayList;
 
 public interface AcupointsPresenter {
 
-  void onActivityCreate();
+  void onActivityCreate(Resources res);
 
   void onDetach();
 
-  void onItemClick(SelectableItem<Acupoints> item);
-
-  void onRecommendClick(int position, SelectableItem<Acupoints> item);
-
-  void onFavoriteClick(int position, SelectableItem<Acupoints> item);
-
-  void onVideoClick(int position, SelectableItem<Acupoints> item);
-
-  void onVideoLongClick(SelectableItem<Acupoints> item);
+  void onItemClick(Documents item);
 
   interface View {
 
@@ -34,26 +24,10 @@ public interface AcupointsPresenter {
 
     void refresh();
 
-    void refresh(int position);
-
-    void showVideo(String videoId);
-
-    void showWebViewDialog(Acupoints item);
-
-    void removeRefresh();
-
     void showMessage(String msg);
-
-    void refreshRemove(int position);
 
     void showLoading();
 
     void hideLoading();
-
-    void showYoutubeUseWarningDialog();
-
-    void showLandscapeVideo(String videoId);
-
-    void navigateToImages(ArrayList<Documents> items);
   }
 }

@@ -8,8 +8,6 @@ import dagger.android.AndroidInjector;
 import dagger.multibindings.IntoMap;
 import io.github.ovso.massage.main.MainActivity;
 import io.github.ovso.massage.main.di.MainActivityComponent;
-import io.github.ovso.massage.main.f_acupoints.a_images.ImagesActivity;
-import io.github.ovso.massage.main.f_acupoints.a_images.di.ImagesActivityComponent;
 
 /**
  * Created by jaeho on 2017. 10. 16
@@ -20,7 +18,4 @@ import io.github.ovso.massage.main.f_acupoints.a_images.di.ImagesActivityCompone
   abstract AndroidInjector.Factory<? extends Activity> bindMainActivity(
       MainActivityComponent.Builder builder);
 
-  @Binds @IntoMap @ActivityKey(ImagesActivity.class)
-  abstract AndroidInjector.Factory<? extends Activity> bindImagesActivity(
-      ImagesActivityComponent.Builder builder);
 }
