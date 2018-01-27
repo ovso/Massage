@@ -42,6 +42,7 @@
         android:layout_height="match_parent"
         app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
         style="@style/Widget.Shrine.CollapsingToolbar"
+        android:background="@color/colorAccent"
         >
 
       <ImageView
