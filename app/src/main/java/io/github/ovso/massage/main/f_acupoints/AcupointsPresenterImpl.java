@@ -33,10 +33,11 @@ public class AcupointsPresenterImpl implements AcupointsPresenter {
     view.setRecyclerView();
     view.showLoading();
 
-    String query1 = res.getString(R.string.acupoints);
-    String query2 = res.getString(R.string.acupoints_head);
-    String query3 = res.getString(R.string.acupoints_whole_body);
-    compositeDisposable.add(Single.merge(getImages(query1), getImages(query2), getImages(query3))
+    String query1 = res.getString(R.string.query1);
+    String query2 = res.getString(R.string.query2);
+    String query3 = res.getString(R.string.query3);
+    String query4 = res.getString(R.string.query4);
+    compositeDisposable.add(Single.merge(getImages(query1), getImages(query2), getImages(query3),getImages(query4))
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(documents -> {
           adapterDataModel.addAll(documents);
