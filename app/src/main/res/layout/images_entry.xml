@@ -54,6 +54,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_48"
         android:layout_gravity="end"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:textColor="#0a3142"/>
 
   </LinearLayout>

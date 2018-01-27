@@ -60,12 +60,6 @@ public class ImagesAdapter extends BaseRecyclerAdapter
           .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
           .observeOn(AndroidSchedulers.mainThread())
           .subscribe(o -> onRecyclerItemClickListener.onItemClick(documents)));
-      /*
-      compositeDisposable.add(RxView.clicks(holder.docUrlTextview)
-          .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
-          .observeOn(AndroidSchedulers.mainThread())
-          .subscribe(o -> onRecyclerItemClickListener.onOriginItemClick(documents)));
-      */
     }
   }
 
