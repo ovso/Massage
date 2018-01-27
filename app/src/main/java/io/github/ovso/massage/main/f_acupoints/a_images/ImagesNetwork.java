@@ -19,6 +19,6 @@ public class ImagesNetwork extends NetworkHelper<ImagesApi> {
   }
 
   public Single<DResult> getImages(String query) {
-    return getApi().getImages(query, "accuracy", 1, 10);
+    return getApi().getImages("혈자리", "accuracy", 1, 50);
   }
 }

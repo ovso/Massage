@@ -48,7 +48,7 @@ public class ImagesAdapter extends BaseRecyclerAdapter
 
       //holder.setIsRecyclable(false);
       GlideApp.with(context)
-          .load(documents.getDoc_url())
+          .load(documents.getImage_url())
           .override(Target.SIZE_ORIGINAL)
           .into(holder.imageview);
       holder.price.setText(documents.getDisplay_sitename());
