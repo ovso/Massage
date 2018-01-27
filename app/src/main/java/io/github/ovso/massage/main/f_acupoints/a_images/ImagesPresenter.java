@@ -10,8 +10,12 @@ public interface ImagesPresenter {
 
   void onCreated(Intent intent);
 
+  void onDestroy();
+
   interface View {
 
     void setRecyclerView();
+
+    void refresh();
   }
 }

@@ -26,13 +26,13 @@ import de.psdev.licensesdialog.LicensesDialog;
 import de.psdev.licensesdialog.model.Notices;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.main.f_acupoints.AcupointsFragment;
-import io.github.ovso.massage.main.f_symptom.SymptomFragment;
-import io.github.ovso.massage.main.f_theme.ThemeFragment;
-import io.github.ovso.massage.framework.Constants;
+import io.github.ovso.massage.common.Security;
 import io.github.ovso.massage.framework.SystemUtility;
 import io.github.ovso.massage.framework.customview.BaseActivity;
 import io.github.ovso.massage.framework.customview.BottomNavigationViewBehavior;
+import io.github.ovso.massage.main.f_acupoints.AcupointsFragment;
+import io.github.ovso.massage.main.f_symptom.SymptomFragment;
+import io.github.ovso.massage.main.f_theme.ThemeFragment;
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity
@@ -144,7 +144,7 @@ public class MainActivity extends BaseActivity
 
   @Override public void showAd() {
     CaulyAdView view;
-    CaulyAdInfo info = new CaulyAdInfoBuilder(Constants.CAULY_APP_CODE).effect(
+    CaulyAdInfo info = new CaulyAdInfoBuilder(Security.CAULY_APP_CODE.getValue()).effect(
         CaulyAdInfo.Effect.Circle.toString()).build();
     view = new CaulyAdView(this);
     view.setAdInfo(info);

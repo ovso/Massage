@@ -12,6 +12,7 @@ import butterknife.BindView;
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
+import io.github.ovso.massage.common.Security;
 import io.github.ovso.massage.common.WebviewAlertDialog;
 import io.github.ovso.massage.main.f_theme.adapter.ThemeAdapter;
 import io.github.ovso.massage.main.f_theme.adapter.ThemeAdapterView;
@@ -111,9 +112,9 @@ public class ThemeFragment extends BaseFragment
     boolean autoPlay = true;
     boolean lightboxMode = true;
 
-    Intent intent =
-        YouTubeStandalonePlayer.createVideoIntent(getActivity(), Constants.DEVELOPER_KEY, videoId,
-            startTimeMillis, autoPlay, lightboxMode);
+    Intent intent = YouTubeStandalonePlayer.createVideoIntent(getActivity(),
+        Security.YOUTUBE_DEVELOPER_KEY.getValue(), videoId, startTimeMillis, autoPlay,
+        lightboxMode);
     startActivity(intent);
   }
 

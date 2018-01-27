@@ -1,13 +1,21 @@
 package io.github.ovso.massage.main.f_acupoints.a_images.adapter;
 
+import android.content.Context;
 import android.view.View;
+import com.bumptech.glide.request.target.Target;
+import com.jakewharton.rxbinding2.view.RxView;
 import io.github.ovso.massage.R;
+import io.github.ovso.massage.di.GlideApp;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
+import io.github.ovso.massage.framework.adapter.BaseAdapterView;
 import io.github.ovso.massage.framework.adapter.BaseRecyclerAdapter;
+import io.github.ovso.massage.framework.listener.OnRecyclerItemClickListener;
 import io.github.ovso.massage.main.f_acupoints.model.Documents;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -16,11 +24,13 @@ import lombok.experimental.Accessors;
  */
 
 public class ImagesAdapter extends BaseRecyclerAdapter
-    implements ImagesAdapterView, BaseAdapterDataModel<Documents> {
+    implements BaseAdapterView, BaseAdapterDataModel<Documents> {
 
   private List<Documents> items = new ArrayList<>();
 
-  @Accessors(chain = true) private @Setter CompositeDisposable compositeDisposable;
+  @Accessors(chain = true) @Setter private CompositeDisposable compositeDisposable;
+  @Accessors(chain = true) @Setter private OnRecyclerItemClickListener<Documents>
+      onRecyclerItemClickListener;
 
   @Override protected BaseViewHolder createViewHolder(View view, int viewType) {
     return new ImagesViewHolder(view);
@@ -31,21 +41,21 @@ public class ImagesAdapter extends BaseRecyclerAdapter
   }
 
   @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
-    //final Context context = viewHolder.itemView.getContext();
+    final Context context = viewHolder.itemView.getContext();
     if (viewHolder instanceof ImagesViewHolder) {
       ImagesViewHolder holder = (ImagesViewHolder) viewHolder;
-      Documents documents = items.get(position);
+      final Documents documents = items.get(position);
 
       //holder.setIsRecyclable(false);
-
-      //holder.titleTextview.setText(documents.get);
-
-      /*
+      GlideApp.with(context)
+          .load(documents.getDoc_url())
+          .override(Target.SIZE_ORIGINAL)
+          .into(holder.imageview);
+      holder.price.setText(documents.getDisplay_sitename());
       compositeDisposable.add(RxView.clicks(holder.itemView)
           .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
           .observeOn(AndroidSchedulers.mainThread())
-          .subscribe(o -> onRecyclerItemClickListener.onItemClick(selectableItem)));
-      */
+          .subscribe(o -> onRecyclerItemClickListener.onItemClick(documents)));
     }
   }
 
@@ -83,17 +93,5 @@ public class ImagesAdapter extends BaseRecyclerAdapter
 
   @Override public void refresh() {
     notifyItemRangeChanged(0, getSize());
-  }
-
-  @Override public void refresh(int position) {
-    notifyItemChanged(position);
-  }
-
-  @Override public void refreshRemove() {
-    notifyItemRangeRemoved(0, getSize());
-  }
-
-  @Override public void refreshRemove(int position) {
-    notifyItemRemoved(position);
   }
 }
