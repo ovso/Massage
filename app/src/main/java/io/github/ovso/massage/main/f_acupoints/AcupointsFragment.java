@@ -9,6 +9,7 @@ import android.widget.Toast;
 import butterknife.BindView;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
+import io.github.ovso.massage.common.ImageViewAlertDialog;
 import io.github.ovso.massage.framework.Constants;
 import io.github.ovso.massage.framework.adapter.BaseAdapterView;
 import io.github.ovso.massage.framework.customview.BaseFragment;
@@ -85,9 +86,12 @@ public class AcupointsFragment extends BaseFragment
     presenter.onDetach();
   }
 
-  @DebugLog @Override public void onItemClick(Documents item) {
-    //presenter.onItemClick(item);
+  @Override public void onItemClick(Documents item) {
     presenter.onItemClick(item);
   }
 
+  @Override public void showImageViewDialog(String image_url) {
+    new ImageViewAlertDialog().setImageUrl(image_url)
+        .show(getFragmentManager(), ImageViewAlertDialog.class.getSimpleName());
+  }
 }

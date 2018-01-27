@@ -1,7 +1,6 @@
 package io.github.ovso.massage.main.f_acupoints;
 
 import android.content.res.Resources;
-import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
 import io.github.ovso.massage.main.f_acupoints.model.Documents;
@@ -59,7 +58,7 @@ public class AcupointsPresenterImpl implements AcupointsPresenter {
     compositeDisposable.clear();
   }
 
-  @DebugLog @Override public void onItemClick(Documents item) {
-
+  @Override public void onItemClick(Documents item) {
+    view.showImageViewDialog(item.getImage_url());
   }
 }

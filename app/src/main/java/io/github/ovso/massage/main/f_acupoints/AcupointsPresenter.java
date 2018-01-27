@@ -29,5 +29,7 @@ public interface AcupointsPresenter {
     void showLoading();
 
     void hideLoading();
+
+    void showImageViewDialog(String image_url);
   }
 }
