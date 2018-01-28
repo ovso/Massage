@@ -15,9 +15,9 @@ public interface MainPresenter {
 
   boolean onNavItemSelected(@IdRes int itemId);
 
-  boolean onBottomNavItemSelected(@IdRes int itemId);
-
   void onBackPressed(boolean isDrawerOpen);
+
+  boolean onBottomNavItemSelected(@IdRes int itemId, boolean isChecked);
 
   interface View {
 

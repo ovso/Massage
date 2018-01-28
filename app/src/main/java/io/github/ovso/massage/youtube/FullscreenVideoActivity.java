@@ -9,7 +9,7 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerFragment;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.framework.Constants;
+import io.github.ovso.massage.common.Security;
 
 /**
  * Created by jaeho on 2017. 9. 7
@@ -24,7 +24,7 @@ public class FullscreenVideoActivity extends Activity {
     if (getIntent().hasExtra("video_id")) {
       YouTubePlayerFragment youTubePlayerFragment =
           (YouTubePlayerFragment) getFragmentManager().findFragmentById(R.id.youtube_fragment);
-      youTubePlayerFragment.initialize(Constants.DEVELOPER_KEY,
+      youTubePlayerFragment.initialize(Security.YOUTUBE_DEVELOPER_KEY.getValue(),
           new YouTubePlayer.OnInitializedListener() {
             @Override public void onInitializationSuccess(YouTubePlayer.Provider provider,
                 YouTubePlayer youTubePlayer, boolean b) {
@@ -40,5 +40,4 @@ public class FullscreenVideoActivity extends Activity {
       onBackPressed();
     }
   }
-
 }

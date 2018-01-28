@@ -26,7 +26,7 @@ public class MainPresenterImpl extends Exception implements MainPresenter {
   private CompositeDisposable compositeDisposable;
   private DatabaseReference databaseReference;
 
-  @Inject MainPresenterImpl(MainPresenter.View view) {
+  @Inject public MainPresenterImpl(MainPresenter.View view) {
     this.view = view;
     this.compositeDisposable = new CompositeDisposable();
     this.databaseReference = FirebaseDatabase.getInstance().getReference().child("licenses");
@@ -75,17 +75,19 @@ public class MainPresenterImpl extends Exception implements MainPresenter {
     return true;
   }
 
-  @Override public boolean onBottomNavItemSelected(@IdRes int itemId) {
-    switch (itemId) {
-      case R.id.action_symptom:
-        view.showSymptomFragment();
-        break;
-      case R.id.action_theme:
-        view.showThemeFrgament();
-        break;
-      case R.id.action_acupoints:
-        view.showAcupoints();
-        break;
+  @Override public boolean onBottomNavItemSelected(@IdRes int itemId, boolean isChecked) {
+    if (!isChecked) {
+      switch (itemId) {
+        case R.id.action_symptom:
+          view.showSymptomFragment();
+          break;
+        case R.id.action_theme:
+          view.showThemeFrgament();
+          break;
+        case R.id.action_acupoints:
+          view.showAcupoints();
+          break;
+      }
     }
     return true;
   }

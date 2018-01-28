@@ -20,6 +20,5 @@
       android:layout_width="@dimen/dp_34"
       android:layout_height="@dimen/dp_34"
       android:layout_gravity="center"
-      android:visibility="gone"
-      />
+      android:visibility="gone"/>
 </FrameLayout>

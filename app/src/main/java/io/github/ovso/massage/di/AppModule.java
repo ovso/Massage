@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import dagger.Module;
 import dagger.Provides;
-import io.github.ovso.massage.main.MainActivityComponent;
+import io.github.ovso.massage.main.di.MainActivityComponent;
 import javax.inject.Singleton;
 
 /**

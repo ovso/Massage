@@ -62,6 +62,7 @@ android {
       proguardFile 'proguard-guava.pro'
       proguardFile 'proguard-glide.pro'
       proguardFile 'proguard-cauly.pro'
+      proguardFile 'proguard-retrofit.pro'
     }
     debug {
       minifyEnabled false
@@ -124,6 +125,13 @@ dependencies {
   implementation "com.github.bumptech.glide:glide:$glide_version"
   annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
   compile "com.github.chrisbanes:PhotoView:$photoview_version"
+  compile "com.squareup.retrofit2:retrofit:$retrofit_version"
+  compile "com.squareup.retrofit2:converter-gson:$retrofit_version"
+  compile "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+  compile "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
+  compile "com.squareup.okhttp3:okhttp:$okhttp3_version"
+
+
 }
 
 // ADD THIS AT THE BOTTOM

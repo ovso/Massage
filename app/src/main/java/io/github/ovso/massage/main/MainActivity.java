@@ -8,6 +8,7 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.view.ViewGroup;
@@ -25,19 +26,20 @@ import de.psdev.licensesdialog.LicensesDialog;
 import de.psdev.licensesdialog.model.Notices;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.f_acupoints.AcupointsFragment;
-import io.github.ovso.massage.f_symptom.SymptomFragment;
-import io.github.ovso.massage.f_theme.ThemeFragment;
-import io.github.ovso.massage.framework.Constants;
+import io.github.ovso.massage.common.Security;
 import io.github.ovso.massage.framework.SystemUtility;
 import io.github.ovso.massage.framework.customview.BaseActivity;
 import io.github.ovso.massage.framework.customview.BottomNavigationViewBehavior;
+import io.github.ovso.massage.main.f_acupoints.AcupointsFragment;
+import io.github.ovso.massage.main.f_symptom.SymptomFragment;
+import io.github.ovso.massage.main.f_theme.ThemeFragment;
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity
     implements MainPresenter.View, HasSupportFragmentInjector {
 
   @Inject MainPresenter presenter;
+  @BindView(R.id.drawer_layout) DrawerLayout drawer;
   @BindView(R.id.fragment_container) FrameLayout fragmentContainer;
   @BindView(R.id.bottom_navigation_view) BottomNavigationView bottomNavigationView;
   @BindView(R.id.navigation_view) NavigationView navigationView;
@@ -56,14 +58,18 @@ public class MainActivity extends BaseActivity
     toggle.syncState();
     navigationView.setNavigationItemSelectedListener(
         item -> presenter.onNavItemSelected(item.getItemId()));
-    bottomNavigationView.setOnNavigationItemSelectedListener(
-        item -> presenter.onBottomNavItemSelected(item.getItemId()));
+    bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+      boolean isChecked = bottomNavigationView.getMenu().findItem(item.getItemId()).isChecked();
+      return presenter.onBottomNavItemSelected(item.getItemId(), isChecked);
+    });
     CoordinatorLayout.LayoutParams layoutParams =
         (CoordinatorLayout.LayoutParams) bottomNavigationView.getLayoutParams();
     layoutParams.setBehavior(new BottomNavigationViewBehavior());
 
     TextView versionTextView = navigationView.getHeaderView(0).findViewById(R.id.version_textview);
     versionTextView.setText(SystemUtility.getVersionName(getApplicationContext()));
+
+    //bottomNavigationView.getMenu().removeItem(R.id.action_acupoints);
   }
 
   @Override public void closeDrawer() {
@@ -117,15 +123,11 @@ public class MainActivity extends BaseActivity
   }
 
   @Override public void showMessage(int resId) {
-    if (drawer != null) {
-      Snackbar.make(drawer, resId, Snackbar.LENGTH_SHORT).show();
-    }
+    Snackbar.make(drawer, resId, Snackbar.LENGTH_SHORT).show();
   }
 
   @Override public void showMessage(@NonNull String msg) {
-    if (drawer != null) {
-      Snackbar.make(drawer, msg, Snackbar.LENGTH_SHORT).show();
-    }
+    Snackbar.make(drawer, msg, Snackbar.LENGTH_SHORT).show();
   }
 
   @Override public void showHelpAlert(int resId) {
@@ -142,7 +144,7 @@ public class MainActivity extends BaseActivity
 
   @Override public void showAd() {
     CaulyAdView view;
-    CaulyAdInfo info = new CaulyAdInfoBuilder(Constants.CAULY_APP_CODE).effect(
+    CaulyAdInfo info = new CaulyAdInfoBuilder(Security.CAULY_APP_CODE.getValue()).effect(
         CaulyAdInfo.Effect.Circle.toString()).build();
     view = new CaulyAdView(this);
     view.setAdInfo(info);
