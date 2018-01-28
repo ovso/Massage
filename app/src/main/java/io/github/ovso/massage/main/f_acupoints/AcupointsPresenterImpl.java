@@ -37,16 +37,17 @@ public class AcupointsPresenterImpl implements AcupointsPresenter {
     String query2 = res.getString(R.string.query2);
     String query3 = res.getString(R.string.query3);
     String query4 = res.getString(R.string.query4);
-    compositeDisposable.add(Single.merge(getImages(query1), getImages(query2), getImages(query3),getImages(query4))
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(documents -> {
-          adapterDataModel.addAll(documents);
-          view.refresh();
-          view.hideLoading();
-        }, throwable -> {
-          view.showMessage(R.string.error_server);
-          view.hideLoading();
-        }));
+    compositeDisposable.add(
+        Single.concat(getImages(query1), getImages(query2), getImages(query3), getImages(query4))
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(documents -> {
+              adapterDataModel.addAll(documents);
+              view.refresh();
+              view.hideLoading();
+            }, throwable -> {
+              view.showMessage(R.string.error_server);
+              view.hideLoading();
+            }));
   }
 
   private Single<List<Documents>> getImages(String query) {
@@ -66,5 +67,4 @@ public class AcupointsPresenterImpl implements AcupointsPresenter {
   @Override public void onDocUrlItemClick(Documents item) {
     view.showWebViewDialog(item.getDoc_url());
   }
-
 }
