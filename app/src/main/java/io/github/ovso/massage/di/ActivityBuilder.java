@@ -1,21 +1,17 @@
 package io.github.ovso.massage.di;
 
-import android.app.Activity;
-import dagger.Binds;
 import dagger.Module;
-import dagger.android.ActivityKey;
-import dagger.android.AndroidInjector;
-import dagger.multibindings.IntoMap;
+import dagger.android.ContributesAndroidInjector;
+import dagger.android.support.AndroidSupportInjectionModule;
 import io.github.ovso.massage.main.MainActivity;
-import io.github.ovso.massage.main.di.MainActivityComponent;
+import io.github.ovso.massage.main.di.MainActivityModule;
+import javax.inject.Singleton;
 
 /**
  * Created by jaeho on 2017. 10. 16
  */
 
-@Module public abstract class ActivityBuilder {
-  @Binds @IntoMap @ActivityKey(MainActivity.class)
-  abstract AndroidInjector.Factory<? extends Activity> bindMainActivity(
-      MainActivityComponent.Builder builder);
-
+@Module(includes = { AndroidSupportInjectionModule.class}) public abstract class ActivityBuilder {
+  @Singleton @ContributesAndroidInjector(modules = { MainActivityModule.class })
+  abstract MainActivity bindMainActivity();
 }
