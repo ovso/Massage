@@ -27,7 +27,7 @@ import javax.inject.Singleton;
   @Singleton @ContributesAndroidInjector(modules = { AcupointsFragmentModule.class })
   abstract AcupointsFragment provideAcupointsFragmentFactory();
 
-  @ContributesAndroidInjector(modules = { ThemeFragmentModule.class })
+  @Singleton @ContributesAndroidInjector(modules = { ThemeFragmentModule.class })
   abstract ThemeFragment provideThemeFragmentFactory();
 
   @Provides static MainPresenter provideMainPresenter(MainActivity activity) {

@@ -11,6 +11,7 @@ import io.github.ovso.massage.main.f_theme.adapter.ThemeAdapter;
 import io.github.ovso.massage.main.f_theme.adapter.ThemeAdapterView;
 import io.github.ovso.massage.main.f_theme.db.ThemeLocalDb;
 import io.reactivex.disposables.CompositeDisposable;
+import javax.inject.Singleton;
 
 /**
  * Created by jaeho on 2017. 10. 20
@@ -18,13 +19,14 @@ import io.reactivex.disposables.CompositeDisposable;
 
 @Module public class ThemeFragmentModule {
 
-  @Provides ThemePresenter provideThemePresenter(ThemeFragment fragment,
-      DatabaseReference databaseReference, ThemeLocalDb localDb) {
-    return new ThemePresenterImpl(fragment, fragment.getAdapter(), databaseReference, localDb,
-        fragment.getCompositeDisposable());
+  @Provides @Singleton ThemePresenter provideThemePresenter(ThemeFragment fragment,
+      DatabaseReference databaseReference, ThemeLocalDb localDb, ThemeAdapter adapter,
+      CompositeDisposable compositeDisposable) {
+    return new ThemePresenterImpl(fragment, adapter, databaseReference, localDb,
+        compositeDisposable);
   }
 
-  @Provides ThemeLocalDb provideLocalDatabase(ThemeFragment fragment) {
+  @Provides @Singleton ThemeLocalDb provideLocalDatabase(ThemeFragment fragment) {
     return new ThemeLocalDb(fragment.getContext());
   }
 
@@ -32,16 +34,17 @@ import io.reactivex.disposables.CompositeDisposable;
     return FirebaseDatabase.getInstance().getReference().child("theme");
   }
 
-  @Provides ThemeAdapter provideThemeAdapter(ThemeFragment fragment) {
+  @Provides @Singleton ThemeAdapter provideThemeAdapter(ThemeFragment fragment,
+      CompositeDisposable compositeDisposable) {
     return new ThemeAdapter().setOnRecyclerItemClickListener(fragment)
-        .setCompositeDisposable(fragment.getCompositeDisposable());
+        .setCompositeDisposable(compositeDisposable);
   }
 
-  @Provides ThemeAdapterView provideBaseAdapterView(ThemeFragment fragment) {
-    return fragment.getAdapter();
+  @Provides ThemeAdapterView provideBaseAdapterView(ThemeAdapter adapter) {
+    return adapter;
   }
 
-  @Provides CompositeDisposable provideCompositeDisposable() {
+  @Provides @Singleton CompositeDisposable provideCompositeDisposable() {
     return new CompositeDisposable();
   }
 }
