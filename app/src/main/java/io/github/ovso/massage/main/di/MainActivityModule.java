@@ -21,7 +21,7 @@ import javax.inject.Singleton;
 
 @Module public abstract class MainActivityModule {
 
-  @ContributesAndroidInjector(modules = SymptomFragmentModule.class)
+  @Singleton @ContributesAndroidInjector(modules = SymptomFragmentModule.class)
   abstract SymptomFragment providePhoneFragmentFactory();
 
   @Singleton @ContributesAndroidInjector(modules = { AcupointsFragmentModule.class })

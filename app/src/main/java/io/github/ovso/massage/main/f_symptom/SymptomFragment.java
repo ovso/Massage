@@ -14,18 +14,17 @@ import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.common.Security;
 import io.github.ovso.massage.common.WebviewAlertDialog;
-import io.github.ovso.massage.main.f_symptom.adapter.SymptomAdapter;
-import io.github.ovso.massage.main.f_symptom.adapter.SymptomAdapterView;
-import io.github.ovso.massage.main.f_symptom.model.Symptom;
 import io.github.ovso.massage.framework.Constants;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.customview.BaseFragment;
 import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListener;
+import io.github.ovso.massage.main.f_symptom.adapter.SymptomAdapter;
+import io.github.ovso.massage.main.f_symptom.adapter.SymptomAdapterView;
+import io.github.ovso.massage.main.f_symptom.model.Symptom;
 import io.github.ovso.massage.youtube.FullscreenVideoActivity;
 import io.reactivex.disposables.CompositeDisposable;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
-import lombok.Getter;
 
 /**
  * Created by jaeho on 2017. 10. 20
@@ -37,9 +36,9 @@ public class SymptomFragment extends BaseFragment
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
   @BindView(R.id.root_view) View rootView;
   @BindView(R.id.progressbar) ProgressBar progressBar;
-  @Inject @Getter CompositeDisposable compositeDisposable;
-  @Inject @Getter SymptomAdapter adapter;
-  @Inject @Getter SymptomAdapterView adapterView;
+  @Inject CompositeDisposable compositeDisposable;
+  @Inject SymptomAdapter adapter;
+  @Inject SymptomAdapterView adapterView;
   @Inject SymptomPresenter presenter;
 
   @Override protected int getLayoutResID() {
