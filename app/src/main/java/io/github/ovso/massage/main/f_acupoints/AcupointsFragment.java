@@ -20,7 +20,6 @@ import io.github.ovso.massage.main.f_acupoints.model.Documents;
 import io.reactivex.disposables.CompositeDisposable;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
-import lombok.Getter;
 
 /**
  * Created by jaeho on 2017. 10. 20
@@ -31,8 +30,8 @@ public class AcupointsFragment extends BaseFragment
 
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
   @BindView(R.id.progressbar) ProgressBar progressBar;
-  @Inject @Getter CompositeDisposable compositeDisposable;
-  @Inject @Getter ImagesAdapter adapter;
+  @Inject CompositeDisposable compositeDisposable;
+  @Inject ImagesAdapter adapter;
   @Inject BaseAdapterView adapterView;
 
   @Inject AcupointsPresenter presenter;

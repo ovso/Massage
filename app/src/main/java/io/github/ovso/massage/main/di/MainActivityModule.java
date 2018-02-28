@@ -24,13 +24,13 @@ import javax.inject.Singleton;
   @ContributesAndroidInjector(modules = SymptomFragmentModule.class)
   abstract SymptomFragment providePhoneFragmentFactory();
 
-  @ContributesAndroidInjector(modules = { AcupointsFragmentModule.class })
+  @Singleton @ContributesAndroidInjector(modules = { AcupointsFragmentModule.class })
   abstract AcupointsFragment provideAcupointsFragmentFactory();
 
   @ContributesAndroidInjector(modules = { ThemeFragmentModule.class })
   abstract ThemeFragment provideThemeFragmentFactory();
 
-  @Provides @Singleton static MainPresenter provideMainPresenter(MainActivity activity) {
+  @Provides static MainPresenter provideMainPresenter(MainActivity activity) {
     return new MainPresenterImpl(activity);
   }
 

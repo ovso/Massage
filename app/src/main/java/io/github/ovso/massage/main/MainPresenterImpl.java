@@ -20,7 +20,7 @@ import javax.inject.Inject;
  * Created by jaeho on 2017. 10. 16
  */
 
-public class MainPresenterImpl extends Exception implements MainPresenter {
+public class MainPresenterImpl implements MainPresenter {
 
   private MainPresenter.View view;
   private CompositeDisposable compositeDisposable;
