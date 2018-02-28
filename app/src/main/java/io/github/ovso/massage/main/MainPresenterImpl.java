@@ -40,34 +40,36 @@ public class MainPresenterImpl extends Exception implements MainPresenter {
 
   @Override public boolean onNavItemSelected(int itemId) {
     if (itemId == R.id.nav_opensource) {
-      final Notices notices = new Notices();
       compositeDisposable.add(RxFirebaseDatabase.data(databaseReference)
           .subscribeOn(Schedulers.io())
-          .observeOn(AndroidSchedulers.mainThread())
-          .subscribe(dataSnapshot -> {
+          .map(dataSnapshot -> {
+            final Notices notices = new Notices();
             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
               NoticeItem item = snapshot.getValue(NoticeItem.class);
               Notice notice = new Notice(item.getName(), item.getUrl(), item.getCopyright(),
                   NoticeItem.getLicense(item.getLicense()));
               notices.addNotice(notice);
             }
-            view.showLicensesDialog(notices);
-          }, throwable -> {
-
+            return notices;
+          })
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe(notices -> view.showLicensesDialog(notices), throwable -> {
+            view.showMessage(R.string.error_server);
           }));
     } else if (itemId == R.id.nav_help) {
       compositeDisposable.add(
           RxFirebaseDatabase.data(FirebaseDatabase.getInstance().getReference().child("help"))
               .subscribeOn(Schedulers.io())
-              .observeOn(AndroidSchedulers.mainThread())
-              .subscribe(dataSnapshot -> {
+              .map(dataSnapshot -> {
                 String msg = "";
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                   Help help = snapshot.getValue(Help.class);
                   msg += help.getMsg() + "\n\n";
                 }
-                view.showHelpAlert(msg);
-              }, throwable -> {
+                return msg;
+              })
+              .observeOn(AndroidSchedulers.mainThread())
+              .subscribe(msg -> view.showHelpAlert(msg), throwable -> {
                 view.showHelpAlert(R.string.help_long_click_video);
               }));
     }
