@@ -63,6 +63,7 @@ android {
       proguardFile 'proguard-glide.pro'
       proguardFile 'proguard-cauly.pro'
       proguardFile 'proguard-retrofit.pro'
+      proguardFile 'proguard-dagger.pro'
     }
     debug {
       minifyEnabled false
@@ -75,6 +76,7 @@ android {
       proguardFile 'proguard-butterknipe.pro'
       proguardFile 'proguard-guava.pro'
       proguardFile 'proguard-glide.pro'
+      proguardFile 'proguard-dagger.pro'
     }
   }
 
