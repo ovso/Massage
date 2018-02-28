@@ -4,13 +4,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import dagger.Module;
 import dagger.Provides;
+import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
 import io.github.ovso.massage.main.f_symptom.SymptomFragment;
-import io.github.ovso.massage.main.f_symptom.db.SymptomLocalDb;
 import io.github.ovso.massage.main.f_symptom.SymptomPresenter;
 import io.github.ovso.massage.main.f_symptom.SymptomPresenterImpl;
 import io.github.ovso.massage.main.f_symptom.adapter.SymptomAdapter;
 import io.github.ovso.massage.main.f_symptom.adapter.SymptomAdapterView;
+import io.github.ovso.massage.main.f_symptom.db.SymptomLocalDb;
 import io.reactivex.disposables.CompositeDisposable;
+import javax.inject.Singleton;
 
 /**
  * Created by jaeho on 2017. 10. 20
@@ -19,12 +21,13 @@ import io.reactivex.disposables.CompositeDisposable;
 @Module public class SymptomFragmentModule {
 
   @Provides SymptomPresenter provideSymptomPresenter(SymptomFragment fragment,
-      DatabaseReference databaseReference, SymptomLocalDb localDb) {
-    return new SymptomPresenterImpl(fragment, fragment.getAdapter(), databaseReference, localDb,
-        fragment.getCompositeDisposable());
+      DatabaseReference databaseReference, SymptomLocalDb localDb,
+      CompositeDisposable compositeDisposable, BaseAdapterDataModel dataModel) {
+    return new SymptomPresenterImpl(fragment, dataModel, databaseReference, localDb,
+        compositeDisposable);
   }
 
-  @Provides SymptomLocalDb provideLocalDatabase(SymptomFragment fragment) {
+  @Provides @Singleton SymptomLocalDb provideLocalDatabase(SymptomFragment fragment) {
     return new SymptomLocalDb(fragment.getContext());
   }
 
@@ -32,16 +35,21 @@ import io.reactivex.disposables.CompositeDisposable;
     return FirebaseDatabase.getInstance().getReference().child("symptom");
   }
 
-  @Provides SymptomAdapter provideSymptomAdapter(SymptomFragment fragment) {
+  @Provides @Singleton SymptomAdapter provideSymptomAdapter(SymptomFragment fragment,
+      CompositeDisposable compositeDisposable) {
     return new SymptomAdapter().setOnRecyclerItemClickListener(fragment)
-        .setCompositeDisposable(fragment.getCompositeDisposable());
+        .setCompositeDisposable(compositeDisposable);
   }
 
-  @Provides SymptomAdapterView provideBaseAdapterView(SymptomFragment fragment) {
-    return fragment.getAdapter();
+  @Provides BaseAdapterDataModel provideAdapterDataModel(SymptomAdapter adapter) {
+    return adapter;
   }
 
-  @Provides CompositeDisposable provideCompositeDisposable() {
+  @Provides SymptomAdapterView provideBaseAdapterView(SymptomAdapter adapter) {
+    return adapter;
+  }
+
+  @Provides @Singleton CompositeDisposable provideCompositeDisposable() {
     return new CompositeDisposable();
   }
 }

@@ -14,18 +14,17 @@ import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.common.Security;
 import io.github.ovso.massage.common.WebviewAlertDialog;
-import io.github.ovso.massage.main.f_theme.adapter.ThemeAdapter;
-import io.github.ovso.massage.main.f_theme.adapter.ThemeAdapterView;
-import io.github.ovso.massage.main.f_theme.model.Theme;
 import io.github.ovso.massage.framework.Constants;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.customview.BaseFragment;
 import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListener;
+import io.github.ovso.massage.main.f_theme.adapter.ThemeAdapter;
+import io.github.ovso.massage.main.f_theme.adapter.ThemeAdapterView;
+import io.github.ovso.massage.main.f_theme.model.Theme;
 import io.github.ovso.massage.youtube.FullscreenVideoActivity;
 import io.reactivex.disposables.CompositeDisposable;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
-import lombok.Getter;
 
 /**
  * Created by jaeho on 2017. 10. 20
@@ -37,9 +36,9 @@ public class ThemeFragment extends BaseFragment
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
   @BindView(R.id.root_view) View rootView;
   @BindView(R.id.progressbar) ProgressBar progressBar;
-  @Inject @Getter CompositeDisposable compositeDisposable;
-  @Inject @Getter ThemeAdapter adapter;
-  @Inject @Getter ThemeAdapterView adapterView;
+  @Inject CompositeDisposable compositeDisposable;
+  @Inject ThemeAdapter adapter;
+  @Inject ThemeAdapterView adapterView;
   @Inject ThemePresenter presenter;
 
   @Override protected int getLayoutResID() {

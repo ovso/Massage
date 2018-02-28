@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,6 +13,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import butterknife.BindView;
 import com.fsn.cauly.CaulyAdInfo;
 import com.fsn.cauly.CaulyAdInfoBuilder;
@@ -123,11 +123,11 @@ public class MainActivity extends BaseActivity
   }
 
   @Override public void showMessage(int resId) {
-    Snackbar.make(drawer, resId, Snackbar.LENGTH_SHORT).show();
+    Toast.makeText(this, resId, Toast.LENGTH_SHORT).show();
   }
 
   @Override public void showMessage(@NonNull String msg) {
-    Snackbar.make(drawer, msg, Snackbar.LENGTH_SHORT).show();
+    Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
   }
 
   @Override public void showHelpAlert(int resId) {

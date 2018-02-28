@@ -63,6 +63,7 @@ android {
       proguardFile 'proguard-glide.pro'
       proguardFile 'proguard-cauly.pro'
       proguardFile 'proguard-retrofit.pro'
+      proguardFile 'proguard-dagger.pro'
     }
     debug {
       minifyEnabled false
@@ -75,6 +76,7 @@ android {
       proguardFile 'proguard-butterknipe.pro'
       proguardFile 'proguard-guava.pro'
       proguardFile 'proguard-glide.pro'
+      proguardFile 'proguard-dagger.pro'
     }
   }
 
@@ -109,6 +111,7 @@ dependencies {
   compile "com.google.dagger:dagger:$dagger_version"
   compile "com.google.dagger:dagger-android-support:$dagger_version"
   annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+  annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
   compile "com.google.guava:guava:$guava_version"
   compile "com.jakewharton:butterknife:$butterknife_version"
   annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife_version"
@@ -130,8 +133,6 @@ dependencies {
   compile "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
   compile "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
   compile "com.squareup.okhttp3:okhttp:$okhttp3_version"
-
-
 }
 
 // ADD THIS AT THE BOTTOM

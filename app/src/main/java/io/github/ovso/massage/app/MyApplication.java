@@ -1,16 +1,13 @@
 package io.github.ovso.massage.app;
 
-import android.app.Activity;
 import android.app.Application;
 import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasActivityInjector;
+import dagger.android.DaggerApplication;
 import io.github.ovso.massage.BuildConfig;
 import io.github.ovso.massage.di.DaggerAppComponent;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmSchema;
-import javax.inject.Inject;
 import lombok.Getter;
 import timber.log.Timber;
 
@@ -18,17 +15,18 @@ import timber.log.Timber;
  * Created by jaeho on 2017. 10. 15
  */
 
-public class MyApplication extends Application implements HasActivityInjector {
-
-  @Inject DispatchingAndroidInjector<Activity> activityDispatchingAndroidInjector;
+public class MyApplication extends DaggerApplication {
   @Getter private static Application instance = null;
 
   @Override public void onCreate() {
     super.onCreate();
     instance = this;
-    initDagger();
     initTimber();
     initRealm();
+  }
+
+  @Override protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+    return DaggerAppComponent.builder().application(this).build();
   }
 
   private void initRealm() {
@@ -68,13 +66,5 @@ public class MyApplication extends Application implements HasActivityInjector {
     if (BuildConfig.DEBUG) {
       Timber.plant(new Timber.DebugTree());
     }
-  }
-
-  private void initDagger() {
-    DaggerAppComponent.builder().application(this).build().inject(this);
-  }
-
-  @Override public AndroidInjector<Activity> activityInjector() {
-    return activityDispatchingAndroidInjector;
   }
 }

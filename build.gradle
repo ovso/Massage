@@ -7,13 +7,13 @@ buildscript {
     application_id = 'io.github.ovso.massage'
     min_sdk_version = 21
     target_sdk_version = 27
-    version_code = 5
+    version_code = 6
 
     support_version = '27.0.2'
     constraint_version = '1.0.2'
     hugo_version = '1.2.1'
     butterknife_version = '8.8.1'
-    dagger_version = '2.13'
+    dagger_version = '2.14.1'
 
     rxjava_version = '2.1.6'
     rxandroid_version = '2.0.1'

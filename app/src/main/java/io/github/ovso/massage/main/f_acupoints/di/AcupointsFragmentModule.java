@@ -10,6 +10,7 @@ import io.github.ovso.massage.main.f_acupoints.AcupointsPresenterImpl;
 import io.github.ovso.massage.main.f_acupoints.adapter.ImagesAdapter;
 import io.github.ovso.massage.main.f_acupoints.network.ImagesNetwork;
 import io.reactivex.disposables.CompositeDisposable;
+import javax.inject.Singleton;
 
 /**
  * Created by jaeho on 2017. 10. 20
@@ -18,25 +19,25 @@ import io.reactivex.disposables.CompositeDisposable;
 @Module public class AcupointsFragmentModule {
 
   @Provides AcupointsPresenter provideAcupointsPresenter(AcupointsFragment fragment,
-      ImagesNetwork imagesNetwork) {
-    return new AcupointsPresenterImpl(fragment, fragment.getAdapter(),
-        fragment.getCompositeDisposable(), imagesNetwork);
+      ImagesNetwork imagesNetwork, ImagesAdapter adapter, CompositeDisposable compositeDisposable) {
+    return new AcupointsPresenterImpl(fragment, adapter, compositeDisposable, imagesNetwork);
   }
 
-  @Provides ImagesAdapter provideImagesAdapter(AcupointsFragment fragment) {
+  @Singleton @Provides ImagesAdapter provideImagesAdapter(AcupointsFragment fragment,
+      CompositeDisposable compositeDisposable) {
     return new ImagesAdapter().setOnRecyclerItemClickListener(fragment)
-        .setCompositeDisposable(fragment.getCompositeDisposable());
+        .setCompositeDisposable(compositeDisposable);
   }
 
-  @Provides BaseAdapterView provideBaseAdapterView(AcupointsFragment fragment) {
-    return fragment.getAdapter();
+  @Provides BaseAdapterView provideBaseAdapterView(ImagesAdapter adapter) {
+    return adapter;
   }
 
-  @Provides ImagesNetwork provideImagesNetwork(AcupointsFragment fragment) {
+  @Singleton @Provides ImagesNetwork provideImagesNetwork(AcupointsFragment fragment) {
     return new ImagesNetwork(fragment.getContext(), Security.API_BASE_URL.getValue());
   }
 
-  @Provides CompositeDisposable provideCompositeDisposable() {
+  @Singleton @Provides CompositeDisposable provideCompositeDisposable() {
     return new CompositeDisposable();
   }
 }

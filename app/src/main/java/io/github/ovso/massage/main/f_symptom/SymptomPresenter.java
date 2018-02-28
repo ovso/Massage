@@ -18,7 +18,7 @@ public interface SymptomPresenter {
 
   void onRecommendClick(int position, SelectableItem<Symptom> item);
 
-  void onFavoriteClick(int position, SelectableItem<Symptom> item);
+  void onFavoriteClick(SelectableItem<Symptom> item);
 
   void onVideoClick(int position, SelectableItem<Symptom> item);
 

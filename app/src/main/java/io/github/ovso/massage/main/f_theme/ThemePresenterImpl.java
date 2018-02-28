@@ -11,13 +11,13 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.main.f_theme.db.ThemeLocalDb;
-import io.github.ovso.massage.main.f_theme.db.ThemeRo;
-import io.github.ovso.massage.main.f_theme.model.Theme;
 import io.github.ovso.massage.framework.Constants;
 import io.github.ovso.massage.framework.ObjectUtils;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
+import io.github.ovso.massage.main.f_theme.db.ThemeLocalDb;
+import io.github.ovso.massage.main.f_theme.db.ThemeRo;
+import io.github.ovso.massage.main.f_theme.model.Theme;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -52,9 +52,8 @@ public class ThemePresenterImpl implements ThemePresenter {
     view.showLoading();
     compositeDisposable.add(RxFirebaseDatabase.data(databaseReference)
         .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(dataSnapshot -> {
-          List<SelectableItem<Theme>> items = new ArrayList<>();
+        .map(dataSnapshot -> {
+          final List<SelectableItem<Theme>> items = new ArrayList<>();
           for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
             Theme Theme = snapshot.getValue(Theme.class);
             ArrayList<ThemeRo> ThemeRos = localDb.getAll();
@@ -71,6 +70,10 @@ public class ThemePresenterImpl implements ThemePresenter {
           if (localDb.getSize() > 0) {
             localDb.sort(items);
           }
+          return items;
+        })
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(items -> {
           adapterDataModel.addAll(items);
           view.refresh();
           view.hideLoading();
@@ -155,26 +158,22 @@ public class ThemePresenterImpl implements ThemePresenter {
     });
   }
 
-  @Override public void onFavoriteClick(int position, SelectableItem<Theme> $item) {
+  @Override public void onFavoriteClick(int position, SelectableItem<Theme> selectableItem) {
     view.showLoading();
-    if ($item.isFavorite()) {
-      localDb.delete($item.getItem().getId());
-    } else {
-      localDb.add($item.getItem().getId());
-    }
     view.removeRefresh();
     adapterDataModel.clear();
     compositeDisposable.add(RxFirebaseDatabase.data(databaseReference)
         .subscribeOn(Schedulers.io())
-        .delay(Constants.DELAY, TimeUnit.MILLISECONDS)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(dataSnapshot -> {
-          List<SelectableItem<Theme>> items = new ArrayList<>();
+        .map(dataSnapshot -> {
+          if (selectableItem.isFavorite()) {
+            localDb.delete(selectableItem.getItem().getId());
+          } else {
+            localDb.add(selectableItem.getItem().getId());
+          }
+          final List<SelectableItem<Theme>> items = new ArrayList<>();
           for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
             Theme Theme = snapshot.getValue(Theme.class);
-
             boolean isFavorite = false;
-
             for (int i = 0; i < localDb.getSize(); i++) {
               int uniqueId = localDb.get(i).getId();
               if (Theme.getId() == uniqueId) {
@@ -187,6 +186,11 @@ public class ThemePresenterImpl implements ThemePresenter {
           if (localDb.getSize() > 0) {
             localDb.sort(items);
           }
+          return items;
+        })
+        .delay(Constants.DELAY, TimeUnit.MILLISECONDS)
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(items -> {
           adapterDataModel.addAll(items);
           view.refresh();
           view.hideLoading();
