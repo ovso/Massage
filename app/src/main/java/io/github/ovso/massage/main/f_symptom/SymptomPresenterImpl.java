@@ -11,13 +11,13 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.main.f_symptom.db.SymptomLocalDb;
-import io.github.ovso.massage.main.f_symptom.db.SymptomRo;
-import io.github.ovso.massage.main.f_symptom.model.Symptom;
 import io.github.ovso.massage.framework.Constants;
 import io.github.ovso.massage.framework.ObjectUtils;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
+import io.github.ovso.massage.main.f_symptom.db.SymptomLocalDb;
+import io.github.ovso.massage.main.f_symptom.db.SymptomRo;
+import io.github.ovso.massage.main.f_symptom.model.Symptom;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -52,9 +52,8 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
     view.showLoading();
     compositeDisposable.add(RxFirebaseDatabase.data(databaseReference)
         .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(dataSnapshot -> {
-          List<SelectableItem<Symptom>> items = new ArrayList<>();
+        .map(dataSnapshot -> {
+          final List<SelectableItem<Symptom>> items = new ArrayList<>();
           for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
             Symptom symptom = snapshot.getValue(Symptom.class);
             ArrayList<SymptomRo> symptomRos = localDb.getAll();
@@ -71,6 +70,10 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
           if (localDb.getSize() > 0) {
             localDb.sort(items);
           }
+          return items;
+        })
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(items -> {
           adapterDataModel.addAll(items);
           view.refresh();
           view.hideLoading();
@@ -155,26 +158,23 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
     });
   }
 
-  @Override public void onFavoriteClick(int position, SelectableItem<Symptom> $item) {
+  @Override public void onFavoriteClick(final SelectableItem<Symptom> selectableItem) {
     view.showLoading();
-    if ($item.isFavorite()) {
-      localDb.delete($item.getItem().getId());
-    } else {
-      localDb.add($item.getItem().getId());
-    }
     view.removeRefresh();
     adapterDataModel.clear();
     compositeDisposable.add(RxFirebaseDatabase.data(databaseReference)
         .subscribeOn(Schedulers.io())
-        .delay(Constants.DELAY, TimeUnit.MILLISECONDS)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(dataSnapshot -> {
-          List<SelectableItem<Symptom>> items = new ArrayList<>();
+        .map(dataSnapshot -> {
+          final int itemId = selectableItem.getItem().getId();
+          if (selectableItem.isFavorite()) {
+            localDb.delete(itemId);
+          } else {
+            localDb.add(itemId);
+          }
+          final List<SelectableItem<Symptom>> items = new ArrayList<>();
           for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
             Symptom symptom = snapshot.getValue(Symptom.class);
-
             boolean isFavorite = false;
-
             for (int i = 0; i < localDb.getSize(); i++) {
               int uniqueId = localDb.get(i).getId();
               if (symptom.getId() == uniqueId) {
@@ -187,6 +187,11 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
           if (localDb.getSize() > 0) {
             localDb.sort(items);
           }
+          return items;
+        })
+        .delay(Constants.DELAY, TimeUnit.MILLISECONDS)
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(items -> {
           adapterDataModel.addAll(items);
           view.refresh();
           view.hideLoading();

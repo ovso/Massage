@@ -133,8 +133,6 @@ dependencies {
   compile "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
   compile "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
   compile "com.squareup.okhttp3:okhttp:$okhttp3_version"
-
-
 }
 
 // ADD THIS AT THE BOTTOM

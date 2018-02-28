@@ -140,7 +140,7 @@ public class SymptomFragment extends BaseFragment
   }
 
   @Override public void onFavoriteClick(int position, SelectableItem<Symptom> item) {
-    presenter.onFavoriteClick(position, item);
+    presenter.onFavoriteClick(item);
   }
 
   @Override public void onVideoClick(int position, SelectableItem<Symptom> item) {
