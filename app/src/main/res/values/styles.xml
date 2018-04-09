@@ -8,10 +8,20 @@
     <item name="colorAccent">@color/colorAccent</item>
   </style>
 
+<!--
   <style name="AppTheme.NoActionBar">
     <item name="windowActionBar">false</item>
     <item name="windowNoTitle">true</item>
   </style>
+-->
+
+  <style name="AppTheme.NoActionBar">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+    <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    <item name="android:statusBarColor">@android:color/transparent</item>
+  </style>
+
 
   <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
@@ -56,4 +66,10 @@
     <item name="android:textSize">22sp</item>
     <item name="android:textStyle">bold</item>
   </style>
+
+  <!-- Splash Screen theme. -->
+  <style name="SplashTheme" parent="AppTheme.NoActionBar">
+    <item name="android:windowBackground">@drawable/splash_background</item>
+  </style>
+
 </resources>
