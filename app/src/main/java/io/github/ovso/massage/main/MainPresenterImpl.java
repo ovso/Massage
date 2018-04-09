@@ -30,6 +30,7 @@ public class MainPresenterImpl implements MainPresenter {
     this.view = view;
     this.compositeDisposable = new CompositeDisposable();
     this.databaseReference = FirebaseDatabase.getInstance().getReference().child("licenses");
+    view.changeTheme();
   }
 
   @Override public void onCreate(Bundle savedInstanceState) {
