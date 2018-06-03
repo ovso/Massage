@@ -1,7 +1,7 @@
 package io.github.ovso.massage.db;
 
 import android.content.Context;
-import io.github.ovso.massage.app.MyApplication;
+import io.github.ovso.massage.App;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public abstract class LocalDatabase<T> {
 
   public LocalDatabase(Context context) {
     this.context = context;
-    configuration = ((MyApplication) context.getApplicationContext()).getRealmConfiguration();
+    configuration = ((App) context.getApplicationContext()).getRealmConfiguration();
     realm = Realm.getInstance(configuration);
     Timber.d(configuration.toString());
   }

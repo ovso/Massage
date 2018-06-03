@@ -27,7 +27,8 @@ import de.psdev.licensesdialog.model.Notices;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.Security;
-import io.github.ovso.massage.framework.SystemUtility;
+import io.github.ovso.massage.ad.MyAdView;
+import io.github.ovso.massage.framework.SystemUtils;
 import io.github.ovso.massage.framework.customview.BaseActivity;
 import io.github.ovso.massage.framework.customview.BottomNavigationViewBehavior;
 import io.github.ovso.massage.main.f_acupoints.AcupointsFragment;
@@ -67,7 +68,7 @@ public class MainActivity extends BaseActivity
     layoutParams.setBehavior(new BottomNavigationViewBehavior());
 
     TextView versionTextView = navigationView.getHeaderView(0).findViewById(R.id.version_textview);
-    versionTextView.setText(SystemUtility.getVersionName(getApplicationContext()));
+    versionTextView.setText(SystemUtils.getVersionName(getApplicationContext()));
   }
 
   @Override public void closeDrawer() {
@@ -145,30 +146,6 @@ public class MainActivity extends BaseActivity
   }
 
   @Override public void showAd() {
-    CaulyAdView view;
-    CaulyAdInfo info = new CaulyAdInfoBuilder(Security.CAULY_APP_CODE.getValue()).effect(
-        CaulyAdInfo.Effect.Circle.toString()).build();
-    view = new CaulyAdView(this);
-    view.setAdInfo(info);
-    view.setAdViewListener(new CaulyAdViewListener() {
-      @DebugLog @Override public void onReceiveAd(CaulyAdView caulyAdView, boolean b) {
-
-      }
-
-      @DebugLog @Override
-      public void onFailedToReceiveAd(CaulyAdView caulyAdView, int i, String s) {
-
-      }
-
-      @DebugLog @Override public void onShowLandingScreen(CaulyAdView caulyAdView) {
-
-      }
-
-      @DebugLog @Override public void onCloseLandingScreen(CaulyAdView caulyAdView) {
-
-      }
-    });
-
-    adContainer.addView(view);
+    adContainer.addView(MyAdView.getAdmobAdView(getApplicationContext()));
   }
 }

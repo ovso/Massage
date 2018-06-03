@@ -6,7 +6,7 @@ import dagger.Component;
 import dagger.android.AndroidInjector;
 import dagger.android.DaggerApplication;
 import dagger.android.support.AndroidSupportInjectionModule;
-import io.github.ovso.massage.app.MyApplication;
+import io.github.ovso.massage.App;
 
 /**
  * Created by jaeho on 2017. 10. 16
@@ -20,5 +20,5 @@ import io.github.ovso.massage.app.MyApplication;
     AppComponent build();
   }
 
-  void inject(MyApplication app);
+  void inject(App app);
 }
