@@ -26,7 +26,7 @@ import de.psdev.licensesdialog.LicensesDialog;
 import de.psdev.licensesdialog.model.Notices;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.common.Security;
+import io.github.ovso.massage.Security;
 import io.github.ovso.massage.framework.SystemUtility;
 import io.github.ovso.massage.framework.customview.BaseActivity;
 import io.github.ovso.massage.framework.customview.BottomNavigationViewBehavior;

@@ -23,8 +23,8 @@ buildscript {
     lombok_version = '1.16.18'
     jsr250_version = '1.0'
     jsr305_version = '3.0.2'
-    gradle_version = '3.1.0'
-    google_services_version = '3.1.0'
+    gradle_version = '3.1.2'
+    google_services_version = '4.0.1'
     firebase_version = '11.6.0'
     rxfirebase_version = '11.6.0.1'
     recyclerview_animators_version = '2.2.7'
@@ -43,7 +43,7 @@ buildscript {
     google()
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:3.0.1'
+    classpath "com.android.tools.build:gradle:$gradle_version"
     classpath "com.jakewharton.hugo:hugo-plugin:$hugo_version"
     classpath "com.google.gms:google-services:$google_services_version"
     classpath "io.realm:realm-gradle-plugin:$realm_version"

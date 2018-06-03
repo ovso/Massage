@@ -1,7 +1,7 @@
 package io.github.ovso.massage.main.Network;
 
 import android.content.Context;
-import io.github.ovso.massage.common.Security;
+import io.github.ovso.massage.Security;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;

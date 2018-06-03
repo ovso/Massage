@@ -12,7 +12,7 @@ import butterknife.BindView;
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.common.Security;
+import io.github.ovso.massage.Security;
 import io.github.ovso.massage.common.WebviewAlertDialog;
 import io.github.ovso.massage.framework.Constants;
 import io.github.ovso.massage.framework.SelectableItem;

@@ -2,7 +2,7 @@ package io.github.ovso.massage.main.f_acupoints.di;
 
 import dagger.Module;
 import dagger.Provides;
-import io.github.ovso.massage.common.Security;
+import io.github.ovso.massage.Security;
 import io.github.ovso.massage.framework.adapter.BaseAdapterView;
 import io.github.ovso.massage.main.f_acupoints.AcupointsFragment;
 import io.github.ovso.massage.main.f_acupoints.AcupointsPresenter;

@@ -9,7 +9,7 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerFragment;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.common.Security;
+import io.github.ovso.massage.Security;
 
 /**
  * Created by jaeho on 2017. 9. 7
