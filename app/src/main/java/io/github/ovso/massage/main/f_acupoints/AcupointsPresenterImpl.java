@@ -56,15 +56,15 @@ public class AcupointsPresenterImpl implements AcupointsPresenter {
         .map(dResult -> dResult.getDocuments());
   }
 
-  @Override public void onDetach() {
-    compositeDisposable.clear();
-  }
-
   @Override public void onItemClick(Documents item) {
     view.showImageViewDialog(item.getImage_url());
   }
 
   @Override public void onDocUrlItemClick(Documents item) {
     view.showWebViewDialog(item.getDoc_url());
+  }
+
+  @Override public void onDestroyView() {
+    compositeDisposable.clear();
   }
 }

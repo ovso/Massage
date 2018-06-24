@@ -83,10 +83,6 @@ public class ThemePresenterImpl implements ThemePresenter {
         }));
   }
 
-  @Override public void onDetach() {
-    compositeDisposable.clear();
-  }
-
   @DebugLog @Override public void onItemClick(SelectableItem<Theme> selectableItem) {
     if (!TextUtils.isEmpty(selectableItem.getItem().getUrl())) {
       view.showWebViewDialog(selectableItem.getItem());
@@ -115,6 +111,10 @@ public class ThemePresenterImpl implements ThemePresenter {
         view.showYoutubeUseWarningDialog();
       }
     }
+  }
+
+  @Override public void onDestroyView() {
+    compositeDisposable.clear();
   }
 
   @Override
@@ -148,7 +148,7 @@ public class ThemePresenterImpl implements ThemePresenter {
               break;
             }
           }
-          view.showMessage(R.string.you_recommended_it);
+          //view.showMessage(R.string.you_recommended_it);
         } else {
           view.showMessage(R.string.error_server);
         }

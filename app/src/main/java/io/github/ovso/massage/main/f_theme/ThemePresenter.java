@@ -12,8 +12,6 @@ public interface ThemePresenter {
 
   void onActivityCreate();
 
-  void onDetach();
-
   void onItemClick(SelectableItem<Theme> item);
 
   void onRecommendClick(int position, SelectableItem<Theme> item);
@@ -23,6 +21,8 @@ public interface ThemePresenter {
   void onVideoClick(int position, SelectableItem<Theme> item);
 
   void onVideoLongClick(SelectableItem<Theme> item);
+
+  void onDestroyView();
 
   interface View {
 

@@ -126,11 +126,6 @@ public class SymptomFragment extends BaseFragment
     adapterView.refreshRemove();
   }
 
-  @DebugLog @Override public void onDetach() {
-    super.onDetach();
-    presenter.onDetach();
-  }
-
   @Override public void onItemClick(SelectableItem<Symptom> item) {
     presenter.onItemClick(item);
   }
@@ -149,5 +144,10 @@ public class SymptomFragment extends BaseFragment
 
   @Override public void onItemLongClick(SelectableItem<Symptom> item) {
     presenter.onVideoLongClick(item);
+  }
+
+  @Override public void onDestroyView() {
+    presenter.onDestroyView();
+    super.onDestroyView();
   }
 }

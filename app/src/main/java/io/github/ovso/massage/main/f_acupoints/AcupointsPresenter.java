@@ -12,11 +12,11 @@ public interface AcupointsPresenter {
 
   void onActivityCreate(Resources res);
 
-  void onDetach();
-
   void onItemClick(Documents item);
 
   void onDocUrlItemClick(Documents item);
+
+  void onDestroyView();
 
   interface View {
 

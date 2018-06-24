@@ -83,10 +83,6 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
         }));
   }
 
-  @Override public void onDetach() {
-    compositeDisposable.clear();
-  }
-
   @DebugLog @Override public void onItemClick(SelectableItem<Symptom> selectableItem) {
     if (!TextUtils.isEmpty(selectableItem.getItem().getUrl())) {
       view.showWebViewDialog(selectableItem.getItem());
@@ -115,6 +111,10 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
         view.showYoutubeUseWarningDialog();
       }
     }
+  }
+
+  @Override public void onDestroyView() {
+    compositeDisposable.clear();
   }
 
   @Override
@@ -148,7 +148,7 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
               break;
             }
           }
-          view.showMessage(R.string.you_recommended_it);
+          //view.showMessage(R.string.you_recommended_it);
         } else {
           view.showMessage(R.string.error_server);
         }

@@ -127,11 +127,6 @@ public class ThemeFragment extends BaseFragment
     adapterView.refreshRemove();
   }
 
-  @DebugLog @Override public void onDetach() {
-    super.onDetach();
-    presenter.onDetach();
-  }
-
   @DebugLog @Override public void onItemClick(SelectableItem<Theme> item) {
     presenter.onItemClick(item);
   }
@@ -150,5 +145,10 @@ public class ThemeFragment extends BaseFragment
 
   @Override public void onItemLongClick(SelectableItem<Theme> item) {
     presenter.onVideoLongClick(item);
+  }
+
+  @Override public void onDestroyView() {
+    presenter.onDestroyView();
+    super.onDestroyView();
   }
 }

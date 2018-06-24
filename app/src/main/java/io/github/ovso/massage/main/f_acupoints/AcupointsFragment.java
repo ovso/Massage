@@ -81,11 +81,6 @@ public class AcupointsFragment extends BaseFragment
     adapterView.refresh();
   }
 
-  @DebugLog @Override public void onDetach() {
-    super.onDetach();
-    presenter.onDetach();
-  }
-
   @Override public void onItemClick(Documents item) {
     presenter.onItemClick(item);
   }
@@ -104,5 +99,10 @@ public class AcupointsFragment extends BaseFragment
         .setMessage(doc_url)
         .setPositiveButton(android.R.string.ok, null)
         .show();
+  }
+
+  @Override public void onDestroyView() {
+    presenter.onDestroyView();
+    super.onDestroyView();
   }
 }
