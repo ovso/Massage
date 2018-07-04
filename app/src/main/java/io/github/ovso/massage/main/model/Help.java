@@ -10,4 +10,5 @@ import lombok.ToString;
  */
 @IgnoreExtraProperties @EqualsAndHashCode(callSuper = false) @Getter @ToString public class Help {
   private String msg;
+  private String msg_en;
 }

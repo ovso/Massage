@@ -8,9 +8,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import de.psdev.licensesdialog.model.Notice;
 import de.psdev.licensesdialog.model.Notices;
+import io.github.ovso.massage.App;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.main.model.Help;
 import io.github.ovso.massage.main.model.NoticeItem;
+import io.github.ovso.massage.utils.Language;
+import io.github.ovso.massage.utils.SystemUtils;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -58,6 +61,7 @@ public class MainPresenterImpl implements MainPresenter {
             view.showMessage(R.string.error_server);
           }));
     } else if (itemId == R.id.nav_help) {
+      final String language = SystemUtils.getLanguage(App.getInstance().getApplicationContext());
       compositeDisposable.add(
           RxFirebaseDatabase.data(FirebaseDatabase.getInstance().getReference().child("help"))
               .subscribeOn(Schedulers.io())
@@ -65,7 +69,11 @@ public class MainPresenterImpl implements MainPresenter {
                 String msg = "";
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                   Help help = snapshot.getValue(Help.class);
-                  msg += help.getMsg() + "\n\n";
+                  if (language.equals(Language.EN.get())) {
+                    msg += help.getMsg_en() + "\n\n";
+                  } else {
+                    msg += help.getMsg() + "\n\n";
+                  }
                 }
                 return msg;
               })
