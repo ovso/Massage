@@ -12,7 +12,6 @@ import io.github.ovso.massage.App;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.main.model.Help;
 import io.github.ovso.massage.main.model.NoticeItem;
-import io.github.ovso.massage.utils.Language;
 import io.github.ovso.massage.utils.SystemUtils;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -69,11 +68,7 @@ public class MainPresenterImpl implements MainPresenter {
                 String msg = "";
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                   Help help = snapshot.getValue(Help.class);
-                  if (language.equals(Language.EN.get())) {
-                    msg += help.getMsg_en() + "\n\n";
-                  } else {
-                    msg += help.getMsg() + "\n\n";
-                  }
+                  msg += Help.getMsgByLanguage(language, help);
                 }
                 return msg;
               })
