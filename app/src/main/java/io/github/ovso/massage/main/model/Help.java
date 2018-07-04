@@ -16,9 +16,9 @@ import lombok.ToString;
 
   public static String getMsgByLanguage(String language, Help help) {
     if (!TextUtils.isEmpty(language) && language.equals(Language.KO.get())) {
-      return "\n\n" + help.msg;
+      return "\n\n" + help.getMsg();
     } else {
-      return "\n\n" + help.msg_en;
+      return "\n\n" + help.getMsg_en();
     }
   }
 }

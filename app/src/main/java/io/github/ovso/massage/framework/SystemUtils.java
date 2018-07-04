@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import java.util.Locale;
 
 /**
  * Created by jaeho on 2017. 10. 11
@@ -58,4 +59,8 @@ public class SystemUtils {
     return debuggable;
   }
 
+  public static String getLanguage(Context context) {
+    Locale systemLocale = context.getResources().getConfiguration().locale;
+    return systemLocale.getLanguage();
+  }
 }

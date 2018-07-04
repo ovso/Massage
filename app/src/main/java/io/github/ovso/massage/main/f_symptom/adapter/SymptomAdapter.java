@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import com.jakewharton.rxbinding2.view.RxView;
 import io.github.ovso.massage.R;
+import io.github.ovso.massage.framework.SystemUtils;
 import io.github.ovso.massage.main.f_symptom.model.Symptom;
 import io.github.ovso.massage.framework.ConversionUtility;
 import io.github.ovso.massage.framework.SelectableItem;
@@ -49,9 +50,11 @@ public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapte
       SymptomViewHolder holder = (SymptomViewHolder) viewHolder;
 
       //holder.setIsRecyclable(false);
-
-      holder.titleTextview.setText(item.getTitle());
       Context context = holder.itemView.getContext();
+
+      String title = Symptom.getTitleByLanguage(SystemUtils.getLanguage(context), item);
+      holder.titleTextview.setText(title);
+
       if (TextUtils.isEmpty(item.getUrl())) {
         holder.titleTextview.setTextColor(ContextCompat.getColor(context, R.color.color_500));
         holder.titleTextview.setTypeface(Typeface.DEFAULT);
