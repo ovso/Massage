@@ -40,7 +40,8 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
   private BaseAdapterDataModel<SelectableItem<Symptom>> adapterDataModel;
   private SymptomLocalDb localDb;
 
-  public SymptomPresenterImpl(SymptomPresenter.View view, BaseAdapterDataModel adapterDataModel,
+  public SymptomPresenterImpl(SymptomPresenter.View view,
+      BaseAdapterDataModel<SelectableItem<Symptom>> adapterDataModel,
       DatabaseReference databaseReference, SymptomLocalDb localDb,
       CompositeDisposable compositeDisposable) {
     this.view = view;
@@ -128,7 +129,8 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
   public void onRecommendClick(final int position, final SelectableItem<Symptom> selectableItem) {
     view.showLoading();
     databaseReference.runTransaction(new Transaction.Handler() {
-      @Override public Transaction.Result doTransaction(MutableData mutableData) {
+      @SuppressWarnings("unchecked") @Override
+      public Transaction.Result doTransaction(MutableData mutableData) {
         ArrayList<Object> objects = (ArrayList<Object>) mutableData.getValue();
         if (!ObjectUtils.isEmpty(objects)) {
           HashMap<String, Object> objectHashMap =

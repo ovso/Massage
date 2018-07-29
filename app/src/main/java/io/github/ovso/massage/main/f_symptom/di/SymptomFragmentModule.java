@@ -4,6 +4,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import dagger.Module;
 import dagger.Provides;
+import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
 import io.github.ovso.massage.main.f_symptom.SymptomFragment;
 import io.github.ovso.massage.main.f_symptom.SymptomPresenter;
@@ -11,6 +12,7 @@ import io.github.ovso.massage.main.f_symptom.SymptomPresenterImpl;
 import io.github.ovso.massage.main.f_symptom.adapter.SymptomAdapter;
 import io.github.ovso.massage.main.f_symptom.adapter.SymptomAdapterView;
 import io.github.ovso.massage.main.f_symptom.db.SymptomLocalDb;
+import io.github.ovso.massage.main.f_symptom.model.Symptom;
 import io.reactivex.disposables.CompositeDisposable;
 import javax.inject.Singleton;
 
@@ -18,7 +20,8 @@ import javax.inject.Singleton;
 
   @Provides SymptomPresenter provideSymptomPresenter(SymptomFragment fragment,
       DatabaseReference databaseReference, SymptomLocalDb localDb,
-      CompositeDisposable compositeDisposable, BaseAdapterDataModel dataModel) {
+      CompositeDisposable compositeDisposable,
+      BaseAdapterDataModel<SelectableItem<Symptom>> dataModel) {
     return new SymptomPresenterImpl(fragment, dataModel, databaseReference, localDb,
         compositeDisposable);
   }
@@ -37,7 +40,8 @@ import javax.inject.Singleton;
         .setCompositeDisposable(compositeDisposable);
   }
 
-  @Provides BaseAdapterDataModel provideAdapterDataModel(SymptomAdapter adapter) {
+  @Provides BaseAdapterDataModel<SelectableItem<Symptom>> provideAdapterDataModel(
+      SymptomAdapter adapter) {
     return adapter;
   }
 

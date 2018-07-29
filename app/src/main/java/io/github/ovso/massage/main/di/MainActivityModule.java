@@ -15,10 +15,6 @@ import io.github.ovso.massage.main.f_theme.ThemeFragment;
 import io.github.ovso.massage.main.f_theme.di.ThemeFragmentModule;
 import javax.inject.Singleton;
 
-/**
- * Created by jaeho on 2017. 10. 16
- */
-
 @Module public abstract class MainActivityModule {
 
   @Singleton @ContributesAndroidInjector(modules = SymptomFragmentModule.class)

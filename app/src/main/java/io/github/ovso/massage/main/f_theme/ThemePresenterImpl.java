@@ -35,7 +35,7 @@ public class ThemePresenterImpl implements ThemePresenter {
   private BaseAdapterDataModel<SelectableItem<Theme>> adapterDataModel;
   private ThemeLocalDb localDb;
 
-  public ThemePresenterImpl(View view, BaseAdapterDataModel adapterDataModel,
+  public ThemePresenterImpl(View view, BaseAdapterDataModel<SelectableItem<Theme>> adapterDataModel,
       DatabaseReference databaseReference, ThemeLocalDb localDb,
       CompositeDisposable compositeDisposable) {
     this.view = view;
@@ -123,7 +123,7 @@ public class ThemePresenterImpl implements ThemePresenter {
   public void onRecommendClick(final int position, final SelectableItem<Theme> selectableItem) {
     view.showLoading();
     databaseReference.runTransaction(new Transaction.Handler() {
-      @Override public Transaction.Result doTransaction(MutableData mutableData) {
+      @SuppressWarnings("unchecked") @Override public Transaction.Result doTransaction(MutableData mutableData) {
         ArrayList<Object> objects = (ArrayList<Object>) mutableData.getValue();
         if (!ObjectUtils.isEmpty(objects)) {
           HashMap<String, Object> objectHashMap =

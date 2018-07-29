@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import java.util.Locale;
 
 public class SystemUtils {
@@ -35,8 +36,12 @@ public class SystemUtils {
     return debuggable;
   }
 
-  public static String getLanguage(Context context) {
-    Locale systemLocale = context.getResources().getConfiguration().locale;
-    return systemLocale.getLanguage();
+  @SuppressWarnings("deprecation") public static String getLanguage(Context context) {
+    if (Build.VERSION_CODES.N > Build.VERSION.SDK_INT) {
+      Locale systemLocale = context.getResources().getConfiguration().locale;
+      return systemLocale.getLanguage();
+    } else {
+      return context.getResources().getConfiguration().getLocales().get(0).getLanguage();
+    }
   }
 }

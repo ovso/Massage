@@ -21,7 +21,7 @@ public class AcupointsPresenterImpl implements AcupointsPresenter {
   private BaseAdapterDataModel<Documents> adapterDataModel;
   private ImagesNetwork imagesNetwork;
 
-  public AcupointsPresenterImpl(View view, BaseAdapterDataModel adapterDataModel,
+  public AcupointsPresenterImpl(View view, BaseAdapterDataModel<Documents> adapterDataModel,
       CompositeDisposable compositeDisposable, ImagesNetwork imagesNetwork) {
     this.view = view;
     this.adapterDataModel = adapterDataModel;
