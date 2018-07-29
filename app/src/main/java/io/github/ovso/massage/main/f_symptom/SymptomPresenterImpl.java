@@ -1,6 +1,7 @@
 package io.github.ovso.massage.main.f_symptom;
 
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.text.TextUtils;
 import com.androidhuman.rxfirebase2.database.RxFirebaseDatabase;
 import com.google.common.collect.Lists;
@@ -14,6 +15,7 @@ import io.github.ovso.massage.R;
 import io.github.ovso.massage.framework.Constants;
 import io.github.ovso.massage.framework.ObjectUtils;
 import io.github.ovso.massage.framework.SelectableItem;
+import io.github.ovso.massage.framework.VideoMode;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
 import io.github.ovso.massage.main.f_symptom.db.SymptomLocalDb;
 import io.github.ovso.massage.main.f_symptom.db.SymptomRo;
@@ -25,6 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 11. 27
@@ -92,12 +95,28 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
   @Override public void onVideoClick(int position, SelectableItem<Symptom> item) {
     String video_id = item.getItem().getVideo_id();
     if (!TextUtils.isEmpty(video_id)) {
-      try {
-        view.showPortraitVideo(video_id);
-      } catch (ActivityNotFoundException e) {
-        e.printStackTrace();
-        view.showYoutubeUseWarningDialog();
-      }
+      view.showVideoTypeDialog((dialog, which) -> {
+        Timber.d("which = " + which);
+        try {
+          dialog.dismiss();
+          switch (VideoMode.fromWhich(which)) {
+            case PORTRAIT:
+              view.showPortraitVideo(video_id);
+              break;
+            case LANDSCAPE:
+              view.showLandscapeVideo(video_id);
+              break;
+            case CANCEL:
+              dialog.dismiss();
+              break;
+          }
+        } catch (ActivityNotFoundException e) {
+          e.printStackTrace();
+          view.showYoutubeUseWarningDialog();
+        }
+      });
+    } else {
+      view.showMessage(R.string.video_does_not_exist);
     }
   }
 

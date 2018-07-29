@@ -1,6 +1,7 @@
 package io.github.ovso.massage.main.f_symptom;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -100,6 +101,17 @@ public class SymptomFragment extends BaseFragment
     Intent intent = new Intent(getContext(), LandscapeVideoActivity.class);
     intent.putExtra("video_id", videoId);
     startActivity(intent);
+  }
+
+  @Override public void showVideoTypeDialog(DialogInterface.OnClickListener $onClickListener) {
+    final DialogInterface.OnClickListener onClickListener =
+        (dialog, which) -> $onClickListener.onClick(dialog, which);
+    new AlertDialog.Builder(getContext()).setMessage(R.string.please_select_the_player_mode)
+        .setPositiveButton(R.string.portrait_mode,
+            onClickListener)
+        .setNeutralButton(R.string.landscape_mode, onClickListener)
+        .setNegativeButton(android.R.string.cancel, onClickListener)
+        .show();
   }
 
   @Override public void showWebViewDialog(Symptom item) {

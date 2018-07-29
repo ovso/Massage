@@ -1,5 +1,6 @@
 package io.github.ovso.massage.main.f_symptom;
 
+import android.content.DialogInterface;
 import android.support.annotation.StringRes;
 import io.github.ovso.massage.main.f_symptom.model.Symptom;
 import io.github.ovso.massage.framework.SelectableItem;
@@ -51,5 +52,7 @@ public interface SymptomPresenter {
     void showYoutubeUseWarningDialog();
 
     void showLandscapeVideo(String videoId);
+
+    void showVideoTypeDialog(DialogInterface.OnClickListener onClickListener);
   }
 }

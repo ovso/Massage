@@ -14,10 +14,10 @@ import io.github.ovso.massage.framework.adapter.BaseRecyclerAdapter;
 public class ThemeViewHolder extends BaseRecyclerAdapter.BaseViewHolder {
 
   @BindView(R.id.title_textview) TextView titleTextview;
-  @BindView(R.id.video_imageview) ImageView videoImageView;
-  @BindView(R.id.rec_imageview) ImageView recImageView;
+  @BindView(R.id.video_button) ImageView videoImageView;
+  @BindView(R.id.rec_button) ImageView recImageView;
   @BindView(R.id.rec_textview) TextView recTextView;
-  @BindView(R.id.fav_imageview) ImageView favImageView;
+  @BindView(R.id.fav_button) ImageView favImageView;
 
   public ThemeViewHolder(View itemView) {
     super(itemView);

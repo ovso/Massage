@@ -23,7 +23,7 @@
       android:orientation="horizontal"
       >
     <ImageView
-        android:id="@id/fav_imageview"
+        android:id="@id/fav_button"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1.2"
@@ -43,7 +43,7 @@
         />
 
     <ImageView
-        android:id="@id/video_imageview"
+        android:id="@id/video_button"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1.3"
@@ -52,7 +52,7 @@
         />
 
     <ImageView
-        android:id="@id/rec_imageview"
+        android:id="@id/rec_button"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="0.9"

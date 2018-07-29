@@ -31,5 +31,9 @@
   <string name="query3">귀 혈자리</string>
   <string name="query4">다리 혈자리</string>
   <string name="origin">출처</string>
+  <string name="portrait_mode">세로모드</string>
+  <string name="landscape_mode">가로모드</string>
+  <string name="please_select_the_player_mode">플레이어 모드를 선택해 주세요</string>
+  <string name="video_does_not_exist">비디오가 존재하지 않습니다</string>
 
 </resources>

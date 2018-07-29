@@ -22,11 +22,12 @@
       android:gravity="center_vertical"
       android:orientation="horizontal"
       >
-    <ImageView
-        android:id="@id/fav_imageview"
+    <ImageButton
+        android:id="@id/fav_button"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1.2"
+        android:background="?android:attr/selectableItemBackground"
         android:scaleType="center"
         android:src="@drawable/ic_favorite_border"
         />
@@ -42,20 +43,23 @@
         tools:text="싹트네 싹터요 내마음에 사랑이 싹트네 싹터요"
         />
 
-    <ImageView
-        android:id="@id/video_imageview"
+    <ImageButton
+        android:id="@id/video_button"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1.3"
+        android:background="?android:attr/selectableItemBackground"
         android:scaleType="center"
         android:src="@drawable/ic_ondemand_video"
+
         />
 
-    <ImageView
-        android:id="@id/rec_imageview"
+    <ImageButton
+        android:id="@id/rec_button"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="0.9"
+        android:background="?android:attr/selectableItemBackground"
         android:scaleType="center"
         android:src="@drawable/ic_thumb_up"
         />
