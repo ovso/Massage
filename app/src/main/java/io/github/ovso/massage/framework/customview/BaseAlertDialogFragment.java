@@ -14,16 +14,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import dagger.android.support.AndroidSupportInjection;
 import io.github.ovso.massage.R;
+import io.github.ovso.massage.Security;
 import io.github.ovso.massage.framework.ObjectUtils;
-
-/**
- * Created by jaeho on 2017. 10. 24
- */
 
 public abstract class BaseAlertDialogFragment extends DialogFragment {
   private Unbinder unbinder;
+  private InterstitialAd interstitialAd;
+  protected AlertDialog alertDialog;
+  protected View contentView;
+
   @NonNull @Override public Dialog onCreateDialog(Bundle savedInstanceState) {
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setTitle(getTitle());
@@ -41,12 +45,12 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
     return builder.create();
   }
 
-
   protected boolean isNeutralButton() {
     return false;
   }
 
   protected abstract boolean isNegativeButton();
+
   protected abstract boolean isPositiveButton();
 
   private View getContentView() {
@@ -58,16 +62,40 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
 
   @Override public void onActivityCreated(Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
+    interstitialAd = provideInterstitialAd(getContext());
+    interstitialAd.setAdListener(interstitialAdListener);
     onActivityCreate(savedInstanceState);
+  }
+
+  private InterstitialAd provideInterstitialAd(Context context) {
+    InterstitialAd interstitialAd = new InterstitialAd(context);
+    interstitialAd.setAdUnitId(Security.ADMOB_INTERSTITIAL_UNIT_ID.getValue());
+    AdRequest.Builder adRequestBuilder = new AdRequest.Builder();
+    interstitialAd.loadAd(adRequestBuilder.build());
+    return interstitialAd;
+  }
+
+  private AdListener interstitialAdListener = new AdListener() {
+    @Override public void onAdClosed() {
+      super.onAdClosed();
+      BaseAlertDialogFragment.this.dismiss();
+    }
+  };
+
+  private void showInterstitialAd() {
+    if (!ObjectUtils.isEmpty(interstitialAd)) {
+      if (interstitialAd.isLoaded()) {
+        interstitialAd.show();
+      } else {
+        BaseAlertDialogFragment.this.dismiss();
+      }
+    }
   }
 
   @Override public void onAttach(Context context) {
     if (isDagger()) AndroidSupportInjection.inject(this);
     super.onAttach(context);
   }
-
-  protected AlertDialog alertDialog;
-  protected View contentView;
 
   @Override public void onStart() {
     super.onStart();
@@ -106,7 +134,9 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
     return R.string.empty;
   }
 
-  protected abstract View.OnClickListener onPositiveClickListener();
+  protected View.OnClickListener onPositiveClickListener() {
+    return v -> showInterstitialAd();
+  }
 
   protected abstract View.OnClickListener onNegativeClickListener();
 
@@ -116,7 +146,7 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
 
   @Override public void onDetach() {
     super.onDetach();
-    if(!ObjectUtils.isEmpty(unbinder)) {
+    if (!ObjectUtils.isEmpty(unbinder)) {
       unbinder.unbind();
     }
   }

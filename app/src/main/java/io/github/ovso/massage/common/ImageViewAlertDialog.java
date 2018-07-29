@@ -56,10 +56,6 @@ public class ImageViewAlertDialog extends BaseAlertDialogFragment {
     return R.string.empty;
   }
 
-  @Override protected View.OnClickListener onPositiveClickListener() {
-    return view -> dismiss();
-  }
-
   @Override protected View.OnClickListener onNegativeClickListener() {
     return null;
   }

@@ -88,10 +88,6 @@ public class WebviewAlertDialog extends BaseAlertDialogFragment {
     return R.string.empty;
   }
 
-  @Override protected View.OnClickListener onPositiveClickListener() {
-    return view -> dismiss();
-  }
-
   @Override protected View.OnClickListener onNegativeClickListener() {
     return view -> new AlertDialog.Builder(getContext()).setTitle(R.string.how_to_zoom_img)
         .setMessage(R.string.help_webview_image)
