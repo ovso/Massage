@@ -12,9 +12,6 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import java.util.Locale;
 
-/**
- * Created by jaeho on 2017. 10. 11
- */
 
 public class SystemUtils {
 
@@ -34,12 +31,13 @@ public class SystemUtils {
   }
 
   public static String getVersionName(Context context) {
-    String versionName = "0.0.1";
+    String versionName;
     try {
       PackageInfo info = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
       versionName = info.versionName;
     } catch (PackageManager.NameNotFoundException e) {
       e.printStackTrace();
+      versionName = "0.0.1";
     }
 
     return versionName;

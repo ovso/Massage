@@ -9,10 +9,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import butterknife.BindView;
-import com.google.android.youtube.player.YouTubeStandalonePlayer;
-import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.Security;
 import io.github.ovso.massage.common.WebviewAlertDialog;
 import io.github.ovso.massage.framework.Constants;
 import io.github.ovso.massage.framework.SelectableItem;
@@ -21,22 +18,16 @@ import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListen
 import io.github.ovso.massage.main.f_symptom.adapter.SymptomAdapter;
 import io.github.ovso.massage.main.f_symptom.adapter.SymptomAdapterView;
 import io.github.ovso.massage.main.f_symptom.model.Symptom;
-import io.github.ovso.massage.youtube.FullscreenVideoActivity;
-import io.reactivex.disposables.CompositeDisposable;
+import io.github.ovso.massage.youtube.LandscapeVideoActivity;
+import io.github.ovso.massage.youtube.PortraitVideoActivity;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
-
-/**
- * Created by jaeho on 2017. 10. 20
- */
 
 public class SymptomFragment extends BaseFragment
     implements SymptomPresenter.View, OnCustomRecyclerItemClickListener<SelectableItem<Symptom>> {
 
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
-  @BindView(R.id.root_view) View rootView;
   @BindView(R.id.progressbar) ProgressBar progressBar;
-  @Inject CompositeDisposable compositeDisposable;
   @Inject SymptomAdapter adapter;
   @Inject SymptomAdapterView adapterView;
   @Inject SymptomPresenter presenter;
@@ -54,8 +45,7 @@ public class SymptomFragment extends BaseFragment
   }
 
   public static SymptomFragment newInstance() {
-    SymptomFragment f = new SymptomFragment();
-    return f;
+    return new SymptomFragment();
   }
 
   @Override public void setRecyclerView() {
@@ -100,26 +90,24 @@ public class SymptomFragment extends BaseFragment
     adapterView.refresh(position);
   }
 
-  @Override public void showVideo(String videoId) {
-    int startTimeMillis = 0;
-    boolean autoPlay = true;
-    boolean lightboxMode = true;
-    Intent intent = YouTubeStandalonePlayer.createVideoIntent(getActivity(),
-        Security.YOUTUBE_DEVELOPER_KEY.getValue(), videoId, startTimeMillis, autoPlay,
-        lightboxMode);
+  @Override public void showPortraitVideo(String videoId) {
+    Intent intent = new Intent(getContext(), PortraitVideoActivity.class);
+    intent.putExtra("video_id", videoId);
     startActivity(intent);
   }
 
   @Override public void showLandscapeVideo(String videoId) {
-    Intent intent = new Intent(getContext(), FullscreenVideoActivity.class);
+    Intent intent = new Intent(getContext(), LandscapeVideoActivity.class);
     intent.putExtra("video_id", videoId);
     startActivity(intent);
   }
 
   @Override public void showWebViewDialog(Symptom item) {
-    new WebviewAlertDialog().setUrl(item.getUrl())
-        .setFlag(item.isFlag())
-        .show(getFragmentManager(), WebviewAlertDialog.class.getSimpleName());
+    if (getFragmentManager() != null) {
+      new WebviewAlertDialog().setUrl(item.getUrl())
+          .setFlag(item.isFlag())
+          .show(getFragmentManager(), WebviewAlertDialog.class.getSimpleName());
+    }
   }
 
   @Override public void removeRefresh() {

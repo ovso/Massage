@@ -93,7 +93,7 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
     String video_id = item.getItem().getVideo_id();
     if (!TextUtils.isEmpty(video_id)) {
       try {
-        view.showVideo(video_id);
+        view.showPortraitVideo(video_id);
       } catch (ActivityNotFoundException e) {
         e.printStackTrace();
         view.showYoutubeUseWarningDialog();

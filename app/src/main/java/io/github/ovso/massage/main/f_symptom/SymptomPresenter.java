@@ -34,7 +34,7 @@ public interface SymptomPresenter {
 
     void refresh(int position);
 
-    void showVideo(String videoId);
+    void showPortraitVideo(String videoId);
 
     void showWebViewDialog(Symptom item);
 

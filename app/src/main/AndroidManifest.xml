@@ -22,9 +22,15 @@
       </intent-filter>
     </activity>
     <activity
-        android:name=".youtube.FullscreenVideoActivity"
+        android:name=".youtube.LandscapeVideoActivity"
         android:configChanges="keyboardHidden|orientation|screenSize"
         android:screenOrientation="sensorLandscape"
+        android:theme="@android:style/Theme.Black.NoTitleBar">
+    </activity>
+    <activity
+        android:name=".youtube.PortraitVideoActivity"
+        android:configChanges="keyboardHidden|orientation|screenSize"
+        android:screenOrientation="sensorPortrait"
         android:theme="@android:style/Theme.Black.NoTitleBar">
     </activity>
 

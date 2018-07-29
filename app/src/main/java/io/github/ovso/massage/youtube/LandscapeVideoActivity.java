@@ -10,12 +10,9 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerFragment;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.Security;
+import io.github.ovso.massage.ad.AdsActivity;
 
-/**
- * Created by jaeho on 2017. 9. 7
- */
-
-public class FullscreenVideoActivity extends Activity {
+public class LandscapeVideoActivity extends AdsActivity {
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -37,7 +34,7 @@ public class FullscreenVideoActivity extends Activity {
           });
     } else {
       Toast.makeText(this, R.string.no_videos_found, Toast.LENGTH_SHORT).show();
-      onBackPressed();
+      finish();
     }
   }
 }

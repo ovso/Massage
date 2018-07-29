@@ -21,7 +21,7 @@ import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListen
 import io.github.ovso.massage.main.f_theme.adapter.ThemeAdapter;
 import io.github.ovso.massage.main.f_theme.adapter.ThemeAdapterView;
 import io.github.ovso.massage.main.f_theme.model.Theme;
-import io.github.ovso.massage.youtube.FullscreenVideoActivity;
+import io.github.ovso.massage.youtube.LandscapeVideoActivity;
 import io.reactivex.disposables.CompositeDisposable;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
@@ -65,7 +65,7 @@ public class ThemeFragment extends BaseFragment
   }
 
   @Override public void showLandscapeVideo(String videoId) {
-    Intent intent = new Intent(getContext(), FullscreenVideoActivity.class);
+    Intent intent = new Intent(getContext(), LandscapeVideoActivity.class);
     intent.putExtra("video_id", videoId);
     startActivity(intent);
   }
