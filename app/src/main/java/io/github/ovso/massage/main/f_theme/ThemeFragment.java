@@ -23,6 +23,7 @@ import io.github.ovso.massage.main.f_theme.adapter.ThemeAdapter;
 import io.github.ovso.massage.main.f_theme.adapter.ThemeAdapterView;
 import io.github.ovso.massage.main.f_theme.model.Theme;
 import io.github.ovso.massage.youtube.LandscapeVideoActivity;
+import io.github.ovso.massage.youtube.PortraitVideoActivity;
 import io.reactivex.disposables.CompositeDisposable;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
@@ -78,7 +79,6 @@ public class ThemeFragment extends BaseFragment
         .show();
   }
 
-
   @Override public void setRecyclerView() {
     recyclerView.getItemAnimator().setChangeDuration(Constants.DURATION_RECYCLERVIEW_ANI);
     recyclerView.getItemAnimator().setRemoveDuration(Constants.DURATION_RECYCLERVIEW_ANI);
@@ -116,13 +116,8 @@ public class ThemeFragment extends BaseFragment
   }
 
   @Override public void showPortraitVideo(String videoId) {
-    int startTimeMillis = 0;
-    boolean autoPlay = true;
-    boolean lightboxMode = true;
-
-    Intent intent = YouTubeStandalonePlayer.createVideoIntent(getActivity(),
-        Security.YOUTUBE_DEVELOPER_KEY.getValue(), videoId, startTimeMillis, autoPlay,
-        lightboxMode);
+    Intent intent = new Intent(getContext(), PortraitVideoActivity.class);
+    intent.putExtra("video_id", videoId);
     startActivity(intent);
   }
 
