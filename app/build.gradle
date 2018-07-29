@@ -46,6 +46,7 @@ android {
 
     versionName "${versionMajor}.${versionMinor}.${versionPatch}"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    //multiDexEnabled true
   }
 
   buildTypes {
@@ -53,7 +54,7 @@ android {
       signingConfig signingConfigs.release
       minifyEnabled false
       shrinkResources false
-      useProguard false
+      useProguard true
       proguardFile getDefaultProguardFile('proguard-android.txt')
       proguardFile 'proguard-rules.pro'
       proguardFile 'proguard-tedpermission.pro'
@@ -92,24 +93,33 @@ android {
     sourceCompatibility JavaVersion.VERSION_1_8
   }
 
-  configurations.all { exclude group: 'com.android.support', module: 'customtabs' }
-
+  gradle.projectsEvaluated {
+    tasks.withType(JavaCompile) {
+      options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+    }
+  }
 }
 
 dependencies {
-  compile fileTree(dir: 'libs', include: ['*.jar'])
-  androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+  androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
     exclude group: 'com.android.support', module: 'support-annotations'
   })
-  testCompile 'junit:junit:4.12'
+  testImplementation 'junit:junit:4.12'
 
   implementation files('libs/YouTubeAndroidPlayerApi.jar')
   implementation "com.android.support:appcompat-v7:$rootProject.support_version"
   implementation "com.android.support:design:$rootProject.support_version"
+  implementation "com.android.support:customtabs:$rootProject.support_version"
   implementation "com.android.support.constraint:constraint-layout:$rootProject.constraint_version"
   implementation "com.android.support:cardview-v7:$rootProject.support_version"
+
   implementation "com.google.firebase:firebase-database:$rootProject.firebase_database_version"
   implementation "com.google.firebase:firebase-ads:$rootProject.firebase_ads_version"
+  implementation "com.google.firebase:firebase-core:$rootProject.firebase_core_version"
+  implementation "com.androidhuman.rxfirebase2:firebase-database:$rootProject.rxfirebase_version"
+  implementation "com.google.firebase:firebase-crash:$rootProject.firebase_crash_version"
+
   implementation "com.google.guava:guava:$rootProject.guava_version"
   implementation "com.google.dagger:dagger:$rootProject.dagger_version"
   implementation "com.google.dagger:dagger-android-support:$rootProject.dagger_version"
@@ -119,7 +129,7 @@ dependencies {
   implementation "com.google.code.findbugs:jsr305:$rootProject.jsr305_version"
   implementation "com.github.bumptech.glide:glide:$rootProject.glide_version"
 
-  implementation "com.androidhuman.rxfirebase2:firebase-database:$rootProject.rxfirebase_version"
+
 
   implementation "com.jakewharton:butterknife:$rootProject.butterknife_version"
   annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknife_version"
@@ -133,7 +143,7 @@ dependencies {
   compileOnly "org.projectlombok:lombok:$rootProject.lombok_version"
   annotationProcessor "org.projectlombok:lombok:$rootProject.lombok_version"
 
-  provided "javax.annotation:jsr250-api:$rootProject.jsr250_version"
+  compileOnly "javax.annotation:jsr250-api:$rootProject.jsr250_version"
 
   implementation "jp.wasabeef:recyclerview-animators:$rootProject.recyclerview_animators_version"
 

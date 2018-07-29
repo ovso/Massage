@@ -2,3 +2,4 @@
 -keepclassmembers class io.github.ovso.righttoknow.** {
   *;
 }
+-keepattributes *Annotation*
