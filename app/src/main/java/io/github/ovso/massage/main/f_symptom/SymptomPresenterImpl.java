@@ -120,18 +120,6 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
     }
   }
 
-  @Override public void onVideoLongClick(SelectableItem<Symptom> item) {
-    String video_id = item.getItem().getVideo_id();
-    if (!TextUtils.isEmpty(video_id)) {
-      try {
-        view.showLandscapeVideo(video_id);
-      } catch (ActivityNotFoundException e) {
-        e.printStackTrace();
-        view.showYoutubeUseWarningDialog();
-      }
-    }
-  }
-
   @Override public void onDestroyView() {
     compositeDisposable.clear();
   }

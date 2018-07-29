@@ -1,12 +1,9 @@
 package io.github.ovso.massage.main.f_theme;
 
+import android.content.DialogInterface;
 import android.support.annotation.StringRes;
 import io.github.ovso.massage.main.f_theme.model.Theme;
 import io.github.ovso.massage.framework.SelectableItem;
-
-/**
- * Created by jaeho on 2017. 11. 27
- */
 
 public interface ThemePresenter {
 
@@ -20,8 +17,6 @@ public interface ThemePresenter {
 
   void onVideoClick(int position, SelectableItem<Theme> item);
 
-  void onVideoLongClick(SelectableItem<Theme> item);
-
   void onDestroyView();
 
   interface View {
@@ -34,7 +29,7 @@ public interface ThemePresenter {
 
     void refresh(int position);
 
-    void showVideo(String videoId);
+    void showPortraitVideo(String videoId);
 
     void showWebViewDialog(Theme item);
 
@@ -51,5 +46,7 @@ public interface ThemePresenter {
     void showYoutubeUseWarningDialog();
 
     void showLandscapeVideo(String videoId);
+
+    void showVideoTypeDialog(DialogInterface.OnClickListener onClickListener);
   }
 }

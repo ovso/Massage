@@ -1,6 +1,7 @@
 package io.github.ovso.massage.main.f_theme;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,10 +26,6 @@ import io.github.ovso.massage.youtube.LandscapeVideoActivity;
 import io.reactivex.disposables.CompositeDisposable;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
-
-/**
- * Created by jaeho on 2017. 10. 20
- */
 
 public class ThemeFragment extends BaseFragment
     implements ThemePresenter.View, OnCustomRecyclerItemClickListener<SelectableItem<Theme>> {
@@ -70,6 +67,18 @@ public class ThemeFragment extends BaseFragment
     startActivity(intent);
   }
 
+  @Override public void showVideoTypeDialog(DialogInterface.OnClickListener $onClickListener) {
+    final DialogInterface.OnClickListener onClickListener =
+        (dialog, which) -> $onClickListener.onClick(dialog, which);
+    new AlertDialog.Builder(getContext()).setMessage(R.string.please_select_the_player_mode)
+        .setPositiveButton(R.string.portrait_mode,
+            onClickListener)
+        .setNeutralButton(R.string.landscape_mode, onClickListener)
+        .setNegativeButton(android.R.string.cancel, onClickListener)
+        .show();
+  }
+
+
   @Override public void setRecyclerView() {
     recyclerView.getItemAnimator().setChangeDuration(Constants.DURATION_RECYCLERVIEW_ANI);
     recyclerView.getItemAnimator().setRemoveDuration(Constants.DURATION_RECYCLERVIEW_ANI);
@@ -106,7 +115,7 @@ public class ThemeFragment extends BaseFragment
     adapterView.refresh(position);
   }
 
-  @Override public void showVideo(String videoId) {
+  @Override public void showPortraitVideo(String videoId) {
     int startTimeMillis = 0;
     boolean autoPlay = true;
     boolean lightboxMode = true;
@@ -141,10 +150,6 @@ public class ThemeFragment extends BaseFragment
 
   @Override public void onVideoClick(int position, SelectableItem<Theme> item) {
     presenter.onVideoClick(position, item);
-  }
-
-  @Override public void onItemLongClick(SelectableItem<Theme> item) {
-    presenter.onVideoLongClick(item);
   }
 
   @Override public void onDestroyView() {

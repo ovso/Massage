@@ -1,11 +1,7 @@
 package io.github.ovso.massage.framework.listener;
 
-/**
- * Created by jaeho on 2017. 11. 28
- */
-
 public interface OnCustomRecyclerItemClickListener<T>
-    extends OnRecyclerItemClickListener<T>, OnRecyclerItemLongClickListener<T> {
+    extends OnRecyclerItemClickListener<T> {
   void onFavoriteClick(int position, T item);
 
   void onVideoClick(int position, T item);

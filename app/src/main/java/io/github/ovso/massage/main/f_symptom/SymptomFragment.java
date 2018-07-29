@@ -142,10 +142,6 @@ public class SymptomFragment extends BaseFragment
     presenter.onVideoClick(position, item);
   }
 
-  @Override public void onItemLongClick(SelectableItem<Symptom> item) {
-    presenter.onVideoLongClick(item);
-  }
-
   @Override public void onDestroyView() {
     presenter.onDestroyView();
     super.onDestroyView();

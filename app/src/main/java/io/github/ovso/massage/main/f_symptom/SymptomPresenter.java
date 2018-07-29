@@ -21,8 +21,6 @@ public interface SymptomPresenter {
 
   void onVideoClick(int position, SelectableItem<Symptom> item);
 
-  void onVideoLongClick(SelectableItem<Symptom> item);
-
   void onDestroyView();
 
   interface View {
