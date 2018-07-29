@@ -103,7 +103,7 @@ dependencies {
   })
   testCompile 'junit:junit:4.12'
 
-  implementation files('libs/YouTubeAndroidPlayerApi.jar', 'libs/CaulySDK_3.4.18.jar')
+  implementation files('libs/YouTubeAndroidPlayerApi.jar')
   implementation "com.android.support:appcompat-v7:$rootProject.support_version"
   implementation "com.android.support:design:$rootProject.support_version"
   implementation "com.android.support.constraint:constraint-layout:$rootProject.constraint_version"

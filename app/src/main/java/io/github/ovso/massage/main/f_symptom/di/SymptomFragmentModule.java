@@ -14,10 +14,6 @@ import io.github.ovso.massage.main.f_symptom.db.SymptomLocalDb;
 import io.reactivex.disposables.CompositeDisposable;
 import javax.inject.Singleton;
 
-/**
- * Created by jaeho on 2017. 10. 20
- */
-
 @Module public class SymptomFragmentModule {
 
   @Provides SymptomPresenter provideSymptomPresenter(SymptomFragment fragment,
