@@ -24,6 +24,7 @@ ext {
   firebase_ads_version = '15.0.1'
   firebase_core_version = '16.0.1'
   firebase_crash_version = '16.0.1'
+  firebase_crashlytics_version = '2.9.3'
   rxfirebase_version = '16.0.1.0'
 
   recyclerview_animators_version = '2.2.7'
