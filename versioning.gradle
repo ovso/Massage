@@ -4,7 +4,7 @@ ext {
   application_id = 'io.github.ovso.massage'
   min_sdk_version = 21
   target_sdk_version = 27
-  version_code = 11
+  version_code = 12
 
   support_version = '27.1.1'
   constraint_version = '1.0.2'
@@ -23,7 +23,7 @@ ext {
   firebase_database_version = '16.0.1'
   firebase_ads_version = '15.0.1'
   firebase_core_version = '16.0.1'
-  firebase_crash_version = '16.0.1'
+  firebase_crashlytics_version = '2.9.3'
   rxfirebase_version = '16.0.1.0'
 
   recyclerview_animators_version = '2.2.7'

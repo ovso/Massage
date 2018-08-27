@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'hugo'
 apply plugin: 'realm-android'
+apply plugin: 'io.fabric'
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 // Initialize a new Properties() object called keystoreProperties.
@@ -87,6 +88,7 @@ android {
       url 'https://maven.google.com'
       // Alternative URL is 'https://dl.google.com/dl/android/maven2/'
     }
+    maven { url 'https://maven.fabric.io/public' }
   }
 
   compileOptions {
@@ -94,11 +96,11 @@ android {
     sourceCompatibility JavaVersion.VERSION_1_8
   }
 
-  gradle.projectsEvaluated {
-    tasks.withType(JavaCompile) {
-      options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
-    }
-  }
+//  gradle.projectsEvaluated {
+//    tasks.withType(JavaCompile) {
+//      options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+//    }
+//  }
 }
 
 dependencies {
@@ -119,7 +121,7 @@ dependencies {
   implementation "com.google.firebase:firebase-ads:$rootProject.firebase_ads_version"
   implementation "com.google.firebase:firebase-core:$rootProject.firebase_core_version"
   implementation "com.androidhuman.rxfirebase2:firebase-database:$rootProject.rxfirebase_version"
-  implementation "com.google.firebase:firebase-crash:$rootProject.firebase_crash_version"
+  implementation "com.crashlytics.sdk.android:crashlytics:$rootProject.firebase_crashlytics_version"
 
   implementation "com.google.guava:guava:$rootProject.guava_version"
   implementation "com.google.dagger:dagger:$rootProject.dagger_version"
