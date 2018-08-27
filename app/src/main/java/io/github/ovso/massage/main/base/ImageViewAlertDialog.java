@@ -1,4 +1,4 @@
-package io.github.ovso.massage.common;
+package io.github.ovso.massage.main.base;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,10 +11,6 @@ import io.github.ovso.massage.di.GlideApp;
 import io.github.ovso.massage.framework.customview.BaseAlertDialogFragment;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-
-/**
- * Created by jaeho on 2017. 11. 28
- */
 
 public class ImageViewAlertDialog extends BaseAlertDialogFragment {
   @BindView(R.id.imageview) ImageView imageView;

@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import butterknife.BindView;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.common.WebviewAlertDialog;
+import io.github.ovso.massage.main.base.WebviewAlertDialog;
 import io.github.ovso.massage.framework.Constants;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.customview.BaseFragment;

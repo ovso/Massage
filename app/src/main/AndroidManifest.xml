@@ -3,6 +3,11 @@
     package="io.github.ovso.massage">
 
   <uses-permission android:name="android.permission.INTERNET"/>
+
+  <meta-data
+      android:name="firebase_crashlytics_collection_enabled"
+      android:value="false"/>
+
   <application
       android:name=".App"
       android:allowBackup="true"

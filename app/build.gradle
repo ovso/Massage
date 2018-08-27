@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'hugo'
 apply plugin: 'realm-android'
+apply plugin: 'io.fabric'
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 // Initialize a new Properties() object called keystoreProperties.
@@ -87,6 +88,7 @@ android {
       url 'https://maven.google.com'
       // Alternative URL is 'https://dl.google.com/dl/android/maven2/'
     }
+    maven { url 'https://maven.fabric.io/public' }
   }
 
   compileOptions {
@@ -94,11 +96,11 @@ android {
     sourceCompatibility JavaVersion.VERSION_1_8
   }
 
-  gradle.projectsEvaluated {
-    tasks.withType(JavaCompile) {
-      options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
-    }
-  }
+//  gradle.projectsEvaluated {
+//    tasks.withType(JavaCompile) {
+//      options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+//    }
+//  }
 }
 
 dependencies {

@@ -1,4 +1,4 @@
-package io.github.ovso.massage.common;
+package io.github.ovso.massage.main.base;
 
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
@@ -16,10 +16,6 @@ import io.github.ovso.massage.R;
 import io.github.ovso.massage.framework.customview.BaseAlertDialogFragment;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-
-/**
- * Created by jaeho on 2017. 11. 28
- */
 
 public class WebviewAlertDialog extends BaseAlertDialogFragment {
   @BindView(R.id.webview) WebView webview;
@@ -45,7 +41,7 @@ public class WebviewAlertDialog extends BaseAlertDialogFragment {
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
     WebSettings settings = webview.getSettings();
-    settings.setJavaScriptEnabled(flag);// Javascript 사용하기
+    settings.setJavaScriptEnabled(true);// Javascript 사용하기
     settings.setBuiltInZoomControls(true);
     webview.setWebChromeClient(new WebChromeClient());
     webview.setWebViewClient(new WebViewClient() {
