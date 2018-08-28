@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.InterstitialAd;
-import io.github.ovso.massage.App;
 
 public class AdsActivity extends Activity {
   InterstitialAd interstitialAd;
@@ -23,11 +22,7 @@ public class AdsActivity extends Activity {
 
   @Override public void onBackPressed() {
     if (interstitialAd.isLoaded()) {
-      if (App.isDebug()) {
-        finish();
-      } else {
-        interstitialAd.show();
-      }
+      interstitialAd.show();
     } else {
       finish();
     }

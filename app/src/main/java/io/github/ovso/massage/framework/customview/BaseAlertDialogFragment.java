@@ -18,7 +18,6 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import dagger.android.support.AndroidSupportInjection;
-import io.github.ovso.massage.App;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.Security;
 import io.github.ovso.massage.framework.ObjectUtils;
@@ -79,20 +78,16 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
   private AdListener interstitialAdListener = new AdListener() {
     @Override public void onAdClosed() {
       super.onAdClosed();
-      BaseAlertDialogFragment.this.dismiss();
+      dismissAllowingStateLoss();
     }
   };
 
   private void showInterstitialAd() {
     if (!ObjectUtils.isEmpty(interstitialAd)) {
       if (interstitialAd.isLoaded()) {
-        if (!App.isDebug()) {
-          interstitialAd.show();
-        } else {
-          BaseAlertDialogFragment.this.dismiss();
-        }
+        interstitialAd.show();
       } else {
-        BaseAlertDialogFragment.this.dismiss();
+        dismissAllowingStateLoss();
       }
     }
   }
