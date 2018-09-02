@@ -11,8 +11,6 @@ public interface ThemePresenter {
 
   void onItemClick(SelectableItem<Theme> item);
 
-  void onRecommendClick(int position, SelectableItem<Theme> item);
-
   void onFavoriteClick(int position, SelectableItem<Theme> item);
 
   void onVideoClick(int position, SelectableItem<Theme> item);

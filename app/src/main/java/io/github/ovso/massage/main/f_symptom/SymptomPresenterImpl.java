@@ -125,48 +125,6 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
     compositeDisposable.clear();
   }
 
-  @Override
-  public void onRecommendClick(final int position, final SelectableItem<Symptom> selectableItem) {
-    view.showLoading();
-    databaseReference.runTransaction(new Transaction.Handler() {
-      @SuppressWarnings("unchecked") @Override
-      public Transaction.Result doTransaction(MutableData mutableData) {
-        ArrayList<Object> objects = (ArrayList<Object>) mutableData.getValue();
-        if (!ObjectUtils.isEmpty(objects)) {
-          HashMap<String, Object> objectHashMap =
-              (HashMap<String, Object>) objects.get(selectableItem.getItem().getId());
-          long recommendCount = (long) objectHashMap.get("rec");
-          recommendCount = recommendCount + 1;
-          objectHashMap.put("rec", recommendCount);
-          mutableData.setValue(objects);
-          return Transaction.success(mutableData);
-        }
-        return Transaction.success(mutableData);
-      }
-
-      @Override
-      public void onComplete(DatabaseError error, boolean committed, DataSnapshot dataSnapshot) {
-        if (committed) {
-          ArrayList<DataSnapshot> dataSnapshots = Lists.newArrayList(dataSnapshot.getChildren());
-          int size = dataSnapshots.size();
-          for (int i = 0; i < size; i++) {
-            if (i == selectableItem.getItem().getId()) {
-              Symptom symptom = dataSnapshots.get(i).getValue(Symptom.class);
-              selectableItem.setItem(symptom);
-              view.refresh(position);
-              break;
-            }
-          }
-          //view.showMessage(R.string.you_recommended_it);
-        } else {
-          view.showMessage(R.string.error_server);
-        }
-
-        view.hideLoading();
-      }
-    });
-  }
-
   @Override public void onFavoriteClick(final SelectableItem<Symptom> selectableItem) {
     view.showLoading();
     view.removeRefresh();

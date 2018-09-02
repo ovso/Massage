@@ -5,17 +5,11 @@ import android.support.annotation.StringRes;
 import io.github.ovso.massage.main.f_symptom.model.Symptom;
 import io.github.ovso.massage.framework.SelectableItem;
 
-/**
- * Created by jaeho on 2017. 11. 27
- */
-
 public interface SymptomPresenter {
 
   void onActivityCreate();
 
   void onItemClick(SelectableItem<Symptom> item);
-
-  void onRecommendClick(int position, SelectableItem<Symptom> item);
 
   void onFavoriteClick(SelectableItem<Symptom> item);
 

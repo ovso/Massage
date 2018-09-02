@@ -64,7 +64,6 @@ public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapte
         iconImage = R.drawable.ic_ondemand_video;
       }
       holder.videoButton.setImageResource(iconImage);
-      holder.recTextView.setText(ConversionUtility.convertUnit(item.getRec()));
       if (selectableItem.isFavorite()) {
         holder.favButton.setImageResource(R.drawable.ic_favorite);
       } else {
@@ -74,14 +73,6 @@ public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapte
           .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
           .observeOn(AndroidSchedulers.mainThread())
           .subscribe(o -> onRecyclerItemClickListener.onItemClick(selectableItem)));
-      compositeDisposable.add(RxView.clicks(holder.recButton)
-          .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
-          .observeOn(AndroidSchedulers.mainThread())
-          .subscribe(o -> onRecyclerItemClickListener.onRecommendClick(position, selectableItem)));
-      compositeDisposable.add(RxView.clicks(holder.recTextView)
-          .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
-          .observeOn(AndroidSchedulers.mainThread())
-          .subscribe(o -> onRecyclerItemClickListener.onRecommendClick(position, selectableItem)));
       compositeDisposable.add(RxView.clicks(holder.favButton)
           .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
           .observeOn(AndroidSchedulers.mainThread())
