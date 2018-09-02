@@ -1,19 +1,13 @@
 package io.github.ovso.massage.main.f_symptom;
 
 import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
 import android.text.TextUtils;
 import com.androidhuman.rxfirebase2.database.RxFirebaseDatabase;
-import com.google.common.collect.Lists;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.MutableData;
-import com.google.firebase.database.Transaction;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.framework.Constants;
-import io.github.ovso.massage.framework.ObjectUtils;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.VideoMode;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
@@ -24,14 +18,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import timber.log.Timber;
-
-/**
- * Created by jaeho on 2017. 11. 27
- */
 
 public class SymptomPresenterImpl extends Exception implements SymptomPresenter {
   private SymptomPresenter.View view;
