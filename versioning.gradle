@@ -4,15 +4,15 @@ ext {
   application_id = 'io.github.ovso.massage'
   min_sdk_version = 21
   target_sdk_version = 27
-  version_code = 13
+  version_code = 14
 
   support_version = '27.1.1'
   constraint_version = '1.0.2'
   butterknife_version = '8.8.1'
-  dagger_version = '2.14.1'
+  dagger_version = '2.17'
 
-  rxjava_version = '2.1.14'
-  rxandroid_version = '2.0.2'
+  rxjava_version = '2.2.1'
+  rxandroid_version = '2.1.0'
   rxbinding2_version = '2.1.1'
 
   timber_version = '4.6.0'
@@ -32,7 +32,7 @@ ext {
   glide_version = '4.0.0'
   photoview_version = '2.0.0'
 
-  retrofit_version = '2.3.0'
+  retrofit_version = '2.4.0'
   okhttp3_version = '3.9.0'
 
 }

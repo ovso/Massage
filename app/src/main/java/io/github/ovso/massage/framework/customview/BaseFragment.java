@@ -12,10 +12,6 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import dagger.android.support.AndroidSupportInjection;
 
-/**
- * Created by jaeho on 2017. 9. 25
- */
-
 public abstract class BaseFragment extends Fragment {
   private Unbinder unbinder;
 

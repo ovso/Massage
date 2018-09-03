@@ -133,10 +133,6 @@ public class ThemeFragment extends BaseFragment
     presenter.onItemClick(item);
   }
 
-  @Override public void onRecommendClick(int position, SelectableItem<Theme> item) {
-    presenter.onRecommendClick(position, item);
-  }
-
   @Override public void onFavoriteClick(int position, SelectableItem<Theme> item) {
     presenter.onFavoriteClick(position, item);
   }
