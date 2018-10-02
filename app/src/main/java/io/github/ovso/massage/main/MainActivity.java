@@ -57,9 +57,9 @@ public class MainActivity extends BaseActivity
       boolean isChecked = bottomNavigationView.getMenu().findItem(item.getItemId()).isChecked();
       return presenter.onBottomNavItemSelected(item.getItemId(), isChecked);
     });
-    CoordinatorLayout.LayoutParams layoutParams =
-        (CoordinatorLayout.LayoutParams) bottomNavigationView.getLayoutParams();
-    layoutParams.setBehavior(new BottomNavigationViewBehavior());
+    //CoordinatorLayout.LayoutParams layoutParams =
+    //    (CoordinatorLayout.LayoutParams) bottomNavigationView.getLayoutParams();
+    //layoutParams.setBehavior(new BottomNavigationViewBehavior());
 
     TextView versionTextView = navigationView.getHeaderView(0).findViewById(R.id.version_textview);
     versionTextView.setText(SystemUtils.getVersionName(getApplicationContext()));
