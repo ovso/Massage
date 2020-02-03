@@ -137,9 +137,11 @@ public class MainActivity extends BaseActivity
 
   @Override public void changeTheme() {
     setTheme(R.style.AppTheme_NoActionBar);
+
   }
 
   @Override public void showAd() {
     adContainer.addView(MyAdView.getAdmobAdView(getApplicationContext()));
+
   }
 }
