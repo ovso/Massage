@@ -11,10 +11,6 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 import java.util.List;
 
-/**
- * Created by jaeho on 2017. 11. 27
- */
-
 public class AcupointsPresenterImpl implements AcupointsPresenter {
   private View view;
   private CompositeDisposable compositeDisposable;
