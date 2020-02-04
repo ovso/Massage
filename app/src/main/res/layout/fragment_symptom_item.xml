@@ -22,20 +22,12 @@
       android:gravity="center_vertical"
       android:orientation="horizontal"
       >
-    <ImageButton
-        android:id="@id/fav_button"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="?android:attr/selectableItemBackground"
-        android:scaleType="center"
-        android:src="@drawable/ic_favorite_border"
-        />
     <TextView
         android:id="@id/title_textview"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="5"
+        android:paddingLeft="20dp"
         android:ellipsize="end"
         android:gravity="left|center_vertical"
         android:lines="1"
