@@ -7,14 +7,12 @@ import android.text.TextUtils;
 import android.view.View;
 import com.jakewharton.rxbinding2.view.RxView;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.framework.SystemUtils;
-import io.github.ovso.massage.main.f_symptom.model.Symptom;
-import io.github.ovso.massage.main.f_theme.model.Theme;
-import io.github.ovso.massage.framework.ConversionUtility;
 import io.github.ovso.massage.framework.SelectableItem;
+import io.github.ovso.massage.framework.SystemUtils;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
 import io.github.ovso.massage.framework.adapter.BaseRecyclerAdapter;
 import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListener;
+import io.github.ovso.massage.main.f_theme.model.Theme;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import java.util.ArrayList;
@@ -67,20 +65,12 @@ public class ThemeAdapter extends BaseRecyclerAdapter
         iconImage = R.drawable.ic_ondemand_video;
       }
       holder.videoButton.setImageResource(iconImage);
-      if (selectableItem.isFavorite()) {
-        holder.favButton.setImageResource(R.drawable.ic_favorite);
-      } else {
-        holder.favButton.setImageResource(R.drawable.ic_favorite_border);
-      }
 
       compositeDisposable.add(RxView.clicks(holder.itemView)
           .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
           .observeOn(AndroidSchedulers.mainThread())
           .subscribe(o -> onRecyclerItemClickListener.onItemClick(selectableItem)));
-      compositeDisposable.add(RxView.clicks(holder.favButton)
-          .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
-          .observeOn(AndroidSchedulers.mainThread())
-          .subscribe(o -> onRecyclerItemClickListener.onFavoriteClick(position, selectableItem)));
+
       compositeDisposable.add(RxView.clicks(holder.videoButton)
           .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
           .observeOn(AndroidSchedulers.mainThread())
