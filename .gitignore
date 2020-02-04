@@ -4,3 +4,5 @@ google-services.json
 build
 gradle
 *.iml
+.gradle
+local.properties

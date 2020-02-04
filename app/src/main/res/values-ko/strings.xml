@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name">지압(마사지) 앱</string>
+  <string name="app_name">모두의 지압(마사지)</string>
   <string name="navigation_drawer_open">Open navigation drawer</string>
   <string name="navigation_drawer_close">Close navigation drawer</string>
   <string name="symptom">증상별</string>

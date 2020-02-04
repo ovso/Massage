@@ -7,7 +7,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.framework.Constants;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.VideoMode;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
@@ -19,7 +18,6 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import timber.log.Timber;
 
 public class ThemePresenterImpl implements ThemePresenter {
@@ -113,45 +111,4 @@ public class ThemePresenterImpl implements ThemePresenter {
     compositeDisposable.clear();
   }
 
-  @Override public void onFavoriteClick(int position, SelectableItem<Theme> selectableItem) {
-    view.showLoading();
-    view.removeRefresh();
-    adapterDataModel.clear();
-    compositeDisposable.add(RxFirebaseDatabase.data(databaseReference)
-        .subscribeOn(Schedulers.io())
-        .map(dataSnapshot -> {
-          if (selectableItem.isFavorite()) {
-            localDb.delete(selectableItem.getItem().getId());
-          } else {
-            localDb.add(selectableItem.getItem().getId());
-          }
-          final List<SelectableItem<Theme>> items = new ArrayList<>();
-          for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-            Theme Theme = snapshot.getValue(Theme.class);
-            boolean isFavorite = false;
-            for (int i = 0; i < localDb.getSize(); i++) {
-              int uniqueId = localDb.get(i).getId();
-              if (Theme.getId() == uniqueId) {
-                isFavorite = true;
-                break;
-              }
-            }
-            items.add(new SelectableItem<Theme>().setItem(Theme).setFavorite(isFavorite));
-          }
-          if (localDb.getSize() > 0) {
-            localDb.sort(items);
-          }
-          return items;
-        })
-        .delay(Constants.DELAY, TimeUnit.MILLISECONDS)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(items -> {
-          adapterDataModel.addAll(items);
-          view.refresh();
-          view.hideLoading();
-        }, throwable -> {
-          view.showMessage(R.string.error_server);
-          view.hideLoading();
-        }));
-  }
 }

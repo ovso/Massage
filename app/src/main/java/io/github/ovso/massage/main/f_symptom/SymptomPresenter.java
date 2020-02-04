@@ -11,8 +11,6 @@ public interface SymptomPresenter {
 
   void onItemClick(SelectableItem<Symptom> item);
 
-  void onFavoriteClick(SelectableItem<Symptom> item);
-
   void onVideoClick(int position, SelectableItem<Symptom> item);
 
   void onDestroyView();

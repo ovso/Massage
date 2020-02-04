@@ -4,10 +4,6 @@ import android.content.res.Resources;
 import android.support.annotation.StringRes;
 import io.github.ovso.massage.main.f_acupoints.model.Documents;
 
-/**
- * Created by jaeho on 2017. 11. 27
- */
-
 public interface AcupointsPresenter {
 
   void onActivityCreate(Resources res);

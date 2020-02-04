@@ -50,8 +50,7 @@ public class ThemeFragment extends BaseFragment
   }
 
   public static ThemeFragment newInstance() {
-    ThemeFragment f = new ThemeFragment();
-    return f;
+    return new ThemeFragment();
   }
 
   @Override public void showYoutubeUseWarningDialog() {
@@ -68,7 +67,7 @@ public class ThemeFragment extends BaseFragment
 
   @Override public void showVideoTypeDialog(DialogInterface.OnClickListener $onClickListener) {
     final DialogInterface.OnClickListener onClickListener =
-        (dialog, which) -> $onClickListener.onClick(dialog, which);
+        $onClickListener::onClick;
     new AlertDialog.Builder(getContext()).setMessage(R.string.please_select_the_player_mode)
         .setPositiveButton(R.string.portrait_mode,
             onClickListener)
@@ -122,7 +121,7 @@ public class ThemeFragment extends BaseFragment
   @Override public void showWebViewDialog(Theme item) {
     new WebviewAlertDialog().setUrl(item.getUrl())
         .setFlag(item.isFlag())
-        .show(getFragmentManager(), WebviewAlertDialog.class.getSimpleName());
+        .show(getChildFragmentManager(), WebviewAlertDialog.class.getSimpleName());
   }
 
   @Override public void removeRefresh() {
@@ -131,10 +130,6 @@ public class ThemeFragment extends BaseFragment
 
   @DebugLog @Override public void onItemClick(SelectableItem<Theme> item) {
     presenter.onItemClick(item);
-  }
-
-  @Override public void onFavoriteClick(int position, SelectableItem<Theme> item) {
-    presenter.onFavoriteClick(position, item);
   }
 
   @Override public void onVideoClick(int position, SelectableItem<Theme> item) {

@@ -20,10 +20,6 @@ import io.reactivex.disposables.CompositeDisposable;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 
-/**
- * Created by jaeho on 2017. 10. 20
- */
-
 public class AcupointsFragment extends BaseFragment
     implements AcupointsPresenter.View, OnAcuRecyclerItemClickListener<Documents> {
 
