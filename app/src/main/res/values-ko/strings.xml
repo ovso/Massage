@@ -6,13 +6,14 @@
   <string name="theme">테마별</string>
   <string name="acupressure_point">혈자리</string>
   <string name="error_server">서버 문제가 발생했습니다. 잠시후 다시 시도해 주세요.</string>
-  <string name="empty"/>
+  <string name="empty" />
   <string name="you_recommended_it">추천하셨습니다. +1 </string>
   <string name="opensource_license">오픈소스 라이선스</string>
   <string name="youtube_use_warning">유투브 앱이 설치되어 있어야 합니다. \n\n유투브 앱이 설치되어 있다면, \'사용안함\'에서 \'사용\'으로 설정을 변경해야 합니다.</string>
   <string name="my_email">ovsoc@daum.net</string>
   <string name="no_videos_found">영상을 찾을 수 없습니다.</string>
   <string name="help">도움말</string>
+  <string name="help_msg">서비스에 불편함을 느끼시면 언제든 리뷰 남겨주세요.</string>
   <string name="help_long_click_video">동영상을 전체화면으로 보시려면, 동영상 버튼을 길게 눌러주세요.\n\n앱에 문제가 있거나 정보에 문제가 생겼다면 리뷰 남기시거나 메일로 연락 주시길 부탁드려요.</string>
   <string name="go_back">뒤로가기</string>
   <string name="help_webview_image">1. 손으로 화면을 확대할 수 있어요\n2. 이미지는 클릭한 후 확대할 수 있어요\n
@@ -20,9 +21,7 @@
   <string name="how_to_zoom_img">손으로 확대할 수 있어요</string>
   <string name="close">닫기</string>
   <string name="shr_product_category">Best Gifts for Teen Girls</string>
-  <string name="shr_product_description">
-        Choose fun, exciting, and unique gifts every girl will love.
-    </string>
+  <string name="shr_product_description">Choose fun, exciting, and unique gifts every girl will love.</string>
   <string name="shr_category_clothing">Clothing</string>
   <string name="shr_category_home">Home</string>
   <string name="shr_category_popsicles">Popsicles</string>
@@ -35,5 +34,5 @@
   <string name="landscape_mode">가로모드</string>
   <string name="please_select_the_player_mode">플레이어 모드를 선택해 주세요</string>
   <string name="video_does_not_exist">비디오가 존재하지 않습니다</string>
-
+  <string name="review">리뷰 남기기</string>
 </resources>

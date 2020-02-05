@@ -1,5 +1,7 @@
 package io.github.ovso.massage.main;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -123,8 +125,20 @@ public class MainActivity extends BaseActivity
 
   @Override public void showHelpAlert(int resId) {
     new AlertDialog.Builder(this).setMessage(resId)
-        .setPositiveButton(android.R.string.ok, null)
+        .setPositiveButton(android.R.string.ok, ((dialog, which) -> dialog.dismiss()))
+        .setNeutralButton(R.string.review, (dialog, which) -> {
+          dialog.dismiss();
+          navigateToStore();
+        })
         .show();
+  }
+
+  private void navigateToStore() {
+    Intent intent = new Intent(Intent.ACTION_VIEW);
+    intent.setData(Uri.parse(
+        "https://play.google.com/store/apps/details?id=io.github.ovso.massage"));
+    intent.setPackage("com.android.vending");
+    startActivity(intent);
   }
 
   @Override public void showHelpAlert(String msg) {
@@ -135,11 +149,9 @@ public class MainActivity extends BaseActivity
 
   @Override public void changeTheme() {
     setTheme(R.style.AppTheme_NoActionBar);
-
   }
 
   @Override public void showAd() {
     adContainer.addView(MyAdView.getAdmobAdView(getApplicationContext()));
-
   }
 }

@@ -1,0 +1,67 @@
+[
+  {
+    "copyright": "Copyright 2016-2017 Taeho Kim <jyte82@gmail.com>",
+    "license": "apache",
+    "name": "RxFirebase",
+    "url": "https://github.com/kunny/RxFirebase"
+  },
+  {
+    "copyright": "Copyright 2012 The Dagger Authors",
+    "license": "apache",
+    "name": "Dagger",
+    "url": "https://github.com/google/dagger"
+  },
+  {
+    "copyright": "Copyright 2013 Jake Wharton",
+    "license": "apache",
+    "name": "Butter Knife",
+    "url": "https://github.com/JakeWharton/butterknife"
+  },
+  {
+    "copyright": "Copyright (c) 2016-present, RxJava Contributors.",
+    "license": "apache",
+    "name": "RxJava",
+    "url": "https://github.com/ReactiveX/RxJava"
+  },
+  {
+    "copyright": "Copyright (C) 2015 Jake Wharton",
+    "license": "apache",
+    "name": "RxBinding",
+    "url": "https://github.com/JakeWharton/RxBinding"
+  },
+  {
+    "copyright": "Copyright 2013 Jake Wharton",
+    "license": "apache",
+    "name": "Timber",
+    "url": "https://github.com/JakeWharton/timber"
+  },
+  {
+    "copyright": "Copyright © 2009-2017 The Project Lombok Authors, licensed under the MIT license.",
+    "license": "",
+    "name": "Lomok",
+    "url": "https://projectlombok.org/setup/android"
+  },
+  {
+    "copyright": "Copyright 2017 Wasabeef",
+    "license": "apache",
+    "name": "RecyclerView Animators",
+    "url": "https://github.com/wasabeef/recyclerview-animators"
+  },
+  {
+    "copyright": "Copyright 2013 Jake Wharton",
+    "license": "apache",
+    "name": "Hugo",
+    "url": "https://github.com/JakeWharton/timber"
+  },
+  {
+    "copyright": "Copyright 2017 Chris Banes",
+    "license": "apache",
+    "name": "PhotoView",
+    "url": "https://github.com/chrisbanes/PhotoView"
+  },
+  {
+    "copyright": "\"Copyright 2014 Google, Inc. All rights reserved.",
+    "name": "Glide",
+    "url": "https://github.com/bumptech/glide"
+  }
+]
