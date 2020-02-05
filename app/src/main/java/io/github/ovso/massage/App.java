@@ -11,7 +11,7 @@ import lombok.Getter;
 
 public class App extends DaggerApplication {
   @Getter private static boolean debug;
-  @Getter private static Application instance = null;
+  @Getter public static Application instance = null;
   @Getter private RealmConfiguration realmConfiguration;
 
   @Override public void onCreate() {
