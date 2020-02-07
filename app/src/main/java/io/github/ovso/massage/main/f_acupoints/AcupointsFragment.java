@@ -44,14 +44,15 @@ public class AcupointsFragment extends BaseFragment
   }
 
   public static AcupointsFragment newInstance() {
-    AcupointsFragment f = new AcupointsFragment();
-    return f;
+    return new AcupointsFragment();
   }
 
   @Override public void setRecyclerView() {
     recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-    recyclerView.getItemAnimator().setChangeDuration(Constants.DURATION_RECYCLERVIEW_ANI);
-    recyclerView.getItemAnimator().setRemoveDuration(Constants.DURATION_RECYCLERVIEW_ANI);
+    if (recyclerView.getItemAnimator() != null) {
+      recyclerView.getItemAnimator().setChangeDuration(Constants.DURATION_RECYCLERVIEW_ANI);
+      recyclerView.getItemAnimator().setRemoveDuration(Constants.DURATION_RECYCLERVIEW_ANI);
+    }
     recyclerView.setItemAnimator(new SlideInDownAnimator());
     recyclerView.setAdapter(adapter);
   }
@@ -86,11 +87,11 @@ public class AcupointsFragment extends BaseFragment
 
   @Override public void showImageViewDialog(String image_url) {
     new ImageViewAlertDialog().setImageUrl(image_url)
-        .show(getFragmentManager(), ImageViewAlertDialog.class.getSimpleName());
+        .show(getChildFragmentManager(), ImageViewAlertDialog.class.getSimpleName());
   }
 
   @Override public void showWebViewDialog(String doc_url) {
-    new AlertDialog.Builder(getContext()).setTitle(R.string.origin)
+    new AlertDialog.Builder(requireActivity()).setTitle(R.string.origin)
         .setMessage(doc_url)
         .setPositiveButton(android.R.string.ok, null)
         .show();
