@@ -11,7 +11,7 @@
     tools:showIn="@layout/app_bar_main"
     >
   <android.support.v7.widget.RecyclerView
-      android:id="@id/recyclerview"
+      android:id="@+id/rv_acupoints"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       tools:listitem="@layout/fragment_symptom_item"
