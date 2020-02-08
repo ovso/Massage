@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@id/root_view"
@@ -14,8 +13,8 @@
       android:id="@+id/rv_acupoints"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      tools:listitem="@layout/fragment_symptom_item"
       android:scrollbars="vertical"
+      tools:listitem="@layout/fragment_symptom_item"
       />
   <ProgressBar
       android:id="@id/progressbar"
@@ -23,5 +22,11 @@
       android:layout_height="@dimen/dp_34"
       android:layout_gravity="center"
       android:visibility="gone"
+      />
+  <android.support.design.widget.FloatingActionButton
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="end|bottom"
+      android:src="@android:drawable/arrow_down_float"
       />
 </FrameLayout>
