@@ -67,12 +67,10 @@ public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapte
 
       compositeDisposable.add(RxView.clicks(holder.itemView)
           .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
-          .observeOn(AndroidSchedulers.mainThread())
           .subscribe(o -> onRecyclerItemClickListener.onItemClick(selectableItem)));
 
       compositeDisposable.add(RxView.clicks(holder.videoButton)
           .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
-          .observeOn(AndroidSchedulers.mainThread())
           .subscribe(o -> onRecyclerItemClickListener.onVideoClick(position, selectableItem)));
     }
   }

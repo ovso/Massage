@@ -75,9 +75,35 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
   }
 
   @DebugLog @Override public void onItemClick(SelectableItem<Symptom> selectableItem) {
-    if (!TextUtils.isEmpty(selectableItem.getItem().getUrl())) {
-      view.showWebViewDialog(selectableItem.getItem());
+//    if (!TextUtils.isEmpty(selectableItem.getItem().getUrl())) {
+//      view.showWebViewDialog(selectableItem.getItem());
+//    }
+    String video_id = selectableItem.getItem().getVideo_id();
+    if (!TextUtils.isEmpty(video_id)) {
+      view.showVideoTypeDialog((dialog, which) -> {
+        Timber.d("which = " + which);
+        try {
+          dialog.dismiss();
+          switch (VideoMode.fromWhich(which)) {
+            case PORTRAIT:
+              view.showPortraitVideo(video_id);
+              break;
+            case LANDSCAPE:
+              view.showLandscapeVideo(video_id);
+              break;
+            case CANCEL:
+              dialog.dismiss();
+              break;
+          }
+        } catch (ActivityNotFoundException e) {
+          e.printStackTrace();
+          view.showYoutubeUseWarningDialog();
+        }
+      });
+    } else {
+      view.showMessage(R.string.video_does_not_exist);
     }
+
   }
 
   @Override public void onVideoClick(int position, SelectableItem<Symptom> item) {
