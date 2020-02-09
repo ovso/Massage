@@ -2,8 +2,10 @@ apply plugin: 'com.android.application'
 apply plugin: 'hugo'
 apply plugin: 'realm-android'
 apply plugin: 'io.fabric'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
-def keystorePropertiesFile = rootProject.file("../jks/keystore.properties")
+def keystorePropertiesFile = rootProject.file("../jks/massage/keystore.properties")
 def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
@@ -159,5 +161,3 @@ dependencies {
 
 // ADD THIS AT THE BOTTOM
 apply plugin: 'com.google.gms.google-services'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
