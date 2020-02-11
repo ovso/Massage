@@ -5,7 +5,9 @@ import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
+
 import com.jakewharton.rxbinding2.view.RxView;
+
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.SystemUtils;
@@ -15,114 +17,135 @@ import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListen
 import io.github.ovso.massage.main.f_theme.model.Theme;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
 public class ThemeAdapter extends BaseRecyclerAdapter
-    implements ThemeAdapterView, BaseAdapterDataModel<SelectableItem<Theme>> {
+        implements ThemeAdapterView, BaseAdapterDataModel<SelectableItem<Theme>> {
 
-  private List<SelectableItem<Theme>> selectableItems = new ArrayList<>();
+    private List<SelectableItem<Theme>> selectableItems = new ArrayList<>();
 
-  @Accessors(chain = true) @Setter private OnCustomRecyclerItemClickListener<SelectableItem<Theme>>
-      onRecyclerItemClickListener;
+    @Accessors(chain = true)
+    @Setter
+    private OnCustomRecyclerItemClickListener<SelectableItem<Theme>>
+            onRecyclerItemClickListener;
 
-  @Accessors(chain = true) private @Setter CompositeDisposable compositeDisposable;
+    @Accessors(chain = true)
+    private @Setter
+    CompositeDisposable compositeDisposable;
 
-  @Override protected BaseViewHolder createViewHolder(View view, int viewType) {
-    return new ThemeViewHolder(view);
-  }
-
-  @Override public int getLayoutRes(int viewType) {
-    return R.layout.fragment_theme_item;
-  }
-
-  @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
-    if (viewHolder instanceof ThemeViewHolder) {
-      SelectableItem<Theme> selectableItem = this.selectableItems.get(position);
-      Theme item = selectableItem.getItem();
-      ThemeViewHolder holder = (ThemeViewHolder) viewHolder;
-
-      Context context = holder.itemView.getContext();
-      //holder.setIsRecyclable(false);
-
-      String title = Theme.getTitleByLanguage(SystemUtils.getLanguage(context), item);
-      holder.titleTextview.setText(title);
-
-      if (TextUtils.isEmpty(item.getUrl())) {
-        holder.titleTextview.setTextColor(ContextCompat.getColor(context, R.color.color_500));
-        holder.titleTextview.setTypeface(Typeface.DEFAULT);
-      } else {
-        holder.titleTextview.setTextColor(ContextCompat.getColor(context, android.R.color.black));
-      }
-
-      int iconImage;
-      if (!TextUtils.isEmpty(item.getVideo_id())) {
-        iconImage = R.drawable.ic_ondemand_video_on;
-      } else {
-        iconImage = R.drawable.ic_ondemand_video;
-      }
-      holder.videoButton.setImageResource(iconImage);
-
-      compositeDisposable.add(RxView.clicks(holder.itemView)
-          .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
-          .observeOn(AndroidSchedulers.mainThread())
-          .subscribe(o -> onRecyclerItemClickListener.onItemClick(selectableItem)));
-
-      compositeDisposable.add(RxView.clicks(holder.videoButton)
-          .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
-          .observeOn(AndroidSchedulers.mainThread())
-          .subscribe(o -> onRecyclerItemClickListener.onVideoClick(position, selectableItem)));
+    @Override
+    protected BaseViewHolder createViewHolder(View view, int viewType) {
+        return new ThemeViewHolder(view);
     }
-  }
 
-  @Override public int getItemCount() {
-    return getSize();
-  }
+    @Override
+    public int getLayoutRes(int viewType) {
+        return R.layout.fragment_theme_item;
+    }
 
-  @Override public void add(SelectableItem<Theme> changeItem) {
-    selectableItems.add(changeItem);
-  }
+    @Override
+    public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
+        if (viewHolder instanceof ThemeViewHolder) {
+            SelectableItem<Theme> selectableItem = this.selectableItems.get(position);
+            Theme item = selectableItem.getItem();
+            ThemeViewHolder holder = (ThemeViewHolder) viewHolder;
 
-  @Override public void addAll(List<SelectableItem<Theme>> items) {
-    this.selectableItems.addAll(items);
-  }
+            Context context = holder.itemView.getContext();
+            //holder.setIsRecyclable(false);
 
-  @Override public SelectableItem<Theme> remove(int position) {
-    return this.selectableItems.remove(position);
-  }
+            String title = Theme.getTitleByLanguage(SystemUtils.getLanguage(context), item);
+            holder.titleTextview.setText(title);
 
-  @Override public SelectableItem<Theme> getItem(int position) {
-    return null;
-  }
+            if (TextUtils.isEmpty(item.getUrl())) {
+                holder.titleTextview.setTextColor(ContextCompat.getColor(context, R.color.color_500));
+                holder.titleTextview.setTypeface(Typeface.DEFAULT);
+            } else {
+                holder.titleTextview.setTextColor(ContextCompat.getColor(context, android.R.color.black));
+            }
 
-  @Override public void add(int index, SelectableItem<Theme> item) {
-    this.selectableItems.add(index, item);
-  }
+            int iconImage;
+            if (!TextUtils.isEmpty(item.getVideo_id())) {
+                iconImage = R.drawable.ic_ondemand_video_on;
+            } else {
+                iconImage = R.drawable.ic_ondemand_video;
+            }
+            holder.videoButton.setImageResource(iconImage);
 
-  @Override public int getSize() {
-    return selectableItems.size();
-  }
+            compositeDisposable.add(RxView.clicks(holder.itemView)
+                    .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(o -> onRecyclerItemClickListener.onItemClick(selectableItem)));
 
-  @Override public void clear() {
-    selectableItems.clear();
-  }
+            compositeDisposable.add(RxView.clicks(holder.videoButton)
+                    .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(o -> onRecyclerItemClickListener.onVideoClick(position, selectableItem)));
+        }
+    }
 
-  @Override public void refresh() {
-    notifyItemRangeChanged(0, getSize());
-  }
+    @Override
+    public int getItemCount() {
+        return getSize();
+    }
 
-  @Override public void refresh(int position) {
-    notifyItemChanged(position);
-  }
+    @Override
+    public void add(SelectableItem<Theme> changeItem) {
+        selectableItems.add(changeItem);
+    }
 
-  @Override public void refreshRemove() {
-    notifyItemRangeRemoved(0, getSize());
-  }
+    @Override
+    public void addAll(List<SelectableItem<Theme>> items) {
+        this.selectableItems.addAll(items);
+    }
 
-  @Override public void refreshRemove(int position) {
-    notifyItemRemoved(position);
-  }
+    @Override
+    public SelectableItem<Theme> remove(int position) {
+        return this.selectableItems.remove(position);
+    }
+
+    @Override
+    public SelectableItem<Theme> getItem(int position) {
+        return null;
+    }
+
+    @Override
+    public void add(int index, SelectableItem<Theme> item) {
+        this.selectableItems.add(index, item);
+    }
+
+    @Override
+    public int getSize() {
+        return selectableItems.size();
+    }
+
+    @Override
+    public void clear() {
+        selectableItems.clear();
+    }
+
+    @Override
+    public void refresh() {
+        notifyItemRangeChanged(0, getSize());
+    }
+
+    @Override
+    public void refresh(int position) {
+        notifyItemChanged(position);
+    }
+
+    @Override
+    public void refreshRemove() {
+        notifyItemRangeRemoved(0, getSize());
+    }
+
+    @Override
+    public void refreshRemove(int position) {
+        notifyItemRemoved(position);
+    }
 }
