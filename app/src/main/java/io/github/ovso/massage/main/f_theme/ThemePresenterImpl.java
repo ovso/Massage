@@ -74,9 +74,7 @@ public class ThemePresenterImpl implements ThemePresenter {
   }
 
   @DebugLog @Override public void onItemClick(SelectableItem<Theme> selectableItem) {
-    if (!TextUtils.isEmpty(selectableItem.getItem().getUrl())) {
-      view.showWebViewDialog(selectableItem.getItem());
-    }
+    onVideoClick(0, selectableItem);
   }
 
   @Override public void onVideoClick(int position, SelectableItem<Theme> item) {
