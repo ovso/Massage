@@ -1,4 +1,4 @@
-package io.github.ovso.massage.main.Network;
+package io.github.ovso.massage.main.network;
 
 import android.content.Context;
 import io.github.ovso.massage.Security;
