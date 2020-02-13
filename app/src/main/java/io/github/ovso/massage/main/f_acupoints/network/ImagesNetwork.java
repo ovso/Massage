@@ -1,7 +1,7 @@
 package io.github.ovso.massage.main.f_acupoints.network;
 
 import android.content.Context;
-import io.github.ovso.massage.main.Network.NetworkHelper;
+import io.github.ovso.massage.main.network.NetworkHelper;
 import io.github.ovso.massage.main.f_acupoints.model.DResult;
 import io.reactivex.Single;
 
