@@ -62,13 +62,6 @@ public class ThemeAdapter extends BaseRecyclerAdapter
             String title = Theme.getTitleByLanguage(SystemUtils.getLanguage(context), item);
             holder.titleTextview.setText(title);
 
-            if (TextUtils.isEmpty(item.getUrl())) {
-                holder.titleTextview.setTextColor(ContextCompat.getColor(context, R.color.color_500));
-                holder.titleTextview.setTypeface(Typeface.DEFAULT);
-            } else {
-                holder.titleTextview.setTextColor(ContextCompat.getColor(context, android.R.color.black));
-            }
-
             int iconImage;
             if (!TextUtils.isEmpty(item.getVideo_id())) {
                 iconImage = R.drawable.ic_ondemand_video_on;
