@@ -6,8 +6,6 @@ import com.google.android.gms.ads.MobileAds;
 import io.fabric.sdk.android.Fabric;
 import io.github.ovso.massage.BuildConfig;
 import io.github.ovso.massage.Security;
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
 import timber.log.Timber;
 
 public class AppInitUtils {
@@ -30,11 +28,6 @@ public class AppInitUtils {
     if (BuildConfig.DEBUG) {
       Timber.plant(new Timber.DebugTree());
     }
-  }
-
-  public static RealmConfiguration realm(Context context) {
-    Realm.init(context);
-    return new RealmConfiguration.Builder().schemaVersion(0).build();
   }
 
   public static void ads(Context context) {

@@ -9,7 +9,6 @@ import io.github.ovso.massage.main.f_theme.ThemePresenter;
 import io.github.ovso.massage.main.f_theme.ThemePresenterImpl;
 import io.github.ovso.massage.main.f_theme.adapter.ThemeAdapter;
 import io.github.ovso.massage.main.f_theme.adapter.ThemeAdapterView;
-import io.github.ovso.massage.main.f_theme.db.ThemeLocalDb;
 import io.reactivex.disposables.CompositeDisposable;
 import javax.inject.Singleton;
 
@@ -20,14 +19,10 @@ import javax.inject.Singleton;
 @Module public class ThemeFragmentModule {
 
   @Provides @Singleton ThemePresenter provideThemePresenter(ThemeFragment fragment,
-      DatabaseReference databaseReference, ThemeLocalDb localDb, ThemeAdapter adapter,
+      DatabaseReference databaseReference, ThemeAdapter adapter,
       CompositeDisposable compositeDisposable) {
-    return new ThemePresenterImpl(fragment, adapter, databaseReference, localDb,
+    return new ThemePresenterImpl(fragment, adapter, databaseReference,
         compositeDisposable);
-  }
-
-  @Provides @Singleton ThemeLocalDb provideLocalDatabase(ThemeFragment fragment) {
-    return new ThemeLocalDb(fragment.getContext());
   }
 
   @Provides DatabaseReference provideDbRef() {

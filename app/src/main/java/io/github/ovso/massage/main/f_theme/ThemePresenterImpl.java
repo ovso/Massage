@@ -12,8 +12,6 @@ import io.github.ovso.massage.R;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.VideoMode;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
-import io.github.ovso.massage.main.f_theme.db.ThemeLocalDb;
-import io.github.ovso.massage.main.f_theme.db.ThemeRo;
 import io.github.ovso.massage.main.f_theme.model.Theme;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -29,15 +27,14 @@ public class ThemePresenterImpl implements ThemePresenter {
     private DatabaseReference databaseReference;
     private CompositeDisposable compositeDisposable;
     private BaseAdapterDataModel<SelectableItem<Theme>> adapterDataModel;
-    private ThemeLocalDb localDb;
 
-    public ThemePresenterImpl(View view, BaseAdapterDataModel<SelectableItem<Theme>> adapterDataModel,
-                              DatabaseReference databaseReference, ThemeLocalDb localDb,
+    public ThemePresenterImpl(View view,
+                              BaseAdapterDataModel<SelectableItem<Theme>> adapterDataModel,
+                              DatabaseReference databaseReference,
                               CompositeDisposable compositeDisposable) {
         this.view = view;
         this.adapterDataModel = adapterDataModel;
         this.databaseReference = databaseReference;
-        this.localDb = localDb;
         this.compositeDisposable = compositeDisposable;
     }
 
@@ -51,19 +48,7 @@ public class ThemePresenterImpl implements ThemePresenter {
                     final List<SelectableItem<Theme>> items = new ArrayList<>();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         Theme Theme = snapshot.getValue(Theme.class);
-                        ArrayList<ThemeRo> ThemeRos = localDb.getAll();
-                        boolean isFavorite = false;
-                        for (int i = 0; i < localDb.getSize(); i++) {
-                            ThemeRo ThemeRo = ThemeRos.get(i);
-                            if (Theme.getId() == ThemeRo.getId()) {
-                                isFavorite = true;
-                                break;
-                            }
-                        }
-                        items.add(new SelectableItem<Theme>().setFavorite(isFavorite).setItem(Theme));
-                    }
-                    if (localDb.getSize() > 0) {
-                        localDb.sort(items);
+                        items.add(new SelectableItem<Theme>().setItem(Theme));
                     }
                     return items;
                 })
