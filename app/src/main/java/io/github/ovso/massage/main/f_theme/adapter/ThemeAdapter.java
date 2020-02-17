@@ -1,12 +1,13 @@
 package io.github.ovso.massage.main.f_theme.adapter;
 
 import android.content.Context;
-import android.graphics.Typeface;
-import android.support.v4.content.ContextCompat;
-import android.text.TextUtils;
 import android.view.View;
 
 import com.jakewharton.rxbinding2.view.RxView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.framework.SelectableItem;
@@ -17,11 +18,6 @@ import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListen
 import io.github.ovso.massage.main.f_theme.model.Theme;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -62,23 +58,10 @@ public class ThemeAdapter extends BaseRecyclerAdapter
             String title = Theme.getTitleByLanguage(SystemUtils.getLanguage(context), item);
             holder.titleTextview.setText(title);
 
-            int iconImage;
-            if (!TextUtils.isEmpty(item.getVideo_id())) {
-                iconImage = R.drawable.ic_ondemand_video_on;
-            } else {
-                iconImage = R.drawable.ic_ondemand_video;
-            }
-            holder.videoButton.setImageResource(iconImage);
-
             compositeDisposable.add(RxView.clicks(holder.itemView)
                     .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(o -> onRecyclerItemClickListener.onItemClick(selectableItem)));
-
-            compositeDisposable.add(RxView.clicks(holder.videoButton)
-                    .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(o -> onRecyclerItemClickListener.onVideoClick(position, selectableItem)));
         }
     }
 
