@@ -8,9 +8,6 @@ import dagger.android.DaggerApplication;
 import dagger.android.support.AndroidSupportInjectionModule;
 import io.github.ovso.massage.App;
 
-/**
- * Created by jaeho on 2017. 10. 16
- */
 @Component(modules = {
     AndroidSupportInjectionModule.class, AppModule.class, ActivityBuilder.class
 }) public interface AppComponent extends AndroidInjector<DaggerApplication> {

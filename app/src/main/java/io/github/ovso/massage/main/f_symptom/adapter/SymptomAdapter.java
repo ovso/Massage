@@ -60,15 +60,6 @@ public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapte
             String title = Symptom.getTitleByLanguage(SystemUtils.getLanguage(context), item);
             holder.titleTextview.setText(title);
 
-            int iconImage;
-            if (!TextUtils.isEmpty(item.getVideo_id())) {
-                iconImage = R.drawable.ic_ondemand_video_on;
-            } else {
-                iconImage = R.drawable.ic_ondemand_video;
-            }
-
-            holder.videoButton.setImageResource(iconImage);
-
             compositeDisposable.add(RxView.clicks(holder.itemView)
                     .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                     .subscribe(o -> onRecyclerItemClickListener.onItemClick(selectableItem)));

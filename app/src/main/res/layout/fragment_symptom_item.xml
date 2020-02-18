@@ -1,50 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@id/cardview"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:layout_marginBottom="2.5dp"
     android:layout_marginLeft="2.5dp"
-    android:layout_marginRight="2.5dp"
     android:layout_marginTop="2.5dp"
+    android:layout_marginRight="2.5dp"
+    android:layout_marginBottom="2.5dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
     app:cardBackgroundColor="@color/color_300"
     app:cardCornerRadius="7dp"
-    app:cardElevation="0dp"
-    >
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:background="?android:attr/selectableItemBackground"
-      android:foreground="?android:attr/selectableItemBackground"
-      android:gravity="center_vertical"
-      android:orientation="horizontal"
-      >
+    app:cardElevation="0dp">
+
     <TextView
         android:id="@id/title_textview"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="5"
-        android:paddingLeft="20dp"
+        android:drawableEnd="@drawable/ic_ondemand_video_on"
         android:ellipsize="end"
-        android:gravity="left|center_vertical"
+        android:gravity="start|center_vertical"
         android:lines="1"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        tools:text="싹트네 싹터요 내마음에 사랑이 싹트네 싹터요"
-        />
+        tools:text="싹트네 싹터요 내마음에 사랑이 싹트네 싹터요" />
 
-    <ImageButton
-        android:id="@id/video_button"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="?android:attr/selectableItemBackground"
-        android:scaleType="center"
-        android:src="@drawable/ic_ondemand_video"
-
-        />
-
-  </LinearLayout>
 </android.support.v7.widget.CardView>

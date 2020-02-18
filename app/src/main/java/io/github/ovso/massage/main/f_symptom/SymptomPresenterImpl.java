@@ -12,8 +12,6 @@ import io.github.ovso.massage.R;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.VideoMode;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
-import io.github.ovso.massage.main.f_symptom.db.SymptomLocalDb;
-import io.github.ovso.massage.main.f_symptom.db.SymptomRo;
 import io.github.ovso.massage.main.f_symptom.model.Symptom;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -29,16 +27,16 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
     private DatabaseReference databaseReference;
     private CompositeDisposable compositeDisposable;
     private BaseAdapterDataModel<SelectableItem<Symptom>> adapterDataModel;
-    private SymptomLocalDb localDb;
 
-    public SymptomPresenterImpl(SymptomPresenter.View view,
-                                BaseAdapterDataModel<SelectableItem<Symptom>> adapterDataModel,
-                                DatabaseReference databaseReference, SymptomLocalDb localDb,
-                                CompositeDisposable compositeDisposable) {
+    public SymptomPresenterImpl(
+            SymptomPresenter.View view,
+            BaseAdapterDataModel<SelectableItem<Symptom>> adapterDataModel,
+            DatabaseReference databaseReference,
+            CompositeDisposable compositeDisposable
+    ) {
         this.view = view;
         this.adapterDataModel = adapterDataModel;
         this.databaseReference = databaseReference;
-        this.localDb = localDb;
         this.compositeDisposable = compositeDisposable;
     }
 
@@ -52,19 +50,7 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
                     final List<SelectableItem<Symptom>> items = new ArrayList<>();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         Symptom symptom = snapshot.getValue(Symptom.class);
-                        ArrayList<SymptomRo> symptomRos = localDb.getAll();
-                        boolean isFavorite = false;
-                        for (int i = 0; i < localDb.getSize(); i++) {
-                            SymptomRo symptomRo = symptomRos.get(i);
-                            if (symptom.getId() == symptomRo.getId()) {
-                                isFavorite = true;
-                                break;
-                            }
-                        }
-                        items.add(new SelectableItem<Symptom>().setFavorite(isFavorite).setItem(symptom));
-                    }
-                    if (localDb.getSize() > 0) {
-                        localDb.sort(items);
+                        items.add(new SelectableItem<Symptom>().setItem(symptom));
                     }
                     return items;
                 })
