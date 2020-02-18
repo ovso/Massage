@@ -9,9 +9,9 @@
     android:layout_marginTop="2.5dp"
     android:layout_marginRight="2.5dp"
     android:layout_marginBottom="2.5dp"
-    android:background="?android:attr/selectableItemBackgroundBorderless"
     android:clickable="true"
     android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackgroundBorderless"
     app:cardBackgroundColor="@color/color_300"
     app:cardCornerRadius="7dp"
     app:cardElevation="0dp">
@@ -20,6 +20,7 @@
         android:id="@id/title_textview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorLight"
         android:drawableEnd="@drawable/ic_ondemand_video_on"
         android:ellipsize="end"
         android:gravity="start|center_vertical"
@@ -27,6 +28,7 @@
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="16sp"
         tools:text="싹트네 싹터요 내마음에 사랑이 싹트네 싹터요" />
 
 </android.support.v7.widget.CardView>
