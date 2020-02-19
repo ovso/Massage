@@ -10,152 +10,152 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
 
-  signingConfigs {
-    release {
-      keyAlias keystoreProperties['keyAlias']
-      keyPassword keystoreProperties['keyPassword']
-      storeFile file(keystoreProperties['storeFile'])
-      storePassword keystoreProperties['storePassword']
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
     }
-  }
-  compileSdkVersion rootProject.compile_sdk_version
-  //buildToolsVersion rootProject.build_tools_version
-  defaultConfig {
-    applicationId rootProject.application_id
-    minSdkVersion rootProject.min_sdk_version
-    targetSdkVersion rootProject.target_sdk_version
-    versionCode rootProject.version_code
+    compileSdkVersion rootProject.compile_sdk_version
+    //buildToolsVersion rootProject.build_tools_version
+    defaultConfig {
+        applicationId rootProject.application_id
+        minSdkVersion rootProject.min_sdk_version
+        targetSdkVersion rootProject.target_sdk_version
+        versionCode rootProject.version_code
 
-    int versionMajor = 0
-    int versionMinor = 0
-    int versionPatch = rootProject.version_code
+        int versionMajor = 0
+        int versionMinor = 0
+        int versionPatch = rootProject.version_code
 
-    if (1000 > versionPatch && versionPatch > 99) {
-      versionMajor = versionPatch / 100
-      versionMinor = (versionPatch % 100) / 10
-      versionPatch = (versionPatch % 100) % 10
-    } else if (100 > versionCode && versionPatch > 9) {
-      versionMajor = 0
-      versionMinor = versionPatch / 10
-      versionPatch = versionPatch % 10
-    } else if (versionPatch < 10) {
-      versionMajor = 0
-      versionMinor = 0
-      versionPatch = versionPatch / 1
+        if (1000 > versionPatch && versionPatch > 99) {
+            versionMajor = versionPatch / 100
+            versionMinor = (versionPatch % 100) / 10
+            versionPatch = (versionPatch % 100) % 10
+        } else if (100 > versionCode && versionPatch > 9) {
+            versionMajor = 0
+            versionMinor = versionPatch / 10
+            versionPatch = versionPatch % 10
+        } else if (versionPatch < 10) {
+            versionMajor = 0
+            versionMinor = 0
+            versionPatch = versionPatch / 1
+        }
+
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //multiDexEnabled true
     }
 
-    versionName "${versionMajor}.${versionMinor}.${versionPatch}"
-    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    //multiDexEnabled true
-  }
-
-  buildTypes {
-    release {
-      signingConfig signingConfigs.release
-      minifyEnabled false
-      shrinkResources false
-      useProguard false
-      proguardFile getDefaultProguardFile('proguard-android.txt')
-      proguardFile 'proguard-rules.pro'
-      proguardFile 'proguard-tedpermission.pro'
-      proguardFile 'proguard-firebase.pro'
-      proguardFile 'proguard-rxfirebase.pro'
-      proguardFile 'proguard-butterknipe.pro'
-      proguardFile 'proguard-guava.pro'
-      proguardFile 'proguard-glide.pro'
-      proguardFile 'proguard-cauly.pro'
-      proguardFile 'proguard-retrofit.pro'
-      proguardFile 'proguard-dagger.pro'
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            shrinkResources false
+            useProguard false
+            proguardFile getDefaultProguardFile('proguard-android.txt')
+            proguardFile 'proguard-rules.pro'
+            proguardFile 'proguard-tedpermission.pro'
+            proguardFile 'proguard-firebase.pro'
+            proguardFile 'proguard-rxfirebase.pro'
+            proguardFile 'proguard-butterknipe.pro'
+            proguardFile 'proguard-guava.pro'
+            proguardFile 'proguard-glide.pro'
+            proguardFile 'proguard-cauly.pro'
+            proguardFile 'proguard-retrofit.pro'
+            proguardFile 'proguard-dagger.pro'
+        }
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            useProguard false
+            proguardFile getDefaultProguardFile('proguard-android.txt')
+            proguardFile 'proguard-rules.pro'
+            proguardFile 'proguard-tedpermission.pro'
+            proguardFile 'proguard-firebase.pro'
+            proguardFile 'proguard-butterknipe.pro'
+            proguardFile 'proguard-guava.pro'
+            proguardFile 'proguard-glide.pro'
+            proguardFile 'proguard-dagger.pro'
+        }
     }
-    debug {
-      minifyEnabled false
-      shrinkResources false
-      useProguard false
-      proguardFile getDefaultProguardFile('proguard-android.txt')
-      proguardFile 'proguard-rules.pro'
-      proguardFile 'proguard-tedpermission.pro'
-      proguardFile 'proguard-firebase.pro'
-      proguardFile 'proguard-butterknipe.pro'
-      proguardFile 'proguard-guava.pro'
-      proguardFile 'proguard-glide.pro'
-      proguardFile 'proguard-dagger.pro'
-    }
-  }
 
-  repositories {
-    maven {
-      url 'https://maven.google.com'
-      // Alternative URL is 'https://dl.google.com/dl/android/maven2/'
+    repositories {
+        maven {
+            url 'https://maven.google.com'
+            // Alternative URL is 'https://dl.google.com/dl/android/maven2/'
+        }
+        maven { url 'https://maven.fabric.io/public' }
     }
-    maven { url 'https://maven.fabric.io/public' }
-  }
 
-  compileOptions {
-    targetCompatibility JavaVersion.VERSION_1_8
-    sourceCompatibility JavaVersion.VERSION_1_8
-  }
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-  implementation fileTree(dir: 'libs', include: ['*.jar'])
-  implementation 'com.android.support:support-v4:28.0.0'
-  androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-    exclude group: 'com.android.support', module: 'support-annotations'
-  })
-  testImplementation 'junit:junit:4.12'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:support-v4:28.0.0'
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testImplementation 'junit:junit:4.12'
 
-  implementation files('libs/YouTubeAndroidPlayerApi.jar')
-  implementation "com.android.support:appcompat-v7:$rootProject.support_version"
-  implementation "com.android.support:design:$rootProject.support_version"
-  implementation "com.android.support:customtabs:$rootProject.support_version"
-  implementation "com.android.support.constraint:constraint-layout:$rootProject.constraint_version"
-  implementation "com.android.support:cardview-v7:$rootProject.support_version"
+    implementation files('libs/YouTubeAndroidPlayerApi.jar')
+    implementation "com.android.support:appcompat-v7:$rootProject.support_version"
+    implementation "com.android.support:design:$rootProject.support_version"
+    implementation "com.android.support:customtabs:$rootProject.support_version"
+    implementation "com.android.support.constraint:constraint-layout:$rootProject.constraint_version"
+    implementation "com.android.support:cardview-v7:$rootProject.support_version"
 
-  implementation "com.google.firebase:firebase-database:$rootProject.firebase_database_version"
-  implementation "com.google.firebase:firebase-ads:$rootProject.firebase_ads_version"
-  implementation "com.google.firebase:firebase-core:$rootProject.firebase_core_version"
-  implementation "com.androidhuman.rxfirebase2:firebase-database:$rootProject.rxfirebase_version"
-  implementation "com.crashlytics.sdk.android:crashlytics:$rootProject.firebase_crashlytics_version"
+    implementation "com.google.firebase:firebase-database:$rootProject.firebase_database_version"
+    implementation "com.google.firebase:firebase-ads:$rootProject.firebase_ads_version"
+    implementation "com.google.firebase:firebase-core:$rootProject.firebase_core_version"
+    implementation "com.androidhuman.rxfirebase2:firebase-database:$rootProject.rxfirebase_version"
+    implementation "com.crashlytics.sdk.android:crashlytics:$rootProject.firebase_crashlytics_version"
 
-  implementation "com.google.guava:guava:$rootProject.guava_version"
-  implementation "com.google.dagger:dagger:$rootProject.dagger_version"
-  implementation "com.google.dagger:dagger-android-support:$rootProject.dagger_version"
-  annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger_version"
-  annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.dagger_version"
+    implementation "com.google.guava:guava:$rootProject.guava_version"
+    implementation "com.google.dagger:dagger:$rootProject.dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.dagger_version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger_version"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.dagger_version"
 
-  implementation "com.google.code.findbugs:jsr305:$rootProject.jsr305_version"
-  implementation "com.github.bumptech.glide:glide:$rootProject.glide_version"
+    implementation "com.google.code.findbugs:jsr305:$rootProject.jsr305_version"
+    implementation "com.github.bumptech.glide:glide:$rootProject.glide_version"
 
-  implementation "com.jakewharton:butterknife:$rootProject.butterknife_version"
-  annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknife_version"
+    implementation "com.jakewharton:butterknife:$rootProject.butterknife_version"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknife_version"
 
-  implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava_version"
-  implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroid_version"
-  implementation "com.jakewharton.rxbinding2:rxbinding:$rootProject.rxbinding2_version"
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroid_version"
+    implementation "com.jakewharton.rxbinding2:rxbinding:$rootProject.rxbinding2_version"
 
-  implementation "com.jakewharton.timber:timber:$rootProject.timber_version"
+    implementation "com.jakewharton.timber:timber:$rootProject.timber_version"
 
-  compileOnly "org.projectlombok:lombok:$rootProject.lombok_version"
-  annotationProcessor "org.projectlombok:lombok:$rootProject.lombok_version"
+    compileOnly "org.projectlombok:lombok:$rootProject.lombok_version"
+    annotationProcessor "org.projectlombok:lombok:$rootProject.lombok_version"
 
-  compileOnly "javax.annotation:jsr250-api:$rootProject.jsr250_version"
+    compileOnly "javax.annotation:jsr250-api:$rootProject.jsr250_version"
 
-  implementation "jp.wasabeef:recyclerview-animators:$rootProject.recyclerview_animators_version"
+    implementation "jp.wasabeef:recyclerview-animators:$rootProject.recyclerview_animators_version"
 
-  implementation "de.psdev.licensesdialog:licensesdialog:$rootProject.licensesdialog_version"
+    implementation "de.psdev.licensesdialog:licensesdialog:$rootProject.licensesdialog_version"
 
-  annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glide_version"
 
-  implementation "com.github.chrisbanes:PhotoView:$rootProject.photoview_version"
+    implementation "com.github.chrisbanes:PhotoView:$rootProject.photoview_version"
 
-  implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit_version"
-  implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofit_version"
-  implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofit_version"
-  implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp3_version"
-  implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttp3_version"
-  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-  implementation "com.android.support:support-emoji:28.0.0"
-  implementation "com.android.support:support-emoji-appcompat:28.0.0"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp3_version"
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttp3_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.android.support:support-emoji:28.0.0"
+    implementation "com.android.support:support-emoji-appcompat:28.0.0"
 }
 
 // ADD THIS AT THE BOTTOM
