@@ -36,12 +36,12 @@
         android:screenOrientation="portrait">
     </activity>
     <activity
-        android:name=".youtube.LandscapeVideoActivity"
+        android:name=".view.ui.player.LandscapeVideoActivity"
         android:configChanges="keyboardHidden|orientation|screenSize"
         android:screenOrientation="sensorLandscape"
         android:theme="@android:style/Theme.Black.NoTitleBar"/>
     <activity
-        android:name=".youtube.PortraitVideoActivity"
+        android:name=".view.ui.player.PortraitVideoActivity"
         android:configChanges="keyboardHidden|orientation|screenSize"
         android:screenOrientation="sensorPortrait"
         android:theme="@android:style/Theme.Black.NoTitleBar"/>
