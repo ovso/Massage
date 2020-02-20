@@ -19,8 +19,8 @@ import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListen
 import io.github.ovso.massage.main.f_symptom.adapter.SymptomAdapter;
 import io.github.ovso.massage.main.f_symptom.adapter.SymptomAdapterView;
 import io.github.ovso.massage.main.f_symptom.model.Symptom;
-import io.github.ovso.massage.youtube.LandscapeVideoActivity;
-import io.github.ovso.massage.youtube.PortraitVideoActivity;
+import io.github.ovso.massage.view.ui.player.LandscapeVideoActivity;
+import io.github.ovso.massage.view.ui.player.PortraitVideoActivity;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 

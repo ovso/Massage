@@ -1,4 +1,4 @@
-package io.github.ovso.massage.youtube;
+package io.github.ovso.massage.view.ui.player;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

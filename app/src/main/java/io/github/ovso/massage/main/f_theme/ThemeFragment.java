@@ -20,8 +20,8 @@ import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListen
 import io.github.ovso.massage.main.f_theme.adapter.ThemeAdapter;
 import io.github.ovso.massage.main.f_theme.adapter.ThemeAdapterView;
 import io.github.ovso.massage.main.f_theme.model.Theme;
-import io.github.ovso.massage.youtube.LandscapeVideoActivity;
-import io.github.ovso.massage.youtube.PortraitVideoActivity;
+import io.github.ovso.massage.view.ui.player.LandscapeVideoActivity;
+import io.github.ovso.massage.view.ui.player.PortraitVideoActivity;
 import io.reactivex.disposables.CompositeDisposable;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
