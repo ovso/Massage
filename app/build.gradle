@@ -93,13 +93,7 @@ android {
         }
 
     }
-/*
-  ADMOB_INTERSTITIAL_UNIT_ID(
-      App.isDebug() ?
-          "ca-app-pub-3940256099942544/1033173712" :
-          "ca-app-pub-8679189423397017/5031831418");
 
- */
     repositories {
         maven {
             url 'https://maven.google.com'
