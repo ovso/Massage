@@ -70,6 +70,7 @@ android {
             resValue("string", "ads_banner_unit_id", "ca-app-pub-3940256099942544/6300978111")
             resValue("string", "ads_interstitial_unit_id", "ca-app-pub-3940256099942544/1033173712")
             resValue("string", "youtube_developer_key", "AIzaSyBdY9vP4_vQs5YEGJ3Ghu6s5gGY8yFlo0s")
+            resValue("string", "kakao_auth", "KakaoAK 7296bb6b63d625d940275dbc7a78ae41")
         }
 
         release {
@@ -92,6 +93,7 @@ android {
             resValue("string", "ads_banner_unit_id", "ca-app-pub-8679189423397017/3924518551")
             resValue("string", "ads_interstitial_unit_id", "ca-app-pub-8679189423397017/5031831418")
             resValue("string", "youtube_developer_key", "AIzaSyBdY9vP4_vQs5YEGJ3Ghu6s5gGY8yFlo0s")
+            resValue("string", "kakao_auth", "KakaoAK 7296bb6b63d625d940275dbc7a78ae41")
         }
 
     }
