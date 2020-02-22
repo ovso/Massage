@@ -3,6 +3,7 @@ package io.github.ovso.massage.main.f_acupoints;
 import android.content.res.Resources;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
+import io.github.ovso.massage.main.f_acupoints.model.DResult;
 import io.github.ovso.massage.main.f_acupoints.model.Documents;
 import io.github.ovso.massage.main.f_acupoints.network.ImagesNetwork;
 import io.reactivex.Single;
@@ -49,7 +50,7 @@ public class AcupointsPresenterImpl implements AcupointsPresenter {
   private Single<List<Documents>> getImages(String query) {
     return imagesNetwork.getImages(query)
         .subscribeOn(Schedulers.io())
-        .map(dResult -> dResult.getDocuments());
+        .map(DResult::getDocuments);
   }
 
   @Override public void onItemClick(Documents item) {

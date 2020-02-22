@@ -1,6 +1,5 @@
 keystore.properties
 .idea
-google-services.json
 build
 gradle
 *.iml
