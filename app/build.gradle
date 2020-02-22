@@ -54,6 +54,23 @@ android {
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            proguardFile getDefaultProguardFile('proguard-android.txt')
+            proguardFile 'proguard-rules.pro'
+            proguardFile 'proguard-tedpermission.pro'
+            proguardFile 'proguard-firebase.pro'
+            proguardFile 'proguard-butterknipe.pro'
+            proguardFile 'proguard-guava.pro'
+            proguardFile 'proguard-glide.pro'
+            proguardFile 'proguard-dagger.pro'
+
+            resValue("string", "ads_app_id", "ca-app-pub-3940256099942544~3347511713")
+            resValue("string", "ads_banner_unit_id", "ca-app-pub-3940256099942544/6300978111")
+            resValue("string", "ads_interstital_unit_id", "ca-app-pub-3940256099942544/1033173712")
+        }
+
         release {
             signingConfig signingConfigs.release
             minifyEnabled false
@@ -69,21 +86,20 @@ android {
             proguardFile 'proguard-cauly.pro'
             proguardFile 'proguard-retrofit.pro'
             proguardFile 'proguard-dagger.pro'
-        }
-        debug {
-            minifyEnabled false
-            shrinkResources false
-            proguardFile getDefaultProguardFile('proguard-android.txt')
-            proguardFile 'proguard-rules.pro'
-            proguardFile 'proguard-tedpermission.pro'
-            proguardFile 'proguard-firebase.pro'
-            proguardFile 'proguard-butterknipe.pro'
-            proguardFile 'proguard-guava.pro'
-            proguardFile 'proguard-glide.pro'
-            proguardFile 'proguard-dagger.pro'
-        }
-    }
 
+            resValue("string", "ads_app_id", "ca-app-pub-8679189423397017~4275586930")
+            resValue("string", "ads_banner_unit_id", "ca-app-pub-8679189423397017/3924518551")
+            resValue("string", "ads_interstital_unit_id", "ca-app-pub-8679189423397017/5031831418")
+        }
+
+    }
+/*
+  ADMOB_INTERSTITIAL_UNIT_ID(
+      App.isDebug() ?
+          "ca-app-pub-3940256099942544/1033173712" :
+          "ca-app-pub-8679189423397017/5031831418");
+
+ */
     repositories {
         maven {
             url 'https://maven.google.com'
