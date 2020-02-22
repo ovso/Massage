@@ -1,8 +1,9 @@
 package io.github.ovso.massage.view.ui.player;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 
 import butterknife.ButterKnife;
 

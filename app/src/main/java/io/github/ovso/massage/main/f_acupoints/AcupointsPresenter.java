@@ -1,7 +1,9 @@
 package io.github.ovso.massage.main.f_acupoints;
 
 import android.content.res.Resources;
-import android.support.annotation.StringRes;
+
+import androidx.annotation.StringRes;
+
 import io.github.ovso.massage.main.f_acupoints.model.Documents;
 
 public interface AcupointsPresenter {

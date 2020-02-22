@@ -1,8 +1,10 @@
 package io.github.ovso.massage.main;
 
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.annotation.StringRes;
+
+import androidx.annotation.IdRes;
+import androidx.annotation.StringRes;
+
 import de.psdev.licensesdialog.model.Notices;
 
 /**

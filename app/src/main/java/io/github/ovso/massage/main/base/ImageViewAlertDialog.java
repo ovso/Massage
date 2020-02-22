@@ -7,10 +7,10 @@ import android.widget.ImageView;
 
 import butterknife.BindView;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
 
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.di.GlideApp;
 import io.github.ovso.massage.framework.customview.BaseAlertDialogFragment;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -39,7 +39,7 @@ public class ImageViewAlertDialog extends BaseAlertDialogFragment {
 
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
-        GlideApp.with(this).load(imageUrl).override(Target.SIZE_ORIGINAL).into(imageView);
+        Glide.with(this).load(imageUrl).override(Target.SIZE_ORIGINAL).into(imageView);
     }
 
     @Override

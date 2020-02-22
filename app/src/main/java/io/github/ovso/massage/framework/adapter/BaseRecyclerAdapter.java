@@ -1,10 +1,12 @@
 package io.github.ovso.massage.framework.adapter;
 
-import android.support.annotation.LayoutRes;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.LayoutRes;
+import androidx.recyclerview.widget.RecyclerView;
+
 import butterknife.ButterKnife;
 
 public abstract class BaseRecyclerAdapter
@@ -18,7 +20,8 @@ public abstract class BaseRecyclerAdapter
 
   protected abstract BaseViewHolder createViewHolder(View view, int viewType);
 
-  @LayoutRes public abstract int getLayoutRes(int viewType);
+  @LayoutRes
+  public abstract int getLayoutRes(int viewType);
 
   @Override public abstract void onBindViewHolder(BaseViewHolder viewHolder, int position);
 

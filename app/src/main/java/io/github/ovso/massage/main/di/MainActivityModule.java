@@ -1,6 +1,7 @@
 package io.github.ovso.massage.main.di;
 
-import android.support.v4.app.FragmentManager;
+import androidx.fragment.app.FragmentManager;
+
 import dagger.Module;
 import dagger.Provides;
 import dagger.android.ContributesAndroidInjector;

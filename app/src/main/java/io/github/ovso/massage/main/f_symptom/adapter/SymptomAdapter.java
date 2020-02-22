@@ -1,9 +1,6 @@
 package io.github.ovso.massage.main.f_symptom.adapter;
 
 import android.content.Context;
-import android.graphics.Typeface;
-import android.support.v4.content.ContextCompat;
-import android.text.TextUtils;
 import android.view.View;
 
 import com.jakewharton.rxbinding2.view.RxView;

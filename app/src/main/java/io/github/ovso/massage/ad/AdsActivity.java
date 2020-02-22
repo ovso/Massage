@@ -2,7 +2,9 @@ package io.github.ovso.massage.ad;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
+
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.InterstitialAd;
 

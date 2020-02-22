@@ -4,11 +4,13 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import butterknife.BindView;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.main.base.WebviewAlertDialog;
@@ -27,7 +29,8 @@ import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 public class SymptomFragment extends BaseFragment
     implements SymptomPresenter.View, OnCustomRecyclerItemClickListener<SelectableItem<Symptom>> {
 
-  @BindView(R.id.recyclerview) RecyclerView recyclerView;
+  @BindView(R.id.recyclerview)
+  RecyclerView recyclerView;
   @BindView(R.id.progressbar) ProgressBar progressBar;
   @Inject SymptomAdapter adapter;
   @Inject SymptomAdapterView adapterView;

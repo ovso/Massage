@@ -2,12 +2,16 @@ package io.github.ovso.massage.framework.customview;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import org.jetbrains.annotations.NotNull;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import dagger.android.support.AndroidSupportInjection;
@@ -17,7 +21,7 @@ public abstract class BaseFragment extends Fragment {
 
   @Nullable @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-      @Nullable Bundle savedInstanceState) {
+                           @Nullable Bundle savedInstanceState) {
     return inflater.inflate(getLayoutResID(), container, false);
   }
 
@@ -26,7 +30,7 @@ public abstract class BaseFragment extends Fragment {
     onActivityCreate(savedInstanceState);
   }
 
-  @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+  @Override public void onViewCreated(@NotNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     unbinder = ButterKnife.bind(this, view);
   }
@@ -36,7 +40,7 @@ public abstract class BaseFragment extends Fragment {
     unbinder.unbind();
   }
 
-  @Override public void onAttach(Context context) {
+  @Override public void onAttach(@NotNull Context context) {
     if (isDagger()) AndroidSupportInjection.inject(this);
     super.onAttach(context);
   }

@@ -1,7 +1,9 @@
 package io.github.ovso.massage.main.f_theme;
 
 import android.content.DialogInterface;
-import android.support.annotation.StringRes;
+
+import androidx.annotation.StringRes;
+
 import io.github.ovso.massage.main.f_theme.model.Theme;
 import io.github.ovso.massage.framework.SelectableItem;
 

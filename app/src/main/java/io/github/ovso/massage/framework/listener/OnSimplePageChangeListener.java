@@ -1,10 +1,6 @@
 package io.github.ovso.massage.framework.listener;
 
-import android.support.v4.view.ViewPager;
-
-/**
- * Created by jaeho on 2017. 10. 18..
- */
+import androidx.viewpager.widget.ViewPager;
 
 public abstract class OnSimplePageChangeListener implements ViewPager.OnPageChangeListener {
   @Override

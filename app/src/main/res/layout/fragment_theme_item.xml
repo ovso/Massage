@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@id/cardview"
@@ -31,4 +31,4 @@
         android:textSize="16sp"
         tools:text="싹트네 싹터요 내마음에 사랑이 싹트네 싹터요" />
 
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

@@ -3,7 +3,6 @@ package io.github.ovso.massage.main.base;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
@@ -11,6 +10,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+
+import androidx.appcompat.app.AlertDialog;
 
 import butterknife.BindView;
 import io.github.ovso.massage.R;
@@ -23,12 +24,8 @@ public class WebviewAlertDialog extends BaseAlertDialogFragment {
     WebView webview;
     @BindView(R.id.progressbar)
     ProgressBar progressBar;
-    @Accessors(chain = true)
-    @Setter
-    private String url;
-    @Accessors(chain = true)
-    @Setter
-    private boolean flag;
+    @Accessors(chain = true) @Setter private String url;
+    @Accessors(chain = true) @Setter private boolean flag;
 
     @Override
     protected boolean isNegativeButton() {
@@ -105,7 +102,7 @@ public class WebviewAlertDialog extends BaseAlertDialogFragment {
 
     @Override
     protected View.OnClickListener onNegativeClickListener() {
-        return view -> new AlertDialog.Builder(getContext()).setTitle(R.string.how_to_zoom_img)
+        return view -> new AlertDialog.Builder(view.getContext()).setTitle(R.string.how_to_zoom_img)
                 .setMessage(R.string.help_webview_image)
                 .setPositiveButton(android.R.string.ok, null)
                 .show();
