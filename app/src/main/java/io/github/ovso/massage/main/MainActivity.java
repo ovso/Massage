@@ -13,6 +13,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -20,6 +21,8 @@ import com.google.android.material.navigation.NavigationView;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
 import de.psdev.licensesdialog.LicensesDialog;
 import de.psdev.licensesdialog.model.Notices;
 import io.github.ovso.massage.R;
@@ -31,8 +34,7 @@ import io.github.ovso.massage.main.f_symptom.SymptomFragment;
 import io.github.ovso.massage.main.f_theme.ThemeFragment;
 
 public class MainActivity extends BaseActivity
-        implements MainPresenter.View {
-//    implements MainPresenter.View, HasSupportFragmentInjector {
+    implements MainPresenter.View, HasSupportFragmentInjector {
 
     @Inject
     MainPresenter presenter;
@@ -126,14 +128,12 @@ public class MainActivity extends BaseActivity
         presenter.onBackPressed(drawer.isDrawerOpen(GravityCompat.START));
     }
 
-/*
   @Inject
   DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
 
   @Override public AndroidInjector<Fragment> supportFragmentInjector() {
     return fragmentDispatchingAndroidInjector;
   }
-*/
 
     @Override
     public void showMessage(int resId) {

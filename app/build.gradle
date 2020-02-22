@@ -45,8 +45,12 @@ android {
         }
 
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        //multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments clearPackageData: 'true'
+
+        testOptions {
+            execution 'ANDROIDX_TEST_ORCHESTRATOR'
+        }
     }
 
     buildTypes {
@@ -54,7 +58,6 @@ android {
             signingConfig signingConfigs.release
             minifyEnabled false
             shrinkResources false
-//            useProguard false
             proguardFile getDefaultProguardFile('proguard-android.txt')
             proguardFile 'proguard-rules.pro'
             proguardFile 'proguard-tedpermission.pro'
@@ -70,7 +73,6 @@ android {
         debug {
             minifyEnabled false
             shrinkResources false
-            useProguard false
             proguardFile getDefaultProguardFile('proguard-android.txt')
             proguardFile 'proguard-rules.pro'
             proguardFile 'proguard-tedpermission.pro'
@@ -100,6 +102,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestUtil 'androidx.test:orchestrator:1.2.0'
 
     implementation files('libs/YouTubeAndroidPlayerApi.jar')
     implementation "androidx.appcompat:appcompat:1.2.0-alpha02"
