@@ -9,10 +9,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by jaeho on 2017. 12. 20
- */
-
 public abstract class NetworkHelper<T> {
 
   private String baseUrl;
@@ -23,20 +19,18 @@ public abstract class NetworkHelper<T> {
     this.baseUrl = baseUrl;
   }
 
-  public T getApi() {
+  protected T getApi() {
     return createRetrofit().create(getApiClass());
   }
 
   protected abstract Class<T> getApiClass();
 
   private Retrofit createRetrofit() {
-    Retrofit retrofit = new Retrofit.Builder().baseUrl(baseUrl)
+    return new Retrofit.Builder().baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .client(createClient())
         .build();
-
-    return retrofit;
   }
 
   private OkHttpClient createClient() {

@@ -5,14 +5,12 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import butterknife.ButterKnife;
-
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerFragment;
 
+import butterknife.ButterKnife;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.Security;
 import io.github.ovso.massage.ad.AdsActivity;
 
 public class PortraitVideoActivity extends AdsActivity {
@@ -25,7 +23,7 @@ public class PortraitVideoActivity extends AdsActivity {
         if (getIntent().hasExtra("video_id")) {
             YouTubePlayerFragment youTubePlayerFragment =
                     (YouTubePlayerFragment) getFragmentManager().findFragmentById(R.id.youtube_fragment);
-            youTubePlayerFragment.initialize(Security.YOUTUBE_DEVELOPER_KEY.getValue(),
+            youTubePlayerFragment.initialize(getString(R.string.youtube_developer_key),
                     new YouTubePlayer.OnInitializedListener() {
                         @Override
                         public void onInitializationSuccess(YouTubePlayer.Provider provider,

@@ -54,6 +54,25 @@ android {
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            proguardFile getDefaultProguardFile('proguard-android.txt')
+            proguardFile 'proguard-rules.pro'
+            proguardFile 'proguard-tedpermission.pro'
+            proguardFile 'proguard-firebase.pro'
+            proguardFile 'proguard-butterknipe.pro'
+            proguardFile 'proguard-guava.pro'
+            proguardFile 'proguard-glide.pro'
+            proguardFile 'proguard-dagger.pro'
+
+            resValue("string", "ads_app_id", "ca-app-pub-3940256099942544~3347511713")
+            resValue("string", "ads_banner_unit_id", "ca-app-pub-3940256099942544/6300978111")
+            resValue("string", "ads_interstitial_unit_id", "ca-app-pub-3940256099942544/1033173712")
+            resValue("string", "youtube_developer_key", "AIzaSyBdY9vP4_vQs5YEGJ3Ghu6s5gGY8yFlo0s")
+            resValue("string", "kakao_auth", "KakaoAK 7296bb6b63d625d940275dbc7a78ae41")
+        }
+
         release {
             signingConfig signingConfigs.release
             minifyEnabled false
@@ -69,19 +88,14 @@ android {
             proguardFile 'proguard-cauly.pro'
             proguardFile 'proguard-retrofit.pro'
             proguardFile 'proguard-dagger.pro'
+
+            resValue("string", "ads_app_id", "ca-app-pub-8679189423397017~4275586930")
+            resValue("string", "ads_banner_unit_id", "ca-app-pub-8679189423397017/3924518551")
+            resValue("string", "ads_interstitial_unit_id", "ca-app-pub-8679189423397017/5031831418")
+            resValue("string", "youtube_developer_key", "AIzaSyBdY9vP4_vQs5YEGJ3Ghu6s5gGY8yFlo0s")
+            resValue("string", "kakao_auth", "KakaoAK 7296bb6b63d625d940275dbc7a78ae41")
         }
-        debug {
-            minifyEnabled false
-            shrinkResources false
-            proguardFile getDefaultProguardFile('proguard-android.txt')
-            proguardFile 'proguard-rules.pro'
-            proguardFile 'proguard-tedpermission.pro'
-            proguardFile 'proguard-firebase.pro'
-            proguardFile 'proguard-butterknipe.pro'
-            proguardFile 'proguard-guava.pro'
-            proguardFile 'proguard-glide.pro'
-            proguardFile 'proguard-dagger.pro'
-        }
+
     }
 
     repositories {
@@ -95,6 +109,10 @@ android {
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
     }
 }
 

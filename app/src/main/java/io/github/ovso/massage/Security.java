@@ -3,10 +3,6 @@ package io.github.ovso.massage;
 import lombok.Getter;
 
 public enum Security {
-  /*
-  CLIENT_ID("WrYoNbUDp88vf6SG18ZL"), CLIENT_SECRET("vx6fv5kovK"), API_BASE_URL(
-      "https://openapi.naver.com");
-  */
   AUTHORIZATION("KakaoAK 7296bb6b63d625d940275dbc7a78ae41"),
 
   API_BASE_URL(

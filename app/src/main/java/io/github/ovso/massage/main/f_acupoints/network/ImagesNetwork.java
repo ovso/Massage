@@ -5,10 +5,6 @@ import io.github.ovso.massage.main.network.NetworkHelper;
 import io.github.ovso.massage.main.f_acupoints.model.DResult;
 import io.reactivex.Single;
 
-/**
- * Created by jaeho on 2018. 1. 25
- */
-
 public class ImagesNetwork extends NetworkHelper<ImagesApi> {
   public ImagesNetwork(Context context, String baseUrl) {
     super(context, baseUrl);
