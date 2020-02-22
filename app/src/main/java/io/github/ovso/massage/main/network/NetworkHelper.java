@@ -26,13 +26,11 @@ public abstract class NetworkHelper<T> {
   protected abstract Class<T> getApiClass();
 
   private Retrofit createRetrofit() {
-    Retrofit retrofit = new Retrofit.Builder().baseUrl(baseUrl)
+    return new Retrofit.Builder().baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .client(createClient())
         .build();
-
-    return retrofit;
   }
 
   private OkHttpClient createClient() {
