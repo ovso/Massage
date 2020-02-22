@@ -14,16 +14,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.DialogFragment;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import dagger.android.support.AndroidSupportInjection;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.Security;
 import io.github.ovso.massage.framework.ObjectUtils;
 
 public abstract class BaseAlertDialogFragment extends DialogFragment {
@@ -76,7 +74,7 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
 
     private InterstitialAd provideInterstitialAd(Context context) {
         InterstitialAd interstitialAd = new InterstitialAd(context);
-        interstitialAd.setAdUnitId(Security.ADMOB_INTERSTITIAL_UNIT_ID.getValue());
+        interstitialAd.setAdUnitId(getString(R.string.ads_interstitial_unit_id));
         AdRequest.Builder adRequestBuilder = new AdRequest.Builder();
         interstitialAd.loadAd(adRequestBuilder.build());
         return interstitialAd;
