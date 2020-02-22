@@ -1,7 +1,9 @@
 package io.github.ovso.massage.main;
 
 import android.os.Bundle;
-import android.support.annotation.IdRes;
+
+import androidx.annotation.IdRes;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;

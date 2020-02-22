@@ -1,6 +1,6 @@
 package io.github.ovso.massage.framework;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public enum VideoMode {
   PORTRAIT(-1), CANCEL(-2), LANDSCAPE(-3);
@@ -14,7 +14,8 @@ public enum VideoMode {
     return value;
   }
 
-  @NonNull public static VideoMode fromWhich(int which) {
+  @NonNull
+  public static VideoMode fromWhich(int which) {
     for (int i = 0; i < VideoMode.values().length; i++) {
       if (VideoMode.values()[i].get() == which) {
         return VideoMode.values()[i];

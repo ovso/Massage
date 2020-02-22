@@ -54,7 +54,7 @@ android {
             signingConfig signingConfigs.release
             minifyEnabled false
             shrinkResources false
-            useProguard false
+//            useProguard false
             proguardFile getDefaultProguardFile('proguard-android.txt')
             proguardFile 'proguard-rules.pro'
             proguardFile 'proguard-tedpermission.pro'
@@ -98,42 +98,40 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:support-v4:28.0.0'
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
 
     implementation files('libs/YouTubeAndroidPlayerApi.jar')
-    implementation "com.android.support:appcompat-v7:$rootProject.support_version"
-    implementation "com.android.support:design:$rootProject.support_version"
-    implementation "com.android.support:customtabs:$rootProject.support_version"
-    implementation "com.android.support.constraint:constraint-layout:$rootProject.constraint_version"
-    implementation "com.android.support:cardview-v7:$rootProject.support_version"
+    implementation "androidx.appcompat:appcompat:1.2.0-alpha02"
+    implementation "androidx.core:core:1.3.0-alpha01"
+    implementation "com.google.android.material:material:1.2.0-alpha05"
+    implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta4"
+    implementation "androidx.cardview:cardview:1.0.0"
 
-    implementation "com.google.firebase:firebase-database:$rootProject.firebase_database_version"
-    implementation "com.google.firebase:firebase-ads:$rootProject.firebase_ads_version"
-    implementation "com.google.firebase:firebase-core:$rootProject.firebase_core_version"
-    implementation "com.androidhuman.rxfirebase2:firebase-database:$rootProject.rxfirebase_version"
-    implementation "com.crashlytics.sdk.android:crashlytics:$rootProject.firebase_crashlytics_version"
+    implementation "com.google.firebase:firebase-database:19.2.1"
+    implementation "com.google.firebase:firebase-ads:18.3.0"
+    implementation "com.google.firebase:firebase-core:17.2.2"
+    implementation "com.androidhuman.rxfirebase2:firebase-database:16.0.1.0"
+    implementation "com.crashlytics.sdk.android:crashlytics:2.10.1"
 
-    implementation "com.google.guava:guava:$rootProject.guava_version"
-    implementation "com.google.dagger:dagger:$rootProject.dagger_version"
-    implementation "com.google.dagger:dagger-android-support:$rootProject.dagger_version"
-    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger_version"
-    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.dagger_version"
+    implementation "com.google.guava:guava:28.2-android"
 
-    implementation "com.google.code.findbugs:jsr305:$rootProject.jsr305_version"
-    implementation "com.github.bumptech.glide:glide:$rootProject.glide_version"
+    implementation "com.google.dagger:dagger:2.26"
+    implementation "com.google.dagger:dagger-android-support:2.26"
+    annotationProcessor "com.google.dagger:dagger-compiler:2.26"
+    annotationProcessor "com.google.dagger:dagger-android-processor:2.26"
 
-    implementation "com.jakewharton:butterknife:$rootProject.butterknife_version"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknife_version"
+    implementation "com.google.code.findbugs:jsr305:3.0.2"
+    implementation "com.github.bumptech.glide:glide:4.10.0"
 
-    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava_version"
-    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroid_version"
-    implementation "com.jakewharton.rxbinding2:rxbinding:$rootProject.rxbinding2_version"
+    implementation "com.jakewharton:butterknife:10.2.1"
+    annotationProcessor "com.jakewharton:butterknife-compiler:10.2.1"
 
-    implementation "com.jakewharton.timber:timber:$rootProject.timber_version"
+    implementation "io.reactivex.rxjava2:rxjava:2.2.17"
+    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
+    implementation "com.jakewharton.rxbinding2:rxbinding:2.2.0"
+
+    implementation "com.jakewharton.timber:timber:4.7.1"
 
     compileOnly "org.projectlombok:lombok:$rootProject.lombok_version"
     annotationProcessor "org.projectlombok:lombok:$rootProject.lombok_version"
@@ -142,7 +140,7 @@ dependencies {
 
     implementation "jp.wasabeef:recyclerview-animators:$rootProject.recyclerview_animators_version"
 
-    implementation "de.psdev.licensesdialog:licensesdialog:$rootProject.licensesdialog_version"
+    implementation "de.psdev.licensesdialog:licensesdialog:2.0.0"
 
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glide_version"
 
@@ -154,8 +152,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp3_version"
     implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttp3_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "com.android.support:support-emoji:28.0.0"
-    implementation "com.android.support:support-emoji-appcompat:28.0.0"
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
 }
 
 // ADD THIS AT THE BOTTOM
