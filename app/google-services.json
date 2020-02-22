@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "612036736090",
+    "firebase_url": "https://massage-d31bb.firebaseio.com",
+    "project_id": "massage-d31bb",
+    "storage_bucket": "massage-d31bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:612036736090:android:18e1c0ec84d2ccce",
+        "android_client_info": {
+          "package_name": "io.github.ovso.massage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "612036736090-qocj4u7c9i1p7jjmg22os7omu40lsoqq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.github.ovso.massage",
+            "certificate_hash": "f9d0cb08c84d5fccf47eaccc021161db5f2551c2"
+          }
+        },
+        {
+          "client_id": "612036736090-m2pm8u6qlckvcg7k3pcguisbd9dqdk86.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNlc4xDF7cboxfmPyhy4qo1C0G0pSS3Yw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "612036736090-m2pm8u6qlckvcg7k3pcguisbd9dqdk86.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-8679189423397017~4275586930"
+    }
+  ],
+  "configuration_version": "1"
+}
