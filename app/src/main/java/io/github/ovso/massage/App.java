@@ -4,6 +4,7 @@ import android.app.Application;
 
 import dagger.android.AndroidInjector;
 import dagger.android.DaggerApplication;
+import io.github.ovso.massage.di.DaggerAppComponent;
 import io.github.ovso.massage.framework.SystemUtils;
 import io.github.ovso.massage.utils.AppInitUtils;
 import lombok.Getter;

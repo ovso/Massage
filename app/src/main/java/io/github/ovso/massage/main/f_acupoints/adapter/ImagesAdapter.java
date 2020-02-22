@@ -3,11 +3,11 @@ package io.github.ovso.massage.main.f_acupoints.adapter;
 import android.content.Context;
 import android.view.View;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.di.GlideApp;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
 import io.github.ovso.massage.framework.adapter.BaseAdapterView;
 import io.github.ovso.massage.framework.adapter.BaseRecyclerAdapter;
@@ -57,7 +57,7 @@ public class ImagesAdapter extends BaseRecyclerAdapter
             final Documents documents = items.get(position);
 
             //holder.setIsRecyclable(false);
-            GlideApp.with(context)
+            Glide.with(context)
                     .load(documents.getImage_url())
                     .override(Target.SIZE_ORIGINAL)
                     .into(holder.imageview);
