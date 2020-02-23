@@ -28,7 +28,8 @@ public class PortraitVideoActivity extends AdsActivity {
                         @Override
                         public void onInitializationSuccess(YouTubePlayer.Provider provider,
                                                             YouTubePlayer youTubePlayer, boolean b) {
-                            youTubePlayer.loadVideo(getIntent().getStringExtra("video_id"));
+                            final String videoId = getIntent().getStringExtra("video_id");
+                            youTubePlayer.loadVideo(videoId);
                         }
 
                         @Override

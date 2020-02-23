@@ -4,6 +4,8 @@ apply plugin: 'io.fabric'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+apply from: '../versioning2.gradle'
+
 def keystorePropertiesFile = rootProject.file("../jks/massage_keystore.properties")
 def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
@@ -110,6 +112,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
@@ -155,25 +161,25 @@ dependencies {
 
     implementation "com.jakewharton.timber:timber:4.7.1"
 
-    compileOnly "org.projectlombok:lombok:$rootProject.lombok_version"
-    annotationProcessor "org.projectlombok:lombok:$rootProject.lombok_version"
+    compileOnly "org.projectlombok:lombok:1.16.20"
+    annotationProcessor "org.projectlombok:lombok:1.16.20"
 
-    compileOnly "javax.annotation:jsr250-api:$rootProject.jsr250_version"
+    compileOnly "javax.annotation:jsr250-api:1.0"
 
-    implementation "jp.wasabeef:recyclerview-animators:$rootProject.recyclerview_animators_version"
+    implementation "jp.wasabeef:recyclerview-animators:2.2.7"
 
     implementation "de.psdev.licensesdialog:licensesdialog:2.0.0"
 
-    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:4.10.0"
 
-    implementation "com.github.chrisbanes:PhotoView:$rootProject.photoview_version"
+    implementation "com.github.chrisbanes:PhotoView:2.0.0"
 
-    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofit_version"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofit_version"
-    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp3_version"
-    implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttp3_version"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.squareup.retrofit2:retrofit:2.6.2"
+    implementation "com.squareup.retrofit2:converter-gson:2.6.2"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.6.2"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.2.1"
+    implementation "com.squareup.okhttp3:okhttp:4.2.1"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
 }
 
