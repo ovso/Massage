@@ -32,6 +32,7 @@ class ExampleUnitTest {
         val searchKey = "KakaoAK 7296bb6b63d625d940275dbc7a78ae41"
 
         fun onSuccess(items: List<Documents>) {
+            println("items size = ${items.size}")
             println(items.toString())
         }
 
