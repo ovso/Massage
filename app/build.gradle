@@ -179,6 +179,7 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:4.2.1"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
+    implementation 'com.github.chrisbanes:PhotoView:2.0.0'
 }
 
 // ADD THIS AT THE BOTTOM

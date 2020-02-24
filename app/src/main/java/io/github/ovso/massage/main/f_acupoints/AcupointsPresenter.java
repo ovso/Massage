@@ -33,5 +33,7 @@ public interface AcupointsPresenter {
     void showImageViewDialog(String image_url);
 
     void showWebViewDialog(String doc_url);
+
+      void navigateToImage(Documents item);
   }
 }
