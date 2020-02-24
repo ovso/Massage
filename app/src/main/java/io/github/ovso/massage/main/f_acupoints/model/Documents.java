@@ -4,10 +4,6 @@ import java.io.Serializable;
 import lombok.Getter;
 import lombok.ToString;
 
-/**
- * Created by jaeho on 2017. 12. 28
- */
-
 @ToString @Getter public class Documents implements Serializable {
   private String collection;
   private String datetime;
