@@ -84,6 +84,53 @@ class ExampleUnitTest {
 */
     }
 
+    @Test
+    fun imgReqTest2() {
+        val query1 = "손 혈자리"
+        val query2 = "발 혈자리"
+        val query3 = "귀 혈자리"
+        val query4 = "다리 혈자리"
+
+        val baseUrl = "https://dapi.kakao.com"
+        val searchKey = "KakaoAK 7296bb6b63d625d940275dbc7a78ae41"
+
+        val queryList = listOf(query1, query2, query3, query4)
+        val singles = queryList.map {
+            val queryMap = hashMapOf(
+                "query" to it,
+                "sort" to "accuracy",
+                "page" to 1,
+                "size" to 10
+            )
+            ImageRequest(baseUrl, ImageService::class.java).api.getImages(searchKey, queryMap)
+                .map { result ->
+                    result.documents
+                }
+        }
+
+        fun onSuccess(items: List<Documents>) {
+            // println("items size = ${items.size}")
+            println(items.size)
+            items.forEach {
+                println(it.image_url)
+            }
+        }
+
+        fun onFailure(t: Throwable) {
+            println(t.message)
+        }
+
+        Single.zip(singles) {
+            it.flatMap { any ->
+                any as List<Documents>
+            }.toList()
+        }.map {
+            it.shuffled()
+        }.subscribeOn(SchedulerProvider.io())
+            .observeOn(SchedulerProvider.ui())
+            .subscribe(::onSuccess, ::onFailure)
+    }
+
     object SchedulerProvider {
         fun ui() = Schedulers.trampoline()
         fun io() = Schedulers.trampoline()
