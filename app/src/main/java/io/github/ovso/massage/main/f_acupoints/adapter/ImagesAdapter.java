@@ -22,10 +22,6 @@ import java.util.concurrent.TimeUnit;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-/**
- * Created by jaeho on 2017. 11. 27
- */
-
 public class ImagesAdapter extends BaseRecyclerAdapter
         implements BaseAdapterView, BaseAdapterDataModel<Documents> {
 
@@ -61,7 +57,6 @@ public class ImagesAdapter extends BaseRecyclerAdapter
                     .load(documents.getImage_url())
                     .override(Target.SIZE_ORIGINAL)
                     .into(holder.imageview);
-            holder.titleTextview.setText(documents.getDisplay_sitename());
             holder.docUrlTextview.setText(documents.getDoc_url());
             compositeDisposable.add(RxView.clicks(holder.docUrlTextview)
                     .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())

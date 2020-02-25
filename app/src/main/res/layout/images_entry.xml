@@ -14,14 +14,6 @@
         android:orientation="vertical"
         android:padding="8dp">
 
-        <TextView
-            android:id="@id/title_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:textColor="#0a3142"
-            android:textStyle="bold" />
-
         <ImageView
             android:id="@id/imageview"
             android:layout_width="wrap_content"
