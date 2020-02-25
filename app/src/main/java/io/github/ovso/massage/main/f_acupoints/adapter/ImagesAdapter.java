@@ -54,7 +54,7 @@ public class ImagesAdapter extends BaseRecyclerAdapter
 
             //holder.setIsRecyclable(false);
             Glide.with(context)
-                    .load(documents.getImage_url())
+                    .load(documents.getThumbnail_url())
                     .override(Target.SIZE_ORIGINAL)
                     .into(holder.imageview);
             holder.docUrlTextview.setText(documents.getDoc_url());

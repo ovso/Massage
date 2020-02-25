@@ -29,6 +29,9 @@
   <string name="query2">발 혈자리</string>
   <string name="query3">귀 혈자리</string>
   <string name="query4">다리 혈자리</string>
+  <string name="query5">머리 혈자리</string>
+  <string name="query6">얼굴 혈자리</string>
+  <string name="query7">전신 혈자리</string>
   <string name="origin">출처</string>
   <string name="portrait_mode">세로모드</string>
   <string name="landscape_mode">가로모드</string>
