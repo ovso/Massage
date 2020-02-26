@@ -108,11 +108,11 @@ class ExampleUnitTest {
                 }
         }
 
-        fun onSuccess(items: List<Documents>) {
+        fun onSuccess(items: List<*>) {
             // println("items size = ${items.size}")
             println(items.size)
             items.forEach {
-                println(it.image_url)
+                println((it as? Documents)?.image_url)
             }
         }
 
@@ -122,7 +122,7 @@ class ExampleUnitTest {
 
         Single.zip(singles) {
             it.flatMap { any ->
-                any as List<Documents>
+                any as List<*>
             }.toList()
         }.map {
             it.shuffled()
