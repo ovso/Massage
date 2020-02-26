@@ -24,8 +24,8 @@ public class WebviewAlertDialog extends BaseAlertDialogFragment {
     WebView webview;
     @BindView(R.id.progressbar)
     ProgressBar progressBar;
-    @Accessors(chain = true) @Setter private String url;
-    @Accessors(chain = true) @Setter private boolean flag;
+    @Accessors(chain = true) @Setter public String url;
+    @Accessors(chain = true) @Setter public boolean flag;
 
     @Override
     protected boolean isNegativeButton() {

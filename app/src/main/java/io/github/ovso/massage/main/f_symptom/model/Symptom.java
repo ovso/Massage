@@ -16,8 +16,8 @@ public class Symptom {
   private int id;           // item id
   public String title;      // title
   private String title_en;
-  private String url;       // youtube url or webpage url
-  private boolean flag;     // webview javascriptenable flag
+  public String url;       // youtube url or webpage url
+  public boolean flag;     // webview javascriptenable flag
   private String video_id;  // youtube id
   private int rec;       // recommended count
 
