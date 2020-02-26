@@ -131,7 +131,7 @@ public class SymptomFragment extends BaseFragment
     @Override
     public void showVideoTypeDialog(DialogInterface.OnClickListener $onClickListener) {
         final DialogInterface.OnClickListener onClickListener =
-                (dialog, which) -> $onClickListener.onClick(dialog, which);
+                $onClickListener::onClick;
         new AlertDialog.Builder(getContext()).setMessage(R.string.please_select_the_player_mode)
                 .setPositiveButton(R.string.portrait_mode,
                         onClickListener)
