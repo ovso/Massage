@@ -120,6 +120,10 @@ android {
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
+
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {
