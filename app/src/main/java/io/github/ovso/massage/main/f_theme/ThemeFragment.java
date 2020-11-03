@@ -39,13 +39,9 @@ public class ThemeFragment extends BaseFragment
     View rootView;
     @BindView(R.id.progressbar)
     ProgressBar progressBar;
-    @Inject
     CompositeDisposable compositeDisposable;
-    @Inject
-    ThemeAdapter adapter;
-    @Inject
+    ThemeAdapter adapter = new ThemeAdapter()
     ThemeAdapterView adapterView;
-    @Inject
     ThemePresenter presenter;
 
     @Override

@@ -14,7 +14,6 @@ import org.jetbrains.annotations.NotNull;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import dagger.android.support.AndroidSupportInjection;
 
 public abstract class BaseFragment extends Fragment {
   private Unbinder unbinder;
@@ -41,7 +40,6 @@ public abstract class BaseFragment extends Fragment {
   }
 
   @Override public void onAttach(@NotNull Context context) {
-    if (isDagger()) AndroidSupportInjection.inject(this);
     super.onAttach(context);
   }
 

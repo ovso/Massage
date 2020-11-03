@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import com.androidhuman.rxfirebase2.database.RxFirebaseDatabase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
@@ -29,9 +30,9 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
     private BaseAdapterDataModel<SelectableItem<Symptom>> adapterDataModel;
 
     public SymptomPresenterImpl(
-            SymptomPresenter.View view,
+            View view,
             BaseAdapterDataModel<SelectableItem<Symptom>> adapterDataModel,
-            DatabaseReference databaseReference,
+            FirebaseDatabase databaseReference,
             CompositeDisposable compositeDisposable
     ) {
         this.view = view;

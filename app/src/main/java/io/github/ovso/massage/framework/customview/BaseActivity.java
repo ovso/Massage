@@ -11,7 +11,6 @@ import androidx.core.content.ContextCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import dagger.android.AndroidInjection;
 import io.github.ovso.massage.R;
 
 /**
@@ -24,7 +23,6 @@ public abstract class BaseActivity extends AppCompatActivity {
   Toolbar toolbar;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
-    if (isDagger()) AndroidInjection.inject(this);
     super.onCreate(savedInstanceState);
     setContentView(getLayoutResId());
     unbinder = ButterKnife.bind(this);
@@ -45,8 +43,6 @@ public abstract class BaseActivity extends AppCompatActivity {
   }
 
   protected abstract int getLayoutResId();
-
-  protected abstract boolean isDagger();
 
   protected void onCreated(Bundle savedInstanceState) {
 

@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 import butterknife.BindView;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.main.base.WebviewAlertDialog;
@@ -19,13 +21,11 @@ import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.customview.BaseFragment;
 import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListener;
 import io.github.ovso.massage.main.f_symptom.adapter.SymptomAdapter;
-import io.github.ovso.massage.main.f_symptom.adapter.SymptomAdapterView;
 import io.github.ovso.massage.main.f_symptom.model.Symptom;
 import io.github.ovso.massage.view.ui.player.LandscapeVideoActivity;
 import io.github.ovso.massage.view.ui.player.PortraitVideoActivity;
 
-import javax.inject.Inject;
-
+import io.reactivex.disposables.CompositeDisposable;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 
 public class SymptomFragment extends BaseFragment
@@ -35,13 +35,10 @@ public class SymptomFragment extends BaseFragment
     RecyclerView recyclerView;
     @BindView(R.id.progressbar)
     ProgressBar progressBar;
-    @Inject
-    SymptomAdapter adapter;
-    @Inject
-    SymptomAdapterView adapterView;
-    @Inject
-    SymptomPresenter presenter;
+    private final SymptomAdapter adapter = new SymptomAdapter();
+    private SymptomPresenter presenter;
 
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
     @Override
     protected int getLayoutResID() {
         return R.layout.fragment_symptom;
@@ -49,6 +46,12 @@ public class SymptomFragment extends BaseFragment
 
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
+        presenter = new SymptomPresenterImpl(
+                this,
+                adapter,
+                FirebaseDatabase.getInstance(),
+                compositeDisposable
+        );
         presenter.onActivityCreate();
     }
 
@@ -84,7 +87,7 @@ public class SymptomFragment extends BaseFragment
 
     @Override
     public void refreshRemove(int position) {
-        adapterView.refreshRemove(position);
+        adapter.refreshRemove(position);
     }
 
     @Override
@@ -106,12 +109,12 @@ public class SymptomFragment extends BaseFragment
 
     @Override
     public void refresh() {
-        adapterView.refresh();
+        adapter.refresh();
     }
 
     @Override
     public void refresh(int position) {
-        adapterView.refresh(position);
+        adapter.refresh(position);
     }
 
     @Override
@@ -150,7 +153,7 @@ public class SymptomFragment extends BaseFragment
 
     @Override
     public void removeRefresh() {
-        adapterView.refreshRemove();
+        adapter.refreshRemove();
     }
 
     @Override

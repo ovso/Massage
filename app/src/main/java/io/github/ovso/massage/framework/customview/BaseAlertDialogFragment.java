@@ -20,7 +20,6 @@ import com.google.android.gms.ads.InterstitialAd;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import dagger.android.support.AndroidSupportInjection;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.framework.ObjectUtils;
 
@@ -100,7 +99,6 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
 
     @Override
     public void onAttach(Context context) {
-        if (isDagger()) AndroidSupportInjection.inject(this);
         super.onAttach(context);
     }
 
