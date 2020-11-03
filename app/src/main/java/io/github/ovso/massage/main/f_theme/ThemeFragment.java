@@ -142,9 +142,10 @@ public class ThemeFragment extends BaseFragment
 
     @Override
     public void showWebViewDialog(Theme item) {
-        new WebviewAlertDialog().setUrl(item.getUrl())
-                .setFlag(item.isFlag())
-                .onCreateDialog(new Bundle()).show();
+        WebviewAlertDialog webviewAlertDialog = new WebviewAlertDialog();
+        webviewAlertDialog.url = item.url;
+        webviewAlertDialog.flag = item.flag;
+        webviewAlertDialog.onCreateDialog(new Bundle()).show();
     }
 
     @Override
