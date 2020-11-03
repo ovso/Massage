@@ -40,7 +40,7 @@ public class ThemeFragment extends BaseFragment
     @BindView(R.id.progressbar)
     ProgressBar progressBar;
     CompositeDisposable compositeDisposable;
-    ThemeAdapter adapter = new ThemeAdapter()
+    ThemeAdapter adapter = new ThemeAdapter();
     ThemeAdapterView adapterView;
     ThemePresenter presenter;
 
