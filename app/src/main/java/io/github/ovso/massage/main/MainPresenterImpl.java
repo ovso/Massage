@@ -16,14 +16,13 @@ import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import javax.inject.Inject;
 
 public class MainPresenterImpl implements MainPresenter {
 
   private MainPresenter.View view;
   private CompositeDisposable compositeDisposable;
 
-  @Inject public MainPresenterImpl(MainPresenter.View view) {
+  public MainPresenterImpl(MainPresenter.View view) {
     this.view = view;
     this.compositeDisposable = new CompositeDisposable();
     view.changeTheme();
@@ -47,9 +46,9 @@ public class MainPresenterImpl implements MainPresenter {
               NoticeItem noticeItem =
                   new Gson().fromJson(jsonElement.getAsJsonObject(), NoticeItem.class);
               Notice notice =
-                  new Notice(noticeItem.getName(), noticeItem.getUrl(),
-                      noticeItem.getCopyright(),
-                      NoticeItem.getLicense(noticeItem.getLicense()));
+                  new Notice(noticeItem.name, noticeItem.url,
+                      noticeItem.copyright,
+                      NoticeItem.getLicense(noticeItem.license));
               notices.addNotice(notice);
             }
             return notices;

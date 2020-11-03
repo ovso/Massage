@@ -8,17 +8,13 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-/**
- * Created by jaeho on 2017. 12. 5
- */
-
 @IgnoreExtraProperties @EqualsAndHashCode(callSuper = false) @Getter @ToString
 public class NoticeItem {
 
-  private String name;
-  private String license;
-  private String url;
-  private String copyright;
+  public String name;
+  public String license;
+  public String url;
+  public String copyright;
 
   public static License getLicense(String license) {
     if (!TextUtils.isEmpty(license)) {

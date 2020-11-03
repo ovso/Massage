@@ -47,8 +47,10 @@ public class ThemePresenterImpl implements ThemePresenter {
                 .map(dataSnapshot -> {
                     final List<SelectableItem<Theme>> items = new ArrayList<>();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        Theme Theme = snapshot.getValue(Theme.class);
-                        items.add(new SelectableItem<Theme>().setItem(Theme));
+                        Theme theme = snapshot.getValue(Theme.class);
+                        SelectableItem<io.github.ovso.massage.main.f_theme.model.Theme> themeSelectableItem = new SelectableItem<>();
+                        themeSelectableItem.item = theme;
+                        items.add(themeSelectableItem);
                     }
                     return items;
                 })
@@ -71,7 +73,7 @@ public class ThemePresenterImpl implements ThemePresenter {
 
     @Override
     public void onVideoClick(int position, SelectableItem<Theme> item) {
-        String video_id = item.getItem().getVideo_id();
+        String video_id = item.item.video_id;
         if (!TextUtils.isEmpty(video_id)) {
             view.showVideoTypeDialog((dialog, which) -> {
                 Timber.d("which = " + which);

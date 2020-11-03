@@ -49,7 +49,7 @@ public class ThemeAdapter extends BaseRecyclerAdapter
     public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
         if (viewHolder instanceof ThemeViewHolder) {
             SelectableItem<Theme> selectableItem = this.selectableItems.get(position);
-            Theme item = selectableItem.getItem();
+            Theme item = selectableItem.item;
             ThemeViewHolder holder = (ThemeViewHolder) viewHolder;
 
             Context context = holder.itemView.getContext();

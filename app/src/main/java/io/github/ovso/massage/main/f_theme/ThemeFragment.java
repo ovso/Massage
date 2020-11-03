@@ -26,8 +26,6 @@ import io.github.ovso.massage.view.ui.player.LandscapeVideoActivity;
 import io.github.ovso.massage.view.ui.player.PortraitVideoActivity;
 import io.reactivex.disposables.CompositeDisposable;
 
-import javax.inject.Inject;
-
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 
 public class ThemeFragment extends BaseFragment
