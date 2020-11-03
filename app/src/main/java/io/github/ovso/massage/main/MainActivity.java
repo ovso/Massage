@@ -13,17 +13,11 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
-import javax.inject.Inject;
-
 import butterknife.BindView;
-import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.support.HasSupportFragmentInjector;
 import de.psdev.licensesdialog.LicensesDialog;
 import de.psdev.licensesdialog.model.Notices;
 import io.github.ovso.massage.R;
@@ -35,10 +29,8 @@ import io.github.ovso.massage.main.f_symptom.SymptomFragment;
 import io.github.ovso.massage.main.f_theme.ThemeFragment;
 
 public class MainActivity extends BaseActivity
-    implements MainPresenter.View, HasSupportFragmentInjector {
+    implements MainPresenter.View {
 
-    @Inject
-    MainPresenter presenter;
     @BindView(R.id.drawer_layout)
     DrawerLayout drawer;
     @BindView(R.id.fragment_container)
@@ -50,10 +42,12 @@ public class MainActivity extends BaseActivity
     @BindView(R.id.ad_container)
     ViewGroup adContainer;
 
+    private final MainPresenter presenter = new MainPresenterImpl(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -128,13 +122,6 @@ public class MainActivity extends BaseActivity
     public void onBackPressed() {
         presenter.onBackPressed(drawer.isDrawerOpen(GravityCompat.START));
     }
-
-  @Inject
-  DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
-
-  @Override public AndroidInjector<Fragment> supportFragmentInjector() {
-    return fragmentDispatchingAndroidInjector;
-  }
 
     @Override
     public void showMessage(int resId) {

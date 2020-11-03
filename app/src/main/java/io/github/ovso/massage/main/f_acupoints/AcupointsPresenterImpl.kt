@@ -1,3 +1,5 @@
+@file:Suppress("SpellCheckingInspection")
+
 package io.github.ovso.massage.main.f_acupoints
 
 import android.content.res.Resources
@@ -37,7 +39,7 @@ class AcupointsPresenterImpl(
         val queries = listOf(query1, query2, query3, query4, query5, query6, query7)
 
         val singles = queries.map {
-            val queryMap = hashMapOf(
+            val queryMap = hashMapOf<String, Any>(
                 "query" to it,
                 "sort" to "accuracy",
                 "page" to 1,

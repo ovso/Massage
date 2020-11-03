@@ -12,16 +12,16 @@ import com.bumptech.glide.request.target.Target;
 
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.framework.customview.BaseAlertDialogFragment;
-import lombok.Setter;
-import lombok.experimental.Accessors;
 
 public class ImageViewAlertDialog extends BaseAlertDialogFragment {
     @BindView(R.id.imageview)
     ImageView imageView;
-    @Accessors(chain = true)
-    @Setter
     private String imageUrl;
 
+    public ImageViewAlertDialog setImageUrl(String url) {
+        imageUrl = url;
+        return this;
+    }
     @Override
     protected boolean isNegativeButton() {
         return false;

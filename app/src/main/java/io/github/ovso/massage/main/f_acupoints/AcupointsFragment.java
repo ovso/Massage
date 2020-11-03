@@ -13,19 +13,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import io.github.ovso.massage.ImageActivity;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.main.base.ImageViewAlertDialog;
+import io.github.ovso.massage.Security;
 import io.github.ovso.massage.framework.Constants;
-import io.github.ovso.massage.framework.adapter.BaseAdapterView;
 import io.github.ovso.massage.framework.customview.BaseFragment;
+import io.github.ovso.massage.main.base.ImageViewAlertDialog;
 import io.github.ovso.massage.main.f_acupoints.adapter.ImagesAdapter;
 import io.github.ovso.massage.main.f_acupoints.adapter.OnAcuRecyclerItemClickListener;
 import io.github.ovso.massage.main.f_acupoints.model.Documents;
+import io.github.ovso.massage.main.f_acupoints.network.ImagesNetwork;
 import io.reactivex.disposables.CompositeDisposable;
-
-import javax.inject.Inject;
-
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class AcupointsFragment extends BaseFragment
         implements AcupointsPresenter.View, OnAcuRecyclerItemClickListener<Documents> {
 
@@ -33,15 +32,9 @@ public class AcupointsFragment extends BaseFragment
     RecyclerView recyclerView;
     @BindView(R.id.progressbar)
     ProgressBar progressBar;
-    @Inject
-    CompositeDisposable compositeDisposable;
-    @Inject
-    ImagesAdapter adapter;
-    @Inject
-    BaseAdapterView adapterView;
-
-    @Inject
-    AcupointsPresenter presenter;
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private final ImagesAdapter adapter = new ImagesAdapter();
+    private AcupointsPresenter presenter = null;
 
     @Override
     protected int getLayoutResID() {
@@ -50,6 +43,12 @@ public class AcupointsFragment extends BaseFragment
 
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
+        presenter = new AcupointsPresenterImpl(
+                this,
+                adapter,
+                compositeDisposable,
+                new ImagesNetwork(requireContext(), Security.API_BASE_URL.value)
+        );
         presenter.onActivityCreate(getResources());
     }
 
@@ -95,7 +94,7 @@ public class AcupointsFragment extends BaseFragment
 
     @Override
     public void refresh() {
-        adapterView.refresh();
+        adapter.refresh();
     }
 
     @Override
@@ -125,9 +124,9 @@ public class AcupointsFragment extends BaseFragment
     @Override
     public void navigateToImage(Documents item) {
         Intent intent = new Intent(requireActivity(), ImageActivity.class);
-        intent.putExtra("image_url", item.getImage_url());
-        intent.putExtra("source", item.getDisplay_sitename());
-        intent.putExtra("site", item.getDoc_url());
+        intent.putExtra("image_url", item.image_url);
+        intent.putExtra("source", item.display_sitename);
+        intent.putExtra("site", item.doc_url);
         startActivity(intent);
     }
 
