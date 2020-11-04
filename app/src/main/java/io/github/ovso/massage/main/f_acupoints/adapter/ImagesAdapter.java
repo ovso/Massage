@@ -7,6 +7,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
 import com.jakewharton.rxbinding2.view.RxView;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
 import io.github.ovso.massage.framework.adapter.BaseAdapterView;
@@ -14,16 +18,16 @@ import io.github.ovso.massage.framework.adapter.BaseRecyclerAdapter;
 import io.github.ovso.massage.main.f_acupoints.model.Documents;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
 public class ImagesAdapter extends BaseRecyclerAdapter
         implements BaseAdapterView, BaseAdapterDataModel<Documents> {
+
+    public ImagesAdapter(CompositeDisposable compositeDisposable, OnAcuRecyclerItemClickListener<Documents> l) {
+        this.compositeDisposable = compositeDisposable;
+        onRecyclerItemClickListener = l;
+    }
 
     private List<Documents> items = new ArrayList<>();
 
@@ -32,8 +36,7 @@ public class ImagesAdapter extends BaseRecyclerAdapter
     private CompositeDisposable compositeDisposable;
     @Accessors(chain = true)
     @Setter
-    private OnAcuRecyclerItemClickListener<Documents>
-            onRecyclerItemClickListener;
+    private OnAcuRecyclerItemClickListener<Documents> onRecyclerItemClickListener;
 
     @Override
     protected BaseViewHolder createViewHolder(View view, int viewType) {

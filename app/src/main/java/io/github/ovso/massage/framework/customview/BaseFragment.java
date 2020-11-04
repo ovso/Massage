@@ -46,6 +46,4 @@ public abstract class BaseFragment extends Fragment {
   protected abstract int getLayoutResID();
 
   protected abstract void onActivityCreate(Bundle savedInstanceState);
-
-  protected abstract boolean isDagger();
 }

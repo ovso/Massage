@@ -55,11 +55,6 @@ public class SymptomFragment extends BaseFragment
         presenter.onActivityCreate();
     }
 
-    @Override
-    protected boolean isDagger() {
-        return true;
-    }
-
     public static SymptomFragment newInstance() {
         return new SymptomFragment();
     }

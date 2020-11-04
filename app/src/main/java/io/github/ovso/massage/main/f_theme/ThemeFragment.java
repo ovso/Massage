@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 import butterknife.BindView;
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
@@ -37,10 +39,10 @@ public class ThemeFragment extends BaseFragment
     View rootView;
     @BindView(R.id.progressbar)
     ProgressBar progressBar;
-    CompositeDisposable compositeDisposable;
+    CompositeDisposable compositeDisposable = new CompositeDisposable();
     ThemeAdapter adapter = new ThemeAdapter();
     ThemeAdapterView adapterView;
-    ThemePresenter presenter;
+    private ThemePresenter presenter;
 
     @Override
     protected int getLayoutResID() {
@@ -49,12 +51,13 @@ public class ThemeFragment extends BaseFragment
 
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
+        presenter = new ThemePresenterImpl(
+                this,
+                adapter,
+                FirebaseDatabase.getInstance().getReference(),
+                compositeDisposable
+        );
         presenter.onActivityCreate();
-    }
-
-    @Override
-    protected boolean isDagger() {
-        return true;
     }
 
     public static ThemeFragment newInstance() {

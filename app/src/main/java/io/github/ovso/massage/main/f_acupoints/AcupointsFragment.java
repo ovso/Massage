@@ -1,5 +1,6 @@
 package io.github.ovso.massage.main.f_acupoints;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.jetbrains.annotations.NotNull;
 
 import butterknife.BindView;
 import io.github.ovso.massage.ImageActivity;
@@ -33,8 +36,14 @@ public class AcupointsFragment extends BaseFragment
     @BindView(R.id.progressbar)
     ProgressBar progressBar;
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
-    private final ImagesAdapter adapter = new ImagesAdapter();
+    private ImagesAdapter adapter = null;
     private AcupointsPresenter presenter = null;
+
+    @Override
+    public void onAttach(@NotNull Context context) {
+        super.onAttach(context);
+        adapter = new ImagesAdapter(compositeDisposable, this);
+    }
 
     @Override
     protected int getLayoutResID() {
@@ -50,11 +59,6 @@ public class AcupointsFragment extends BaseFragment
                 new ImagesNetwork(requireContext(), Security.API_BASE_URL.value)
         );
         presenter.onActivityCreate(getResources());
-    }
-
-    @Override
-    protected boolean isDagger() {
-        return true;
     }
 
     public static AcupointsFragment newInstance() {
