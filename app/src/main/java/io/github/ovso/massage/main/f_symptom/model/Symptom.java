@@ -13,13 +13,13 @@ import lombok.ToString;
 
 @IgnoreExtraProperties @EqualsAndHashCode(callSuper = false) @Getter @ToString
 public class Symptom {
-  private int id;           // item id
+  public int id;           // item id
   public String title;      // title
-  private String title_en;
+  public String title_en;
   public String url;       // youtube url or webpage url
   public boolean flag;     // webview javascriptenable flag
-  private String video_id;  // youtube id
-  private int rec;       // recommended count
+  public String video_id;  // youtube id
+  public int rec;       // recommended count
 
   public static String getTitleByLanguage(String language, Symptom item) {
     if (!TextUtils.isEmpty(language) && language.equals(Language.KO.get())) {

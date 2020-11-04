@@ -49,7 +49,7 @@ public class SymptomFragment extends BaseFragment
         presenter = new SymptomPresenterImpl(
                 this,
                 adapter,
-                FirebaseDatabase.getInstance(),
+                FirebaseDatabase.getInstance().getReference(),
                 compositeDisposable
         );
         presenter.onActivityCreate();

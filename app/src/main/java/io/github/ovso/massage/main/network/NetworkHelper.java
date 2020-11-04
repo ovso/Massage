@@ -39,7 +39,7 @@ public abstract class NetworkHelper<T> {
       Request original = chain.request();
       Request.Builder requestBuilder = original.newBuilder()
           .header("Content-Type", "plain/text")
-          .addHeader("Authorization", Security.AUTHORIZATION.getValue());
+          .addHeader("Authorization", Security.AUTHORIZATION.value);
 
       Request request = requestBuilder.build();
       return chain.proceed(request);

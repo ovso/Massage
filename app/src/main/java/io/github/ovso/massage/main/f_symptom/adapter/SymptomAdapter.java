@@ -48,7 +48,7 @@ public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapte
     public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
         if (viewHolder instanceof SymptomViewHolder) {
             SelectableItem<Symptom> selectableItem = this.selectableItems.get(position);
-            Symptom item = selectableItem.getItem();
+            Symptom item = selectableItem.item;
             SymptomViewHolder holder = (SymptomViewHolder) viewHolder;
 
             //holder.setIsRecyclable(false);

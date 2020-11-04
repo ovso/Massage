@@ -32,7 +32,7 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
     public SymptomPresenterImpl(
             View view,
             BaseAdapterDataModel<SelectableItem<Symptom>> adapterDataModel,
-            FirebaseDatabase databaseReference,
+            DatabaseReference databaseReference,
             CompositeDisposable compositeDisposable
     ) {
         this.view = view;
@@ -51,7 +51,9 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
                     final List<SelectableItem<Symptom>> items = new ArrayList<>();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         Symptom symptom = snapshot.getValue(Symptom.class);
-                        items.add(new SelectableItem<Symptom>().setItem(symptom));
+                        SelectableItem<Symptom> symptomSelectableItem = new SelectableItem<>();
+                        symptomSelectableItem.item = symptom;
+                        items.add(symptomSelectableItem);
                     }
                     return items;
                 })
@@ -72,10 +74,10 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
 //    if (!TextUtils.isEmpty(selectableItem.getItem().getUrl())) {
 //      view.showWebViewDialog(selectableItem.getItem());
 //    }
-        String video_id = selectableItem.getItem().getVideo_id();
+        String video_id = selectableItem.item.video_id;
         if (!TextUtils.isEmpty(video_id)) {
             view.showVideoTypeDialog((dialog, which) -> {
-                Timber.d("which = " + which);
+                Timber.d("which = %s", which);
                 try {
                     dialog.dismiss();
                     switch (VideoMode.fromWhich(which)) {
@@ -102,7 +104,7 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
 
     @Override
     public void onVideoClick(int position, SelectableItem<Symptom> item) {
-        String video_id = item.getItem().getVideo_id();
+        String video_id = item.item.video_id;
         if (!TextUtils.isEmpty(video_id)) {
             view.showVideoTypeDialog((dialog, which) -> {
                 Timber.d("which = " + which);

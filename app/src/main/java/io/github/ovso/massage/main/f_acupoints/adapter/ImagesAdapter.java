@@ -54,10 +54,10 @@ public class ImagesAdapter extends BaseRecyclerAdapter
 
             //holder.setIsRecyclable(false);
             Glide.with(context)
-                    .load(documents.getThumbnail_url())
+                    .load(documents.thumbnail_url)
                     .override(Target.SIZE_ORIGINAL)
                     .into(holder.imageview);
-            holder.docUrlTextview.setText(documents.getDoc_url());
+            holder.docUrlTextview.setText(documents.doc_url);
             compositeDisposable.add(RxView.clicks(holder.docUrlTextview)
                     .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                     .observeOn(AndroidSchedulers.mainThread())
