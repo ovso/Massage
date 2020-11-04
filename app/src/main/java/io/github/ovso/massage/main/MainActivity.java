@@ -47,7 +47,6 @@ public class MainActivity extends BaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -157,7 +156,7 @@ public class MainActivity extends BaseActivity
 
     @Override
     public void changeTheme() {
-        setTheme(R.style.AppTheme_NoActionBar);
+//        setTheme(R.style.AppTheme_NoActionBar);
     }
 
     @Override

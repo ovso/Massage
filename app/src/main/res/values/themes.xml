@@ -1,0 +1,13 @@
+<resources>
+
+    <style name="AppTheme.NoActionBar.Fullscreen" parent="AppTheme.NoActionBar">
+        <item name="android:actionBarStyle">@style/Widget.AppTheme.NoActionBar.ActionBar.Fullscreen</item>
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:windowActionBarOverlay">true</item>
+    </style>
+
+    <style name="ThemeOverlay.Massage.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
+    </style>
+</resources>

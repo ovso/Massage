@@ -38,4 +38,7 @@
     <string name="please_select_the_player_mode">Please select the player mode</string>
     <string name="video_does_not_exist">Video does not exist</string>
     <string name="review">review</string>
+    <string name="title_activity_splash">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

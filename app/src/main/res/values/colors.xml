@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="colorPrimary">#ffc77d</color>
-  <color name="colorPrimaryDark">#ffaf49</color>
-  <color name="colorAccent">#FF4081</color>
-  <color name="colorLight">#ffddb0</color>
+    <color name="colorPrimary">#ffc77d</color>
+    <color name="colorPrimaryDark">#ffaf49</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorLight">#ffddb0</color>
 
-  <color name="color_50">#FAFAFA</color>
-  <color name="color_100">#F5F5F5</color>
-  <color name="color_200">#EEEEEE</color>
-  <color name="color_300">#E0E0E0</color>
-  <color name="color_400">#BDBDBD</color>
-  <color name="color_500">#9E9E9E</color>
-  <color name="color_600">#757575</color>
-  <color name="color_700">#616161</color>
-  <color name="color_800">#424242</color>
-  <color name="color_900">#212121</color>
+    <color name="color_50">#FAFAFA</color>
+    <color name="color_100">#F5F5F5</color>
+    <color name="color_200">#EEEEEE</color>
+    <color name="color_300">#E0E0E0</color>
+    <color name="color_400">#BDBDBD</color>
+    <color name="color_500">#9E9E9E</color>
+    <color name="color_600">#757575</color>
+    <color name="color_700">#616161</color>
+    <color name="color_800">#424242</color>
+    <color name="color_900">#212121</color>
 
-  <color name="black_overlay">#66000000</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
+    <color name="light_blue_A200">#FF40C4FF</color>
+    <color name="light_blue_A400">#FF00B0FF</color>
 </resources>
