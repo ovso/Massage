@@ -21,6 +21,7 @@ import io.reactivex.schedulers.Schedulers;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.HttpException;
 import timber.log.Timber;
 
 public class SymptomPresenterImpl extends Exception implements SymptomPresenter {
@@ -64,16 +65,16 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
                     view.hideLoading();
                 }, throwable -> {
                     view.showMessage(R.string.error_server);
-                    view.hideLoading();
+                    Timber.e(throwable);
+                    if (throwable instanceof HttpException) {
+                        Timber.d(((HttpException)throwable).response().errorBody().string());
+                    }
                 }));
     }
 
     @DebugLog
     @Override
     public void onItemClick(SelectableItem<Symptom> selectableItem) {
-//    if (!TextUtils.isEmpty(selectableItem.getItem().getUrl())) {
-//      view.showWebViewDialog(selectableItem.getItem());
-//    }
         String video_id = selectableItem.item.video_id;
         if (!TextUtils.isEmpty(video_id)) {
             view.showVideoTypeDialog((dialog, which) -> {
