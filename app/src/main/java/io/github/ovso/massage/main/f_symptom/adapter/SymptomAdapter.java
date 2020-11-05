@@ -25,8 +25,6 @@ public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapte
 
     private List<SelectableItem<Symptom>> selectableItems = new ArrayList<>();
 
-    public OnCustomRecyclerItemClickListener<SelectableItem<Symptom>> onRecyclerItemClickListener;
-
     public CompositeDisposable compositeDisposable;
 
     @Override

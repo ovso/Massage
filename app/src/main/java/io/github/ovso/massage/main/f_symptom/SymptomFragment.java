@@ -47,7 +47,6 @@ public class SymptomFragment extends BaseFragment
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
         adapter.compositeDisposable = compositeDisposable;
-        adapter.onRecyclerItemClickListener = this;
         presenter = new SymptomPresenterImpl(
                 this,
                 adapter,

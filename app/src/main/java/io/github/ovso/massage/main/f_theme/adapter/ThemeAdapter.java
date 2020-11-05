@@ -15,7 +15,6 @@ import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.SystemUtils;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
 import io.github.ovso.massage.framework.adapter.BaseRecyclerAdapter;
-import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListener;
 import io.github.ovso.massage.main.f_theme.model.Theme;
 import io.github.ovso.massage.view.ui.player.PortraitVideoActivity;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -24,10 +23,7 @@ import io.reactivex.disposables.CompositeDisposable;
 public class ThemeAdapter extends BaseRecyclerAdapter
         implements ThemeAdapterView, BaseAdapterDataModel<SelectableItem<Theme>> {
 
-    private List<SelectableItem<Theme>> selectableItems = new ArrayList<>();
-
-    private OnCustomRecyclerItemClickListener<SelectableItem<Theme>>
-            onRecyclerItemClickListener;
+    private final List<SelectableItem<Theme>> selectableItems = new ArrayList<>();
 
     public CompositeDisposable compositeDisposable;
 
