@@ -46,6 +46,7 @@ public class SymptomFragment extends BaseFragment
 
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
+        adapter.compositeDisposable = compositeDisposable;
         presenter = new SymptomPresenterImpl(
                 this,
                 adapter,
@@ -164,6 +165,7 @@ public class SymptomFragment extends BaseFragment
     @Override
     public void onDestroyView() {
         presenter.onDestroyView();
+        compositeDisposable.clear();
         super.onDestroyView();
     }
 }

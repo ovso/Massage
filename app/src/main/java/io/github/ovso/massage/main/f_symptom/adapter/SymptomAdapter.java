@@ -30,9 +30,7 @@ public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapte
     @Setter
     private OnCustomRecyclerItemClickListener<SelectableItem<Symptom>> onRecyclerItemClickListener;
 
-    @Accessors(chain = true)
-    private @Setter
-    CompositeDisposable compositeDisposable;
+    public CompositeDisposable compositeDisposable;
 
     @Override
     protected BaseViewHolder createViewHolder(View view, int viewType) {

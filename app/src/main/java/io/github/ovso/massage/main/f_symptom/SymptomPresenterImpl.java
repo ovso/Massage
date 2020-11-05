@@ -3,10 +3,13 @@ package io.github.ovso.massage.main.f_symptom;
 import android.content.ActivityNotFoundException;
 import android.text.TextUtils;
 
-import com.androidhuman.rxfirebase2.database.RxFirebaseDatabase;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
@@ -14,14 +17,11 @@ import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.VideoMode;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
 import io.github.ovso.massage.main.f_symptom.model.Symptom;
-import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.github.ovso.massage.utils.ResourceProvider;
+import io.github.ovso.massage.utils.SchedulerProvider;
+import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.schedulers.Schedulers;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.HttpException;
+import io.reactivex.disposables.Disposable;
 import timber.log.Timber;
 
 public class SymptomPresenterImpl extends Exception implements SymptomPresenter {
@@ -46,30 +46,32 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
     public void onActivityCreate() {
         view.setRecyclerView();
         view.showLoading();
-        compositeDisposable.add(RxFirebaseDatabase.data(databaseReference)
-                .subscribeOn(Schedulers.io())
-                .map(dataSnapshot -> {
-                    final List<SelectableItem<Symptom>> items = new ArrayList<>();
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        Symptom symptom = snapshot.getValue(Symptom.class);
-                        SelectableItem<Symptom> symptomSelectableItem = new SelectableItem<>();
-                        symptomSelectableItem.item = symptom;
-                        items.add(symptomSelectableItem);
-                    }
-                    return items;
-                })
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(items -> {
-                    adapterDataModel.addAll(items);
-                    view.refresh();
-                    view.hideLoading();
-                }, throwable -> {
-                    view.showMessage(R.string.error_server);
-                    Timber.e(throwable);
-                    if (throwable instanceof HttpException) {
-                        Timber.d(((HttpException)throwable).response().errorBody().string());
-                    }
-                }));
+        Disposable subscribe = Single.fromCallable(() -> {
+            String jsonString = ResourceProvider.INSTANCE.fromAssets("symptom.json");
+            Gson gson = new Gson();
+            JsonElement jsonElement = gson.fromJson(jsonString, JsonElement.class);
+            JsonArray asJsonArray = jsonElement.getAsJsonArray();
+            final List<SelectableItem<Symptom>> items = new ArrayList<>();
+            for (JsonElement element : asJsonArray) {
+                Symptom symptom = gson.fromJson(element.toString(), Symptom.class);
+                SelectableItem<Symptom> symptomSelectableItem = new SelectableItem<>();
+                symptomSelectableItem.item = symptom;
+                items.add(symptomSelectableItem);
+            }
+            return items;
+        })
+                .subscribeOn(SchedulerProvider.INSTANCE.io())
+                .observeOn(SchedulerProvider.INSTANCE.ui())
+                .subscribe(
+                        items -> {
+                            adapterDataModel.addAll(items);
+                            view.refresh();
+                            view.hideLoading();
+                        },
+                        throwable -> {
+                        }
+                );
+        compositeDisposable.add(subscribe);
     }
 
     @DebugLog

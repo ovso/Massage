@@ -11,14 +11,14 @@ import lombok.ToString;
  * Created by jaeho on 2017. 12. 17
  */
 @IgnoreExtraProperties @EqualsAndHashCode(callSuper = false) @Getter @ToString public class Help {
-  private String msg;
-  private String msg_en;
+  public String msg;
+  public String msg_en;
 
   public static String getMsgByLanguage(String language, Help help) {
     if (!TextUtils.isEmpty(language) && language.equals(Language.KO.get())) {
-      return "\n\n" + help.getMsg();
+      return "\n\n" + help.msg;
     } else {
-      return "\n\n" + help.getMsg_en();
+      return "\n\n" + help.msg_en;
     }
   }
 }
