@@ -14,13 +14,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import butterknife.BindView;
-import de.psdev.licensesdialog.LicensesDialog;
-import de.psdev.licensesdialog.model.Notices;
-import io.github.ovso.massage.R;
 import io.github.ovso.massage.ad.MyAdView;
 import io.github.ovso.massage.framework.SystemUtils;
 import io.github.ovso.massage.framework.customview.BaseActivity;
@@ -28,21 +26,29 @@ import io.github.ovso.massage.main.f_acupoints.AcupointsFragment;
 import io.github.ovso.massage.main.f_symptom.SymptomFragment;
 import io.github.ovso.massage.main.f_theme.ThemeFragment;
 
-public class MainActivity extends BaseActivity
-    implements MainPresenter.View {
+import static io.github.ovso.massage.R.*;
+import static io.github.ovso.massage.R.id.ad_container;
+import static io.github.ovso.massage.R.id.bottom_navigation_view;
+import static io.github.ovso.massage.R.id.drawer_layout;
+import static io.github.ovso.massage.R.id.fragment_container;
+import static io.github.ovso.massage.R.id.navigation_view;
 
-    @BindView(R.id.drawer_layout)
+public class MainActivity extends BaseActivity
+        implements MainPresenter.View {
+
+    @BindView(drawer_layout)
     DrawerLayout drawer;
-    @BindView(R.id.fragment_container)
+    @BindView(fragment_container)
     FrameLayout fragmentContainer;
-    @BindView(R.id.bottom_navigation_view)
+    @BindView(bottom_navigation_view)
     BottomNavigationView bottomNavigationView;
-    @BindView(R.id.navigation_view)
+    @BindView(navigation_view)
     NavigationView navigationView;
-    @BindView(R.id.ad_container)
+    @BindView(ad_container)
     ViewGroup adContainer;
 
     private final MainPresenter presenter = new MainPresenterImpl(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +58,8 @@ public class MainActivity extends BaseActivity
     @Override
     public void setListener() {
         ActionBarDrawerToggle toggle =
-                new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open,
-                        R.string.navigation_drawer_close);
+                new ActionBarDrawerToggle(this, drawer, toolbar, string.navigation_drawer_open,
+                        string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(
@@ -62,11 +68,7 @@ public class MainActivity extends BaseActivity
             boolean isChecked = bottomNavigationView.getMenu().findItem(item.getItemId()).isChecked();
             return presenter.onBottomNavItemSelected(item.getItemId(), isChecked);
         });
-        //CoordinatorLayout.LayoutParams layoutParams =
-        //    (CoordinatorLayout.LayoutParams) bottomNavigationView.getLayoutParams();
-        //layoutParams.setBehavior(new BottomNavigationViewBehavior());
-
-        TextView versionTextView = navigationView.getHeaderView(0).findViewById(R.id.version_textview);
+        TextView versionTextView = navigationView.getHeaderView(0).findViewById(id.version_textview);
         versionTextView.setText(SystemUtils.getVersionName(getApplicationContext()));
     }
 
@@ -78,38 +80,38 @@ public class MainActivity extends BaseActivity
     @Override
     public void showSymptomFragment() {
         getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
-                        R.animator.enter_animation, R.animator.exit_animation)
-                .replace(R.id.fragment_container, SymptomFragment.newInstance())
+                .setCustomAnimations(animator.enter_animation, animator.exit_animation,
+                        animator.enter_animation, animator.exit_animation)
+                .replace(fragment_container, SymptomFragment.newInstance())
                 .commit();
     }
 
     @Override
     public void showThemeFrgament() {
         getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
-                        R.animator.enter_animation, R.animator.exit_animation)
-                .replace(R.id.fragment_container, ThemeFragment.newInstance())
+                .setCustomAnimations(animator.enter_animation, animator.exit_animation,
+                        animator.enter_animation, animator.exit_animation)
+                .replace(fragment_container, ThemeFragment.newInstance())
                 .commit();
     }
 
     @Override
     public void showAcupoints() {
         getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
-                        R.animator.enter_animation, R.animator.exit_animation)
-                .replace(R.id.fragment_container, AcupointsFragment.newInstance())
+                .setCustomAnimations(animator.enter_animation, animator.exit_animation,
+                        animator.enter_animation, animator.exit_animation)
+                .replace(fragment_container, AcupointsFragment.newInstance())
                 .commit();
     }
 
     @Override
-    public void showLicensesDialog(Notices notices) {
-        new LicensesDialog.Builder(this).setNotices(notices).setIncludeOwnLicense(true).build().show();
+    public void navigateToOssLicensesMenu() {
+        startActivity(new Intent(this, OssLicensesMenuActivity.class));
     }
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.activity_main;
+        return layout.activity_main;
     }
 
 
@@ -132,7 +134,7 @@ public class MainActivity extends BaseActivity
     public void showHelpAlert(int resId) {
         new AlertDialog.Builder(this).setMessage(resId)
                 .setPositiveButton(android.R.string.ok, ((dialog, which) -> dialog.dismiss()))
-                .setNeutralButton(R.string.review, (dialog, which) -> {
+                .setNeutralButton(string.review, (dialog, which) -> {
                     dialog.dismiss();
                     navigateToStore();
                 })

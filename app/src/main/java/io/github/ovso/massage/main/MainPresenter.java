@@ -35,7 +35,7 @@ public interface MainPresenter {
 
     void showAcupoints();
 
-    void showLicensesDialog(Notices notices);
+    void navigateToOssLicensesMenu();
 
     void showMessage(@StringRes int resId);
 
