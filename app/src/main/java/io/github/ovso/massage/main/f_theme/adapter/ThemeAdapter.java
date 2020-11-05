@@ -1,6 +1,7 @@
 package io.github.ovso.massage.main.f_theme.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 
 import com.jakewharton.rxbinding2.view.RxView;
@@ -16,24 +17,19 @@ import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
 import io.github.ovso.massage.framework.adapter.BaseRecyclerAdapter;
 import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListener;
 import io.github.ovso.massage.main.f_theme.model.Theme;
+import io.github.ovso.massage.view.ui.player.PortraitVideoActivity;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import lombok.Setter;
-import lombok.experimental.Accessors;
 
 public class ThemeAdapter extends BaseRecyclerAdapter
         implements ThemeAdapterView, BaseAdapterDataModel<SelectableItem<Theme>> {
 
     private List<SelectableItem<Theme>> selectableItems = new ArrayList<>();
 
-    @Accessors(chain = true)
-    @Setter
     private OnCustomRecyclerItemClickListener<SelectableItem<Theme>>
             onRecyclerItemClickListener;
 
-    @Accessors(chain = true)
-    private @Setter
-    CompositeDisposable compositeDisposable;
+    public CompositeDisposable compositeDisposable;
 
     @Override
     protected BaseViewHolder createViewHolder(View view, int viewType) {
@@ -61,8 +57,14 @@ public class ThemeAdapter extends BaseRecyclerAdapter
             compositeDisposable.add(RxView.clicks(holder.itemView)
                     .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(o -> onRecyclerItemClickListener.onItemClick(selectableItem)));
+                    .subscribe(a -> navigateToPlayer(item, context)));
         }
+    }
+
+    private void navigateToPlayer(Theme item, Context context) {
+        Intent intent = new Intent(context, PortraitVideoActivity.class);
+        intent.putExtra("video_id", item.video_id);
+        context.startActivity(intent);
     }
 
     @Override

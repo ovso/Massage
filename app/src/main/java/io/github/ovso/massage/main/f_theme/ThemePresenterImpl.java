@@ -3,9 +3,13 @@ package io.github.ovso.massage.main.f_theme;
 import android.content.ActivityNotFoundException;
 import android.text.TextUtils;
 
-import com.androidhuman.rxfirebase2.database.RxFirebaseDatabase;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
@@ -13,13 +17,11 @@ import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.VideoMode;
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel;
 import io.github.ovso.massage.main.f_theme.model.Theme;
-import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.github.ovso.massage.utils.ResourceProvider;
+import io.github.ovso.massage.utils.SchedulerProvider;
+import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.schedulers.Schedulers;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import io.reactivex.disposables.Disposable;
 import timber.log.Timber;
 
 public class ThemePresenterImpl implements ThemePresenter {
@@ -42,6 +44,8 @@ public class ThemePresenterImpl implements ThemePresenter {
     public void onActivityCreate() {
         view.setRecyclerView();
         view.showLoading();
+        reqItems();
+/*
         compositeDisposable.add(RxFirebaseDatabase.data(databaseReference)
                 .subscribeOn(Schedulers.io())
                 .map(dataSnapshot -> {
@@ -63,6 +67,36 @@ public class ThemePresenterImpl implements ThemePresenter {
                     view.showMessage(R.string.error_server);
                     view.hideLoading();
                 }));
+*/
+    }
+
+    private void reqItems() {
+        Disposable subscribe = Single.fromCallable(() -> {
+            String jsonString = ResourceProvider.INSTANCE.fromAssets("theme.json");
+            Gson gson = new Gson();
+            JsonElement jsonElement = gson.fromJson(jsonString, JsonElement.class);
+            JsonArray asJsonArray = jsonElement.getAsJsonArray();
+            final List<SelectableItem<Theme>> items = new ArrayList<>();
+            for (JsonElement element : asJsonArray) {
+                Theme symptom = gson.fromJson(element.toString(), Theme.class);
+                SelectableItem<Theme> symptomSelectableItem = new SelectableItem<>();
+                symptomSelectableItem.item = symptom;
+                items.add(symptomSelectableItem);
+            }
+            return items;
+        })
+                .subscribeOn(SchedulerProvider.INSTANCE.io())
+                .observeOn(SchedulerProvider.INSTANCE.ui())
+                .subscribe(
+                        items -> {
+                            adapterDataModel.addAll(items);
+                            view.refresh();
+                            view.hideLoading();
+                        },
+                        throwable -> {
+                        }
+                );
+        compositeDisposable.add(subscribe);
     }
 
     @DebugLog

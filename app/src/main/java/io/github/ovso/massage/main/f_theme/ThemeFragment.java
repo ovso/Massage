@@ -51,6 +51,7 @@ public class ThemeFragment extends BaseFragment
 
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
+        adapter.compositeDisposable = compositeDisposable;
         presenter = new ThemePresenterImpl(
                 this,
                 adapter,
@@ -126,7 +127,7 @@ public class ThemeFragment extends BaseFragment
 
     @Override
     public void refresh() {
-        adapterView.refresh();
+        adapter.refresh();
     }
 
     @Override
@@ -168,6 +169,7 @@ public class ThemeFragment extends BaseFragment
     @Override
     public void onDestroyView() {
         presenter.onDestroyView();
+        compositeDisposable.clear();
         super.onDestroyView();
     }
 }

@@ -46,6 +46,10 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
     public void onActivityCreate() {
         view.setRecyclerView();
         view.showLoading();
+        reqItems();
+    }
+
+    private void reqItems() {
         Disposable subscribe = Single.fromCallable(() -> {
             String jsonString = ResourceProvider.INSTANCE.fromAssets("symptom.json");
             Gson gson = new Gson();
