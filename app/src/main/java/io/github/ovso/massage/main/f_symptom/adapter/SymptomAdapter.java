@@ -1,9 +1,14 @@
 package io.github.ovso.massage.main.f_symptom.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 
 import com.jakewharton.rxbinding2.view.RxView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.framework.SelectableItem;
@@ -11,24 +16,16 @@ import io.github.ovso.massage.framework.SystemUtils;
 import io.github.ovso.massage.framework.adapter.BaseRecyclerAdapter;
 import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListener;
 import io.github.ovso.massage.main.f_symptom.model.Symptom;
+import io.github.ovso.massage.view.ui.player.PortraitVideoActivity;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import lombok.Setter;
-import lombok.experimental.Accessors;
 
 public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapterView,
         io.github.ovso.massage.framework.adapter.BaseAdapterDataModel<SelectableItem<Symptom>> {
 
     private List<SelectableItem<Symptom>> selectableItems = new ArrayList<>();
 
-    @Accessors(chain = true)
-    @Setter
-    private OnCustomRecyclerItemClickListener<SelectableItem<Symptom>> onRecyclerItemClickListener;
+    public OnCustomRecyclerItemClickListener<SelectableItem<Symptom>> onRecyclerItemClickListener;
 
     public CompositeDisposable compositeDisposable;
 
@@ -54,11 +51,16 @@ public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapte
 
             String title = Symptom.getTitleByLanguage(SystemUtils.getLanguage(context), item);
             holder.titleTextview.setText(title);
-
             compositeDisposable.add(RxView.clicks(holder.itemView)
                     .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
-                    .subscribe(o -> onRecyclerItemClickListener.onItemClick(selectableItem)));
+                    .subscribe(o -> navigateToPlayer(item, context)));
         }
+    }
+
+    private void navigateToPlayer(Symptom item, Context context) {
+        Intent intent = new Intent(context, PortraitVideoActivity.class);
+        intent.putExtra("video_id", item.video_id);
+        context.startActivity(intent);
     }
 
     @Override
