@@ -20,9 +20,8 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
         <activity
-            android:name=".splash.SplashActivity"
+            android:name=".view.ui.splash.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_splash"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.Fullscreen">
             <intent-filter>
@@ -36,12 +35,6 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/ads_app_id" />
-
-        <activity
-            android:name=".view.ui.splash.SplashActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            >
-        </activity>
         <activity
             android:name=".ImageActivity"
             android:screenOrientation="fullSensor"
