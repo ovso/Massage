@@ -2,13 +2,15 @@ package io.github.ovso.massage.main.f_acupoints;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
@@ -67,13 +69,23 @@ public class AcupointsFragment extends BaseFragment
 
     @Override
     public void setRecyclerView() {
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         if (recyclerView.getItemAnimator() != null) {
             recyclerView.getItemAnimator().setChangeDuration(Constants.DURATION_RECYCLERVIEW_ANI);
             recyclerView.getItemAnimator().setRemoveDuration(Constants.DURATION_RECYCLERVIEW_ANI);
         }
         recyclerView.setItemAnimator(new SlideInDownAnimator());
+        recyclerView.addItemDecoration(getRvDivider());
         recyclerView.setAdapter(adapter);
+    }
+
+    @NotNull
+    private DividerItemDecoration getRvDivider() {
+        final DividerItemDecoration divider = new DividerItemDecoration(requireContext(), RecyclerView.VERTICAL);
+        final Drawable drawable = ContextCompat.getDrawable(requireContext(), R.drawable.all_rv_divider);
+        if (drawable != null) {
+            divider.setDrawable(drawable);
+        }
+        return divider;
     }
 
     @Override

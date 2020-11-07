@@ -18,8 +18,6 @@ import io.github.ovso.massage.framework.adapter.BaseRecyclerAdapter;
 import io.github.ovso.massage.main.f_acupoints.model.Documents;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import lombok.Setter;
-import lombok.experimental.Accessors;
 
 public class ImagesAdapter extends BaseRecyclerAdapter
         implements BaseAdapterView, BaseAdapterDataModel<Documents> {
@@ -29,14 +27,10 @@ public class ImagesAdapter extends BaseRecyclerAdapter
         onRecyclerItemClickListener = l;
     }
 
-    private List<Documents> items = new ArrayList<>();
+    private final List<Documents> items = new ArrayList<>();
 
-    @Accessors(chain = true)
-    @Setter
-    private CompositeDisposable compositeDisposable;
-    @Accessors(chain = true)
-    @Setter
-    private OnAcuRecyclerItemClickListener<Documents> onRecyclerItemClickListener;
+    private final CompositeDisposable compositeDisposable;
+    private final OnAcuRecyclerItemClickListener<Documents> onRecyclerItemClickListener;
 
     @Override
     protected BaseViewHolder createViewHolder(View view, int viewType) {
