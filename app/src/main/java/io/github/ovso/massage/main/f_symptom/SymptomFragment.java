@@ -3,29 +3,32 @@ package io.github.ovso.massage.main.f_symptom;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.jetbrains.annotations.NotNull;
+
 import butterknife.BindView;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.main.base.WebviewAlertDialog;
 import io.github.ovso.massage.framework.Constants;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.customview.BaseFragment;
 import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListener;
+import io.github.ovso.massage.main.base.WebviewAlertDialog;
 import io.github.ovso.massage.main.f_symptom.adapter.SymptomAdapter;
 import io.github.ovso.massage.main.f_symptom.model.Symptom;
 import io.github.ovso.massage.view.ui.player.LandscapeVideoActivity;
 import io.github.ovso.massage.view.ui.player.PortraitVideoActivity;
-
 import io.reactivex.disposables.CompositeDisposable;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 
@@ -40,6 +43,7 @@ public class SymptomFragment extends BaseFragment
     private SymptomPresenter presenter;
 
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
+
     @Override
     protected int getLayoutResID() {
         return R.layout.fragment_symptom;
@@ -68,9 +72,18 @@ public class SymptomFragment extends BaseFragment
             recyclerView.getItemAnimator().setRemoveDuration(Constants.DURATION_RECYCLERVIEW_ANI);
         }
         recyclerView.setItemAnimator(new SlideInDownAnimator());
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.addItemDecoration(new DividerItemDecoration(requireContext(), RecyclerView.VERTICAL));
+        recyclerView.addItemDecoration(getRvDivider());
         recyclerView.setAdapter(adapter);
+    }
+
+    @NotNull
+    private DividerItemDecoration getRvDivider() {
+        final DividerItemDecoration divider = new DividerItemDecoration(requireContext(), RecyclerView.VERTICAL);
+        final Drawable drawable = ContextCompat.getDrawable(requireContext(), R.drawable.all_rv_divider);
+        if (drawable != null) {
+            divider.setDrawable(drawable);
+        }
+        return divider;
     }
 
     @Override

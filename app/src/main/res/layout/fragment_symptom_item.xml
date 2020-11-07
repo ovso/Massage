@@ -24,6 +24,7 @@
         android:paddingEnd="20dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="16sp"
+        android:text="굿"
         app:drawableEndCompat="@drawable/ic_ondemand_video_on"
         tools:text="싹트네 싹터요 내마음에 사랑이 싹트네 싹터요" />
 

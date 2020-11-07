@@ -3,15 +3,20 @@ package io.github.ovso.massage.main.f_theme;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.FirebaseDatabase;
+
+import org.jetbrains.annotations.NotNull;
 
 import butterknife.BindView;
 import hugo.weaving.DebugLog;
@@ -39,8 +44,8 @@ public class ThemeFragment extends BaseFragment
     View rootView;
     @BindView(R.id.progressbar)
     ProgressBar progressBar;
-    CompositeDisposable compositeDisposable = new CompositeDisposable();
-    ThemeAdapter adapter = new ThemeAdapter();
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private final ThemeAdapter adapter = new ThemeAdapter();
     ThemeAdapterView adapterView;
     private ThemePresenter presenter;
 
@@ -93,11 +98,23 @@ public class ThemeFragment extends BaseFragment
 
     @Override
     public void setRecyclerView() {
-        recyclerView.getItemAnimator().setChangeDuration(Constants.DURATION_RECYCLERVIEW_ANI);
-        recyclerView.getItemAnimator().setRemoveDuration(Constants.DURATION_RECYCLERVIEW_ANI);
+        if (recyclerView.getItemAnimator() != null) {
+            recyclerView.getItemAnimator().setChangeDuration(Constants.DURATION_RECYCLERVIEW_ANI);
+            recyclerView.getItemAnimator().setRemoveDuration(Constants.DURATION_RECYCLERVIEW_ANI);
+        }
         recyclerView.setItemAnimator(new SlideInDownAnimator());
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.addItemDecoration(getRvDivider());
         recyclerView.setAdapter(adapter);
+    }
+
+    @NotNull
+    private DividerItemDecoration getRvDivider() {
+        final DividerItemDecoration divider = new DividerItemDecoration(requireContext(), RecyclerView.VERTICAL);
+        final Drawable drawable = ContextCompat.getDrawable(requireContext(), R.drawable.all_rv_divider);
+        if (drawable != null) {
+            divider.setDrawable(drawable);
+        }
+        return divider;
     }
 
     @Override

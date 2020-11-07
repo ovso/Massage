@@ -92,9 +92,7 @@ public class ThemePresenterImpl implements ThemePresenter {
                             adapterDataModel.addAll(items);
                             view.refresh();
                             view.hideLoading();
-                        },
-                        throwable -> {
-                        }
+                        }, Timber::e
                 );
         compositeDisposable.add(subscribe);
     }
