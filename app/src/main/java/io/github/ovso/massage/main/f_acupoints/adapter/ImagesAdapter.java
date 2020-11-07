@@ -39,7 +39,7 @@ public class ImagesAdapter extends BaseRecyclerAdapter
 
     @Override
     public int getLayoutRes(int viewType) {
-        return R.layout.images_entry;
+        return R.layout.item_acupoints;
     }
 
     @Override
@@ -48,10 +48,8 @@ public class ImagesAdapter extends BaseRecyclerAdapter
         if (viewHolder instanceof ImagesViewHolder) {
             ImagesViewHolder holder = (ImagesViewHolder) viewHolder;
             final Documents documents = items.get(position);
-
-            //holder.setIsRecyclable(false);
             Glide.with(context)
-                    .load(documents.thumbnail_url)
+                    .load(documents.image_url)
                     .override(Target.SIZE_ORIGINAL)
                     .into(holder.imageview);
             holder.docUrlTextview.setText(documents.doc_url);

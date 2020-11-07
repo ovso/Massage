@@ -16,12 +16,13 @@
         android:scrollbars="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="10"
-        tools:listitem="@layout/images_entry" />
+        tools:listitem="@layout/item_acupoints" />
 
     <ProgressBar
         android:id="@id/progressbar"
         android:layout_width="@dimen/dp_34"
         android:layout_height="@dimen/dp_34"
+        android:indeterminateDuration="100"
         android:layout_gravity="center"
         android:visibility="gone" />
 </FrameLayout>
