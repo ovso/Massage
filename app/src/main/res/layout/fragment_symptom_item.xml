@@ -4,16 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@id/cardview"
     android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize"
-    android:layout_marginLeft="2.5dp"
-    android:layout_marginTop="2.5dp"
-    android:layout_marginRight="2.5dp"
-    android:layout_marginBottom="2.5dp"
+    android:layout_height="80dp"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardBackgroundColor="@color/color_300"
-    app:cardCornerRadius="7dp"
     app:cardElevation="0dp">
 
     <TextView
@@ -21,14 +16,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorLight"
-        android:drawableEnd="@drawable/ic_ondemand_video_on"
         android:ellipsize="end"
         android:gravity="start|center_vertical"
-        android:lines="1"
+        android:lines="2"
+        android:drawablePadding="10dp"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="16sp"
+        app:drawableEndCompat="@drawable/ic_ondemand_video_on"
         tools:text="싹트네 싹터요 내마음에 사랑이 싹트네 싹터요" />
 
 </androidx.cardview.widget.CardView>

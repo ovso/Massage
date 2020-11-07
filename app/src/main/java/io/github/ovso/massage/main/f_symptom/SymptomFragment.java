@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,7 +39,7 @@ public class SymptomFragment extends BaseFragment
     private final SymptomAdapter adapter = new SymptomAdapter();
     private SymptomPresenter presenter;
 
-    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
     @Override
     protected int getLayoutResID() {
         return R.layout.fragment_symptom;
@@ -68,6 +69,7 @@ public class SymptomFragment extends BaseFragment
         }
         recyclerView.setItemAnimator(new SlideInDownAnimator());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.addItemDecoration(new DividerItemDecoration(requireContext(), RecyclerView.VERTICAL));
         recyclerView.setAdapter(adapter);
     }
 
