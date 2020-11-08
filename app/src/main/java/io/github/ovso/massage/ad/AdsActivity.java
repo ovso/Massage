@@ -1,14 +1,14 @@
 package io.github.ovso.massage.ad;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.InterstitialAd;
 
-public class AdsActivity extends Activity {
+public class AdsActivity extends AppCompatActivity {
   InterstitialAd interstitialAd;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
