@@ -1,5 +1,6 @@
 package io.github.ovso.massage.main;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import butterknife.BindView;
 import io.github.ovso.massage.ad.MyAdView;
+import io.github.ovso.massage.data.NativeAdsDialog2;
 import io.github.ovso.massage.framework.SystemUtils;
 import io.github.ovso.massage.framework.customview.BaseActivity;
 import io.github.ovso.massage.main.f_acupoints.AcupointsFragment;
@@ -36,6 +38,7 @@ import static io.github.ovso.massage.R.id.navigation_view;
 import static io.github.ovso.massage.R.layout;
 import static io.github.ovso.massage.R.string;
 
+@SuppressLint("NonConstantResourceId")
 public class MainActivity extends BaseActivity
         implements MainPresenter.View {
 
@@ -154,17 +157,20 @@ public class MainActivity extends BaseActivity
 
     @Override
     public void showNativeAdsDialog() {
-        new AlertDialog.Builder(this).setMessage("광고 다이얼로그")
-                .setPositiveButton("종료", (dialogInterface, i) -> {
-                    dialogInterface.dismiss();
+        new NativeAdsDialog2(this)
+                .setUnitId(getString(string.ads_native_unit_id))
+                .setPositiveButton(string.exit, (dialog, i) -> {
+                    dialog.dismiss();
                     finish();
                 })
-                .setNeutralButton("리뷰 남기기", (dialogInterface, i) -> {
-                    dialogInterface.dismiss();
+                .setNeutralButton(string.review, (dialog, i) -> {
+                    dialog.dismiss();
                     navigateToStore();
                     finish();
                 })
+                .setTitle(string.do_you_want_to_quit)
                 .show();
+
     }
 
     @Override

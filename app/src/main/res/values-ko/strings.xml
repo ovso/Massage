@@ -38,4 +38,6 @@
   <string name="please_select_the_player_mode">플레이어 모드를 선택해 주세요</string>
   <string name="video_does_not_exist">비디오가 존재하지 않습니다</string>
   <string name="review">리뷰 남기기</string>
+  <string name="exit">앱 종료</string>
+  <string name="do_you_want_to_quit">앱을 종료하시겠습니까?</string>
 </resources>

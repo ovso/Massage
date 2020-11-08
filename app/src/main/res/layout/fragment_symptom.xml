@@ -18,9 +18,11 @@
         tools:listitem="@layout/fragment_symptom_item" />
 
     <ProgressBar
-        android:id="@id/progressbar"
-        android:layout_width="@dimen/dp_34"
-        android:layout_height="@dimen/dp_34"
+        android:id="@+id/progressbar"
+        android:indeterminateDrawable="@drawable/progressbar_circle"
+        android:indeterminateDuration="100"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone" />
 </FrameLayout>

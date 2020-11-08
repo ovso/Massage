@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
+apply plugin: 'com.google.gms.google-services'
 
 apply from: '../versioning2.gradle'
 apply from: '../ktlint.gradle'
@@ -70,6 +71,7 @@ android {
             resValue("string", "ads_app_id", "ca-app-pub-3940256099942544~3347511713")
             resValue("string", "ads_banner_unit_id", "ca-app-pub-3940256099942544/6300978111")
             resValue("string", "ads_interstitial_unit_id", "ca-app-pub-3940256099942544/1033173712")
+            resValue("string", "ads_native_unit_id", "ca-app-pub-3940256099942544/2247696110")
             resValue("string", "youtube_developer_key", "AIzaSyBdY9vP4_vQs5YEGJ3Ghu6s5gGY8yFlo0s")
             resValue("string", "kakao_auth", "KakaoAK 7296bb6b63d625d940275dbc7a78ae41")
         }
@@ -93,6 +95,7 @@ android {
             resValue("string", "ads_app_id", "ca-app-pub-8679189423397017~4275586930")
             resValue("string", "ads_banner_unit_id", "ca-app-pub-8679189423397017/3924518551")
             resValue("string", "ads_interstitial_unit_id", "ca-app-pub-8679189423397017/5031831418")
+            resValue("string", "ads_native_unit_id", "ca-app-pub-8679189423397017/9450162222")
             resValue("string", "youtube_developer_key", "AIzaSyBdY9vP4_vQs5YEGJ3Ghu6s5gGY8yFlo0s")
             resValue("string", "kakao_auth", "KakaoAK 7296bb6b63d625d940275dbc7a78ae41")
         }
@@ -143,10 +146,12 @@ dependencies {
     implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
 
 
-    implementation "com.google.firebase:firebase-database:19.5.1"
-    implementation "com.google.firebase:firebase-ads:19.5.0"
-    implementation "com.google.firebase:firebase-core:18.0.0"
     implementation "com.androidhuman.rxfirebase2:firebase-database:16.0.1.0"
+    implementation "com.google.firebase:firebase-bom:26.0.0"
+    implementation "com.google.firebase:firebase-database:19.5.1"
+    implementation "com.google.firebase:firebase-core:18.0.0"
+    implementation "com.google.firebase:firebase-ads:19.5.0"
+    implementation "com.google.firebase:firebase-analytics:18.0.0"
 
     implementation "com.google.guava:guava:28.2-android"
 
