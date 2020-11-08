@@ -26,12 +26,15 @@ import io.github.ovso.massage.main.f_acupoints.AcupointsFragment;
 import io.github.ovso.massage.main.f_symptom.SymptomFragment;
 import io.github.ovso.massage.main.f_theme.ThemeFragment;
 
-import static io.github.ovso.massage.R.*;
+import static io.github.ovso.massage.R.animator;
+import static io.github.ovso.massage.R.id;
 import static io.github.ovso.massage.R.id.ad_container;
 import static io.github.ovso.massage.R.id.bottom_navigation_view;
 import static io.github.ovso.massage.R.id.drawer_layout;
 import static io.github.ovso.massage.R.id.fragment_container;
 import static io.github.ovso.massage.R.id.navigation_view;
+import static io.github.ovso.massage.R.layout;
+import static io.github.ovso.massage.R.string;
 
 public class MainActivity extends BaseActivity
         implements MainPresenter.View {
@@ -150,19 +153,28 @@ public class MainActivity extends BaseActivity
     }
 
     @Override
-    public void showHelpAlert(String msg) {
-        new AlertDialog.Builder(this).setMessage(msg)
-                .setPositiveButton(android.R.string.ok, null)
+    public void showNativeAdsDialog() {
+        new AlertDialog.Builder(this).setMessage("광고 다이얼로그")
+                .setPositiveButton("종료", (dialogInterface, i) -> {
+                    dialogInterface.dismiss();
+                    finish();
+                })
+                .setNeutralButton("리뷰 남기기", (dialogInterface, i) -> {
+                    dialogInterface.dismiss();
+                    navigateToStore();
+                    finish();
+                })
                 .show();
-    }
-
-    @Override
-    public void changeTheme() {
-//        setTheme(R.style.AppTheme_NoActionBar);
     }
 
     @Override
     public void showAd() {
         adContainer.addView(MyAdView.getAdmobAdView(getApplicationContext()));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
     }
 }

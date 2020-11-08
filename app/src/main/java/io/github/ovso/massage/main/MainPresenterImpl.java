@@ -19,7 +19,6 @@ public class MainPresenterImpl implements MainPresenter {
     public MainPresenterImpl(MainPresenter.View view) {
         this.view = view;
         this.compositeDisposable = new CompositeDisposable();
-        view.changeTheme();
     }
 
     @Override
@@ -59,12 +58,16 @@ public class MainPresenterImpl implements MainPresenter {
     }
 
     @Override
+    public void onDestroy() {
+        compositeDisposable.clear();
+    }
+
+    @Override
     public void onBackPressed(boolean isDrawerOpen) {
         if (isDrawerOpen) {
             view.closeDrawer();
         } else {
-            compositeDisposable.clear();
-            view.finish();
+            view.showNativeAdsDialog();
         }
     }
 }

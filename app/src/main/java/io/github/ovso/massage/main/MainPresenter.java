@@ -5,48 +5,44 @@ import android.os.Bundle;
 import androidx.annotation.IdRes;
 import androidx.annotation.StringRes;
 
-import de.psdev.licensesdialog.model.Notices;
-
 /**
  * Created by jaeho on 2017. 10. 16
  */
 
 public interface MainPresenter {
 
-  void onCreate(Bundle savedInstanceState);
+    void onCreate(Bundle savedInstanceState);
 
-  boolean onNavItemSelected(@IdRes int itemId);
+    boolean onNavItemSelected(@IdRes int itemId);
 
-  void onBackPressed(boolean isDrawerOpen);
+    void onBackPressed(boolean isDrawerOpen);
 
-  boolean onBottomNavItemSelected(@IdRes int itemId, boolean isChecked);
+    boolean onBottomNavItemSelected(@IdRes int itemId, boolean isChecked);
 
-  interface View {
+    void onDestroy();
 
-    void setListener();
+    interface View {
 
-    void closeDrawer();
+        void setListener();
 
-    void finish();
+        void closeDrawer();
 
-    void showSymptomFragment();
+        void showSymptomFragment();
 
-    void showThemeFrgament();
+        void showThemeFrgament();
 
-    void showAcupoints();
+        void showAcupoints();
 
-    void navigateToOssLicensesMenu();
+        void navigateToOssLicensesMenu();
 
-    void showMessage(@StringRes int resId);
+        void showMessage(@StringRes int resId);
 
-    void showMessage(String msg);
+        void showMessage(String msg);
 
-    void showHelpAlert(@StringRes int resId);
+        void showHelpAlert(@StringRes int resId);
 
-    void showAd();
+        void showAd();
 
-    void showHelpAlert(String msg);
-
-    void changeTheme();
-  }
+        void showNativeAdsDialog();
+    }
 }
