@@ -7,6 +7,7 @@ import io.github.ovso.massage.R
 import io.github.ovso.massage.data.ImageRequest
 import io.github.ovso.massage.data.ImageService
 import io.github.ovso.massage.framework.adapter.BaseAdapterDataModel
+import io.github.ovso.massage.main.f_acupoints.adapter.getAdsAddedItem
 import io.github.ovso.massage.main.f_acupoints.model.Documents
 import io.github.ovso.massage.main.f_acupoints.network.ImagesNetwork
 import io.github.ovso.massage.utils.SchedulerProvider
@@ -69,7 +70,10 @@ class AcupointsPresenterImpl(
             it.map { docs ->
                 (docs as? Documents)
             }.toList()
-        }.subscribeOn(SchedulerProvider.io())
+        }.map {
+            it.getAdsAddedItem()
+        }
+            .subscribeOn(SchedulerProvider.io())
             .observeOn(SchedulerProvider.ui())
             .doOnSubscribe { view.showLoading() }
             .doOnError { view.hideLoading() }

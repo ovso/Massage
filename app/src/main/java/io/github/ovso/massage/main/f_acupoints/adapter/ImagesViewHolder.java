@@ -8,7 +8,7 @@ import butterknife.BindView;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.framework.adapter.BaseRecyclerAdapter;
 
-class ImagesViewHolder extends BaseRecyclerAdapter.BaseViewHolder {
+public class ImagesViewHolder extends BaseRecyclerAdapter.BaseViewHolder {
 
     @BindView(R.id.doc_url_textview)
     TextView docUrlTextview;

@@ -61,6 +61,8 @@ public class ImagesAdapter extends BaseRecyclerAdapter
                     .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(o -> onRecyclerItemClickListener.onItemClick(documents)));
+        } else if(viewHolder instanceof NativeAdsViewHolder) {
+            ((NativeAdsViewHolder)viewHolder).onBindViewHolder();
         }
     }
 
