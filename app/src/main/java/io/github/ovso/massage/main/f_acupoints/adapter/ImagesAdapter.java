@@ -22,6 +22,8 @@ import io.reactivex.disposables.CompositeDisposable;
 public class ImagesAdapter extends BaseRecyclerAdapter
         implements BaseAdapterView, BaseAdapterDataModel<Documents> {
 
+    private final static int VIEW_TYPE_NORMAL = 100;
+    private final static int VIEW_TYPE_ADS = 101;
     public ImagesAdapter(CompositeDisposable compositeDisposable, OnAcuRecyclerItemClickListener<Documents> l) {
         this.compositeDisposable = compositeDisposable;
         onRecyclerItemClickListener = l;
@@ -34,12 +36,29 @@ public class ImagesAdapter extends BaseRecyclerAdapter
 
     @Override
     protected BaseViewHolder createViewHolder(View view, int viewType) {
-        return new ImagesViewHolder(view);
+        if(VIEW_TYPE_NORMAL == viewType) {
+            return new ImagesViewHolder(view);
+        } else {
+            return NativeAdsViewHolder.create(view);
+        }
     }
 
     @Override
     public int getLayoutRes(int viewType) {
-        return R.layout.item_acupoints;
+        if(VIEW_TYPE_NORMAL == viewType) {
+            return R.layout.item_acupoints;
+        } else {
+            return R.layout.item_native_ads_small;
+        }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if ((getItem(position) instanceof NativeAdsModel)) {
+            return VIEW_TYPE_ADS;
+        } else {
+            return VIEW_TYPE_NORMAL;
+        }
     }
 
     @Override
