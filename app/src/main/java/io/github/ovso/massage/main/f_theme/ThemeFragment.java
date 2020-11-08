@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.FirebaseDatabase;
@@ -19,20 +18,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import org.jetbrains.annotations.NotNull;
 
 import butterknife.BindView;
-import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
-import io.github.ovso.massage.main.base.WebviewAlertDialog;
 import io.github.ovso.massage.framework.Constants;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.customview.BaseFragment;
 import io.github.ovso.massage.framework.listener.OnCustomRecyclerItemClickListener;
+import io.github.ovso.massage.main.base.WebviewAlertDialog;
 import io.github.ovso.massage.main.f_theme.adapter.ThemeAdapter;
 import io.github.ovso.massage.main.f_theme.adapter.ThemeAdapterView;
 import io.github.ovso.massage.main.f_theme.model.Theme;
 import io.github.ovso.massage.view.ui.player.LandscapeVideoActivity;
 import io.github.ovso.massage.view.ui.player.PortraitVideoActivity;
 import io.reactivex.disposables.CompositeDisposable;
-
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 
 public class ThemeFragment extends BaseFragment
@@ -172,7 +169,6 @@ public class ThemeFragment extends BaseFragment
         adapterView.refreshRemove();
     }
 
-    @DebugLog
     @Override
     public void onItemClick(SelectableItem<Theme> item) {
         presenter.onItemClick(item);

@@ -11,7 +11,6 @@ import com.google.gson.JsonElement;
 import java.util.ArrayList;
 import java.util.List;
 
-import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.VideoMode;
@@ -25,10 +24,9 @@ import io.reactivex.disposables.Disposable;
 import timber.log.Timber;
 
 public class SymptomPresenterImpl extends Exception implements SymptomPresenter {
-    private SymptomPresenter.View view;
-    private DatabaseReference databaseReference;
-    private CompositeDisposable compositeDisposable;
-    private BaseAdapterDataModel<SelectableItem<Symptom>> adapterDataModel;
+    private final SymptomPresenter.View view;
+    private final CompositeDisposable compositeDisposable;
+    private final BaseAdapterDataModel<SelectableItem<Symptom>> adapterDataModel;
 
     public SymptomPresenterImpl(
             View view,
@@ -38,7 +36,6 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
     ) {
         this.view = view;
         this.adapterDataModel = adapterDataModel;
-        this.databaseReference = databaseReference;
         this.compositeDisposable = compositeDisposable;
     }
 
@@ -78,7 +75,6 @@ public class SymptomPresenterImpl extends Exception implements SymptomPresenter 
         compositeDisposable.add(subscribe);
     }
 
-    @DebugLog
     @Override
     public void onItemClick(SelectableItem<Symptom> selectableItem) {
         String video_id = selectableItem.item.video_id;

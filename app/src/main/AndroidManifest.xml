@@ -4,9 +4,6 @@
     package="io.github.ovso.massage">
 
     <uses-permission android:name="android.permission.INTERNET" /> <!-- suppress AndroidElementNotAllowed -->
-    <meta-data
-        android:name="firebase_crashlytics_collection_enabled"
-        android:value="false" />
 
     <application
         android:name=".App"
@@ -53,6 +50,11 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="fullSensor"
             android:theme="@android:style/Theme.Black.NoTitleBar" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/ads_app_id" />
+
     </application>
 
 </manifest>

@@ -11,7 +11,6 @@ import com.google.gson.JsonElement;
 import java.util.ArrayList;
 import java.util.List;
 
-import hugo.weaving.DebugLog;
 import io.github.ovso.massage.R;
 import io.github.ovso.massage.framework.SelectableItem;
 import io.github.ovso.massage.framework.VideoMode;
@@ -97,7 +96,6 @@ public class ThemePresenterImpl implements ThemePresenter {
         compositeDisposable.add(subscribe);
     }
 
-    @DebugLog
     @Override
     public void onItemClick(SelectableItem<Theme> selectableItem) {
         onVideoClick(0, selectableItem);
