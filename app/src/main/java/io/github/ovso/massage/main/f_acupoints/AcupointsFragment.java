@@ -73,6 +73,7 @@ public class AcupointsFragment extends BaseFragment
             recyclerView.getItemAnimator().setChangeDuration(Constants.DURATION_RECYCLERVIEW_ANI);
             recyclerView.getItemAnimator().setRemoveDuration(Constants.DURATION_RECYCLERVIEW_ANI);
         }
+//        recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new SlideInDownAnimator());
         recyclerView.addItemDecoration(getRvDivider());
         recyclerView.setAdapter(adapter);
