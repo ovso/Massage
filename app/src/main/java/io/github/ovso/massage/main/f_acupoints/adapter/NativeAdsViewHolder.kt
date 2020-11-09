@@ -2,7 +2,7 @@ package io.github.ovso.massage.main.f_acupoints.adapter
 
 import android.graphics.Typeface
 import android.view.LayoutInflater
-import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.isVisible
 import com.google.android.ads.nativetemplates.NativeTemplateStyle
 import com.google.android.gms.ads.AdListener
@@ -11,11 +11,12 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
 import io.github.ovso.massage.R
 import io.github.ovso.massage.databinding.ItemNativeAdsSmallBinding
+import io.github.ovso.massage.framework.adapter.BaseRecyclerAdapter
 import timber.log.Timber
 
 class NativeAdsViewHolder private constructor(
     private val binding: ItemNativeAdsSmallBinding
-) : ImagesViewHolder(binding.root) {
+) : BaseRecyclerAdapter.BaseViewHolder(binding.root) {
 
     fun onBindViewHolder() {
         Timber.d("OJH onBindViewHolder")
@@ -42,9 +43,13 @@ class NativeAdsViewHolder private constructor(
 
     companion object {
         @JvmStatic
-        fun create(parent: View): NativeAdsViewHolder {
+        fun create(parent: ViewGroup): NativeAdsViewHolder {
             return NativeAdsViewHolder(
-                ItemNativeAdsSmallBinding.inflate(LayoutInflater.from(parent.context))
+                ItemNativeAdsSmallBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
             )
         }
     }

@@ -2,6 +2,7 @@ package io.github.ovso.massage.main.f_acupoints.adapter;
 
 import android.content.Context;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
@@ -35,11 +36,11 @@ public class ImagesAdapter extends BaseRecyclerAdapter
     private final OnAcuRecyclerItemClickListener<Documents> onRecyclerItemClickListener;
 
     @Override
-    protected BaseViewHolder createViewHolder(View view, int viewType) {
+    protected BaseViewHolder createViewHolder(View parent, int viewType) {
         if(VIEW_TYPE_NORMAL == viewType) {
-            return new ImagesViewHolder(view);
+            return new ImagesViewHolder(parent);
         } else {
-            return NativeAdsViewHolder.create(view);
+            return NativeAdsViewHolder.create((ViewGroup)parent);
         }
     }
 

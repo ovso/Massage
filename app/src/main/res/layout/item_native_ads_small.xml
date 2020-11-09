@@ -11,7 +11,7 @@
         android:id="@+id/templateView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:gnt_template_type="@layout/gnt_small_template_view"
+        app:gnt_template_type="@layout/gnt_medium_template_view"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
