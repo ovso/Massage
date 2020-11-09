@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@id/doc_url_textview"
-        app:layout_constraintDimensionRatio="H,16:9"
+        app:layout_constraintDimensionRatio="H,16:12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

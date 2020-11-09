@@ -82,7 +82,7 @@ public class AcupointsFragment extends BaseFragment
     @NotNull
     private DividerItemDecoration getRvDivider() {
         final DividerItemDecoration divider = new DividerItemDecoration(requireContext(), RecyclerView.VERTICAL);
-        final Drawable drawable = ContextCompat.getDrawable(requireContext(), R.drawable.all_rv_divider);
+        final Drawable drawable = ContextCompat.getDrawable(requireContext(), R.drawable.acupoints_rv_divider);
         if (drawable != null) {
             divider.setDrawable(drawable);
         }
