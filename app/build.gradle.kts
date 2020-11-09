@@ -1,65 +1,78 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.google.android.gms.oss-licenses-plugin'
-apply plugin: 'com.google.gms.google-services'
+plugins {
+    id("com.android.application")
+    kotlin("android")
+    id("kotlin-android")
+    id("kotlin-android-extensions")
+    id("kotlin-kapt")
+    id("com.google.gms.google-services")
+    id("com.google.android.gms.oss-licenses-plugin")
+    id("org.ajoberstar.grgit") version "4.0.2"
+}
+//apply from: '../ktlint.gradle'
 
-apply from: '../versioning2.gradle'
-apply from: '../ktlint.gradle'
+val grGit: Grgit = Grgit.open(mapOf("currentDir" to project.rootDir))
+fun getVersionName(grGit: Grgit): String {
+    return TagService(grGit.repository).list().last().name
+}
 
-def keystorePropertiesFile = rootProject.file("../jks/massage_keystore.properties")
-def keystoreProperties = new Properties()
-keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+fun getVersionCode(grGit: Grgit): Int {
+    return TagService(grGit.repository).list().size
+}
+
+
+val keystorePropertiesFile = rootProject.file("../jks/massage_keystore.properties")
+val keystoreProperties = Properties()
+keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 
 android {
 
     signingConfigs {
         release {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
+            keyAlias keystoreProperties ['keyAlias']
+            keyPassword keystoreProperties ['keyPassword']
+            storeFile file (keystoreProperties['storeFile'])
+            storePassword keystoreProperties ['storePassword']
         }
     }
-    compileSdkVersion rootProject.compile_sdk_version
-    //buildToolsVersion rootProject.build_tools_version
-    defaultConfig {
-        applicationId rootProject.application_id
-        minSdkVersion rootProject.min_sdk_version
-        targetSdkVersion rootProject.target_sdk_version
-        versionCode rootProject.version_code
+    compileSdkVersion rootProject . compile_sdk_version
+            //buildToolsVersion rootProject.build_tools_version
+            defaultConfig {
+                applicationId rootProject . application_id
+                        minSdkVersion rootProject . min_sdk_version
+                        targetSdkVersion rootProject . target_sdk_version
+                        versionCode rootProject . version_code
 
-        int versionMajor = 0
-        int versionMinor = 0
-        int versionPatch = rootProject.version_code
+                        int versionMajor = 0
+                int versionMinor = 0
+                int versionPatch = rootProject . version_code
 
-        if (1000 > versionPatch && versionPatch > 99) {
-            versionMajor = versionPatch / 100
-            versionMinor = (versionPatch % 100) / 10
-            versionPatch = (versionPatch % 100) % 10
-        } else if (100 > versionCode && versionPatch > 9) {
-            versionMajor = 0
-            versionMinor = versionPatch / 10
-            versionPatch = versionPatch % 10
-        } else if (versionPatch < 10) {
-            versionMajor = 0
-            versionMinor = 0
-            versionPatch = versionPatch / 1
-        }
+                        if (1000 > versionPatch && versionPatch > 99) {
+                            versionMajor = versionPatch / 100
+                            versionMinor = (versionPatch % 100) / 10
+                            versionPatch = (versionPatch % 100) % 10
+                        } else if (100 > versionCode && versionPatch > 9) {
+                            versionMajor = 0
+                            versionMinor = versionPatch / 10
+                            versionPatch = versionPatch % 10
+                        } else if (versionPatch < 10) {
+                            versionMajor = 0
+                            versionMinor = 0
+                            versionPatch = versionPatch / 1
+                        }
 
-        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
-        testInstrumentationRunner 'androidx.test.ext.junit.runners.AndroidJUnit4'
+                versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+                testInstrumentationRunner 'androidx.test.ext.junit.runners.AndroidJUnit4'
 
-        testOptions {
-            execution 'ANDROIDX_TEST_ORCHESTRATOR'
-        }
-    }
+                testOptions {
+                    execution 'ANDROIDX_TEST_ORCHESTRATOR'
+                }
+            }
 
     buildTypes {
         debug {
             minifyEnabled false
             shrinkResources false
-            proguardFile getDefaultProguardFile('proguard-android.txt')
+            proguardFile getDefaultProguardFile ('proguard-android.txt')
             proguardFile 'proguard-rules.pro'
             proguardFile 'proguard-tedpermission.pro'
             proguardFile 'proguard-firebase.pro'
@@ -77,10 +90,10 @@ android {
         }
 
         release {
-            signingConfig signingConfigs.release
-            minifyEnabled false
+            signingConfig signingConfigs . release
+                    minifyEnabled false
             shrinkResources false
-            proguardFile getDefaultProguardFile('proguard-android.txt')
+            proguardFile getDefaultProguardFile ('proguard-android.txt')
             proguardFile 'proguard-rules.pro'
             proguardFile 'proguard-tedpermission.pro'
             proguardFile 'proguard-firebase.pro'
@@ -111,8 +124,8 @@ android {
     }
 
     compileOptions {
-        targetCompatibility JavaVersion.VERSION_1_8
-        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion . VERSION_1_8
+                sourceCompatibility JavaVersion . VERSION_1_8
     }
 
     kotlinOptions {
@@ -129,15 +142,15 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(":nativetemplates")
+    implementation fileTree (dir: 'libs', include: ['*.jar'])
+    implementation project (":nativetemplates")
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test:runner:1.3.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestUtil 'androidx.test:orchestrator:1.3.0'
 
-    implementation files('libs/YouTubeAndroidPlayerApi.jar')
+    implementation files ('libs/YouTubeAndroidPlayerApi.jar')
     implementation "androidx.appcompat:appcompat:1.3.0-alpha02"
     implementation "androidx.core:core-ktx:1.5.0-alpha04"
     implementation "com.google.android.material:material:1.3.0-alpha03"
@@ -189,4 +202,4 @@ dependencies {
 }
 
 // ADD THIS AT THE BOTTOM
-apply plugin: 'com.google.gms.google-services'
+apply plugin : 'com.google.gms.google-services'
