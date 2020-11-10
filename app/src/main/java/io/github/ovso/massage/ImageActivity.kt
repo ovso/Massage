@@ -59,7 +59,7 @@ class ImageActivity : AppCompatActivity() {
             loadAd(adRequestBuilder.build())
         }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         showInterstitialAd()
         return super.onOptionsItemSelected(item)
     }
