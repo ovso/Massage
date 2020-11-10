@@ -171,10 +171,6 @@ dependencies {
 
     implementation("com.jakewharton.timber:timber:4.7.1")
 
-    //noinspection AnnotationProcessorOnCompilePath
-    compileOnly("org.projectlombok:lombok:1.16.20")
-    annotationProcessor("org.projectlombok:lombok:1.16.20")
-
     implementation("jp.wasabeef:recyclerview-animators:2.2.7")
 
     implementation("de.psdev.licensesdialog:licensesdialog:2.0.0")

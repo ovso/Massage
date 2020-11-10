@@ -21,7 +21,6 @@ import io.github.ovso.massage.R;
 import io.github.ovso.massage.Security;
 import io.github.ovso.massage.framework.Constants;
 import io.github.ovso.massage.framework.customview.BaseFragment;
-import io.github.ovso.massage.main.base.ImageViewAlertDialog;
 import io.github.ovso.massage.main.f_acupoints.adapter.ImagesAdapter;
 import io.github.ovso.massage.main.f_acupoints.adapter.OnAcuRecyclerItemClickListener;
 import io.github.ovso.massage.main.f_acupoints.model.Documents;
@@ -126,8 +125,6 @@ public class AcupointsFragment extends BaseFragment
 
     @Override
     public void showImageViewDialog(String image_url) {
-        new ImageViewAlertDialog().setImageUrl(image_url)
-                .show(getChildFragmentManager(), ImageViewAlertDialog.class.getSimpleName());
     }
 
     @Override

@@ -4,11 +4,6 @@ import android.text.TextUtils;
 import com.google.firebase.database.IgnoreExtraProperties;
 import de.psdev.licensesdialog.licenses.ApacheSoftwareLicense20;
 import de.psdev.licensesdialog.licenses.License;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
-
-@IgnoreExtraProperties @EqualsAndHashCode(callSuper = false) @Getter @ToString
 public class NoticeItem {
 
   public String name;
