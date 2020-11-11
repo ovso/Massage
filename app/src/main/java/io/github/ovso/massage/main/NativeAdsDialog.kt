@@ -1,4 +1,4 @@
-package io.github.ovso.massage.data
+package io.github.ovso.massage.main
 
 import android.content.Context
 import android.view.LayoutInflater

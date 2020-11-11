@@ -127,7 +127,6 @@ class MainActivity : BaseActivity(), MainPresenter.View {
     }
 
     override fun showNativeAdsDialog() {
-/*
         NativeAdsDialog2(this)
             .setUnitId(getString(string.ads_native_unit_id))
             .setPositiveButton(string.exit) { dialog, i ->
@@ -141,7 +140,6 @@ class MainActivity : BaseActivity(), MainPresenter.View {
             }
             .setTitle(string.do_you_want_to_quit)
             .show()
-*/
     }
 
     override fun showAd() {
