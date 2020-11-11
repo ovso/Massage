@@ -3,6 +3,7 @@ package io.github.ovso.massage.main.f_theme.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.TextView;
 
 import com.jakewharton.rxbinding2.view.RxView;
 
@@ -48,7 +49,8 @@ public class ThemeAdapter extends BaseRecyclerAdapter
             //holder.setIsRecyclable(false);
 
             String title = Theme.getTitleByLanguage(SystemUtils.getLanguage(context), item);
-            holder.titleTextview.setText(title);
+            TextView tv = (TextView)holder.itemView.findViewById(R.id.title_textview);
+            tv.setText(title);
 
             compositeDisposable.add(RxView.clicks(holder.itemView)
                     .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())

@@ -5,7 +5,6 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -27,7 +26,6 @@ import kotlinx.android.synthetic.main.fragment_theme.*
 
 class ThemeFragment : BaseFragment(), ThemePresenter.View,
     OnCustomRecyclerItemClickListener<SelectableItem<Theme?>?> {
-    var progressBar: ProgressBar? = null
     private val compositeDisposable = CompositeDisposable()
     private val adapter = ThemeAdapter()
     var adapterView: ThemeAdapterView? = null
@@ -114,11 +112,11 @@ class ThemeFragment : BaseFragment(), ThemePresenter.View,
     }
 
     override fun showLoading() {
-        progressBar!!.visibility = View.VISIBLE
+        progressbar.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
-        progressBar!!.visibility = View.GONE
+        progressbar.visibility = View.GONE
     }
 
     override fun refresh() {
