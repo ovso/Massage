@@ -32,7 +32,8 @@ class SymptomFragment : BaseFragment(), SymptomPresenter.View,
         return R.layout.fragment_symptom
     }
 
-    override fun onActivityCreate(savedInstanceState: Bundle) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         adapter.compositeDisposable = compositeDisposable
         presenter = SymptomPresenterImpl(
             this,
@@ -41,8 +42,8 @@ class SymptomFragment : BaseFragment(), SymptomPresenter.View,
             compositeDisposable
         )
         presenter?.onActivityCreate()
-    }
 
+    }
     override fun setRecyclerView() {
         if (recyclerview.itemAnimator != null) {
             recyclerview.itemAnimator?.setChangeDuration(Constants.DURATION_RECYCLERVIEW_ANI.toLong())

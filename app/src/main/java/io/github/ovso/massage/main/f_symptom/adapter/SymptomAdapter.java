@@ -3,6 +3,7 @@ package io.github.ovso.massage.main.f_symptom.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.TextView;
 
 import com.jakewharton.rxbinding2.view.RxView;
 
@@ -44,11 +45,10 @@ public class SymptomAdapter extends BaseRecyclerAdapter implements SymptomAdapte
             Symptom item = selectableItem.item;
             SymptomViewHolder holder = (SymptomViewHolder) viewHolder;
 
-            //holder.setIsRecyclable(false);
             Context context = holder.itemView.getContext();
 
             String title = Symptom.getTitleByLanguage(SystemUtils.getLanguage(context), item);
-            holder.titleTextview.setText(title);
+            ((TextView)holder.itemView.findViewById(R.id.title_textview)).setText(title);
             compositeDisposable.add(RxView.clicks(holder.itemView)
                     .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                     .subscribe(o -> navigateToPlayer(item, context)));

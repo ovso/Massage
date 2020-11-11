@@ -36,7 +36,8 @@ class ThemeFragment : BaseFragment(), ThemePresenter.View,
         return R.layout.fragment_theme
     }
 
-    override fun onActivityCreate(savedInstanceState: Bundle) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         adapter.compositeDisposable = compositeDisposable
         presenter = ThemePresenterImpl(
             this,
@@ -45,6 +46,7 @@ class ThemeFragment : BaseFragment(), ThemePresenter.View,
             compositeDisposable
         )
         presenter?.onActivityCreate()
+
     }
 
     override fun showYoutubeUseWarningDialog() {

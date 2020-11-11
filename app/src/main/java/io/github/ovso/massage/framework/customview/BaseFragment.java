@@ -24,11 +24,6 @@ public abstract class BaseFragment extends Fragment {
     return inflater.inflate(getLayoutResID(), container, false);
   }
 
-  @Override public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-    super.onActivityCreated(savedInstanceState);
-    onActivityCreate(savedInstanceState);
-  }
-
   @Override public void onViewCreated(@NotNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     unbinder = ButterKnife.bind(this, view);
@@ -44,6 +39,4 @@ public abstract class BaseFragment extends Fragment {
   }
 
   protected abstract int getLayoutResID();
-
-  protected abstract void onActivityCreate(Bundle savedInstanceState);
 }

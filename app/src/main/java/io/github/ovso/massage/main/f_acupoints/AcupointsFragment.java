@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -52,7 +53,8 @@ public class AcupointsFragment extends BaseFragment
     }
 
     @Override
-    protected void onActivityCreate(Bundle savedInstanceState) {
+    public void onViewCreated(@NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         presenter = new AcupointsPresenterImpl(
                 this,
                 adapter,
@@ -60,6 +62,7 @@ public class AcupointsFragment extends BaseFragment
                 new ImagesNetwork(requireContext(), Security.API_BASE_URL.value)
         );
         presenter.onActivityCreate(getResources());
+
     }
 
     public static AcupointsFragment newInstance() {
