@@ -119,11 +119,13 @@ android {
         main.java.srcDirs += "src/main/kotlin"
     }
 */
+/*
     kotlin {
         sourceSets["main"].apply {
             kotlin.srcDir("src/main/kotlin")
         }
     }
+*/
     lintOptions {
         disable("MissingTranslation")
     }
