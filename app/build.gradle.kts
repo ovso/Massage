@@ -2,9 +2,9 @@
 
 import org.ajoberstar.grgit.Grgit
 import org.ajoberstar.grgit.service.TagService
-import org.jetbrains.kotlin.konan.properties.Properties
+//import org.jetbrains.kotlin.konan.properties.Properties
 import java.io.FileInputStream
-
+typealias Properties = java.util.Properties
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -25,7 +25,6 @@ fun getVersionName(grGit: Grgit): String {
 fun getVersionCode(grGit: Grgit): Int {
     return TagService(grGit.repository).list().size
 }
-
 
 val keystorePropertiesFile = rootProject.file("../jks/massage_keystore.properties")
 val keystoreProperties = Properties()
